@@ -14,7 +14,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtEmail : VIZIUITextField!
     @IBOutlet weak var txtPassword : VIZIUITextField!
     @IBOutlet weak var txtConfPassword : VIZIUITextField!
-    
+    var arrRes = [String:Any]() //Array of dictionary
+
     @IBOutlet weak var btnSignUp : UIButton!
     
     override func viewDidLoad() {
@@ -39,6 +40,90 @@ class SignupViewController: UIViewController {
     @IBAction func btnBackPressed() {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
+    /*
+        {"id":"e01c13df-e937-4980-82de-7a27b4cf12bb","headers":"","url":"http:\/\/vizi.intellactsoft.com\/api\/register.php","preRequestScript":null,"pathVariables":[],"method":"POST","data":[{"key":"email","value":"john1@gmail.com","type":"text","enabled":true},{"key":"user_name","value":"john1","type":"text","enabled":true},{"key":"password","value":"test","type":"text","enabled":true},{"key":"device_id","value":"1234567890","type":"text","enabled":true}],"dataMode":"params","tests":null,"currentHelper":"normal","helperAttributes":[],"time":1486876535712,"name":"Register #3 ","description":"","collectionId":"efc1c4cb-0558-9221-7410-fda3f9d020ba","responses":[]}]}
+     */
+    @IBAction func btnSignUpPressed()
+    {
+        if (self.txtUsername.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter username", inView: self)
+        }
+        else if (self.txtEmail.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter email", inView: self)
+        }
+        else if (self.txtPassword.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter password", inView: self)
+        }
+        else if (self.txtConfPassword.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter confirm password", inView: self)
+        }
+        else if (self.txtPassword.text! != self.txtConfPassword.text!)
+        {
+            App_showAlert(withMessage: "Password and confirm password must be same", inView: self)
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            request("http://vizi.intellactsoft.com/api/register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
+                { (response:DataResponse<Any>) in
+                
+                hideProgress()
+                switch(response.result)
+                {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            if dictemp.count > 0
+                            {
+                                if  let dictemp2 = dictemp["data"] as? NSDictionary
+                                {
+                                print("dictemp :> \(dictemp2)")
+                                
+                                appDelegate.arrLoginData = dictemp2
+                                App_showAlert(withMessage: "Signup Successfully", inView: self)
+
+                                let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
+                                self.navigationController?.pushViewController(tabbar, animated: true)
+                                }
+                                else
+                                {
+                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                }
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                case .failure(_):
+                    print(response.result.error)
+                    break
+                }
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

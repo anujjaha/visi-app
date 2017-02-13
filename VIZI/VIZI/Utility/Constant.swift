@@ -19,6 +19,7 @@ let kPrivacyTermsVCViewID = "PrivacyTermsVC"
 
 let kkeydata = "data"
 let kkeymessage = "message"
+let kkeyuserid = "id"
 
 //var CurrentUser : UserModel = UserModel()
 

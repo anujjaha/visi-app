@@ -36,6 +36,70 @@ class ChangePasswordVC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
 
+    /*
+        {"id":"b6fc65b6-bb79-ae1b-8e6c-597c9c0eb7d9","headers":"","url":"http:\/\/vizi.intellactsoft.com\/api\/change_password.php","preRequestScript":null,"pathVariables":[],"method":"POST","data":[{"key":"user_id","value":"21","type":"text","enabled":true},{"key":"current_password","value":"test123","type":"text","enabled":true},{"key":"new_password","value":"test111","type":"text","enabled":true}],"dataMode":"params","tests":null,"currentHelper":"normal","helperAttributes":[],"time":1486879408708,"name":"Change Password","description":"","collectionId":"efc1c4cb-0558-9221-7410-fda3f9d020ba","responses":[]}
+     */
+
+    // MARK: - Navigation
+    @IBAction func btnChangePasswordPressed()
+    {
+        if (self.txtOldPassword.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter username", inView: self)
+        }
+        else if (self.txtNewPassword.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter username", inView: self)
+        }
+        else if (self.txtConfPassword.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter confirm password", inView: self)
+        }
+        else if (self.txtNewPassword.text! != self.txtConfPassword.text!)
+        {
+            App_showAlert(withMessage: "New password and confirm password must be same", inView: self)
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            request("http://vizi.intellactsoft.com/api/change_password.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","current_password":"\(self.txtOldPassword.text!)","new_password":"\(self.txtNewPassword.text!)"]).responseJSON { (response:DataResponse<Any>) in
+            
+                hideProgress()
+                switch(response.result) {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            let alertView = UIAlertController(title: Application_Name, message: dictemp[kkeymessage]! as? String, preferredStyle: .alert)
+                            let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                    _ = self.navigationController?.popViewController(animated: true)
+                            }
+                            alertView.addAction(OKAction)
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error as! String, inView: self)
+                    break
+                }
+            }
+        }
+    }
+
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

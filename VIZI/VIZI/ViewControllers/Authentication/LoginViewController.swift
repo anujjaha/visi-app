@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtPassword : VIZIUITextField!
     @IBOutlet weak var btnLogin : UIButton!
     @IBOutlet weak var btnFacebook : UIButton!
-    var arrRes = [[String:Any]]() //Array of dictionary
+    var arrRes = NSMutableDictionary() //Array of dictionary
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,27 +73,32 @@ class LoginViewController: UIViewController {
                     if response.result.value != nil
                     {
                         print(response.result.value)
-                        if let json = response.result.value as? [String: Any] {
+                        if let json = response.result.value {
                             print("json :> \(json)")
                             
-                            let swiftyJsonVar = JSON(response.result.value!)
-                            print("swiftyJsonVar :> \(swiftyJsonVar)")
-
-                            if let resData = swiftyJsonVar[kkeydata].dictionaryObject
-                            {
-                                print("resData :> \(resData)")
-                                self.arrRes = [resData]
-                            }
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
                             
-                            if self.arrRes.count > 0
+                            if dictemp.count > 0
                             {
-                                let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-                                let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
-                                self.navigationController?.pushViewController(tabbar, animated: true)
+                                if  let dictemp2 = dictemp["data"] as? NSDictionary
+                                {
+                                    print("dictemp :> \(dictemp2)")
+                                    
+                                    appDelegate.arrLoginData = dictemp2
+                                    
+                                    let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                    let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
+                                    self.navigationController?.pushViewController(tabbar, animated: true)
+                                }
+                                else
+                                {
+                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                }
                             }
                             else
                             {
-                                App_showAlert(withMessage: swiftyJsonVar[kkeymessage].string!, inView: self)
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                             }
                         }
                     }
