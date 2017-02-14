@@ -23,6 +23,66 @@ class ForgotViewController: UIViewController {
         }
     }
 
+    // MARK: - Navigation
+    @IBAction func btnSendRequestPressed()
+    {
+        /*
+         {"id":"65608f11-deb8-3601-4487-2730b4e241de","headers":"","url":"http:\/\/vizi.intellactsoft.com\/api\/forget.php","preRequestScript":null,"pathVariables":[],"method":"POST","data":[{"key":"email","value":"john1@gmail.com","type":"text","enabled":true}],"dataMode":"params","tests":null,"currentHelper":"normal","helperAttributes":[],"time":1486879973667,"name":"Forget Password","description":"","collectionId":"efc1c4cb-0558-9221-7410-fda3f9d020ba","responses":[]}         */
+        
+        if (self.txtEmail.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter email address", inView: self)
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            request("\(kServerURL)forget.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)",]).responseJSON { (response:DataResponse<Any>) in
+                
+                hideProgress()
+                switch(response.result) {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        if let json = response.result.value {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                    let alertView = UIAlertController(title: Application_Name, message: dictemp[kkeymessage]! as? String, preferredStyle: .alert)
+                                    let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                        _ = self.navigationController?.popViewController(animated: true)
+                                    }
+                                    alertView.addAction(OKAction)
+                                self.present(alertView, animated: true, completion: nil)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error as! String, inView: self)
+                    break
+                }
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
+    }
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

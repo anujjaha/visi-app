@@ -8,16 +8,18 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var txtUsername : VIZIUITextField!
     @IBOutlet weak var txtEmail : VIZIUITextField!
     @IBOutlet weak var txtPassword : VIZIUITextField!
     @IBOutlet weak var txtConfPassword : VIZIUITextField!
     var arrRes = [String:Any]() //Array of dictionary
+    var imagePicker = UIImagePickerController()
 
     @IBOutlet weak var btnSignUp : UIButton!
-    
+    @IBOutlet weak var btnImageofUser : UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -69,7 +71,7 @@ class SignupViewController: UIViewController {
         else
         {
             showProgress(inView: self.view)
-            request("http://vizi.intellactsoft.com/api/register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
+            request("\(kServerURL)register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
                 { (response:DataResponse<Any>) in
                 
                 hideProgress()
@@ -112,6 +114,7 @@ class SignupViewController: UIViewController {
                     break
                 case .failure(_):
                     print(response.result.error)
+                    App_showAlert(withMessage: response.result.error as! String, inView: self)
                     break
                 }
             }
@@ -123,6 +126,61 @@ class SignupViewController: UIViewController {
         return true
     }
 
+    @IBAction func SelectImage()
+    {
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openCamera()
+        }
+        let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openGallary()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        imagePicker.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(gallaryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self .present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            App_showAlert(withMessage: "You don't have camera", inView: self)
+        }
+    }
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //PickerView Delegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        btnImageofUser.setImage(chosenImage, for: .normal)
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        print("picker cancel.")
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

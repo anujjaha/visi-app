@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
             
             showProgress(inView: self.view)
 //            print("parameters:>\(parameters)")
-            request("http://vizi.intellactsoft.com/api/login.php", method: .post, parameters: ["user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON { (response:DataResponse<Any>) in
+            request("\(kServerURL)login.php", method: .post, parameters: ["user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON { (response:DataResponse<Any>) in
                 
                 hideProgress()
                 switch(response.result) {
@@ -106,6 +106,7 @@ class LoginViewController: UIViewController {
                     
                 case .failure(_):
                     print(response.result.error)
+                    App_showAlert(withMessage: response.result.error as! String, inView: self)
                     break
                 }
             }

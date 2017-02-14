@@ -62,7 +62,7 @@ class ChangePasswordVC: UIViewController {
         else
         {
             showProgress(inView: self.view)
-            request("http://vizi.intellactsoft.com/api/change_password.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","current_password":"\(self.txtOldPassword.text!)","new_password":"\(self.txtNewPassword.text!)"]).responseJSON { (response:DataResponse<Any>) in
+            request("\(kServerURL)change_password.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","current_password":"\(self.txtOldPassword.text!)","new_password":"\(self.txtNewPassword.text!)"]).responseJSON { (response:DataResponse<Any>) in
             
                 hideProgress()
                 switch(response.result) {
@@ -82,6 +82,7 @@ class ChangePasswordVC: UIViewController {
                                     _ = self.navigationController?.popViewController(animated: true)
                             }
                             alertView.addAction(OKAction)
+                            self.present(alertView, animated: true, completion: nil)
                         }
                     }
                     break

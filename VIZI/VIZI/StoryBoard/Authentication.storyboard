@@ -332,6 +332,9 @@
                                     <constraint firstAttribute="width" secondItem="vNi-JE-mUi" secondAttribute="height" multiplier="1:1" id="fwc-e2-RAA"/>
                                 </constraints>
                                 <state key="normal" image="addimage_icon" backgroundImage="addimage_bg"/>
+                                <connections>
+                                    <action selector="SelectImage" destination="YCy-UW-Qaf" eventType="touchUpInside" id="kfq-30-t3C"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZx-9a-79M">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -440,6 +443,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="P90-cq-Ji6"/>
                     <connections>
+                        <outlet property="btnImageofUser" destination="vNi-JE-mUi" id="5yE-ub-Nvt"/>
                         <outlet property="btnSignUp" destination="Fu7-hO-m4Y" id="xQ0-d3-xqR"/>
                         <outlet property="txtConfPassword" destination="j6b-Ec-TBD" id="Bag-UB-iDl"/>
                         <outlet property="txtEmail" destination="BMe-7j-57s" id="Qnw-A6-GUS"/>
@@ -502,6 +506,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Hw-Lk-MZq" id="irc-1e-Npm"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVS-ef-ssj">
                                 <color key="backgroundColor" red="0.8862745098" green="0.2274509804" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -511,6 +518,9 @@
                                 <state key="normal" title="SEND REQUEST">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnSendRequestPressed" destination="5Hw-Lk-MZq" eventType="touchUpInside" id="6Io-iO-OJI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

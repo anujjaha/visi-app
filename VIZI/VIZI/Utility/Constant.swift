@@ -21,6 +21,8 @@ let kkeydata = "data"
 let kkeymessage = "message"
 let kkeyuserid = "id"
 
+let kServerURL = "http://vizi.intellactsoft.com/api/"
+
 //var CurrentUser : UserModel = UserModel()
 
 var progressView : UIView?

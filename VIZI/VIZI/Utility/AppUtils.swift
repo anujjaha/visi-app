@@ -52,3 +52,38 @@ func hideProgress() {
     progressView?.removeFromSuperview()
     progressView = nil
 }
+
+func resize(_ image: UIImage) -> UIImage
+{
+    var actualHeight: Float = Float(image.size.height)
+    var actualWidth: Float = Float(image.size.width)
+    let maxHeight: Float = 300.0
+    let maxWidth: Float = 400.0
+    var imgRatio: Float = actualWidth / actualHeight
+    let maxRatio: Float = maxWidth / maxHeight
+    if actualHeight > maxHeight || actualWidth > maxWidth {
+        if imgRatio < maxRatio {
+            //adjust width according to maxHeight
+            imgRatio = maxHeight / actualHeight
+            actualWidth = imgRatio * actualWidth
+            actualHeight = maxHeight
+        }
+        else if imgRatio > maxRatio {
+            //adjust height according to maxWidth
+            imgRatio = maxWidth / actualWidth
+            actualHeight = imgRatio * actualHeight
+            actualWidth = maxWidth
+        }
+        else {
+            actualHeight = maxHeight
+            actualWidth = maxWidth
+        }
+    }
+    let rect = CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: CGFloat(actualWidth), height: CGFloat(actualHeight))
+    UIGraphicsBeginImageContext(rect.size)
+    image.draw(in: rect)
+    let img: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+    let imageData: Data? = UIImageJPEGRepresentation(img!, 1.0)
+    UIGraphicsEndImageContext()
+    return UIImage(data: imageData!)!
+}
