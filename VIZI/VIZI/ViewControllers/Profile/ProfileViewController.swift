@@ -52,7 +52,6 @@ class ProfileViewController: UIViewController {
             }
         }
 
-        
         DispatchQueue.main.async {
             
             self.btnPlus.layer.borderWidth = 6

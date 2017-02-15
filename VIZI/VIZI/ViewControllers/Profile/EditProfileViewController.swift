@@ -20,6 +20,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var txtvwBio: UITextView!
     var imageData = NSData()
     var imagePicker = UIImagePickerController()
+    var image = UIImage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +68,81 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
          {"id":"c8540203-5700-7f7c-892e-ccc915d2814c","headers":"","url":"http:\/\/vizi.intellactsoft.com\/api\/update_profile.php","preRequestScript":null,"pathVariables":[],"method":"POST","data":[{"key":"user_id","value":"21","type":"text","enabled":true},{"key":"bio","value":"This is some dummy text for the bio of the user","type":"text","enabled":true},{"key":"visibility","value":"1","type":"text","enabled":true},{"key":"image","value":"myImage.jpg","type":"file","enabled":true}],"dataMode":"params","tests":null,"currentHelper":"normal","helperAttributes":[],"time":1486884656406,"name":"Update Profile #9","description":"","collectionId":"efc1c4cb-0558-9221-7410-fda3f9d020ba","responses":[]}
          */
         showProgress(inView: self.view)
-        request("\(kServerURL)update_profile.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","bio":"\(self.txtvwBio.text!)","image":imageData]).responseJSON { (response:DataResponse<Any>) in
-            
+        
+        
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "bio":"\(self.txtvwBio.text!)",
+            "visibility":"\(1)" ]
+        
+        upload(multipartFormData:
+            { (multipartFormData) in
+                
+                if let imageData2 = UIImageJPEGRepresentation(self.image, 1)
+                {
+                    multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
+                }
+                
+                for (key, value) in parameters
+                {
+                    multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                }
+            }, to: "\(kServerURL)update_profile.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
+            {
+                (result) in
+                switch result
+                {
+                case .success(let upload, _, _):
+                    upload.responseJSON
+                        {
+                            response in
+                            hideProgress()
+                            
+                            print(response.request) // original URL request
+                            print(response.response) // URL response
+                            print(response.data) // server data
+                            print(response.result) // result of response serialization
+                            
+                            if let json = response.result.value
+                            {
+                                print("json :> \(json)")
+                                let dictemp = json as! NSDictionary
+                                print("dictemp :> \(dictemp)")
+                                if dictemp.count > 0
+                                {
+                                    if  let dictemp2 = dictemp["data"] as? NSDictionary
+                                    {
+                                        print("dictemp :> \(dictemp2)")                                        
+                                        appDelegate.arrLoginData = dictemp2
+                                    }
+
+                                    let alertView = UIAlertController(title: Application_Name, message: "Profile Updated Successfully", preferredStyle: .alert)
+                                    let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                        _ = self.navigationController?.popViewController(animated: true)
+                                    }
+                                    alertView.addAction(OKAction)
+                                    self.present(alertView, animated: true, completion: nil)
+                                }
+                                else
+                                {
+                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                }
+                            }
+                    }
+                    
+                case .failure(let encodingError):
+                    hideProgress()
+                    print(encodingError)
+                }
+                
+        })
+
+        
+        /*request("\(kServerURL)update_profile.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","bio":"\(self.txtvwBio.text!)","image":imageData]).responseJSON { (response:DataResponse<Any>) in
+         
             hideProgress()
-            switch(response.result) {
+            switch(response.result)
+            {
             case .success(_):
                 if response.result.value != nil
                 {
@@ -103,7 +175,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
                 App_showAlert(withMessage: response.result.error as! String, inView: self)
                 break
             }
-        }
+        }*/
     }
 
     //MARK: Select Image
@@ -155,8 +227,8 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imgProfile.image = chosenImage
-        chosenImage = resize(imgProfile.image!)
+        image = resize(chosenImage)
+        imgProfile.image = image
         imageData = (UIImageJPEGRepresentation(chosenImage, 1) as NSData?)!
         dismiss(animated: true, completion: nil)
     }

@@ -75,7 +75,6 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
             showProgress(inView: self.view)
 
             // define parameters
-            /*
             let parameters = [
                 "email": "\(self.txtEmail.text!)",
                 "user_name": "\(self.txtUsername.text!)",
@@ -83,10 +82,92 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                 "device_id":"asdfghjkl"
             ]
             
+            upload(multipartFormData:
+                { (multipartFormData) in
+                    
+                    if let imageData2 = UIImageJPEGRepresentation(self.image, 1)
+                    {
+                        multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
+                    }
+                    
+                    for (key, value) in parameters
+                    {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                }, to: "\(kServerURL)register.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
+                {
+                    (result) in
+                    switch result
+                    {
+                        case .success(let upload, _, _):
+                        upload.responseJSON
+                            {
+                                response in
+                                hideProgress()
 
-            upload(multipartFormData: { multipartFormData in
+                                print(response.request) // original URL request
+                                print(response.response) // URL response
+                                print(response.data) // server data
+                                print(response.result) // result of response serialization
+                                
+                              /*  if let JSON = response.result.value
+                                {
+                                    print("JSON: \(JSON)")
+                                }
+                                do {
+                                    let json = try JSONSerialization.jsonObject(with: response.data!, options: .allowFragments)
+                                    print(json)
+                                    //Why don't you use decoded JSON object? (`json` may not be a `String`)
+                                } catch {
+                                    print("error serializing JSON: \(error)")
+                                }*/
+
+                                
+                                if let json = response.result.value
+                                {
+                                    print("json :> \(json)")
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    if dictemp.count > 0
+                                    {
+                                        if  let dictemp2 = dictemp["data"] as? NSDictionary
+                                        {
+                                            print("dictemp :> \(dictemp2)")
+                                            
+                                            appDelegate.arrLoginData = dictemp2
+                                            
+                                            let alertView = UIAlertController(title: Application_Name, message: "Signup Successfully", preferredStyle: .alert)
+                                            let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                                let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                                let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
+                                                self.navigationController?.pushViewController(tabbar, animated: true)
+                                            }
+                                            alertView.addAction(OKAction)
+                                            self.present(alertView, animated: true, completion: nil)
+                                        }
+                                        else
+                                        {
+                                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                        }
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+
+                        }
+                        
+                    case .failure(let encodingError):
+                        hideProgress()
+                        print(encodingError)
+                    }
+
+            })
+
+          /*  upload(multipartFormData: { multipartFormData in
                 if let imageData = UIImageJPEGRepresentation(self.image, 1) {
-                    multipartFormData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+                    multipartFormData.append(imageData, withName: "image", fileName: "file.png", mimeType: "image/png")
                 }
                 for (key, value) in parameters {
                     multipartFormData.append((value.data(using: .utf8))!, withName: key)
@@ -108,7 +189,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                         }
             })*/
             
-            request("\(kServerURL)register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
+           /* request("\(kServerURL)register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
                 { (response:DataResponse<Any>) in
                 
                 hideProgress()
@@ -158,7 +239,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                     App_showAlert(withMessage: response.result.error as! String, inView: self)
                     break
                 }
-            }
+            }*/
         }
     }
     
@@ -216,8 +297,8 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        image = chosenImage
-        btnImageofUser.setImage(chosenImage, for: .normal)
+        image = resize(chosenImage)
+        btnImageofUser.setImage(image, for: .normal)
         dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
