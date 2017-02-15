@@ -16,6 +16,8 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     @IBOutlet weak var txtConfPassword : VIZIUITextField!
     var arrRes = [String:Any]() //Array of dictionary
     var imagePicker = UIImagePickerController()
+    var imageData = NSData()
+    var image = UIImage()
 
     @IBOutlet weak var btnSignUp : UIButton!
     @IBOutlet weak var btnImageofUser : UIButton!
@@ -71,6 +73,41 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
         else
         {
             showProgress(inView: self.view)
+
+            // define parameters
+            /*
+            let parameters = [
+                "email": "\(self.txtEmail.text!)",
+                "user_name": "\(self.txtUsername.text!)",
+                "password":"\(self.txtPassword.text!)",
+                "device_id":"asdfghjkl"
+            ]
+            
+
+            upload(multipartFormData: { multipartFormData in
+                if let imageData = UIImageJPEGRepresentation(self.image, 1) {
+                    multipartFormData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+                }
+                for (key, value) in parameters {
+                    multipartFormData.append((value.data(using: .utf8))!, withName: key)
+                }}, to: "\(kServerURL)register.php", method: .post, headers: nil,
+                    encodingCompletion: { encodingResult in
+                        
+                        hideProgress()
+                        switch encodingResult
+                        {
+                        case .success(let upload, _, _):
+                            upload.response { [weak self] response in
+                                guard self != nil else {
+                                    return
+                                }
+                                debugPrint(response)
+                            }
+                        case .failure(let encodingError):
+                            print("error:\(encodingError)")
+                        }
+            })*/
+            
             request("\(kServerURL)register.php", method: .post, parameters: ["email": "\(self.txtEmail.text!)","user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON
                 { (response:DataResponse<Any>) in
                 
@@ -94,11 +131,15 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                                 print("dictemp :> \(dictemp2)")
                                 
                                 appDelegate.arrLoginData = dictemp2
-                                App_showAlert(withMessage: "Signup Successfully", inView: self)
-
-                                let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-                                let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
-                                self.navigationController?.pushViewController(tabbar, animated: true)
+                                    
+                                    let alertView = UIAlertController(title: Application_Name, message: "Signup Successfully", preferredStyle: .alert)
+                                    let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                        let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
+                                        self.navigationController?.pushViewController(tabbar, animated: true)
+                                    }
+                                    alertView.addAction(OKAction)
+                                    self.present(alertView, animated: true, completion: nil)
                                 }
                                 else
                                 {
@@ -125,7 +166,8 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
         textField.resignFirstResponder()
         return true
     }
-
+    
+    //MARK: Select Image
     @IBAction func SelectImage()
     {
         let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -174,6 +216,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        image = chosenImage
         btnImageofUser.setImage(chosenImage, for: .normal)
         dismiss(animated: true, completion: nil)
     }

@@ -43,5 +43,7 @@
 	<string>We need access to your camera roll and photo library, so that we can use it.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera roll, so that we can use it.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) microphone use</string>
 </dict>
 </plist>

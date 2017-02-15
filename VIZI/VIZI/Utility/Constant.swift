@@ -20,6 +20,12 @@ let kPrivacyTermsVCViewID = "PrivacyTermsVC"
 let kkeydata = "data"
 let kkeymessage = "message"
 let kkeyuserid = "id"
+let kkeyuser_name = "user_name"
+let kkeyemail = "email"
+let kkeybio = "bio"
+let kkeydevice_id = "device_id"
+let kkeyimage = "image"
+let kkeystatus = "status"
 
 let kServerURL = "http://vizi.intellactsoft.com/api/"
 

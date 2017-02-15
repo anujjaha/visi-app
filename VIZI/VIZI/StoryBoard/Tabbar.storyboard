@@ -913,6 +913,9 @@
                         <outlet property="btnPlus" destination="9m5-CP-WQ1" id="ARh-dG-jZJ"/>
                         <outlet property="btnSave" destination="G4o-BV-Nei" id="UdO-Fz-C1b"/>
                         <outlet property="imgProfile" destination="xhz-pI-E3U" id="kJE-8c-il6"/>
+                        <outlet property="lblEmail" destination="6Bg-aR-iIT" id="jXa-ij-UCv"/>
+                        <outlet property="lblName" destination="zh6-hR-7Pn" id="bgh-ms-XIN"/>
+                        <outlet property="lblbio" destination="nzO-TW-Wbj" id="1Lg-iJ-Ihz"/>
                         <outlet property="txtAddCategory" destination="JTs-ys-giV" id="U7l-Za-4K3"/>
                         <outlet property="viewAddFilter" destination="SbU-mv-tjk" id="pJU-KT-yG0"/>
                         <outlet property="viewAddFilterContiner" destination="hJD-uH-5uL" id="OeV-5i-Chq"/>
@@ -1261,6 +1264,9 @@
                                         <frame key="frameInset" minX="84" minY="82" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="edit_icon"/>
+                                        <connections>
+                                            <action selector="SelectImage" destination="gwO-1P-QT2" eventType="touchUpInside" id="dEp-qe-3vJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1297,6 +1303,17 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-FH-rTG">
+                                        <frame key="frameInset" minX="9" minY="53" width="318" height="79"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gwO-1P-QT2" id="x6i-J3-Ve6"/>
+                                        </connections>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.023529411764705882" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1366,6 +1383,16 @@
                                     <action selector="backButtonPressed" destination="gwO-1P-QT2" eventType="touchUpInside" id="UN7-t9-Xlg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ws-r8-HGa">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="841-ej-VVq"/>
+                                    <constraint firstAttribute="width" constant="44" id="Sm9-IK-Gvg"/>
+                                </constraints>
+                                <state key="normal" image="right_icon"/>
+                                <connections>
+                                    <action selector="btnEditProfilePressed" destination="gwO-1P-QT2" eventType="touchUpInside" id="688-M5-fY4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.078431372550000003" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1380,6 +1407,7 @@
                             <constraint firstItem="iJL-Y9-7Jg" firstAttribute="top" secondItem="Bzp-BY-3ue" secondAttribute="top" id="Ido-cv-B9z"/>
                             <constraint firstItem="iQc-w9-gEz" firstAttribute="top" secondItem="Y2E-5o-T7B" secondAttribute="bottom" constant="5" id="Kaz-Fd-8qi"/>
                             <constraint firstItem="Y2E-5o-T7B" firstAttribute="centerX" secondItem="Bzp-BY-3ue" secondAttribute="centerX" id="OHn-Ek-kGe"/>
+                            <constraint firstItem="3Ws-r8-HGa" firstAttribute="top" secondItem="Dbu-fm-NuU" secondAttribute="bottom" constant="4" id="OgN-FW-mU7"/>
                             <constraint firstItem="kly-cW-Hsb" firstAttribute="top" secondItem="vfZ-7Z-zG7" secondAttribute="bottom" id="Uh6-LH-xbm"/>
                             <constraint firstItem="vfZ-7Z-zG7" firstAttribute="centerX" secondItem="Bzp-BY-3ue" secondAttribute="centerX" id="WTI-qG-TeG"/>
                             <constraint firstAttribute="trailing" secondItem="iQc-w9-gEz" secondAttribute="trailing" constant="20" id="YS3-Eh-VnV"/>
@@ -1389,6 +1417,7 @@
                             <constraint firstItem="VHP-gL-CIg" firstAttribute="leading" secondItem="Bzp-BY-3ue" secondAttribute="leading" constant="20" id="eXP-eQ-2sQ"/>
                             <constraint firstItem="pQw-rs-3rf" firstAttribute="top" secondItem="Bzp-BY-3ue" secondAttribute="top" constant="24" id="fE5-zk-LZk"/>
                             <constraint firstAttribute="trailing" secondItem="VHP-gL-CIg" secondAttribute="trailing" constant="20" id="oFQ-Ho-uGu"/>
+                            <constraint firstAttribute="trailing" secondItem="3Ws-r8-HGa" secondAttribute="trailing" id="rpp-ml-xyd"/>
                             <constraint firstItem="URb-cK-5Xd" firstAttribute="top" secondItem="VHP-gL-CIg" secondAttribute="bottom" constant="15" id="upg-iw-XDD"/>
                             <constraint firstItem="Y2E-5o-T7B" firstAttribute="top" secondItem="kly-cW-Hsb" secondAttribute="bottom" id="x9S-Ta-7LZ"/>
                             <constraint firstItem="pQw-rs-3rf" firstAttribute="leading" secondItem="Bzp-BY-3ue" secondAttribute="leading" id="z7r-WA-9Ta"/>
@@ -1397,6 +1426,9 @@
                     <navigationItem key="navigationItem" id="fQb-b6-alq"/>
                     <connections>
                         <outlet property="imgProfile" destination="PSI-tZ-WS2" id="OqJ-t5-BOd"/>
+                        <outlet property="lblEmail" destination="Y2E-5o-T7B" id="aQf-16-TAo"/>
+                        <outlet property="lblName" destination="kly-cW-Hsb" id="RSO-MN-RfS"/>
+                        <outlet property="txtvwBio" destination="fbM-FH-rTG" id="qZw-ge-aav"/>
                         <outlet property="viewBio" destination="iQc-w9-gEz" id="l0r-no-YJV"/>
                         <outlet property="viewChangePassword" destination="URb-cK-5Xd" id="vFl-59-Z8g"/>
                         <outlet property="viewMakePrivate" destination="VHP-gL-CIg" id="REn-UA-ZlB"/>
@@ -1404,7 +1436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnI-zB-iBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="1720"/>
+            <point key="canvasLocation" x="710.5" y="1719.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="elP-hQ-CBi">
@@ -1805,6 +1837,7 @@
         <image name="location_pin" width="12" height="12"/>
         <image name="map_icon" width="16" height="15"/>
         <image name="photo_icon" width="17" height="13"/>
+        <image name="right_icon" width="16" height="16"/>
         <image name="rightarrow_icon" width="12" height="12"/>
         <image name="settings_icon" width="20" height="20"/>
         <image name="switch_off" width="42" height="22"/>

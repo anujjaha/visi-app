@@ -28,8 +28,31 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var btnSave : UIButton!
     @IBOutlet weak var btnCancel : UIButton!
     
+    @IBOutlet weak var lblName : UILabel!
+    @IBOutlet weak var lblEmail : UILabel!
+    @IBOutlet weak var lblbio : UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if appDelegate.arrLoginData.count > 0
+        {
+            self.lblName.text =  "\(appDelegate.arrLoginData[kkeyuser_name]!)"
+            self.lblEmail.text = "\(appDelegate.arrLoginData[kkeyemail]!)"
+            
+            if !"\(appDelegate.arrLoginData[kkeybio]!)".isEmpty
+            {
+                if appDelegate.arrLoginData[kkeybio] is NSNull
+                {
+                    self.lblbio.text = ""
+                }
+                else
+                {
+                    self.lblbio.text = "\(appDelegate.arrLoginData[kkeybio]!)"
+                }
+            }
+        }
+
+        
         DispatchQueue.main.async {
             
             self.btnPlus.layer.borderWidth = 6
@@ -46,6 +69,7 @@ class ProfileViewController: UIViewController {
             self.viewPhotoCategory.layer.cornerRadius = 5.0
             self.btnSave.layer.cornerRadius = 5.0
             self.btnCancel.layer.cornerRadius = 5.0
+            
         }
     }
     // MARK: - Action

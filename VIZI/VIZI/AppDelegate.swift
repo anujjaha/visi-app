@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            NSFontAttributeName : UIFont(name: "Futura", size: 10)!
 //        ]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
+        IQKeyboardManager.sharedManager().enable = true
+        //IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.sharedManager().shouldHidePreviousNext = false
         return true
     }
 
