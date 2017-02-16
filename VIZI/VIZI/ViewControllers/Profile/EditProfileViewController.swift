@@ -18,13 +18,19 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var txtvwBio: UITextView!
+    @IBOutlet weak var btnMakePrivate : UIButton!
+    
     var imageData = NSData()
     var imagePicker = UIImagePickerController()
     var image = UIImage()
+    var flagforswitch = Bool()
+    var strvisibilityvalue = NSString()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        flagforswitch = true
+
         if appDelegate.arrLoginData.count > 0
         {
             self.lblName.text =  "\(appDelegate.arrLoginData[kkeyuser_name]!)"
@@ -41,6 +47,32 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
                     self.txtvwBio.text = "\(appDelegate.arrLoginData[kkeybio]!)"
                 }
             }
+            
+            if !"\(appDelegate.arrLoginData[kkeyimage]!)".isEmpty
+            {
+                if appDelegate.arrLoginData[kkeyimage] is NSNull
+                {
+                    imgProfile.image = UIImage(named: "addimage_icon")
+                }
+                else
+                {
+                    imgProfile.sd_setImage(with: URL(string: "\(appDelegate.arrLoginData[kkeyimage]!)"), placeholderImage: UIImage(named: "addimage_icon"))
+                }
+            }
+            
+            if !"\(appDelegate.arrLoginData[kkeyvisibility]!)".isEmpty
+            {
+                if appDelegate.arrLoginData[kkeyvisibility] is NSNull
+                {
+                     strvisibilityvalue = "1"
+                }
+                else
+                {
+                    strvisibilityvalue = "\(appDelegate.arrLoginData[kkeyvisibility]!)" as NSString
+                }
+            }
+
+//            strvisibilityvalue
         }
         
         DispatchQueue.main.async {
@@ -73,7 +105,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
             "bio":"\(self.txtvwBio.text!)",
-            "visibility":"\(1)" ]
+            "visibility":"\(strvisibilityvalue)"]
         
         upload(multipartFormData:
             { (multipartFormData) in
@@ -176,6 +208,23 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
                 break
             }
         }*/
+    }
+    
+    //MARK: Switch Action
+    @IBAction func switchaction(_ sender: UIButton)
+    {
+        if flagforswitch == false
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1";
+        }
+        else
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
     }
 
     //MARK: Select Image

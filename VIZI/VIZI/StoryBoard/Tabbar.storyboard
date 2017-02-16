@@ -1335,6 +1335,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-av-EX3">
                                         <state key="normal" image="switch_off"/>
                                         <state key="selected" image="switch_on"/>
+                                        <connections>
+                                            <action selector="switchaction:" destination="gwO-1P-QT2" eventType="touchUpInside" id="hUk-qx-SIT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1425,6 +1428,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fQb-b6-alq"/>
                     <connections>
+                        <outlet property="btnMakePrivate" destination="Dkt-av-EX3" id="TWV-mw-qAp"/>
                         <outlet property="imgProfile" destination="PSI-tZ-WS2" id="OqJ-t5-BOd"/>
                         <outlet property="lblEmail" destination="Y2E-5o-T7B" id="aQf-16-TAo"/>
                         <outlet property="lblName" destination="kly-cW-Hsb" id="RSO-MN-RfS"/>

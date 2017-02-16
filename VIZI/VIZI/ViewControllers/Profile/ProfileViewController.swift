@@ -50,6 +50,18 @@ class ProfileViewController: UIViewController {
                     self.lblbio.text = "\(appDelegate.arrLoginData[kkeybio]!)"
                 }
             }
+            
+            if !"\(appDelegate.arrLoginData[kkeyimage]!)".isEmpty
+            {
+                if appDelegate.arrLoginData[kkeyimage] is NSNull
+                {
+                    imgProfile.image = UIImage(named: "addimage_icon")
+                }
+                else
+                {
+                    imgProfile.sd_setImage(with: URL(string: "\(appDelegate.arrLoginData[kkeyimage]!)"), placeholderImage: UIImage(named: "addimage_icon"))
+                }
+            }
         }
 
         DispatchQueue.main.async {
