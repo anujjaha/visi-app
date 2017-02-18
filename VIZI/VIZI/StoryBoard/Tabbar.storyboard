@@ -343,8 +343,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gal-dd-Vv8"/>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="MapPin" translatesAutoresizingMaskIntoConstraints="NO" id="5tb-Xa-0BE"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gal-dd-Vv8">
+                                <connections>
+                                    <outlet property="delegate" destination="IJO-w7-dim" id="Fxw-Py-NJM"/>
+                                </connections>
+                            </mapView>
+                            <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="MapPin" translatesAutoresizingMaskIntoConstraints="NO" id="5tb-Xa-0BE"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYr-7H-aKW">
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="CurrentlocationField" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-Zb-5oc">
@@ -401,12 +405,32 @@
                     </view>
                     <navigationItem key="navigationItem" id="Mb2-xq-1lI"/>
                     <connections>
+                        <outlet property="mapView" destination="gal-dd-Vv8" id="rpu-E5-Oh1"/>
                         <outlet property="txtAddress" destination="HrJ-pr-3qb" id="fl8-Tz-1im"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lbe-ci-PwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="711" y="-542"/>
+        </scene>
+        <!--New LocationVC-->
+        <scene sceneID="TRN-jI-Nfm">
+            <objects>
+                <viewController storyboardIdentifier="NewLocationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h12-fX-N8L" customClass="NewLocationVC" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3VJ-4r-oIL"/>
+                        <viewControllerLayoutGuide type="bottom" id="UAu-8U-I9I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o6j-VG-xpB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y53-uL-dXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="-543"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="EwA-W8-EhA">
@@ -1533,6 +1557,9 @@
                                 <state key="normal" title="LOGOUT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnLogoutPressed" destination="3TN-DV-Id0" eventType="touchUpInside" id="6nz-3d-H4n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1682,7 +1709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIi-Zv-FWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="2374"/>
+            <point key="canvasLocation" x="1016" y="2540"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wu8-qO-IKE">

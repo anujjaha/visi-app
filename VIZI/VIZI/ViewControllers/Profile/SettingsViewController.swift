@@ -40,6 +40,12 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+    @IBAction func btnLogoutPressed()
+    {
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillDisappear(animated)

@@ -48,6 +48,8 @@
 		D3B684991E4F2701008C412E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684331E4F2700008C412E /* Validation.swift */; };
 		D3B684EE1E4F28BA008C412E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3B684ED1E4F28BA008C412E /* Info.plist */; };
 		D3B684F21E4F32A0008C412E /* PrivacyTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */; };
+		D3C848201E58274300349555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C8481F1E58274300349555 /* CoreLocation.framework */; };
+		D3C848241E5865EC00349555 /* NewLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C848231E5865EC00349555 /* NewLocationVC.swift */; };
 		D3CA42A31E54007500365290 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */; };
 		D3CA42A41E54007500365290 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */; };
 		D3CA42A51E54007500365290 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */; };
@@ -65,6 +67,8 @@
 		D3CA42B11E54007500365290 /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA429F1E54007500365290 /* IQToolbar.swift */; };
 		D3CA42B21E54007500365290 /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA42A01E54007500365290 /* IQUIView+IQKeyboardToolbar.swift */; };
 		D3CA42B31E54007500365290 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */; };
+		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
+		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
 		FF08EABF1E101FB30017BCE8 /* Lake@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF08EAC31E10255B0017BCE8 /* BarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */; };
@@ -183,6 +187,8 @@
 		D3B684331E4F2700008C412E /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		D3B684ED1E4F28BA008C412E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTermsVC.swift; sourceTree = "<group>"; };
+		D3C8481F1E58274300349555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D3C848231E5865EC00349555 /* NewLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationVC.swift; path = Location/NewLocationVC.swift; sourceTree = "<group>"; };
 		D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
@@ -201,6 +207,8 @@
 		D3CA429F1E54007500365290 /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		D3CA42A01E54007500365290 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake@2x.jpg"; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFull@2x.png"; sourceTree = "<group>"; };
@@ -243,6 +251,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3C848201E58274300349555 /* CoreLocation.framework in Frameworks */,
+				D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */,
+				D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */,
 				D36565F71E54DA2300E1F6AE /* ImageIO.framework in Frameworks */,
 				FFFF353F1E04651800C393B1 /* MapKit.framework in Frameworks */,
 			);
@@ -341,6 +352,14 @@
 				D3B684331E4F2700008C412E /* Validation.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		D3C848221E5862D900349555 /* NewLocation */ = {
+			isa = PBXGroup;
+			children = (
+				D3C848231E5865EC00349555 /* NewLocationVC.swift */,
+			);
+			name = NewLocation;
 			sourceTree = "<group>";
 		};
 		D3CA428B1E54007500365290 /* IQKeyboardManagerSwift */ = {
@@ -483,6 +502,7 @@
 		FF0F50B61E005E4F0062AF57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3C848221E5862D900349555 /* NewLocation */,
 				FFFF35471E04655E00C393B1 /* TabBarViewController.swift */,
 				FF1217F71E11734F00F8A6EA /* Discover */,
 				FF16CFAC1E05D73300136873 /* Profile */,
@@ -518,6 +538,9 @@
 		FFFF353D1E04651800C393B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3C8481F1E58274300349555 /* CoreLocation.framework */,
+				D3CBC6351E56A75100ACAEB4 /* Accounts.framework */,
+				D3CBC6321E56A74900ACAEB4 /* Social.framework */,
 				D36565F61E54DA2300E1F6AE /* ImageIO.framework */,
 				FFFF353E1E04651800C393B1 /* MapKit.framework */,
 			);
@@ -570,7 +593,7 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = JGGFCEYKLN;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -683,6 +706,7 @@
 				D36565F11E54D9E100E1F6AE /* UIImage+WebP.m in Sources */,
 				D3CA42AA1E54007500365290 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				FF16CFA41E05B33000136873 /* AppUtils.swift in Sources */,
+				D3C848241E5865EC00349555 /* NewLocationVC.swift in Sources */,
 				D3CA42AE1E54007500365290 /* IQBarButtonItem.swift in Sources */,
 				D3B684961E4F2701008C412E /* SessionManager.swift in Sources */,
 				FF1217FF1E119FCD00F8A6EA /* FollowersViewController.swift in Sources */,
@@ -767,6 +791,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -786,7 +811,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "45cb5b77-66cd-4124-af2a-60249198ce88";
+				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -818,6 +843,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -830,7 +856,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "45cb5b77-66cd-4124-af2a-60249198ce88";
+				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -843,15 +869,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";
+				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -864,15 +890,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";
+				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

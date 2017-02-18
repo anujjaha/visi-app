@@ -26,6 +26,9 @@ class LoginViewController: UIViewController {
             
             self.txtUsername.attributedPlaceholder = NSAttributedString(string:"Username", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+            
+            self.txtUsername.text = "latest"
+            self.txtPassword.text = "test"
         }
     }
     // MARK: - Navigation
@@ -138,6 +141,117 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    //MARK: Facebook Login
+    //  The converted code is limited by 2 KB.
+    //  Upgrade your plan to remove this limitation.
+    
+    //  Converted with Swiftify v1.0.6242 - https://objectivec2swift.com/
+    
+   /* func facebook() {
+        self.accountStore = ACAccountStore()
+        var FBaccountType: ACAccountType? = self.accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
+        var key: String = "451805654875339"
+        var dictFB: [AnyHashable: Any] = [
+            ACFacebookAppIdKey : key,
+            ACFacebookPermissionsKey : ["email"]
+        ]
+        
+        self.accountStore.requestAccessToAccounts(withType: FBaccountType, options: dictFB, completion: {(_ granted: Bool, _ e: Error) -> Void in
+            if granted {
+                var accounts: [Any] = self.accountStore.accounts(withAccountType: FBaccountType)
+                //it will always be the last object with single sign on
+                self.facebookAccount = accounts.last
+                var facebookCredential: ACAccountCredential? = self.facebookAccount.credential
+                var accessToken: String? = facebookCredential?.oauthToken
+                print("Facebook Access Token: \(accessToken)")
+                print("facebook account =\(self.facebookAccount)")
+                self.get()
+                self.getFBFriends()
+                isFacebookAvailable = 1
+            }
+            else {
+                //Fail gracefully...
+                print("error getting permission yupeeeeeee \(e)")
+                sleep(10)
+                print("awake from sleep")
+                isFacebookAvailable = 0
+            }
+        })
+    }
+    
+    func checkfacebookstatus() {
+        if isFacebookAvailable == 0 {
+            self.checkFacebook()
+            isFacebookAvailable = 1
+        }
+        else {
+            print("Get out from our game")
+        }
+    }
+    
+    func get() {
+        var requestURL = URL(string: "https://graph.facebook.com/me")
+        var request = SLRequest(for: SLServiceTypeFacebook, requestMethod: SLRequestMethodGET, url: requestURL, parameters: nil)
+        request.account = self.facebookAccount
+        request.perform(withHandler: {(_ data: Data, _ response: HTTPURLResponse, _ error: Error) -> Void in
+            if error == nil {
+                var list: [AnyHashable: Any]? = (try? JSONSerialization.jsonObject(withData: data, options: kNilOptions))
+                print("Dictionary contains: \(list)")
+                self.globalmailID = "\(list?["email"] as? String)"
+                print("global mail ID : \(globalmailID)")
+                fbname = "\(list?["name"] as? String)"
+                print("faceboooookkkk name \(fbname)")
+                if (list?["error"] as? String) != nil {
+                    self.attemptRenewCredentials()
+                }
+                DispatchQueue.main.async(execute: {() -> Void in
+                })
+            }
+            else {
+                //handle error gracefully
+                print("error from get\(error)")
+                //attempt to revalidate credentials
+            }
+        })
+        self.accountStore = ACAccountStore()
+        var FBaccountType: ACAccountType? = self.accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
+        var key: String = "451805654875339"
+        var dictFB: [AnyHashable: Any] = [
+            ACFacebookAppIdKey : key,
+            ACFacebookPermissionsKey : ["friends_videos"]
+        ]
+        
+        self.accountStore.requestAccessToAccounts(withType: FBaccountType, options: dictFB, completion: {(_ granted: Bool, _ e: Error) -> Void in
+        })
+    }
+    
+    func accountChanged(_ notification: Notification) {
+        self.attemptRenewCredentials()
+    }
+    
+    func attemptRenewCredentials() {
+        self.accountStore.renewCredentials(forAccount: (self.facebookAccount as? ACAccount), completion: {(_ renewResult: ACAccountCredentialRenewResult, _ error: Error) -> Void in
+            if error == { _ in } {
+                switch renewResult {
+                case .renewed:
+                    print("Good to go")
+                    self.get()
+                case .rejected:
+                    print("User declined permission")
+                case .failed:
+                    print("non-user-initiated cancel, you may attempt to retry")
+                default:
+                    break
+                }
+            }
+            else {
+                //handle error gracefully
+                print("error from renew credentials\(error)")
+            }
+        })
+    }*/
 }
 extension LoginViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
