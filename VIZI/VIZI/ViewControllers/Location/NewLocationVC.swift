@@ -10,11 +10,33 @@ import UIKit
 
 class NewLocationVC: UIViewController {
 
+    @IBOutlet weak var viewCategory : UIView!
+    @IBOutlet weak var viewPhoto : UIView!
+    @IBOutlet weak var txtTitle : VIZIUITextField!
+    @IBOutlet weak var txtvwNotes: UITextView!
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.txtTitle.layer.cornerRadius = 3.0
+        
+        self.txtTitle.attributedPlaceholder = NSAttributedString(string:"Title", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+
+    }
+    
+    @IBAction func btnAddNewLocationAction()
+    {
+        
+    }
+
+    @IBAction func backButtonPressed() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
     }
 
     override func didReceiveMemoryWarning() {
