@@ -27,6 +27,10 @@ let kkeydevice_id = "device_id"
 let kkeyimage = "image"
 let kkeystatus = "status"
 let kkeyvisibility = "visibility"
+let kkeyname = "name"
+
+let kNO = "NO"
+let kYES = "YES"
 
 let kServerURL = "http://vizi.intellactsoft.com/api/"
 

@@ -69,6 +69,7 @@
 		D3CA42B31E54007500365290 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */; };
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
+		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
 		FF08EABF1E101FB30017BCE8 /* Lake@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF08EAC31E10255B0017BCE8 /* BarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */; };
@@ -209,6 +210,7 @@
 		D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
 		FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake@2x.jpg"; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFull@2x.png"; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C848231E5865EC00349555 /* NewLocationVC.swift */,
+				D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */,
 			);
 			name = NewLocation;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				D36565EB1E54D9E100E1F6AE /* SDWebImageDownloaderOperation.m in Sources */,
 				D36565E71E54D9E100E1F6AE /* SDImageCacheConfig.m in Sources */,
 				D36565F21E54D9E100E1F6AE /* UIImageView+HighlightedWebCache.m in Sources */,
+				D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */,
 				FF1218011E11A87500F8A6EA /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

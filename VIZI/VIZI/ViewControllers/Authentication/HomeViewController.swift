@@ -91,7 +91,9 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
     {
         if view.annotation != nil
         {
-            
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let tabbar = storyTab.instantiateViewController(withIdentifier: "NewLocationVC")
+            self.navigationController?.pushViewController(tabbar, animated: true)
         }
     }
     
