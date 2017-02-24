@@ -97,6 +97,14 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
         }
     }
     
+    
+    @IBAction func NotificationPressed() {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "NotificationVC")
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

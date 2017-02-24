@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30F6DE81E60A5C600C785DD /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F6DE71E60A5C600C785DD /* NotificationVC.swift */; };
 		D36565E31E54D9E100E1F6AE /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565BC1E54D9E100E1F6AE /* MKAnnotationView+WebCache.m */; };
 		D36565E41E54D9E100E1F6AE /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565BE1E54D9E100E1F6AE /* NSData+ImageContentType.m */; };
 		D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565C01E54D9E100E1F6AE /* NSImage+WebCache.m */; };
@@ -123,6 +124,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D30F6DE71E60A5C600C785DD /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationVC.swift; path = Notification/NotificationVC.swift; sourceTree = "<group>"; };
 		D36565B21E54D96400E1F6AE /* VIZI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VIZI-Bridging-Header.h"; sourceTree = "<group>"; };
 		D36565BB1E54D9E100E1F6AE /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		D36565BC1E54D9E100E1F6AE /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
@@ -264,6 +266,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D30F6DE51E60A54F00C785DD /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D30F6DE71E60A5C600C785DD /* NotificationVC.swift */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		D36565B71E54D9E100E1F6AE /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +515,7 @@
 		FF0F50B61E005E4F0062AF57 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D30F6DE51E60A54F00C785DD /* Notification */,
 				D3C848221E5862D900349555 /* NewLocation */,
 				FFFF35471E04655E00C393B1 /* TabBarViewController.swift */,
 				FF1217F71E11734F00F8A6EA /* Discover */,
@@ -702,6 +713,7 @@
 				D36565EE1E54D9E100E1F6AE /* UIButton+WebCache.m in Sources */,
 				D3B684891E4F2701008C412E /* DispatchQueue+Alamofire.swift in Sources */,
 				D36565F31E54D9E100E1F6AE /* UIImageView+WebCache.m in Sources */,
+				D30F6DE81E60A5C600C785DD /* NotificationVC.swift in Sources */,
 				FF16CFA51E05B33000136873 /* Constant.swift in Sources */,
 				D36565E31E54D9E100E1F6AE /* MKAnnotationView+WebCache.m in Sources */,
 				D36565EA1E54D9E100E1F6AE /* SDWebImageDownloader.m in Sources */,
