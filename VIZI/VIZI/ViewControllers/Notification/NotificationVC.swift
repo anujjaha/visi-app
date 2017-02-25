@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationVC: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,13 +27,11 @@ class NotificationVC: UIViewController {
     {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
         super.viewWillAppear(animated)
     }
 

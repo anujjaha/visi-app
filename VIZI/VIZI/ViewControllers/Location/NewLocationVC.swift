@@ -53,9 +53,15 @@ class NewLocationVC: UIViewController {
     
     @IBAction func btnOpenCategoryAction()
     {
-        
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "FilterCategoryVC")
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+    
+    @IBAction func btnOpenPhotosAction()
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "PhotosVC")
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
 
