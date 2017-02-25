@@ -72,6 +72,25 @@
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
 		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
+		D3E5DB6F1E61B8110060912C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB6E1E61B8110060912C /* CoreMedia.framework */; };
+		D3E5DB711E61B8970060912C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB701E61B8970060912C /* CoreData.framework */; };
+		D3E5DB731E61B8CD0060912C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB721E61B8CD0060912C /* SystemConfiguration.framework */; };
+		D3E5DB751E61B8DB0060912C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB741E61B8DB0060912C /* AdSupport.framework */; };
+		D3E5DB771E61B8EB0060912C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB761E61B8EB0060912C /* libz.tbd */; };
+		D3E5DB791E61B9810060912C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB781E61B9810060912C /* QuartzCore.framework */; };
+		D3E5DB7B1E61BF260060912C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB7A1E61BF260060912C /* OpenGLES.framework */; };
+		D3E5DB7D1E61BF360060912C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB7C1E61BF360060912C /* GLKit.framework */; };
+		D3E5DB7F1E61BF3D0060912C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB7E1E61BF3D0060912C /* libz.dylib */; };
+		D3E5DB811E61BF400060912C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB801E61BF400060912C /* libc++.dylib */; };
+		D3E5DB831E61BF420060912C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB821E61BF420060912C /* libicucore.dylib */; };
+		D3E5DB8F1E61C0150060912C /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */; };
+		D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */; };
+		D3E5DBA01E61C0AB0060912C /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */; };
+		D3E5DBA11E61C0AB0060912C /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */; };
+		D3E5DBA21E61C0AB0060912C /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */; };
+		D3E5DBA31E61C0AB0060912C /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */; };
+		D3E5DBA41E61C0AB0060912C /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */; };
+		D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DBA51E61C2970060912C /* Accelerate.framework */; };
 		FF08EABF1E101FB30017BCE8 /* Lake@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF08EAC31E10255B0017BCE8 /* BarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */; };
@@ -215,6 +234,33 @@
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
+		D3E5DB6E1E61B8110060912C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D3E5DB701E61B8970060912C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3E5DB721E61B8CD0060912C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D3E5DB741E61B8DB0060912C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		D3E5DB761E61B8EB0060912C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D3E5DB781E61B9810060912C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D3E5DB7A1E61BF260060912C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D3E5DB7C1E61BF360060912C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D3E5DB7E1E61BF3D0060912C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D3E5DB801E61BF400060912C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D3E5DB821E61BF420060912C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		D3E5DB931E61C0AB0060912C /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		D3E5DB951E61C0AB0060912C /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		D3E5DB961E61C0AB0060912C /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		D3E5DB971E61C0AB0060912C /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		D3E5DB981E61C0AB0060912C /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		D3E5DB9A1E61C0AB0060912C /* MVPlaceSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPlaceSearchTextField.h; sourceTree = "<group>"; };
+		D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVPlaceSearchTextField.m; sourceTree = "<group>"; };
+		D3E5DB9C1E61C0AB0060912C /* PlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetail.h; sourceTree = "<group>"; };
+		D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
+		D3E5DB9E1E61C0AB0060912C /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
+		D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
+		D3E5DBA51E61C2970060912C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake@2x.jpg"; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFull@2x.png"; sourceTree = "<group>"; };
@@ -257,9 +303,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */,
+				D3E5DB7D1E61BF360060912C /* GLKit.framework in Frameworks */,
+				D3E5DB7B1E61BF260060912C /* OpenGLES.framework in Frameworks */,
+				D3E5DB7F1E61BF3D0060912C /* libz.dylib in Frameworks */,
+				D3E5DB831E61BF420060912C /* libicucore.dylib in Frameworks */,
+				D3E5DB811E61BF400060912C /* libc++.dylib in Frameworks */,
+				D3E5DB791E61B9810060912C /* QuartzCore.framework in Frameworks */,
+				D3E5DB771E61B8EB0060912C /* libz.tbd in Frameworks */,
+				D3E5DB751E61B8DB0060912C /* AdSupport.framework in Frameworks */,
+				D3E5DB731E61B8CD0060912C /* SystemConfiguration.framework in Frameworks */,
+				D3E5DB711E61B8970060912C /* CoreData.framework in Frameworks */,
+				D3E5DB6F1E61B8110060912C /* CoreMedia.framework in Frameworks */,
 				D3C848201E58274300349555 /* CoreLocation.framework in Frameworks */,
 				D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */,
 				D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */,
+				D3E5DB8F1E61C0150060912C /* GoogleMaps.framework in Frameworks */,
 				D36565F71E54DA2300E1F6AE /* ImageIO.framework in Frameworks */,
 				FFFF353F1E04651800C393B1 /* MapKit.framework in Frameworks */,
 			);
@@ -443,6 +502,34 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D3E5DB911E61C0AB0060912C /* MVPlaceSearchTextField */ = {
+			isa = PBXGroup;
+			children = (
+				D3E5DB921E61C0AB0060912C /* MLPAutoCompleteTextField */,
+				D3E5DB9A1E61C0AB0060912C /* MVPlaceSearchTextField.h */,
+				D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */,
+				D3E5DB9C1E61C0AB0060912C /* PlaceDetail.h */,
+				D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */,
+				D3E5DB9E1E61C0AB0060912C /* PlaceObject.h */,
+				D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */,
+			);
+			path = MVPlaceSearchTextField;
+			sourceTree = "<group>";
+		};
+		D3E5DB921E61C0AB0060912C /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				D3E5DB931E61C0AB0060912C /* MLPAutoCompleteTextField.h */,
+				D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */,
+				D3E5DB951E61C0AB0060912C /* MLPAutoCompleteTextFieldDataSource.h */,
+				D3E5DB961E61C0AB0060912C /* MLPAutoCompleteTextFieldDelegate.h */,
+				D3E5DB971E61C0AB0060912C /* MLPAutoCompletionObject.h */,
+				D3E5DB981E61C0AB0060912C /* NSString+Levenshtein.h */,
+				D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */,
+			);
+			path = MLPAutoCompleteTextField;
+			sourceTree = "<group>";
+		};
 		FF0C0EC71E01B30100E77961 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +561,9 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3E5DB911E61C0AB0060912C /* MVPlaceSearchTextField */,
+				D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */,
+				D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */,
 				D36565B71E54D9E100E1F6AE /* SDWebImage */,
 				D3CA428B1E54007500365290 /* IQKeyboardManagerSwift */,
 				D3B682991E4EE14B008C412E /* WebServiceClass */,
@@ -555,6 +645,18 @@
 		FFFF353D1E04651800C393B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3E5DBA51E61C2970060912C /* Accelerate.framework */,
+				D3E5DB821E61BF420060912C /* libicucore.dylib */,
+				D3E5DB801E61BF400060912C /* libc++.dylib */,
+				D3E5DB7E1E61BF3D0060912C /* libz.dylib */,
+				D3E5DB7C1E61BF360060912C /* GLKit.framework */,
+				D3E5DB7A1E61BF260060912C /* OpenGLES.framework */,
+				D3E5DB781E61B9810060912C /* QuartzCore.framework */,
+				D3E5DB761E61B8EB0060912C /* libz.tbd */,
+				D3E5DB741E61B8DB0060912C /* AdSupport.framework */,
+				D3E5DB721E61B8CD0060912C /* SystemConfiguration.framework */,
+				D3E5DB701E61B8970060912C /* CoreData.framework */,
+				D3E5DB6E1E61B8110060912C /* CoreMedia.framework */,
 				D3C8481F1E58274300349555 /* CoreLocation.framework */,
 				D3CBC6351E56A75100ACAEB4 /* Accounts.framework */,
 				D3CBC6321E56A74900ACAEB4 /* Social.framework */,
@@ -667,6 +769,7 @@
 				FFFF353A1E045B8000C393B1 /* ForgotPassword@2x.jpg in Resources */,
 				FF16CFAB1E05D70500136873 /* Profile@2x.jpg in Resources */,
 				FF0F50BA1E005E8B0062AF57 /* Authentication.storyboard in Resources */,
+				D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */,
 				FF16CFA71E05C67D00136873 /* 06_Profile@2x.png in Resources */,
 				D3B684EE1E4F28BA008C412E /* Info.plist in Resources */,
 				FF0F50AC1E0051BA0062AF57 /* LaunchScreen.storyboard in Resources */,
@@ -701,6 +804,7 @@
 				FFFF35451E04654800C393B1 /* LoginViewController.swift in Sources */,
 				FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */,
 				D36565EF1E54D9E100E1F6AE /* UIImage+GIF.m in Sources */,
+				D3E5DBA31E61C0AB0060912C /* PlaceDetail.m in Sources */,
 				D3CA42B11E54007500365290 /* IQToolbar.swift in Sources */,
 				D3B6848F1E4F2701008C412E /* ParameterEncoding.swift in Sources */,
 				D36565ED1E54D9E100E1F6AE /* SDWebImagePrefetcher.m in Sources */,
@@ -730,6 +834,8 @@
 				FF1217FF1E119FCD00F8A6EA /* FollowersViewController.swift in Sources */,
 				FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */,
 				FF1217F91E11735B00F8A6EA /* DiscoverViewController.swift in Sources */,
+				D3E5DBA21E61C0AB0060912C /* MVPlaceSearchTextField.m in Sources */,
+				D3E5DBA11E61C0AB0060912C /* NSString+Levenshtein.m in Sources */,
 				D3CA42A71E54007500365290 /* IQUIViewController+Additions.swift in Sources */,
 				D3B684871E4F2701008C412E /* AFError.swift in Sources */,
 				D36565E81E54D9E100E1F6AE /* SDWebImageCompat.m in Sources */,
@@ -748,6 +854,8 @@
 				FFFF35441E04654800C393B1 /* ForgotViewController.swift in Sources */,
 				FFDC7CFD1E06D4DA007A4451 /* SettingsViewController.swift in Sources */,
 				D3CA42AB1E54007500365290 /* IQKeyboardManager.swift in Sources */,
+				D3E5DBA41E61C0AB0060912C /* PlaceObject.m in Sources */,
+				D3E5DBA01E61C0AB0060912C /* MLPAutoCompleteTextField.m in Sources */,
 				D3B6848E1E4F2701008C412E /* Notifications.swift in Sources */,
 				D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */,
 				D3B684921E4F2701008C412E /* ResponseSerialization.swift in Sources */,
@@ -891,6 +999,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VIZI/MVPlaceSearchTextField",
+					"$(PROJECT_DIR)/VIZI/Google\\ Maps\\ SDK",
+					"$(PROJECT_DIR)/VIZI/Google\\ Maps\\ SDK",
+					"$(PROJECT_DIR)/VIZI",
+				);
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -912,6 +1027,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VIZI/MVPlaceSearchTextField",
+					"$(PROJECT_DIR)/VIZI/Google\\ Maps\\ SDK",
+					"$(PROJECT_DIR)/VIZI/Google\\ Maps\\ SDK",
+					"$(PROJECT_DIR)/VIZI",
+				);
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

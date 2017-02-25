@@ -33,7 +33,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
-        myAnnotation.title = "Current location"
+        myAnnotation.title = "Add New Location"
         myAnnotation.coordinate = mapView.centerCoordinate
         mapView.addAnnotation(myAnnotation)
     }
@@ -56,7 +56,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
         else
         {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = UIButton(type: .contactAdd)
         }
         
         if let annotationView = annotationView
