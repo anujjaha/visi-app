@@ -69,6 +69,7 @@
 		D3CA42B11E54007500365290 /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA429F1E54007500365290 /* IQToolbar.swift */; };
 		D3CA42B21E54007500365290 /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA42A01E54007500365290 /* IQUIView+IQKeyboardToolbar.swift */; };
 		D3CA42B31E54007500365290 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */; };
+		D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */; };
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
 		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
@@ -231,6 +232,7 @@
 		D3CA429F1E54007500365290 /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		D3CA42A01E54007500365290 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		D3CA42A21E54007500365290 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */,
 				D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */,
 				D3E5DB7D1E61BF360060912C /* GLKit.framework in Frameworks */,
 				D3E5DB7B1E61BF260060912C /* OpenGLES.framework in Frameworks */,
@@ -645,6 +648,7 @@
 		FFFF353D1E04651800C393B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */,
 				D3E5DBA51E61C2970060912C /* Accelerate.framework */,
 				D3E5DB821E61BF420060912C /* libicucore.dylib */,
 				D3E5DB801E61BF400060912C /* libc++.dylib */,
@@ -1009,6 +1013,7 @@
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";
@@ -1037,6 +1042,7 @@
 				INFOPLIST_FILE = VIZI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "915b40cd-3b5d-47db-9b75-50da410f38ed";

@@ -9,25 +9,48 @@
 import UIKit
 import MapKit
 
-class HomeViewController: UIViewController,MKMapViewDelegate {
+class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFieldDelegate
+{
 
     @IBOutlet weak var mapView : MKMapView!
-    @IBOutlet weak var txtAddress : UITextField!
+    @IBOutlet weak var txtPlaceSearch : MVPlaceSearchTextField!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
 //        let annotation = MKAnnotation()
+        
+       txtPlaceSearch.placeSearchDelegate    = self
+        txtPlaceSearch.strApiKey       = "AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4"
+       txtPlaceSearch.superViewOfList   = self.view // View, on which Autocompletion list should be appeared.
+       txtPlaceSearch.autoCompleteShouldHideOnSelection   = true
+       txtPlaceSearch.maximumNumberOfAutoCompleteRows     = 5
+
         self.title = "VIZI"
-        self.txtAddress.attributedPlaceholder = NSAttributedString(string:"Current Location", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.3)])
+        self.txtPlaceSearch.attributedPlaceholder = NSAttributedString(string:"Current Location", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.3)])
         
         let center = CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
+        
+        
+        txtPlaceSearch.autoCompleteRegularFontName =  "HelveticaNeue-Bold";
+        txtPlaceSearch.autoCompleteBoldFontName = "HelveticaNeue";
+        txtPlaceSearch.autoCompleteTableCornerRadius=0.0;
+        txtPlaceSearch.autoCompleteRowHeight=35;
+        txtPlaceSearch.autoCompleteTableCellTextColor = UIColor(white: 0.131, alpha: 1.000)
+        txtPlaceSearch.autoCompleteFontSize=14;
+        txtPlaceSearch.autoCompleteTableBorderWidth=1.0;
+        txtPlaceSearch.showTextFieldDropShadowWhenAutoCompleteTableIsOpen = true;
+        txtPlaceSearch.autoCompleteShouldHideOnSelection = true;
+        txtPlaceSearch.autoCompleteShouldHideClosingKeyboard = true;
+        txtPlaceSearch.autoCompleteShouldSelectOnExactMatchAutomatically = true;
+        txtPlaceSearch.autoCompleteTableFrame = CGRect(x: CGFloat(20.0), y: CGFloat(180.0), width: CGFloat(UIScreen.main.bounds.width-40), height: CGFloat(200.0))
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
+        /*
         mapView.removeAnnotations(mapView.annotations)
 
         // Drop a pin at user's Current Location
@@ -35,7 +58,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
         myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
         myAnnotation.title = "Add New Location"
         myAnnotation.coordinate = mapView.centerCoordinate
-        mapView.addAnnotation(myAnnotation)
+        mapView.addAnnotation(myAnnotation)*/
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -97,20 +120,55 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
         }
     }
     
-    
     @IBAction func NotificationPressed() {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "NotificationVC")
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
 
+    @IBAction func btnClearText()
+    {
+        txtPlaceSearch.text = ""
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-     
+    
+    func placeSearch(_ textField: MVPlaceSearchTextField, responseForSelectedPlace responseDict: GMSPlace)
+    {
+        self.view.endEditing(true)
+        print("SELECTED ADDRESS :\(responseDict)")
+        print("SELECTED coordinate :\(responseDict.coordinate)")
+        
+        mapView.removeAnnotations(mapView.annotations)
+
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = responseDict.coordinate
+        myAnnotation.title = "Add New Location"
+        myAnnotation.coordinate = mapView.centerCoordinate
+        mapView.addAnnotation(myAnnotation)
+    }
+    
+    func placeSearchWillShowResult(_ textField: MVPlaceSearchTextField)
+    {
+    }
+    
+    func placeSearchWillHideResult(_ textField: MVPlaceSearchTextField)
+    {
+    }
+    
+    func placeSearch(_ textField: MVPlaceSearchTextField, resultCell cell: UITableViewCell, with placeObject: PlaceObject, at index: Int)
+    {
+        if index % 2 == 0 {
+            cell.contentView.backgroundColor = UIColor(white: CGFloat(0.9), alpha: CGFloat(1.0))
+        }
+        else {
+            cell.contentView.backgroundColor = UIColor.white
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -121,7 +179,6 @@ class HomeViewController: UIViewController,MKMapViewDelegate {
     }
     */
 }
-
 
 extension HomeViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
