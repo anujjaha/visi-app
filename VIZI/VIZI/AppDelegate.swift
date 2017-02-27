@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager:CLLocationManager!
     var userLocation = CLLocation()
     
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationBar"), for: .default)

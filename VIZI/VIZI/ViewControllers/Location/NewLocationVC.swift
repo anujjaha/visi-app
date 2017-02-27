@@ -17,6 +17,8 @@ class NewLocationVC: UIViewController {
     @IBOutlet weak var txtvwNotes: UITextView!
     @IBOutlet weak var mapView : MKMapView!
 
+    var fcordinate = CLLocationCoordinate2DMake
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

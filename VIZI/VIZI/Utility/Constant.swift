@@ -32,6 +32,9 @@ let kkeyname = "name"
 let kNO = "NO"
 let kYES = "YES"
 
+let kFBAPPID = "128398547683260"
+
+
 let kServerURL = "http://vizi.intellactsoft.com/api/"
 
 //var CurrentUser : UserModel = UserModel()

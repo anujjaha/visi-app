@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Accounts
+import Social
 
 class LoginViewController: UIViewController {
 
@@ -15,6 +17,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnLogin : UIButton!
     @IBOutlet weak var btnFacebook : UIButton!
     var arrRes = NSMutableDictionary() //Array of dictionary
+    var facebookAccount: ACAccount?
+    var accountStore: ACAccountStore?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +124,84 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(tabbar, animated: true)*/
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+    @IBAction func btnFBLogin()
+    {
+        let options:[String : Any] = [ACFacebookAppIdKey: kFBAPPID , ACFacebookPermissionsKey: ["email"],ACFacebookAudienceKey:ACFacebookAudienceFriends]
+        let accountStore = ACAccountStore()
+        let facebookAccountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
+        accountStore.requestAccessToAccounts(with: facebookAccountType, options: options)
+        { (granted:Bool, error:Error?) in
+            if granted
+            {
+                let accounts = accountStore.accounts(with: facebookAccountType)
+                self.facebookAccount = accounts?.last as? ACAccount
+                
+                let dict:NSDictionary = self.facebookAccount!.dictionaryWithValues(forKeys: ["properties"]) as NSDictionary
+                let properties:NSDictionary = dict["properties"] as! NSDictionary
+                print("facebook Response is-->:%@",properties)
+                self.get()
+            }
+            else
+            {
+                if let err = error as? NSError, err.code == Int(ACErrorAccountNotFound.rawValue)
+                {
+                    DispatchQueue.main.async
+                    {
+                            App_showAlert(withMessage: "There is no Facebook accounts configured. you can add or created a Facebook account in your settings.", inView: self)
+                    }
+                }
+                else
+                {
+                    DispatchQueue.main.async
+                        {
+                            App_showAlert(withMessage: "Permission not granted For Your Application", inView: self)
+                    }
+                }
+            }
+        }
+    }
+    
+    func get()
+    {
+        let requestURL = URL(string: "https://graph.facebook.com/me")
+        
+        let request = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.GET, url: requestURL, parameters: nil)
+//        var request = SLRequest(for: SLServiceTypeFacebook, requestMethod: .GET, url: requestURL, parameters: nil)
+        request?.account = facebookAccount
+        request?.perform( handler: { data, response, error in
+            if (data != nil)
+            {
+                if (response?.statusCode)! >= 200 && (response?.statusCode)! < 300
+                {
+                    
+                    // Used SwiftyJson to parse: https://github.com/lingoer/SwiftyJSON
+//                    let response = JSONSerialization.JSONObjectWithData(data!) as? NSDictionary
+//                    print("response: \(response)")
+
+//                    let result = response?.objectForKey(key) as? String
+//                    print("result: \(result)")
+                    
+                }
+                else {
+                    print("Status code: \(response?.statusCode) and error: \(error)")
+                }
+            }
+        })
+    }
+    
+//    private func twit_extractStringForKey(key: String, fromJSONData data: NSData?) -> String?
+//    {
+//        if (data == nil) {return nil}
+//        
+//        let response = JSONSerialization.jsonObject(with: data!, options: nil) as? NSDictionary
+//        let result = response?.objectForKey(key) as? String
+//        return result
+//    }  
+    
+
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool
+    {   //delegate method
         textField.resignFirstResponder()
         return true
     }
