@@ -165,7 +165,7 @@ class LoginViewController: UIViewController {
     {
         let requestURL = URL(string: "https://graph.facebook.com/me")
         
-        let request = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.GET, url: requestURL, parameters: nil)
+        let request = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.GET, url: requestURL, parameters: ["fields":"email,first_name,last_name,picture.width(1000).height(1000),birthday,gender"])
 //        var request = SLRequest(for: SLServiceTypeFacebook, requestMethod: .GET, url: requestURL, parameters: nil)
         request?.account = facebookAccount
         request?.perform( handler: { data, response, error in
@@ -173,14 +173,19 @@ class LoginViewController: UIViewController {
             {
                 if (response?.statusCode)! >= 200 && (response?.statusCode)! < 300
                 {
-                    
-                    // Used SwiftyJson to parse: https://github.com/lingoer/SwiftyJSON
-//                    let response = JSONSerialization.JSONObjectWithData(data!) as? NSDictionary
-//                    print("response: \(response)")
-
-//                    let result = response?.objectForKey(key) as? String
-//                    print("result: \(result)")
-                    
+                    do
+                    {
+                        let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+//                        let currentConditions = parsedData["currently"] as! [String:Any]
+                        print(parsedData)
+                        
+//                        let currentTemperatureF = currentConditions["temperature"] as! Double
+//                        print(currentTemperatureF)
+                    }
+                    catch let error as NSError
+                    {
+                        print(error)
+                    }
                 }
                 else {
                     print("Status code: \(response?.statusCode) and error: \(error)")
@@ -188,17 +193,6 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
-//    private func twit_extractStringForKey(key: String, fromJSONData data: NSData?) -> String?
-//    {
-//        if (data == nil) {return nil}
-//        
-//        let response = JSONSerialization.jsonObject(with: data!, options: nil) as? NSDictionary
-//        let result = response?.objectForKey(key) as? String
-//        return result
-//    }  
-    
-
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool
     {   //delegate method
