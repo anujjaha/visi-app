@@ -13,9 +13,9 @@ class PeopleCell: UITableViewCell {
     @IBOutlet weak var imgProfile : UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
-        self.imgProfile.layer.borderWidth = 1.0
-        self.imgProfile.layer.borderColor = UIColor.appDarkChocColor().cgColor
+//        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
+//        self.imgProfile.layer.borderWidth = 1.0
+//        self.imgProfile.layer.borderColor = UIColor.appDarkChocColor().cgColor
     }
 }
 

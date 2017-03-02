@@ -9,16 +9,27 @@
 import UIKit
 import MapKit
 
-class DiscoverViewController: UIViewController {
+class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak fileprivate var viewSegment : UIView!
     @IBOutlet weak fileprivate var mapView : MKMapView!
     
-    override func viewDidLoad() {
+    @IBOutlet weak  var vwMap : UIView!
+    @IBOutlet weak  var vwList : UIView!
+    @IBOutlet weak  var vwFeed : UIView!
+    @IBOutlet weak  var tblFeed : UITableView!
+    @IBOutlet weak  var btnFilter : UIButton!
+
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.searchPressed))
         self.title = "Discover"
+    
+        tblFeed.isHidden = true
+
         
         DispatchQueue.main.async {
             self.viewSegment.layer.cornerRadius = 5.0
@@ -35,6 +46,7 @@ class DiscoverViewController: UIViewController {
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.856614, longitude: 2.33953), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
         self.mapView.setRegion(region, animated: true)
     }
+    
     func searchPressed() {
         self.performSegue(withIdentifier: "presentSearch", sender: self)
     }
@@ -43,6 +55,58 @@ class DiscoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func btnSegmetClicked(sender: UIButton)
+    {
+        if(sender.tag == 1)
+        {
+            vwMap.alpha = 1.0
+            vwList.alpha = 0.400000005960464
+            vwFeed.alpha = 0.400000005960464
+            
+            vwMap.backgroundColor = UIColor.init(colorLiteralRed: 255.0/255.0, green: 83.0/255.0, blue: 111.0/255.0, alpha: 1.0)
+            vwList.backgroundColor = UIColor.clear
+            vwFeed.backgroundColor = UIColor.clear
+
+            mapView.isHidden = false
+            tblFeed.isHidden = true
+            btnFilter.isHidden = false
+        }
+        else if(sender.tag == 2)
+        {
+            vwList.alpha = 1.0
+            vwMap.alpha = 0.400000005960464
+            vwFeed.alpha = 0.400000005960464
+        
+            vwList.backgroundColor = UIColor.init(colorLiteralRed: 255.0/255.0, green: 83.0/255.0, blue: 111.0/255.0, alpha: 1.0)
+            vwMap.backgroundColor = UIColor.clear
+            vwFeed.backgroundColor = UIColor.clear
+        }
+        else if(sender.tag == 3)
+        {
+            vwFeed.alpha = 1.0
+            vwMap.alpha = 0.400000005960464
+            vwList.alpha = 0.400000005960464
+            
+            vwFeed.backgroundColor = UIColor.init(colorLiteralRed: 255.0/255.0, green: 83.0/255.0, blue: 111.0/255.0, alpha: 1.0)
+            vwMap.backgroundColor = UIColor.clear
+            vwList.backgroundColor = UIColor.clear
+            
+            mapView.isHidden = true
+            tblFeed.isHidden = false
+            btnFilter.isHidden = true
+            tblFeed.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+        return cell
+    }
 
     /*
     // MARK: - Navigation
@@ -74,3 +138,19 @@ extension DiscoverViewController : MKMapViewDelegate {
         return anView
     }
 }
+
+class FeedCell: UITableViewCell
+{
+    @IBOutlet weak var imgProfile : UIImageView!
+    @IBOutlet weak var lblFeedText : UILabel!
+    @IBOutlet weak var lblFeedTime : UILabel!
+
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+//        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
+//        self.imgProfile.layer.borderWidth = 1.0
+//        self.imgProfile.layer.borderColor = UIColor.appDarkChocColor().cgColor
+    }
+}
+

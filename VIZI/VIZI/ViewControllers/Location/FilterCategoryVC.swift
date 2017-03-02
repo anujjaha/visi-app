@@ -160,4 +160,4 @@ class CategoryCell: UITableViewCell
 {
     @IBOutlet weak var lblCategoryName : UILabel!
     @IBOutlet weak var btnselectRadio : UIButton!
-    }
+}
