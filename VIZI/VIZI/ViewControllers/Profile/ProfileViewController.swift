@@ -12,7 +12,7 @@ class ProfileCell: UICollectionViewCell {
     
 }
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var imgProfile : UIImageView!
     @IBOutlet weak var viewTab : UIView!
@@ -27,6 +27,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var viewPhotoCategory : UIView!
     @IBOutlet weak var btnSave : UIButton!
     @IBOutlet weak var btnCancel : UIButton!
+    @IBOutlet weak var imgCategory : UIImageView!
+    var imagePicker = UIImagePickerController()
+    var imageData = NSData()
+    @IBOutlet weak var btnMakePrivate : UIButton!
+    var flagforswitch = Bool()
+    var strvisibilityvalue = NSString()
+
     
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblEmail : UILabel!
@@ -96,12 +103,91 @@ class ProfileViewController: UIViewController {
         viewGrid.backgroundColor = UIColor.clear
         viewGrid.alpha = 0.4
     }
-    @IBAction func btnAddCategoryPressed() {
+    
+      // MARK: - Add Category Actions
+    @IBAction func btnAddCategoryPressed()
+    {
         self.viewAddFilter.isHidden = false
     }
-    @IBAction func btnCancelPressed() {
+    @IBAction func btnCancelPressed()
+    {
         self.viewAddFilter.isHidden = true
     }
+    
+    //MARK: Select Image
+    @IBAction func SelectImage()
+    {
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openCamera()
+        }
+        let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openGallary()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        imagePicker.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(gallaryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self .present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            App_showAlert(withMessage: "You don't have camera", inView: self)
+        }
+    }
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //PickerView Delegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imgCategory.image = resize(chosenImage)
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        print("picker cancel.")
+    }
+
+    //MARK: Switch Action
+    @IBAction func switchaction(_ sender: UIButton)
+    {
+        if flagforswitch == false
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1";
+        }
+        else
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
