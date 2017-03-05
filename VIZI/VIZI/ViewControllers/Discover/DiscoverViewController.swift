@@ -19,6 +19,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak  var vwFeed : UIView!
     @IBOutlet weak  var tblFeed : UITableView!
     @IBOutlet weak  var btnFilter : UIButton!
+    var iSelectedTab = Int()
 
     
     override func viewDidLoad()
@@ -29,7 +30,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.title = "Discover"
     
         tblFeed.isHidden = true
-
+        iSelectedTab = 1
         
         DispatchQueue.main.async {
             self.viewSegment.layer.cornerRadius = 5.0
@@ -70,6 +71,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = false
             tblFeed.isHidden = true
             btnFilter.isHidden = false
+            
+            iSelectedTab = 1
         }
         else if(sender.tag == 2)
         {
@@ -80,6 +83,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             vwList.backgroundColor = UIColor.init(colorLiteralRed: 255.0/255.0, green: 83.0/255.0, blue: 111.0/255.0, alpha: 1.0)
             vwMap.backgroundColor = UIColor.clear
             vwFeed.backgroundColor = UIColor.clear
+            
+            iSelectedTab = 2
+            
+            mapView.isHidden = true
+            tblFeed.isHidden = false
+            btnFilter.isHidden = true
+            tblFeed.reloadData()
         }
         else if(sender.tag == 3)
         {
@@ -95,6 +105,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             tblFeed.isHidden = false
             btnFilter.isHidden = true
             tblFeed.reloadData()
+            
+            iSelectedTab = 3
         }
     }
     
@@ -104,7 +116,15 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+        let cell = UITableViewCell()
+        if(iSelectedTab == 2)
+        {
+            tableView.dequeueReusableCell(withIdentifier: "PlaceListCell") as! PlaceListCell
+        }
+        else
+        {
+            tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+        }
         return cell
     }
 
@@ -148,9 +168,16 @@ class FeedCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-//        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
-//        self.imgProfile.layer.borderWidth = 1.0
-//        self.imgProfile.layer.borderColor = UIColor.appDarkChocColor().cgColor
     }
 }
-
+class PlaceListCell: UITableViewCell
+{
+    @IBOutlet weak var imgProfile : UIImageView!
+    @IBOutlet weak var lblPeopleName : UILabel!
+    @IBOutlet weak var lblPeopleAddress : UILabel!
+    
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+    }
+}

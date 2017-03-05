@@ -114,6 +114,18 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         self.viewAddFilter.isHidden = true
     }
     
+    @IBAction func saveCategoryPressed()
+    {
+        if (self.txtAddCategory.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter category name", inView: self)
+        }
+        else
+        {
+            
+        }
+    }
+    
     //MARK: Select Image
     @IBAction func SelectImage()
     {

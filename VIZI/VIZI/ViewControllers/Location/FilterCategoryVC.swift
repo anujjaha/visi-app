@@ -24,7 +24,7 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
         showProgress(inView: self.view)
 
-        request("http://vizi.intellactsoft.com/api/categories.php", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)categories.php", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             
             hideProgress()
            
@@ -62,7 +62,7 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
                 
             case .failure(_):
                 print(response.result.error)
-                App_showAlert(withMessage: response.result.error as! String, inView: self)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 self.tblCategory.reloadData()
                 break
                 

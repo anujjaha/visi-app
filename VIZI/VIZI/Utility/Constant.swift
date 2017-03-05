@@ -35,7 +35,9 @@ let kYES = "YES"
 let kFBAPPID = "128398547683260"
 
 
-let kServerURL = "http://vizi.intellactsoft.com/api/"
+//let kServerURL = "http://vizi.intellactsoft.com/api/"
+let kServerURL = "http://35.154.46.190/vizi/api/"
+
 
 //var CurrentUser : UserModel = UserModel()
 

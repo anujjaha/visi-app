@@ -89,7 +89,7 @@ class ChangePasswordVC: UIViewController {
                     
                 case .failure(_):
                     print(response.result.error)
-                    App_showAlert(withMessage: response.result.error as! String, inView: self)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                     break
                 }
             }
