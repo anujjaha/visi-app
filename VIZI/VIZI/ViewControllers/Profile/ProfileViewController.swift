@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileCell: UICollectionViewCell {
     
+    @IBOutlet weak var lblCategoryName : UILabel!
+    @IBOutlet weak var imgCategory : UIImageView!
 }
 
 class ProfileViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -34,6 +36,9 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
 
+    //Get Category data
+    var arrCategorydata = NSArray()
+    @IBOutlet weak var cvCategory : UICollectionView!
     
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblEmail : UILabel!
@@ -70,6 +75,9 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 }
             }
         }
+        
+        
+        self.getCategorydata()
 
         DispatchQueue.main.async {
             
@@ -90,6 +98,51 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             
         }
     }
+    
+    //MARK: - Get Category Data
+    func getCategorydata()
+    {
+        showProgress(inView: self.view)
+        
+        request("\(kServerURL)categories.php", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            
+            hideProgress()
+            
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    if let json = response.result.value {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            self.arrCategorydata = (dictemp["data"] as? NSArray)!
+                            print("arrCategorydata :> \(self.arrCategorydata)")
+                            self.cvCategory.reloadData()
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                self.cvCategory.reloadData()
+                break
+            }
+        }
+    }
+    
     // MARK: - Action
     @IBAction func btnGridPressed() {
         viewGrid.backgroundColor = UIColor.appPinkColor()
@@ -122,7 +175,67 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         }
         else
         {
+            showProgress(inView: self.view)
             
+            // define parameters
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "name": "\(self.txtAddCategory.text!)",
+            ]
+            
+            upload(multipartFormData:
+                { (multipartFormData) in
+                    
+                    if let imageData2 = UIImageJPEGRepresentation(self.imgCategory.image!, 1)
+                    {
+                        multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
+                    }
+                    
+                    for (key, value) in parameters
+                    {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                }, to: "\(kServerURL)add_user_category.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
+                {
+                    (result) in
+                    switch result
+                    {
+                    case .success(let upload, _, _):
+                        upload.responseJSON
+                            {
+                                response in
+                                hideProgress()
+                                
+                                print(response.request) // original URL request
+                                print(response.response) // URL response
+                                print(response.data) // server data
+                                print(response.result) // result of response serialization
+                                
+                                if let json = response.result.value
+                                {
+                                    print("json :> \(json)")
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    if dictemp.count > 0
+                                    {
+                                        App_showAlert(withMessage: "Category Added Successfully", inView: self)
+                                        self.viewAddFilter.isHidden = true
+                                        self.txtAddCategory.text = ""
+                                        self.imgCategory.image = UIImage(named: "photo_icon")
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+                        }
+                        
+                    case .failure(let encodingError):
+                        hideProgress()
+                        print(encodingError)
+                        App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
+                    }
+            })
         }
     }
     
@@ -217,18 +330,32 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     */
 }
 extension ProfileViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return arrCategorydata.count
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
         let collectionWidth = MainScreen.width - 36
         return CGSize(width: (collectionWidth-2)/3, height: (collectionWidth-2)/3)
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+        cell.lblCategoryName.text = (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyname) as? String
+        
+        if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            cell.imgCategory.image = UIImage(named: "Lake.jpg")
+        }
+        else
+        {
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) as? String!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+        }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
         self.performSegue(withIdentifier: "pushToDetail", sender: self)
     }
 }

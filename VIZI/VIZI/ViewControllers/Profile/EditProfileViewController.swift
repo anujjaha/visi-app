@@ -165,6 +165,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
                 case .failure(let encodingError):
                     hideProgress()
                     print(encodingError)
+                    App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
                 }
                 
         })
