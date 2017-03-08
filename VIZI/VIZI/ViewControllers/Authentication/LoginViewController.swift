@@ -31,8 +31,8 @@ class LoginViewController: UIViewController {
             self.txtUsername.attributedPlaceholder = NSAttributedString(string:"Username", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             
-            self.txtUsername.text = "latest"
-            self.txtPassword.text = "test"
+//            self.txtUsername.text = "latest"
+//            self.txtPassword.text = "test"
         }
     }
     // MARK: - Navigation

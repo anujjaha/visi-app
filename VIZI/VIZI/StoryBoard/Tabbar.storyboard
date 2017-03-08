@@ -282,7 +282,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qlC-sp-dvX" firstAttribute="top" secondItem="RQ3-zb-cSb" secondAttribute="bottom" constant="-9" id="FWc-30-Dbe"/>
+                            <constraint firstItem="qlC-sp-dvX" firstAttribute="top" secondItem="RQ3-zb-cSb" secondAttribute="bottom" id="FWc-30-Dbe"/>
                             <constraint firstItem="aj8-7o-XYg" firstAttribute="leading" secondItem="86u-wo-kZd" secondAttribute="leading" id="JDR-8j-QDE"/>
                             <constraint firstItem="qlC-sp-dvX" firstAttribute="leading" secondItem="86u-wo-kZd" secondAttribute="leading" id="L84-Qc-Djc"/>
                             <constraint firstItem="aOB-KI-w8n" firstAttribute="top" secondItem="aj8-7o-XYg" secondAttribute="bottom" id="Mbf-zX-4lv"/>

@@ -116,14 +116,14 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = UITableViewCell()
+        var cell = UITableViewCell()
         if(iSelectedTab == 2)
         {
-            tableView.dequeueReusableCell(withIdentifier: "PlaceListCell") as! PlaceListCell
+           cell = tableView.dequeueReusableCell(withIdentifier: "PlaceListCell") as! PlaceListCell
         }
         else
         {
-            tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+           cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
         }
         return cell
     }

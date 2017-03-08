@@ -912,6 +912,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -964,6 +965,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -991,6 +993,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/VIZI/MVPlaceSearchTextField",
@@ -1020,6 +1023,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/VIZI/MVPlaceSearchTextField",
