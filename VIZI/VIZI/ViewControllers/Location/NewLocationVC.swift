@@ -17,7 +17,8 @@ class NewLocationVC: UIViewController {
     @IBOutlet weak var txtvwNotes: UITextView!
     @IBOutlet weak var mapView : MKMapView!
 
-    var fcordinate = CLLocationCoordinate2DMake
+    var fcordinate = CLLocationCoordinate2D()
+    
     
     override func viewDidLoad()
     {
@@ -27,9 +28,10 @@ class NewLocationVC: UIViewController {
         
         self.txtTitle.attributedPlaceholder = NSAttributedString(string:"Title", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
         
-        let center = CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude)
+        let center = CLLocationCoordinate2D(latitude: fcordinate.latitude, longitude: fcordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
+        
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -58,9 +60,86 @@ class NewLocationVC: UIViewController {
         {
             App_showAlert(withMessage: "Please select category", inView: self)
         }
+        else if (appDelegate.arrNewLocationPhotos.count <= 0)
+        {
+            App_showAlert(withMessage: "Please add photos", inView: self)
+        }
+        else if (self.txtvwNotes.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter note", inView: self)
+        }
         else
         {
+            showProgress(inView: self.view)
+            // define parameters
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "title": "\(self.txtTitle.text!)",
+                "category_id" : "\(appDelegate.iNewLocationCategoryID)",
+                "lat" :  "\(fcordinate.latitude)",
+                "lon"  : "\(fcordinate.longitude)",
+                "note" : "\(self.txtvwNotes.text!)"
+            ]
             
+            upload(multipartFormData:
+                { (multipartFormData) in
+                    
+                    for i in 0..<appDelegate.arrNewLocationPhotos.count
+                    {
+                        if let imageData2 = UIImageJPEGRepresentation(appDelegate.arrNewLocationPhotos[i] as! UIImage, 1)
+                        {
+                            multipartFormData.append(imageData2, withName: "image\(i)", fileName: "myImage\(i).png", mimeType: "File")
+                        }
+                    }
+                    for (key, value) in parameters
+                    {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                }, to: "\(kServerURL)add_pin.php", method: .post, headers: nil, encodingCompletion:
+                {
+                    (result) in
+                    switch result
+                    {
+                    case .success(let upload, _, _):
+                        upload.responseJSON
+                            {
+                                response in
+                                hideProgress()
+                                
+                                print(response.request) // original URL request
+                                print(response.response) // URL response
+                                print(response.data) // server data
+                                print(response.result) // result of response serialization
+                                
+                                if let json = response.result.value
+                                {
+                                    print("json :> \(json)")
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    if dictemp.count > 0
+                                    {
+                                       //App_showAlert(withMessage: "Location Added Successfully", inView: self)
+                                        
+                                        let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)
+                                        let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                            _ = self.navigationController?.popViewController(animated: true)
+                                        }
+                                        alertView.addAction(OKAction)
+                                        self.present(alertView, animated: true, completion: nil)
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+                        }
+                        
+                    case .failure(let encodingError):
+                        hideProgress()
+                        print(encodingError)
+                        App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
+                    }
+            })
         }
     }
     

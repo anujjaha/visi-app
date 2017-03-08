@@ -33,6 +33,11 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
         
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
+        myAnnotation.title = "Add New Location"
+        myAnnotation.coordinate = mapView.centerCoordinate
+        mapView.addAnnotation(myAnnotation)
         
         txtPlaceSearch.autoCompleteRegularFontName =  "HelveticaNeue-Bold";
         txtPlaceSearch.autoCompleteBoldFontName = "HelveticaNeue";
@@ -115,12 +120,14 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         if view.annotation != nil
         {
             let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-            let tabbar = storyTab.instantiateViewController(withIdentifier: "NewLocationVC")
+            let tabbar = storyTab.instantiateViewController(withIdentifier: "NewLocationVC") as! NewLocationVC
+            tabbar.fcordinate = mapView.centerCoordinate
             self.navigationController?.pushViewController(tabbar, animated: true)
         }
     }
     
-    @IBAction func NotificationPressed() {
+    @IBAction func NotificationPressed()
+    {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "NotificationVC")
         self.navigationController?.pushViewController(tabbar, animated: true)
@@ -148,7 +155,6 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = responseDict.coordinate
         myAnnotation.title = "Add New Location"
-        myAnnotation.coordinate = mapView.centerCoordinate
         mapView.addAnnotation(myAnnotation)
     }
     

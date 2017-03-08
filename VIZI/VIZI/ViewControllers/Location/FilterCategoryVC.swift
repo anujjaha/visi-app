@@ -134,6 +134,17 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         tblCategory.reloadData()
     }
 
+    @IBAction func btnCategorySelected(sender: UIButton)
+    {
+        if (appDelegate.iNewLocationCategoryID <= 0)
+        {
+            App_showAlert(withMessage: "Please select category", inView: self)
+        }
+        else
+        {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
     
     @IBAction func backButtonPressed() {
         _ = self.navigationController?.popViewController(animated: true)

@@ -109,13 +109,31 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        arrPhotos.add(chosenImage)
+        let image = resize(chosenImage)
+        arrPhotos.add(image)
+        appDelegate.arrNewLocationPhotos.add(image)
         dismiss(animated: true, completion: nil)
         cvPhotos.reloadData()
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+    }
+
+    @IBAction func backButtonPressed() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnAddPhotoAction(sender: UIButton)
+    {
+        if (appDelegate.arrNewLocationPhotos.count <= 0)
+        {
+            App_showAlert(withMessage: "Please add photo", inView: self)
+        }
+        else
+        {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
 
     /*
