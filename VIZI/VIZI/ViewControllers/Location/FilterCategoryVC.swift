@@ -123,11 +123,13 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             sender.isSelected = false
             
             arrSelectedbutton.replaceObject(at: sender.tag, with: kNO)
+            appDelegate.iNewLocationCategoryID = 0
         }
         else
         {
             sender.isSelected = true
             arrSelectedbutton.replaceObject(at: sender.tag, with: kYES)
+            appDelegate.iNewLocationCategoryID = Int(((arrCategorydata[sender.tag] as AnyObject).object(forKey: kkeyuserid) as? String)!)!
         }
         tblCategory.reloadData()
     }

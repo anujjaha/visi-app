@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var arrLoginData = NSDictionary() //Array of dictionary
     var locationManager:CLLocationManager!
     var userLocation = CLLocation()
-    
+    var iNewLocationCategoryID = Int()
+    var arrNewLocationPhotos = NSMutableArray()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

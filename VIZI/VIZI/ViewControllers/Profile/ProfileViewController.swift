@@ -181,6 +181,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             let parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
                 "name": "\(self.txtAddCategory.text!)",
+                "private" : "\(strvisibilityvalue)"
             ]
             
             upload(multipartFormData:
@@ -190,7 +191,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                     {
                         multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
                     }
-                    
                     for (key, value) in parameters
                     {
                         multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
@@ -350,7 +350,11 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         }
         else
         {
-            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) as? String!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+            /*print("\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)")
+            let originalString = "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) as? String!)"
+            let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+            print(escapedString!)*/
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
         }
         return cell
     }

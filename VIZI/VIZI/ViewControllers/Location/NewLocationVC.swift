@@ -50,7 +50,18 @@ class NewLocationVC: UIViewController {
 
     @IBAction func btnAddNewLocationAction()
     {
-        
+        if (self.txtTitle.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter location name", inView: self)
+        }
+        else if (appDelegate.iNewLocationCategoryID <= 0)
+        {
+            App_showAlert(withMessage: "Please select category", inView: self)
+        }
+        else
+        {
+            
+        }
     }
     
     @IBAction func btnOpenCategoryAction()
