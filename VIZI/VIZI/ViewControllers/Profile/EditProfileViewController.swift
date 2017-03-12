@@ -260,6 +260,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -270,13 +271,14 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     func openGallary()
     {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     
     //PickerView Delegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         image = resize(chosenImage)
         imgProfile.image = image
         imageData = (UIImageJPEGRepresentation(chosenImage, 1) as NSData?)!
@@ -285,6 +287,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

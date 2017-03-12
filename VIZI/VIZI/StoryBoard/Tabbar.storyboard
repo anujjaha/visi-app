@@ -1676,7 +1676,11 @@
                     <navigationItem key="navigationItem" id="uHd-bA-epY"/>
                     <connections>
                         <outlet property="btnCancel" destination="QDB-gu-QnX" id="oJk-Ee-50Z"/>
+                        <outlet property="btnFollowers" destination="mng-OP-uEK" id="vJS-Km-8dn"/>
+                        <outlet property="btnFollowing" destination="hOQ-fr-grM" id="KMG-Ce-KPi"/>
+                        <outlet property="btnLocation" destination="iUz-mR-13L" id="iJV-KQ-eip"/>
                         <outlet property="btnMakePrivate" destination="Lib-QU-qN5" id="8wG-G1-TzT"/>
+                        <outlet property="btnPin" destination="gfa-FL-ecI" id="qsP-eF-w5w"/>
                         <outlet property="btnPlus" destination="9m5-CP-WQ1" id="ARh-dG-jZJ"/>
                         <outlet property="btnSave" destination="G4o-BV-Nei" id="UdO-Fz-C1b"/>
                         <outlet property="cvCategory" destination="qGo-a9-rio" id="HfQ-qa-1N0"/>
@@ -2652,12 +2656,12 @@
                                                                 <constraint firstAttribute="height" constant="50" id="rlM-Xt-1bo"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eddie Redmayne" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoF-uz-eV0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Eddie Redmayne" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoF-uz-eV0">
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" red="0.99215686270000003" green="0.84313725490000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brooklyn, New York." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-NB-IYH">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brooklyn, New York." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-NB-IYH">
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                             <color key="textColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2680,14 +2684,17 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="7W7-ja-WHv" firstAttribute="leading" secondItem="BoF-uz-eV0" secondAttribute="trailing" constant="14" id="5Ve-rY-wzz"/>
                                                         <constraint firstItem="5Ik-2S-CwQ" firstAttribute="leading" secondItem="vtU-o8-fZX" secondAttribute="leading" constant="15" id="6KN-Xd-2Zq"/>
+                                                        <constraint firstItem="BoF-uz-eV0" firstAttribute="top" secondItem="vtU-o8-fZX" secondAttribute="top" constant="15" id="70g-q1-LN4"/>
+                                                        <constraint firstItem="o9Z-NB-IYH" firstAttribute="top" secondItem="BoF-uz-eV0" secondAttribute="bottom" constant="3" id="ACd-sX-gZv"/>
                                                         <constraint firstItem="5Ik-2S-CwQ" firstAttribute="centerY" secondItem="vtU-o8-fZX" secondAttribute="centerY" id="Cze-Q4-yn0"/>
+                                                        <constraint firstAttribute="bottom" secondItem="o9Z-NB-IYH" secondAttribute="bottom" constant="8" id="DxU-o9-XSF"/>
                                                         <constraint firstAttribute="trailing" secondItem="7W7-ja-WHv" secondAttribute="trailing" constant="10" id="Ejz-Qm-h2D"/>
-                                                        <constraint firstItem="o9Z-NB-IYH" firstAttribute="centerY" secondItem="vtU-o8-fZX" secondAttribute="centerY" constant="10" id="JLX-bA-PmS"/>
-                                                        <constraint firstItem="o9Z-NB-IYH" firstAttribute="leading" secondItem="5Ik-2S-CwQ" secondAttribute="trailing" constant="15" id="LZA-PP-Adw"/>
+                                                        <constraint firstItem="o9Z-NB-IYH" firstAttribute="leading" secondItem="5Ik-2S-CwQ" secondAttribute="trailing" constant="8" id="Ezi-Fn-eVO"/>
+                                                        <constraint firstItem="BoF-uz-eV0" firstAttribute="leading" secondItem="5Ik-2S-CwQ" secondAttribute="trailing" constant="8" id="GkB-WL-Q1U"/>
                                                         <constraint firstItem="7W7-ja-WHv" firstAttribute="centerY" secondItem="vtU-o8-fZX" secondAttribute="centerY" id="MTx-lY-O1h"/>
-                                                        <constraint firstItem="BoF-uz-eV0" firstAttribute="centerY" secondItem="vtU-o8-fZX" secondAttribute="centerY" constant="-10" id="de0-Af-ZGz"/>
-                                                        <constraint firstItem="BoF-uz-eV0" firstAttribute="leading" secondItem="5Ik-2S-CwQ" secondAttribute="trailing" constant="15" id="iMi-7E-dw0"/>
+                                                        <constraint firstItem="7W7-ja-WHv" firstAttribute="leading" secondItem="o9Z-NB-IYH" secondAttribute="trailing" constant="14" id="sgK-eO-diR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -2702,13 +2709,11 @@
                                         <connections>
                                             <outlet property="btnFollw" destination="7W7-ja-WHv" id="ZSn-OS-Gzo"/>
                                             <outlet property="imgProfile" destination="5Ik-2S-CwQ" id="Top-pa-LmB"/>
+                                            <outlet property="lblAddress" destination="o9Z-NB-IYH" id="Clw-KY-wB9"/>
+                                            <outlet property="lblName" destination="BoF-uz-eV0" id="uUL-ay-Ajq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="nek-ec-OUy" id="tRg-dO-RCn"/>
-                                    <outlet property="delegate" destination="nek-ec-OUy" id="UHx-w2-Jja"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2724,10 +2729,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FVs-MA-ma4"/>
+                    <connections>
+                        <outlet property="tblFollowersList" destination="AXg-J2-Edp" id="qE6-rO-ZJA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLH-48-kGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="1647"/>
+            <point key="canvasLocation" x="1853.5" y="1646.5"/>
         </scene>
     </scenes>
     <resources>

@@ -28,6 +28,7 @@ let kkeyimage = "image"
 let kkeystatus = "status"
 let kkeyvisibility = "visibility"
 let kkeyname = "name"
+let kkeyaddress = "address"
 
 let kNO = "NO"
 let kYES = "YES"

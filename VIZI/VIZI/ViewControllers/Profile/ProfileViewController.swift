@@ -39,12 +39,19 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     //Get Category data
     var arrCategorydata = NSArray()
     @IBOutlet weak var cvCategory : UICollectionView!
+    var dicprofiledata = NSMutableDictionary()
     
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var lblbio : UILabel!
     
-    override func viewDidLoad() {
+    //buttons pin,followers, following
+    @IBOutlet weak var btnPin : UIButton!
+    @IBOutlet weak var btnFollowers : UIButton!
+    @IBOutlet weak var btnFollowing : UIButton!
+    @IBOutlet weak var btnLocation : UIButton!
+
+        override func viewDidLoad() {
         super.viewDidLoad()
         if appDelegate.arrLoginData.count > 0
         {
@@ -76,8 +83,9 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             }
         }
        
-        self.getCategorydata()
-
+       // self.getCategorydata()
+        self.getProfileData()
+        
         DispatchQueue.main.async {
             
             self.btnPlus.layer.borderWidth = 6
@@ -141,6 +149,77 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             }
         }
     }
+    
+    //MARK: - Get Profile Data
+    func getProfileData()
+    {
+        showProgress(inView: self.view)
+
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)profile.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            if  let dictemp2 = dictemp["data"] as? NSDictionary
+                            {
+                                print("dictemp :> \(dictemp2)")
+                                self.dicprofiledata = NSMutableDictionary.init(dictionary: dictemp2)
+                                print("self.dicprofiledata :> \(self.dicprofiledata)")
+                                
+                                self.arrCategorydata = (self.dicprofiledata["categories"] as? NSArray)!
+                                print("arrCategorydata :> \(self.arrCategorydata)")
+                                self.cvCategory.reloadData()
+                                
+                                self.btnPin.setTitle(self.dicprofiledata["pins"] as? String, for: .normal)
+                                self.btnFollowers.setTitle(self.dicprofiledata["followers"] as? String, for: .normal)
+                                self.btnFollowing.setTitle(self.dicprofiledata["followings"] as? String, for: .normal)
+                                
+                                self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyaddress) as? String, for: .normal)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+
+    }
+    
     
     // MARK: - Action
     @IBAction func btnGridPressed() {
