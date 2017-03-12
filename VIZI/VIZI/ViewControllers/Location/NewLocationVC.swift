@@ -9,13 +9,14 @@
 import UIKit
 import MapKit
 
-class NewLocationVC: UIViewController {
+class NewLocationVC: UIViewController,MKMapViewDelegate {
 
     @IBOutlet weak var viewCategory : UIView!
     @IBOutlet weak var viewPhoto : UIView!
     @IBOutlet weak var txtTitle : VIZIUITextField!
     @IBOutlet weak var txtvwNotes: UITextView!
     @IBOutlet weak var mapView : MKMapView!
+    @IBOutlet weak var btnCategory : UIButton!
 
     var fcordinate = CLLocationCoordinate2D()
     
@@ -32,22 +33,27 @@ class NewLocationVC: UIViewController {
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
         
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
+        myAnnotation.title = "Current location"
+        myAnnotation.coordinate = mapView.centerCoordinate
+        mapView.addAnnotation(myAnnotation)
     }
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
-        myAnnotation.title = "Current location"
-        myAnnotation.coordinate = mapView.centerCoordinate
-        mapView.addAnnotation(myAnnotation)
 
+        if (appDelegate.iNewLocationCategoryID > 0)
+        {
+            btnCategory.setTitle(appDelegate.strNewLocationCategoryName as String, for: .normal)
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         super.viewWillAppear(animated)
+        
     }
 
     @IBAction func btnAddNewLocationAction()
@@ -186,7 +192,7 @@ class NewLocationVC: UIViewController {
         if let annotationView = annotationView
         {
             // Configure your annotation view here
-            annotationView.canShowCallout = true
+            annotationView.canShowCallout = false
             annotationView.image = UIImage(named: "MapPin")
             annotationView.isDraggable = false
         }

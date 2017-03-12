@@ -14,6 +14,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
 
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var txtPlaceSearch : MVPlaceSearchTextField!
+    @IBOutlet weak var vwSearch : UIView!
 
     override func viewDidLoad()
     {
@@ -106,12 +107,14 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         if (newState == MKAnnotationViewDragState.starting)
         {
             view.dragState = MKAnnotationViewDragState.dragging
+            vwSearch.isHidden = true
         }
         else if (newState == MKAnnotationViewDragState.ending || newState == MKAnnotationViewDragState.canceling)
         {
             view.dragState = MKAnnotationViewDragState.none
             let ann = view.annotation
             print("annotation dropped at: \(ann!.coordinate.latitude),\(ann!.coordinate.longitude)")
+            vwSearch.isHidden = false
         }
     }
     

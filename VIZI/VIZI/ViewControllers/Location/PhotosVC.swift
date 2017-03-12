@@ -18,6 +18,11 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        /*
+         Niyati Shah : 12-03-2017
+         Comment :Photos page should be more user friendly. Right now it is a blank page, it should offer up immediately “go to camera roll” or take a picture on the spot. We want it to be as quick and easy as possible
+         */
+        self.SelectImage()
     }
 
     override func viewWillAppear(_ animated: Bool)
@@ -124,6 +129,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func backButtonPressed() {

@@ -110,6 +110,38 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let cell = tableView.cellForRow(at: indexPath) as! CategoryCell
+
+        if ((arrSelectedbutton[indexPath.row] as! NSString) as String == kNO)
+        {
+            cell.btnselectRadio.isSelected = true
+            arrSelectedbutton = NSMutableArray()
+            for _ in 0..<self.arrCategorydata.count
+            {
+                self.arrSelectedbutton.add(kNO)
+            }
+            arrSelectedbutton.replaceObject(at: indexPath.row, with: kYES)
+            appDelegate.iNewLocationCategoryID = Int(((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as? String)!)!
+            appDelegate.strNewLocationCategoryName = (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyname) as! NSString
+        }
+        else
+        {
+            cell.btnselectRadio.isSelected = false
+            
+            arrSelectedbutton = NSMutableArray()
+            for _ in 0..<self.arrCategorydata.count
+            {
+                self.arrSelectedbutton.add(kNO)
+            }
+            arrSelectedbutton.replaceObject(at: indexPath.row, with: kNO)
+            appDelegate.iNewLocationCategoryID = 0
+            appDelegate.strNewLocationCategoryName = ""
+        }
+        tblCategory.reloadData()
+    }
+    
     @IBAction func RadioButtonPressed(sender: UIButton)
     {
         arrSelectedbutton = NSMutableArray()
@@ -124,12 +156,14 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             
             arrSelectedbutton.replaceObject(at: sender.tag, with: kNO)
             appDelegate.iNewLocationCategoryID = 0
+            appDelegate.strNewLocationCategoryName = ""
         }
         else
         {
             sender.isSelected = true
             arrSelectedbutton.replaceObject(at: sender.tag, with: kYES)
             appDelegate.iNewLocationCategoryID = Int(((arrCategorydata[sender.tag] as AnyObject).object(forKey: kkeyuserid) as? String)!)!
+            appDelegate.strNewLocationCategoryName = (arrCategorydata[sender.tag] as AnyObject).object(forKey: kkeyname) as! NSString
         }
         tblCategory.reloadData()
     }
