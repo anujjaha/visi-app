@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="JCW-wJ-jWI">
             <objects>
-                <viewController id="pUg-l9-4v0" customClass="LoginViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="pUg-l9-4v0" customClass="LoginViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ukF-M0-fk8"/>
                         <viewControllerLayoutGuide type="bottom" id="Dek-Ga-MsY"/>
@@ -223,7 +223,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="f0X-sL-8Ci" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j3I-LI-jWf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j3I-LI-jWf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -75,8 +75,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 }
             }
         }
-        
-        
+       
         self.getCategorydata()
 
         DispatchQueue.main.async {
@@ -271,6 +270,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -281,6 +281,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     func openGallary()
     {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     

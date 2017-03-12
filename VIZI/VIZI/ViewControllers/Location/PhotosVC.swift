@@ -56,9 +56,13 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     //MARK: Select Image
     @IBAction func SelectImage()
     {
-        if arrPhotos.count >= 6
+        /*
+            Niyati Shah : 11-03-2017
+            Comment : Additionally, they should be able to add a maximum of three photos to one location
+         */
+        if arrPhotos.count >= 3
         {
-            App_showAlert(withMessage: "You can add maximum 6 Images", inView: self)
+            App_showAlert(withMessage: "You can add maximum 3 Images", inView: self)
         }
         else
         {
@@ -92,6 +96,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -102,6 +107,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     func openGallary()
     {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     

@@ -20,6 +20,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak  var tblFeed : UITableView!
     @IBOutlet weak  var btnFilter : UIButton!
     var iSelectedTab = Int()
+    var arrDiscoverdata = NSMutableArray()
 
     
     override func viewDidLoad()
@@ -128,6 +129,64 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return cell
     }
 
+    //MARK : Get Discover Data API Calling
+    func getDiscoverdata()
+    {
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)discover.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+                
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            if  let dictemp2 = dictemp["data"] as? NSDictionary
+                            {
+                                print("dictemp :> \(dictemp2)")
+                                
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+    }
+    }
+    
     /*
     // MARK: - Navigation
 

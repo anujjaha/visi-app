@@ -43,7 +43,11 @@ class SettingsViewController: UIViewController {
     
     @IBAction func btnLogoutPressed()
     {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let nav = UINavigationController(rootViewController: homeViewController)
+        appdelegate.window!.rootViewController = nav
     }
     
     override func viewWillDisappear(_ animated: Bool) {

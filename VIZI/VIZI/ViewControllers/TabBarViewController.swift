@@ -12,7 +12,10 @@ class TabBarViewController: UITabBarController {
 
     @IBOutlet weak var viewTab : UIView!
     @IBOutlet weak var cntViewSelectionLeading : NSLayoutConstraint!
-    
+    @IBOutlet weak var btnhome : UIButton!
+    @IBOutlet weak var btnDiscover : UIButton!
+    @IBOutlet weak var btnUser : UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewTab.frame = CGRect(x: 0, y: MainScreen.height-55, width: MainScreen.width, height: 55)
@@ -33,19 +36,37 @@ class TabBarViewController: UITabBarController {
         self.viewControllers = [navDiscover, navHome, navProfile]
         
         self.selectedIndex = 1
+        self.selectedViewController = navHome
         
+        self.cntViewSelectionLeading.constant = btnhome.frame.origin.x
+        btnDiscover.isSelected = false
+        btnUser.isSelected = false
+
     }
+    override func viewDidAppear(_ animated: Bool) {
+        self.cntViewSelectionLeading.constant = btnhome.frame.origin.x
+    }
+    
 
     // MARK: - Action
     @IBAction func btnDiscoverPressed(sender:UIButton) {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 0
+        
+        btnDiscover.isSelected = true
+        btnUser.isSelected = false
+
     }
     @IBAction func btnHomePressed(sender:UIButton) {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 1
+        btnDiscover.isSelected = false
+        btnUser.isSelected = false
     }
-    @IBAction func btnProfilePressed(sender:UIButton) {
+    @IBAction func btnProfilePressed(sender:UIButton)
+    {
+        btnDiscover.isSelected = false
+        btnUser.isSelected = true
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 2
     }

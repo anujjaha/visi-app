@@ -31,8 +31,8 @@ class LoginViewController: UIViewController {
             self.txtUsername.attributedPlaceholder = NSAttributedString(string:"Username", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             
-//            self.txtUsername.text = "latest"
-//            self.txtPassword.text = "test"
+            self.txtUsername.text = "latest"
+            self.txtPassword.text = "test"
         }
     }
     // MARK: - Navigation
@@ -70,17 +70,32 @@ class LoginViewController: UIViewController {
                 "data": arrRequest
             ]*/
             
+            let parameters = [
+                "user_name":  "\(self.txtUsername.text!)",
+                "password": "\(self.txtPassword.text!)",
+                "device_id":"asdfghjkl",
+                "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
+                "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
+            ]
+
+            
             showProgress(inView: self.view)
-//            print("parameters:>\(parameters)")
-            request("\(kServerURL)login.php", method: .post, parameters: ["user_name": "\(self.txtUsername.text!)","password":"\(self.txtPassword.text!)","device_id":"asdfghjkl"]).responseJSON { (response:DataResponse<Any>) in
+            print("parameters:>\(parameters)")
+           request("\(kServerURL)login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
                 
                 hideProgress()
-                switch(response.result) {
+                switch(response.result)
+                {
+
                 case .success(_):
                     if response.result.value != nil
                     {
                         print(response.result.value)
-                        if let json = response.result.value {
+                        
+                        if let json = response.result.value
+                        {
                             print("json :> \(json)")
                             
                             let dictemp = json as! NSDictionary
@@ -113,10 +128,15 @@ class LoginViewController: UIViewController {
                     
                 case .failure(_):
                     print(response.result.error)
+
                     App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                     break
                 }
             }
+            
+            /*request("\(kServerURL)login.php", method: .post, parameters:parameters).responseString{ response in
+                debugPrint(response)
+            }*/
            
         }
         /*let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
@@ -179,6 +199,7 @@ class LoginViewController: UIViewController {
 //                        let currentConditions = parsedData["currently"] as! [String:Any]
                         print(parsedData)
                         
+                        
 //                        let currentTemperatureF = currentConditions["temperature"] as! Double
 //                        print(currentTemperatureF)
                     }
@@ -193,6 +214,12 @@ class LoginViewController: UIViewController {
             }
         })
     }
+    
+    func fbLogin()
+    {
+        
+    }
+    
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool
     {   //delegate method

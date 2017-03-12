@@ -60,10 +60,15 @@ class NewLocationVC: UIViewController {
         {
             App_showAlert(withMessage: "Please select category", inView: self)
         }
-        else if (appDelegate.arrNewLocationPhotos.count <= 0)
+            /*
+             Niyati Shah : 12-03-2017
+             Comment : ○ It doesn’t let a user save a location if they don’t add any photos. A user should have the option to add photos when saving a location, but should not be forced to add photos away
+             */
+   
+       /* else if (appDelegate.arrNewLocationPhotos.count <= 0)
         {
             App_showAlert(withMessage: "Please add photos", inView: self)
-        }
+        }*/
         else if (self.txtvwNotes.text?.isEmpty)!
         {
             App_showAlert(withMessage: "Please enter note", inView: self)

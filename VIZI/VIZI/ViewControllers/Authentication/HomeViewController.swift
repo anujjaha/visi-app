@@ -152,6 +152,15 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         
         mapView.removeAnnotations(mapView.annotations)
 
+        /*
+         Niyati Shah : 12-03-2017
+         Comment : Also, when you search a location and click on it, it should redirect the pin
+         to that location on the map
+         */
+        let center = CLLocationCoordinate2D(latitude: responseDict.coordinate.latitude, longitude: responseDict.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
+
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = responseDict.coordinate
         myAnnotation.title = "Add New Location"
