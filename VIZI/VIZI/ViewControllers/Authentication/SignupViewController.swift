@@ -79,7 +79,9 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                 "email": "\(self.txtEmail.text!)",
                 "user_name": "\(self.txtUsername.text!)",
                 "password":"\(self.txtPassword.text!)",
-                "device_id":"asdfghjkl"
+                "device_id":"asdfghjkl",
+                "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
+                "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
             ]
             
             upload(multipartFormData:
@@ -280,6 +282,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -290,6 +293,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     func openGallary()
     {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -304,6 +308,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

@@ -29,6 +29,8 @@ let kkeystatus = "status"
 let kkeyvisibility = "visibility"
 let kkeyname = "name"
 let kkeyaddress = "address"
+let kkeyfirst_name = "first_name"
+let kkeylast_name = "last_name"
 
 let kNO = "NO"
 let kYES = "YES"

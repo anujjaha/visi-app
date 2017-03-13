@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     var arrRes = NSMutableDictionary() //Array of dictionary
     var facebookAccount: ACAccount?
     var accountStore: ACAccountStore?
+    var dictFBdata = NSDictionary()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +130,6 @@ class LoginViewController: UIViewController {
                     
                 case .failure(_):
                     print(response.result.error)
-
                     App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                     break
                 }
@@ -146,6 +147,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func btnFBLogin()
     {
+        showProgress(inView: self.view)
+
         let options:[String : Any] = [ACFacebookAppIdKey: kFBAPPID , ACFacebookPermissionsKey: ["email"],ACFacebookAudienceKey:ACFacebookAudienceFriends]
         let accountStore = ACAccountStore()
         let facebookAccountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
@@ -163,6 +166,8 @@ class LoginViewController: UIViewController {
             }
             else
             {
+                hideProgress()
+
                 if let err = error as? NSError, err.code == Int(ACErrorAccountNotFound.rawValue)
                 {
                     DispatchQueue.main.async
@@ -189,45 +194,120 @@ class LoginViewController: UIViewController {
 //        var request = SLRequest(for: SLServiceTypeFacebook, requestMethod: .GET, url: requestURL, parameters: nil)
         request?.account = facebookAccount
         request?.perform( handler: { data, response, error in
+         
+
             if (data != nil)
             {
                 if (response?.statusCode)! >= 200 && (response?.statusCode)! < 300
                 {
                     do
                     {
-                        let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+                        self.dictFBdata = try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
 //                        let currentConditions = parsedData["currently"] as! [String:Any]
-                        print(parsedData)
+                        print(self.dictFBdata)
                         
+                        self.fblogin()
                         
 //                        let currentTemperatureF = currentConditions["temperature"] as! Double
 //                        print(currentTemperatureF)
                     }
                     catch let error as NSError
                     {
+                        hideProgress()
+                        App_showAlert(withMessage: error.localizedDescription, inView: self)
+
                         print(error)
                     }
                 }
-                else {
+                else
+                {
+                    hideProgress()
                     print("Status code: \(response?.statusCode) and error: \(error)")
+                    App_showAlert(withMessage: (response?.description)!, inView: self)
                 }
             }
         })
     }
     
-    func fbLogin()
+    func fblogin()
     {
+        let parameters = [
+            "user_name":  "\(self.dictFBdata.object(forKey: kkeyfirst_name)!)" + "\(self.dictFBdata.object(forKey: kkeylast_name)!)",
+            "email" : "\(self.dictFBdata.object(forKey: kkeyemail)!)",
+            "device_id":"asdfghjkl",
+            "fbid" : "\(self.dictFBdata.object(forKey: kkeyuserid)!)",
+            "image" : "\(((self.dictFBdata.object(forKey: "picture") as! NSDictionary).object(forKey: kkeydata)  as! NSDictionary).object(forKey: "url")!)",
+            "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
+            "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
+        ]
         
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)fb_login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+                
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            if  let dictemp2 = dictemp["data"] as? NSDictionary
+                            {
+                                print("dictemp :> \(dictemp2)")
+                                
+                                appDelegate.arrLoginData = dictemp2
+                                
+                                let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
+                                self.navigationController?.pushViewController(tabbar, animated: true)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+        
+        /*request("\(kServerURL)login.php", method: .post, parameters:parameters).responseString{ response in
+         debugPrint(response)
+         }*/
     }
-    
-    
+
     func textFieldShouldReturn(textField: UITextField!) -> Bool
     {   //delegate method
         textField.resignFirstResponder()
         return true
     }
 
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
