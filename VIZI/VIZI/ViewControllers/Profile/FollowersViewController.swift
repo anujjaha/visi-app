@@ -37,6 +37,10 @@ class FollowersViewController: UIViewController
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         // Do any additional setup after loading the view.
         
+        self.tblFollowersList.estimatedRowHeight = 81.0 ;
+        self.tblFollowersList.rowHeight = UITableViewAutomaticDimension;
+
+        
         self.getFollowersList()
     }
     func backButtonPressed()
@@ -149,6 +153,10 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
+    }
     
     @IBAction func btnFollowPressed(_ sender:UIButton)
     {
