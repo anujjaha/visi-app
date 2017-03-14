@@ -16,6 +16,8 @@ let userDefaults    = UserDefaults.standard
 let Application_Name  =  "VIZI"
 let Alert_NoInternet    = "You are not connected to internet.\nPlease check your internet connection."
 let kPrivacyTermsVCViewID = "PrivacyTermsVC"
+let Alert_NoDataFound    = "No Data Found."
+
 
 let kkeydata = "data"
 let kkeymessage = "message"

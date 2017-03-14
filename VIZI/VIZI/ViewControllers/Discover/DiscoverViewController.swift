@@ -47,6 +47,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.856614, longitude: 2.33953), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
         self.mapView.setRegion(region, animated: true)
+        
+        self.getDiscoverdata()
     }
     
     func searchPressed() {
@@ -162,12 +164,11 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         {
                             if  let dictemp2 = dictemp["data"] as? NSDictionary
                             {
-                                print("dictemp :> \(dictemp2)")
-                                
+                                print("dictemp2 :> \(dictemp2)")
                             }
                             else
                             {
-                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                App_showAlert(withMessage: Alert_NoDataFound, inView: self)
                             }
                         }
                         else
@@ -184,7 +185,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
             }
-    }
+        }
     }
     
     /*

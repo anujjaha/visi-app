@@ -328,7 +328,7 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="3oq-ds-Vzj"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18X-jh-HZ0">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsz-9p-u10">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsz-9p-u10">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="q7B-wN-tCN"/>
                                         </constraints>
@@ -343,7 +343,7 @@
                                             <action selector="btnPeoplePressed" destination="EG8-lt-QTk" eventType="touchUpInside" id="D7G-Je-zTh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVQ-rT-FFO">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVQ-rT-FFO">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="OO4-O3-4tU"/>
                                         </constraints>
@@ -358,32 +358,41 @@
                                             <action selector="btnPlacesPressed" destination="EG8-lt-QTk" eventType="touchUpInside" id="z6w-xj-F42"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDZ-PU-Ogt">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDZ-PU-Ogt">
                                         <color key="backgroundColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="V0o-aA-Cs0"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esf-jG-CWz">
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.078431372550000003" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="leading" secondItem="Nsz-9p-u10" secondAttribute="trailing" id="5vR-yB-gOH"/>
                                     <constraint firstItem="MDZ-PU-Ogt" firstAttribute="width" secondItem="Nsz-9p-u10" secondAttribute="width" id="Fq0-Lz-DfK"/>
                                     <constraint firstAttribute="trailing" secondItem="NVQ-rT-FFO" secondAttribute="trailing" id="Hd3-92-Xdj"/>
+                                    <constraint firstAttribute="bottom" secondItem="esf-jG-CWz" secondAttribute="bottom" id="MhO-EJ-Fzj"/>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="width" secondItem="Nsz-9p-u10" secondAttribute="width" id="REz-K8-d0b"/>
                                     <constraint firstAttribute="bottom" secondItem="MDZ-PU-Ogt" secondAttribute="bottom" id="dIb-Ha-8lW"/>
+                                    <constraint firstItem="esf-jG-CWz" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="dkC-NW-OVi"/>
+                                    <constraint firstAttribute="trailing" secondItem="esf-jG-CWz" secondAttribute="trailing" id="hPN-5i-aut"/>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="top" secondItem="18X-jh-HZ0" secondAttribute="top" id="m7a-Z7-mGh"/>
                                     <constraint firstItem="Nsz-9p-u10" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="nsN-wg-RVQ"/>
                                     <constraint firstItem="Nsz-9p-u10" firstAttribute="top" secondItem="18X-jh-HZ0" secondAttribute="top" id="umQ-Dw-g1R"/>
+                                    <constraint firstItem="esf-jG-CWz" firstAttribute="top" secondItem="18X-jh-HZ0" secondAttribute="top" id="wy7-Ya-HEx"/>
                                     <constraint firstAttribute="height" constant="44" id="xCV-gf-TW5"/>
                                     <constraint firstItem="MDZ-PU-Ogt" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="z8i-g4-kOo"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ysx-xe-2sz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="81" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ysx-xe-2sz">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeopleCell" rowHeight="81" id="SPS-ON-288" customClass="PeopleCell" customModule="VIZI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                                        <rect key="frame" x="0.0" y="1" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SPS-ON-288" id="9VP-f7-Zlb">
                                             <frame key="frameInset" width="375" height="81"/>
@@ -393,8 +402,8 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="4k4-H5-CvF">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="iAM-P6-FTe"/>
-                                                                <constraint firstAttribute="height" constant="50" id="rTz-U7-A4c"/>
+                                                                <constraint firstAttribute="width" constant="40" id="iAM-P6-FTe"/>
+                                                                <constraint firstAttribute="height" constant="40" id="rTz-U7-A4c"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eddie Redmayne" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-qI-i3d">
@@ -432,13 +441,11 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="imgProfile" destination="4k4-H5-CvF" id="jD7-st-HCI"/>
+                                            <outlet property="lblAddress" destination="mFm-iG-cO7" id="M5K-gH-XCi"/>
+                                            <outlet property="lblName" destination="ngR-qI-i3d" id="htl-6C-3pj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="EG8-lt-QTk" id="5zw-Yf-gcm"/>
-                                    <outlet property="delegate" destination="EG8-lt-QTk" id="WSB-Gx-otM"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -461,6 +468,7 @@
                         <outlet property="btnPeople" destination="Nsz-9p-u10" id="Boa-aX-dxe"/>
                         <outlet property="btnPlaces" destination="NVQ-rT-FFO" id="iIL-i9-Uxt"/>
                         <outlet property="cntViewSelection" destination="z8i-g4-kOo" id="OGg-it-Ub9"/>
+                        <outlet property="tblSearch" destination="ysx-xe-2sz" id="3Bc-0I-bt5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhe-0g-5qG" userLabel="First Responder" sceneMemberID="firstResponder"/>

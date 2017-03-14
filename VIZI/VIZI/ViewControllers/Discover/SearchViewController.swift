@@ -35,6 +35,11 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Search"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
+        
+        self.tblSearch.estimatedRowHeight = 81.0 ;
+        self.tblSearch.rowHeight = UITableViewAutomaticDimension;
+
+        self.getSearchList()
     }
     func backButtonPressed() {
         self.dismiss(animated: true, completion: nil)
