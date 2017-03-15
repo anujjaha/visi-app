@@ -8,7 +8,8 @@
 
 import UIKit
 
-class FollowersCell: UITableViewCell {
+class FollowersCell: UITableViewCell
+{
     @IBOutlet weak var imgProfile : UIImageView!
     @IBOutlet weak var btnFollw : UIButton!
     @IBOutlet weak var lblName : UILabel!
@@ -27,7 +28,7 @@ class FollowersCell: UITableViewCell {
 
 class FollowersViewController: UIViewController
 {
-    var arrFollowersList = NSArray()
+    var arrFollowersList = NSMutableArray()
     @IBOutlet weak var tblFollowersList: UITableView!
 
     override func viewDidLoad() {
@@ -80,7 +81,7 @@ class FollowersViewController: UIViewController
                         
                         if dictemp.count > 0
                         {
-                            self.arrFollowersList = (dictemp["data"] as? NSArray)!
+                            self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                             print("arrFollowersList :> \(self.arrFollowersList)")
                         }
                         else
@@ -150,6 +151,20 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         {
             cell.imgProfile.sd_setImage(with: URL(string: "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
         }
+        
+        cell.btnFollw.tag = indexPath.row
+        
+        if ((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
+        {
+            cell.btnFollw.backgroundColor = UIColor.appPinkColor()
+            cell.btnFollw.setTitle("Follow", for: UIControlState.normal)
+        }
+        else
+        {
+            cell.btnFollw.backgroundColor = UIColor.appDarkChocColor()
+            cell.btnFollw.setTitle("", for: UIControlState.normal)
+            cell.btnFollw.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+        }
         return cell
     }
     
@@ -160,8 +175,119 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
     
     @IBAction func btnFollowPressed(_ sender:UIButton)
     {
-        sender.backgroundColor = UIColor.appDarkChocColor()
-        sender.setTitle("", for: UIControlState.normal)
-        sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+        if ((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
+        {
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "follow_id" :  "\((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
+                "follow"  : "\(1)"
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)follow.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                    
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                sender.backgroundColor = UIColor.appDarkChocColor()
+                                sender.setTitle("", for: UIControlState.normal)
+                                sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+                                
+                                let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
+                                tempdict.setValue(1, forKey: kkeyfollowing)
+                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        self.tblFollowersList.reloadData()
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    self.tblFollowersList.reloadData()
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+        }
+        else
+        {
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "follow_id" :  "\((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
+                "follow"  : "\(0)"
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)follow.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                    
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                sender.backgroundColor = UIColor.appPinkColor()
+                                sender.setTitle("Follow", for: UIControlState.normal)
+                                
+                                let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
+                                tempdict.setValue(0, forKey: kkeyfollowing)
+                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
+
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        self.tblFollowersList.reloadData()
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    self.tblFollowersList.reloadData()
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+        }
     }
 }

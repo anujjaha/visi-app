@@ -47,6 +47,7 @@ class SettingsViewController: UIViewController {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         let nav = UINavigationController(rootViewController: homeViewController)
+        nav.isNavigationBarHidden = true
         appdelegate.window!.rootViewController = nav
     }
     
