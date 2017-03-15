@@ -14,6 +14,19 @@ class ProfileCell: UICollectionViewCell {
     @IBOutlet weak var imgCategory : UIImageView!
 }
 
+class CategoryListCell: UITableViewCell
+{
+    @IBOutlet weak var imgCategory : UIImageView!
+    @IBOutlet weak var lblName : UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
+        //        self.imgProfile.layer.borderWidth = 1.0
+        //        self.imgProfile.layer.borderColor = UIColor.appDarkChocColor().cgColor
+    }
+}
+
 class ProfileViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var imgProfile : UIImageView!
@@ -40,6 +53,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     var arrCategorydata = NSArray()
     @IBOutlet weak var cvCategory : UICollectionView!
     var dicprofiledata = NSMutableDictionary()
+    @IBOutlet weak var tblCategoryList : UITableView!
     
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblEmail : UILabel!
@@ -85,7 +99,13 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
        
        // self.getCategorydata()
         self.getProfileData()
-        
+        tblCategoryList.isHidden = true
+        self.tblCategoryList.estimatedRowHeight = 81.0 ;
+        self.tblCategoryList.rowHeight = UITableViewAutomaticDimension;
+        self.tblCategoryList.delegate = self
+        self.tblCategoryList.dataSource = self
+         
+            
         DispatchQueue.main.async {
             
             self.btnPlus.layer.borderWidth = 6
@@ -102,7 +122,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             self.viewPhotoCategory.layer.cornerRadius = 5.0
             self.btnSave.layer.cornerRadius = 5.0
             self.btnCancel.layer.cornerRadius = 5.0
-            
         }
     }
     
@@ -222,17 +241,24 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     
     
     // MARK: - Action
-    @IBAction func btnGridPressed() {
+    @IBAction func btnGridPressed()
+    {
         viewGrid.backgroundColor = UIColor.appPinkColor()
         viewGrid.alpha = 1.0
         viewList.backgroundColor = UIColor.clear
         viewList.alpha = 0.4
+        tblCategoryList.isHidden = true
+        cvCategory.isHidden = false
     }
     @IBAction func btnListPressed() {
         viewList.backgroundColor = UIColor.appPinkColor()
         viewList.alpha = 1.0
         viewGrid.backgroundColor = UIColor.clear
         viewGrid.alpha = 0.4
+        
+        tblCategoryList.isHidden = false
+        cvCategory.isHidden = true
+        tblCategoryList.reloadData()
     }
     
       // MARK: - Add Category Actions
@@ -409,6 +435,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     }
     */
 }
+
 extension ProfileViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -441,5 +468,34 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         self.performSegue(withIdentifier: "pushToDetail", sender: self)
+    }
+}
+
+
+extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return arrCategorydata.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryListCell") as! CategoryListCell
+        
+        cell.lblName.text = (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyname) as? String
+        
+        if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            cell.imgCategory.image = UIImage(named: "Lake.jpg")
+        }
+        else
+        {
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+        }
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
     }
 }

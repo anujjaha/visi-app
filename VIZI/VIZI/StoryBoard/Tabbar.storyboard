@@ -1499,6 +1499,56 @@
                                             <outlet property="delegate" destination="P9U-pg-bqk" id="HEX-FT-wP1"/>
                                         </connections>
                                     </collectionView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EBg-hi-k8W">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryListCell" rowHeight="81" id="rWp-82-87l" customClass="CategoryListCell" customModule="VIZI" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1" width="339" height="81"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWp-82-87l" id="LTE-Gs-UwM">
+                                                    <frame key="frameInset" width="339" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cal-e0-fux">
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SlX-au-aE4">
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="8tx-jF-vZB"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="Her-qt-uEY"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eddie Redmayne" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oX-qw-uiD">
+                                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                    <color key="textColor" red="0.99215686270000003" green="0.84313725490000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="6oX-qw-uiD" secondAttribute="bottom" constant="20" id="5XZ-Wf-YFc"/>
+                                                                <constraint firstItem="SlX-au-aE4" firstAttribute="centerY" secondItem="Cal-e0-fux" secondAttribute="centerY" id="5hp-hS-sph"/>
+                                                                <constraint firstItem="SlX-au-aE4" firstAttribute="leading" secondItem="Cal-e0-fux" secondAttribute="leading" constant="15" id="gBj-bb-MF0"/>
+                                                                <constraint firstItem="6oX-qw-uiD" firstAttribute="top" secondItem="Cal-e0-fux" secondAttribute="top" constant="19" id="j0E-me-p4O"/>
+                                                                <constraint firstItem="6oX-qw-uiD" firstAttribute="leading" secondItem="SlX-au-aE4" secondAttribute="trailing" constant="15" id="jDg-Qg-eO7"/>
+                                                                <constraint firstAttribute="trailing" secondItem="6oX-qw-uiD" secondAttribute="trailing" constant="8" id="vIy-cP-hbV"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Cal-e0-fux" secondAttribute="trailing" id="0jb-Zb-VtT"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Cal-e0-fux" secondAttribute="bottom" constant="1" id="laq-1o-26d"/>
+                                                        <constraint firstItem="Cal-e0-fux" firstAttribute="leading" secondItem="LTE-Gs-UwM" secondAttribute="leading" id="ueD-34-Cyw"/>
+                                                        <constraint firstItem="Cal-e0-fux" firstAttribute="top" secondItem="LTE-Gs-UwM" secondAttribute="top" id="x2I-y2-AgR"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="imgCategory" destination="SlX-au-aE4" id="D9q-0i-J8Z"/>
+                                                    <outlet property="lblName" destination="6oX-qw-uiD" id="8vH-Lx-WE9"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1506,8 +1556,12 @@
                                     <constraint firstItem="eYt-ip-qbV" firstAttribute="leading" secondItem="UNq-aD-xcg" secondAttribute="leading" id="6SQ-I3-Ff4"/>
                                     <constraint firstAttribute="trailing" secondItem="eYt-ip-qbV" secondAttribute="trailing" id="83F-YA-fFD"/>
                                     <constraint firstItem="qGo-a9-rio" firstAttribute="top" secondItem="eYt-ip-qbV" secondAttribute="bottom" id="BTc-67-01R"/>
+                                    <constraint firstItem="EBg-hi-k8W" firstAttribute="leading" secondItem="UNq-aD-xcg" secondAttribute="leading" id="HVV-Nc-JVy"/>
                                     <constraint firstItem="qGo-a9-rio" firstAttribute="leading" secondItem="UNq-aD-xcg" secondAttribute="leading" id="OTY-5c-ya3"/>
+                                    <constraint firstAttribute="bottom" secondItem="EBg-hi-k8W" secondAttribute="bottom" id="Pb2-Bb-UyY"/>
+                                    <constraint firstAttribute="trailing" secondItem="EBg-hi-k8W" secondAttribute="trailing" id="XZ0-uA-nlv"/>
                                     <constraint firstAttribute="trailing" secondItem="qGo-a9-rio" secondAttribute="trailing" id="bdP-15-WPY"/>
+                                    <constraint firstItem="EBg-hi-k8W" firstAttribute="top" secondItem="eYt-ip-qbV" secondAttribute="bottom" id="iZD-et-zg4"/>
                                     <constraint firstAttribute="bottom" secondItem="qGo-a9-rio" secondAttribute="bottom" id="xNW-7x-S5Y"/>
                                 </constraints>
                             </view>
@@ -1707,6 +1761,7 @@
                         <outlet property="lblEmail" destination="6Bg-aR-iIT" id="jXa-ij-UCv"/>
                         <outlet property="lblName" destination="zh6-hR-7Pn" id="bgh-ms-XIN"/>
                         <outlet property="lblbio" destination="nzO-TW-Wbj" id="1Lg-iJ-Ihz"/>
+                        <outlet property="tblCategoryList" destination="EBg-hi-k8W" id="O03-di-Fl1"/>
                         <outlet property="txtAddCategory" destination="JTs-ys-giV" id="U7l-Za-4K3"/>
                         <outlet property="viewAddFilter" destination="SbU-mv-tjk" id="pJU-KT-yG0"/>
                         <outlet property="viewAddFilterContiner" destination="hJD-uH-5uL" id="OeV-5i-Chq"/>
