@@ -36,17 +36,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         DispatchQueue.main.async {
             self.viewSegment.layer.cornerRadius = 5.0
         }
-        let coordinates = [[48.85672,2.35501],[48.85196,2.33944],[48.85376,2.33953],[48.85476,2.33853]]
-        for i in 0...2
-        {
-            let coordinate = coordinates[i]
-            let point = MKPointAnnotation()
-            point.coordinate = CLLocationCoordinate2DMake(coordinate[0], coordinate[1])
-//            point.image = #imageLiteral(resourceName: "Following_pin")
-            self.mapView.addAnnotation(point)
-        }
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.856614, longitude: 2.33953), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-        self.mapView.setRegion(region, animated: true)
         
         self.getDiscoverdata()
     }
@@ -115,20 +104,39 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        var cell = UITableViewCell()
         if(iSelectedTab == 2)
         {
-           cell = tableView.dequeueReusableCell(withIdentifier: "PlaceListCell") as! PlaceListCell
+            return self.arrDiscoverdata.count
         }
         else
         {
-           cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+            return 10
         }
-        return cell
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        if(iSelectedTab == 2)
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceListCell") as! PlaceListCell
+            
+            cell.lblPeopleName.text =  "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyuser)!)"
+            cell.lblPeopleAddress.text = "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
+
+            if (self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+            {
+                cell.imgProfile.image = UIImage(named: "Profile.jpg")
+            }
+            else
+            {
+                cell.imgProfile.sd_setImage(with: URL(string: "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
+            }
+            return cell
+        }
+        else
+        {
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+            return cell
+        }
     }
 
     //MARK : Get Discover Data API Calling
@@ -158,13 +166,27 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                         print("json :> \(json)")
                         
                         let dictemp = json as! NSDictionary
-                        print("dictemp :> \(dictemp)")
+                        print("discover.php :> \(dictemp)")
                         
                         if dictemp.count > 0
                         {
-                            if  let dictemp2 = dictemp["data"] as? NSDictionary
+                            if  let dictemp2 = dictemp["data"] as? NSArray
                             {
-                                print("dictemp2 :> \(dictemp2)")
+                                self.arrDiscoverdata = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
+                                print("discover.php :> \(dictemp2)")
+                                for i in 0..<self.arrDiscoverdata.count
+                                {
+                                    let flat : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+                                    let flon : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+
+                                        let point = MKPointAnnotation()
+                                        point.coordinate = CLLocationCoordinate2DMake(flat, flon)
+                                        //            point.image = #imageLiteral(resourceName: "Following_pin")
+                                        self.mapView.addAnnotation(point)
+                                    
+                                    let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+                                    self.mapView.setRegion(region, animated: true)
+                                }
                             }
                             else
                             {
