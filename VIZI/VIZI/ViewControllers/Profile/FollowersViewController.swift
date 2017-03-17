@@ -30,10 +30,21 @@ class FollowersViewController: UIViewController
 {
     var arrFollowersList = NSMutableArray()
     @IBOutlet weak var tblFollowersList: UITableView!
+    var bFollowers = Bool()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        self.title = "Followers"
+        
+        if self.bFollowers == true
+        {
+            self.title = "Followers"
+        }
+        else
+        {
+            self.title = "Following"
+        }
+        
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         // Do any additional setup after loading the view.
@@ -51,6 +62,8 @@ class FollowersViewController: UIViewController
     
     func getFollowersList()
     {
+        arrFollowersList = NSMutableArray()
+        
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
             "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
@@ -81,8 +94,21 @@ class FollowersViewController: UIViewController
                         
                         if dictemp.count > 0
                         {
-                            self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
-                            print("arrFollowersList :> \(self.arrFollowersList)")
+                            if self.bFollowers == true
+                            {
+                                self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
+                                print("arrFollowersList :> \(self.arrFollowersList)")
+                            }
+                            else
+                            {
+                                for iindex in 0..<(dictemp["data"] as? NSArray)!.count
+                                {
+                                    if (((dictemp["data"] as? NSArray)![iindex] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 1
+                                    {
+                                        self.arrFollowersList.add((dictemp["data"] as? NSArray)![iindex])
+                                    }
+                                }
+                            }
                         }
                         else
                         {
@@ -270,7 +296,6 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
                                 let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
                                 tempdict.setValue(0, forKey: kkeyfollowing)
                                 self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
-
                             }
                             else
                             {

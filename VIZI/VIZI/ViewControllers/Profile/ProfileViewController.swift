@@ -401,6 +401,22 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     {
         print("picker cancel.")
     }
+    
+    //MARK : Go To Followers Screen
+    @IBAction func btnGotoFollowersScreen(_ sender: UIButton)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
+        if(sender.tag == 1)
+        {
+            homeViewController.bFollowers = true
+        }
+        else
+        {
+            homeViewController.bFollowers = false
+        }
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
 
     //MARK: Switch Action
     @IBAction func switchaction(_ sender: UIButton)
