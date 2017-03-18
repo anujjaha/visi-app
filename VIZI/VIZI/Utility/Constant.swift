@@ -37,6 +37,8 @@ let kkeyfollowing = "following"
 let kkeylat = "lat"
 let kkeylon = "lon"
 let kkeyuser = "user"
+let kkeyLoginData = "LoginData"
+let kkeyisUserLogin = "UserLogin"
 
 
 let kNO = "NO"

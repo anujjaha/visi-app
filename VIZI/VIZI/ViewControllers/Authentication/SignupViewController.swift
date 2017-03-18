@@ -138,6 +138,10 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                                             
                                             appDelegate.arrLoginData = dictemp2
                                             
+                                            let data = NSKeyedArchiver.archivedData(withRootObject: appDelegate.arrLoginData)
+                                            UserDefaults.standard.set(data, forKey: kkeyLoginData)
+                                            UserDefaults.standard.set(true, forKey: kkeyisUserLogin)
+                                            
                                             let alertView = UIAlertController(title: Application_Name, message: "Signup Successfully", preferredStyle: .alert)
                                             let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
                                                 let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)

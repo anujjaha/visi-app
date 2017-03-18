@@ -68,6 +68,14 @@ class LoginViewController: UIViewController {
             dictRequestParameters.setValue("asdfghjkl", forKey: "device_id")
             arrRequest.add(dictRequestParameters)
             
+             // Storing the dictionary
+             var data = NSKeyedArchiver.archivedDataWithRootObject(theDict)
+             NSUserDefaults.standardUserDefaults().setObject(data, forKey: tableViewData)
+             
+             // Retrieving the dictionary
+             var outData = NSUserDefaults.standardUserDefaults().dataForKey(tableViewData)
+             var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData)
+
             let parameters: Parameters = [
                 "data": arrRequest
             ]*/
@@ -111,6 +119,10 @@ class LoginViewController: UIViewController {
                                     
                                     appDelegate.arrLoginData = dictemp2
                                     
+                                    let data = NSKeyedArchiver.archivedData(withRootObject: appDelegate.arrLoginData)
+                                    UserDefaults.standard.set(data, forKey: kkeyLoginData)
+                                    UserDefaults.standard.set(true, forKey: kkeyisUserLogin)
+                                   
                                     let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
                                     let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
                                     self.navigationController?.pushViewController(tabbar, animated: true)
