@@ -33,8 +33,8 @@ class LoginViewController: UIViewController {
             self.txtUsername.attributedPlaceholder = NSAttributedString(string:"Username", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             
-//            self.txtUsername.text = "latest"
-//            self.txtPassword.text = "test"
+            self.txtUsername.text = "latest"
+            self.txtPassword.text = "test"
         }
     }
     // MARK: - Navigation
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
             let parameters = [
                 "user_name":  "\(self.txtUsername.text!)",
                 "password": "\(self.txtPassword.text!)",
-                "device_id":"asdfghjkl",
+                "device_id":"\(appDelegate.strDeviceToken)",
                 "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
                 "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
             ]
@@ -246,7 +246,7 @@ class LoginViewController: UIViewController {
         let parameters = [
             "user_name":  "\(self.dictFBdata.object(forKey: kkeyfirst_name)!)" + "\(self.dictFBdata.object(forKey: kkeylast_name)!)",
             "email" : "\(self.dictFBdata.object(forKey: kkeyemail)!)",
-            "device_id":"asdfghjkl",
+            "device_id":"\(appDelegate.strDeviceToken)",
             "fbid" : "\(self.dictFBdata.object(forKey: kkeyuserid)!)",
             "image" : "\(((self.dictFBdata.object(forKey: "picture") as! NSDictionary).object(forKey: kkeydata)  as! NSDictionary).object(forKey: "url")!)",
             "lat" : "\(appDelegate.userLocation.coordinate.latitude)",

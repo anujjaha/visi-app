@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -20,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var iNewLocationCategoryID = Int()
     var arrNewLocationPhotos = NSMutableArray()
     var strNewLocationCategoryName = NSString()
-
+    var strDeviceToken = NSString()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -40,8 +41,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         IQKeyboardManager.sharedManager().shouldHidePreviousNext = false
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         
+        strDeviceToken = "asdfghjkl"
         
         GMSServices.provideAPIKey("AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4")
+        
+        if #available(iOS 10.0, *)
+        {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                
+                // Enable or disable features based on authorization.
+                if granted == true
+                {
+                    print("Allow")
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+                else
+                {
+                    print("Don't Allow")
+                }
+            }
+        }
+        else
+        {
+            // Fallback on earlier versions
+            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+
 
         if (userDefaults.bool(forKey: kkeyisUserLogin))
         {
@@ -91,6 +119,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK: Push Notification Service
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        print(deviceToken)
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+        strDeviceToken = deviceTokenString as NSString
+    }
+
+    
     //MARK: Location Methods
     func determineCurrentLocation()
     {

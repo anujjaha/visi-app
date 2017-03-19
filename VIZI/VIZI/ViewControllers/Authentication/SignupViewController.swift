@@ -79,7 +79,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
                 "email": "\(self.txtEmail.text!)",
                 "user_name": "\(self.txtUsername.text!)",
                 "password":"\(self.txtPassword.text!)",
-                "device_id":"asdfghjkl",
+                "device_id":"\(appDelegate.strDeviceToken)",
                 "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
                 "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
             ]

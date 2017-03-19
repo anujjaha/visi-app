@@ -73,6 +73,7 @@
 		D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */; };
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
+		D3DF34831E7EA30E00450CC7 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */; };
 		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
 		D3E5DB6F1E61B8110060912C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB6E1E61B8110060912C /* CoreMedia.framework */; };
 		D3E5DB711E61B8970060912C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB701E61B8970060912C /* CoreData.framework */; };
@@ -233,6 +234,7 @@
 		D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
 		D3E5DB6E1E61B8110060912C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		D3E5DB701E61B8970060912C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -299,6 +301,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DF34831E7EA30E00450CC7 /* UserNotifications.framework in Frameworks */,
 				D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */,
 				D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */,
 				D3E5DB7D1E61BF360060912C /* GLKit.framework in Frameworks */,
@@ -639,6 +642,7 @@
 		FFFF353D1E04651800C393B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */,
 				D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */,
 				D3E5DBA51E61C2970060912C /* Accelerate.framework */,
 				D3E5DB821E61BF420060912C /* libicucore.dylib */,
@@ -932,7 +936,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b5b9c2fc-a6e3-461a-8f5a-834bd52f970d";
+				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -978,7 +982,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b5b9c2fc-a6e3-461a-8f5a-834bd52f970d";
+				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -1007,7 +1011,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5b9c2fc-a6e3-461a-8f5a-834bd52f970d";
+				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
 				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1037,7 +1041,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5b9c2fc-a6e3-461a-8f5a-834bd52f970d";
+				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
 				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
