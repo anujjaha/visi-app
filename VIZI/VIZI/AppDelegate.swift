@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        self.determineCurrentLocation()
+
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationBar"), for: .default)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
@@ -38,11 +40,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         IQKeyboardManager.sharedManager().shouldHidePreviousNext = false
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         
-        self.determineCurrentLocation()
         
         GMSServices.provideAPIKey("AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4")
 
-        
+        if (userDefaults.bool(forKey: kkeyisUserLogin))
+        {
+            let outData = userDefaults.data(forKey: kkeyLoginData)
+            let dict = NSKeyedUnarchiver.unarchiveObject(with: outData!)
+            self.arrLoginData = dict as! NSDictionary
+            
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+            let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            let nav = UINavigationController(rootViewController: homeViewController)
+            nav.isNavigationBarHidden = true
+            appdelegate.window!.rootViewController = nav
+        }
+        else
+        {
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+            let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let nav = UINavigationController(rootViewController: homeViewController)
+            nav.isNavigationBarHidden = true
+            appdelegate.window!.rootViewController = nav
+        }
         return true
     }
 

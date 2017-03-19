@@ -14,7 +14,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var viewTerms : UIView!
     @IBOutlet weak var viewPushNotification : UIView!
     @IBOutlet weak var btnLogout : UIButton!
-    
+    @IBOutlet weak var btnMakePrivate : UIButton!
+    var flagforswitch = Bool()
+    var strvisibilityvalue = NSString()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
@@ -43,6 +46,9 @@ class SettingsViewController: UIViewController {
     
     @IBAction func btnLogoutPressed()
     {
+        UserDefaults.standard.set("", forKey: kkeyLoginData)
+        UserDefaults.standard.set(false, forKey: kkeyisUserLogin)
+
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -51,6 +57,23 @@ class SettingsViewController: UIViewController {
         appdelegate.window!.rootViewController = nav
     }
     
+    //MARK: Switch Action
+    @IBAction func switchaction(_ sender: UIButton)
+    {
+        if flagforswitch == false
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1";
+        }
+        else
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillDisappear(animated)

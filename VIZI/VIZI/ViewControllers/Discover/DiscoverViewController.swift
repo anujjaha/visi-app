@@ -93,12 +93,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             vwMap.backgroundColor = UIColor.clear
             vwList.backgroundColor = UIColor.clear
             
+            iSelectedTab = 3
+
             mapView.isHidden = true
             tblFeed.isHidden = false
             btnFilter.isHidden = true
             tblFeed.reloadData()
             
-            iSelectedTab = 3
         }
     }
     

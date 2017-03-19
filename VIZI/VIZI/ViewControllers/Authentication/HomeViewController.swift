@@ -30,15 +30,18 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         self.title = "VIZI"
         self.txtPlaceSearch.attributedPlaceholder = NSAttributedString(string:"Current Location", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.3)])
         
+        DispatchQueue.main.async {
+
         let center = CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        mapView.setRegion(region, animated: true)
+        self.mapView.setRegion(region, animated: true)
         
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
         myAnnotation.title = "Add New Location"
-        myAnnotation.coordinate = mapView.centerCoordinate
-        mapView.addAnnotation(myAnnotation)
+        myAnnotation.coordinate = self.mapView.centerCoordinate
+        self.mapView.addAnnotation(myAnnotation)
+        }
         
         txtPlaceSearch.autoCompleteRegularFontName =  "HelveticaNeue-Bold";
         txtPlaceSearch.autoCompleteBoldFontName = "HelveticaNeue";

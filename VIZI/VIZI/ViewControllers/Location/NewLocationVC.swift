@@ -158,6 +158,7 @@ class NewLocationVC: UIViewController,MKMapViewDelegate {
         }
     }
     
+    //MARK: User Actions
     @IBAction func btnOpenCategoryAction()
     {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
@@ -170,6 +171,11 @@ class NewLocationVC: UIViewController,MKMapViewDelegate {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "PhotosVC")
         self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+    
+    @IBAction func btnNotesAction()
+    {
+        txtvwNotes.becomeFirstResponder()
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

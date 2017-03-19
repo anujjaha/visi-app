@@ -98,7 +98,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         }
        
        // self.getCategorydata()
-        self.getProfileData()
         tblCategoryList.isHidden = true
         self.tblCategoryList.estimatedRowHeight = 81.0 ;
         self.tblCategoryList.rowHeight = UITableViewAutomaticDimension;
@@ -123,6 +122,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             self.btnSave.layer.cornerRadius = 5.0
             self.btnCancel.layer.cornerRadius = 5.0
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.getProfileData()
     }
     
     //MARK: - Get Category Data
