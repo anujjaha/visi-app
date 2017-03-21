@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
 
     @IBOutlet weak fileprivate var viewSegment : UIView!
     @IBOutlet weak fileprivate var mapView : MKMapView!
@@ -21,8 +21,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak  var btnFilter : UIButton!
     var iSelectedTab = Int()
     var arrDiscoverdata = NSMutableArray()
-
+    var arrTrendingPlaces = NSMutableArray()
     
+    //Trending Places
+    @IBOutlet weak var scrvw : UIScrollView!
+    @IBOutlet weak var pgControl : UIPageControl!
+    var frame = CGRect.zero
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,6 +42,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.viewSegment.layer.cornerRadius = 5.0
         }
         
+//        self.getDiscoverdata()
+//        self.getTrendingPlaces()
+        
+        self.pgControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.getDiscoverdata()
     }
     
@@ -154,6 +166,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             print(response.result.debugDescription)
             
             hideProgress()
+            self.getTrendingPlaces()
+
             switch(response.result)
             {
                 
@@ -211,6 +225,99 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
+    func getTrendingPlaces()
+    {
+        showProgress(inView: self.view)
+        request("\(kServerURL)admin_pins.php", method: .post, parameters:nil).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+                
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("discover.php :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            if  let dictemp2 = dictemp["data"] as? NSArray
+                            {
+                                print("admin_pins.php :> \(dictemp2)")
+                                self.arrTrendingPlaces = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
+                                
+                                //Congiure Page Control
+                                self.pgControl.numberOfPages = self.arrTrendingPlaces.count
+                                self.pgControl.currentPage = 0
+                                
+                                for index in 0..<self.arrTrendingPlaces.count
+                                {
+                                    self.frame.origin.x = self.scrvw.frame.size.width * CGFloat(index)
+                                    self.frame.size = self.scrvw.frame.size
+                                    self.scrvw.isPagingEnabled = true
+                                    
+                                    let myImageView:UIImageView = UIImageView()
+                                    myImageView.sd_setImage(with: URL(string: "\((self.arrTrendingPlaces[index] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Discover.png"))
+                                    myImageView.contentMode = UIViewContentMode.scaleAspectFill
+                                    myImageView.frame = self.frame
+                                    self.scrvw.addSubview(myImageView)
+                                    
+                                    let myImageshadow:UIImageView = UIImageView()
+                                    myImageshadow.image =  UIImage(named: "DiscoverShadow")!
+                                    myImageshadow.contentMode = UIViewContentMode.scaleAspectFill
+                                    myImageshadow.frame = self.frame
+                                    myImageshadow.frame.origin.y = self.frame.origin.y - 10
+                                    myImageshadow.frame.size.height = self.frame.size.height + 20
+
+                                    self.scrvw.addSubview(myImageshadow)
+                                }
+                                
+                                self.scrvw.contentSize = CGSize(width: self.scrvw.frame.size.width * CGFloat(self.arrTrendingPlaces.count), height: self.scrvw.frame.size.height)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: Alert_NoDataFound, inView: self)
+                            }
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+    }
+    
+    //MARK: Paging Methods
+    func changePage(sender: AnyObject) -> ()
+    {
+        let x = CGFloat(pgControl.currentPage) * self.scrvw.frame.size.width
+        self.scrvw.setContentOffset(CGPoint(x: x,y :0), animated: true)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pgControl.currentPage = Int(pageNumber)
+    }
+
     /*
     // MARK: - Navigation
 

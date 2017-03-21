@@ -13,7 +13,7 @@
         <!--Discover View Controller-->
         <scene sceneID="d8q-m8-SMj">
             <objects>
-                <viewController id="vRB-VR-Yo2" customClass="DiscoverViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vRB-VR-Yo2" customClass="DiscoverViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q3e-i3-cud"/>
                         <viewControllerLayoutGuide type="bottom" id="aOB-KI-w8n"/>
@@ -24,16 +24,43 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-zb-cSb">
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" image="Discover.png" translatesAutoresizingMaskIntoConstraints="NO" id="kaM-f9-4md">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEt-9b-Zwv">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUD-Sp-uoH" userLabel="Content View">
+                                                <subviews>
+                                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Discover.png" translatesAutoresizingMaskIntoConstraints="NO" id="kaM-f9-4md">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="172" id="Pns-VZ-cjB"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="DiscoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="0Ra-FL-efe">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="172" id="DVt-0v-rYN"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="kaM-f9-4md" firstAttribute="top" secondItem="dUD-Sp-uoH" secondAttribute="top" id="3iA-tT-IrT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kaM-f9-4md" secondAttribute="trailing" id="4zl-LZ-lcE"/>
+                                                    <constraint firstItem="0Ra-FL-efe" firstAttribute="leading" secondItem="dUD-Sp-uoH" secondAttribute="leading" id="CTH-Ie-CXA"/>
+                                                    <constraint firstItem="0Ra-FL-efe" firstAttribute="top" secondItem="dUD-Sp-uoH" secondAttribute="top" constant="-10" id="J0h-bw-tF6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0Ra-FL-efe" secondAttribute="trailing" id="QUu-d1-3OG"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kaM-f9-4md" secondAttribute="bottom" id="kNP-Jr-pnw"/>
+                                                    <constraint firstAttribute="height" constant="172" id="m99-Ec-hJP"/>
+                                                    <constraint firstItem="kaM-f9-4md" firstAttribute="leading" secondItem="dUD-Sp-uoH" secondAttribute="leading" id="xA1-Yw-pzE"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="172" id="FoN-93-4DA"/>
+                                            <constraint firstItem="dUD-Sp-uoH" firstAttribute="top" secondItem="IEt-9b-Zwv" secondAttribute="top" id="QEq-Zd-ywH"/>
+                                            <constraint firstAttribute="bottom" secondItem="dUD-Sp-uoH" secondAttribute="bottom" id="U5C-F4-ZIb"/>
+                                            <constraint firstAttribute="height" constant="172" id="ecu-QU-bCt"/>
+                                            <constraint firstItem="dUD-Sp-uoH" firstAttribute="centerX" secondItem="IEt-9b-Zwv" secondAttribute="centerX" id="hDh-v2-YsO"/>
+                                            <constraint firstItem="dUD-Sp-uoH" firstAttribute="leading" secondItem="IEt-9b-Zwv" secondAttribute="leading" id="ppR-hE-HpC"/>
+                                            <constraint firstAttribute="trailing" secondItem="dUD-Sp-uoH" secondAttribute="trailing" id="yzi-Pz-KfP"/>
                                         </constraints>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="DiscoverShadow" translatesAutoresizingMaskIntoConstraints="NO" id="0Ra-FL-efe">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="172" id="naz-lG-rRp"/>
-                                        </constraints>
-                                    </imageView>
+                                    </scrollView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWe-0D-Aal">
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pr-WI-7ed">
@@ -128,21 +155,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IEt-9b-Zwv" secondAttribute="trailing" id="2tj-R0-UTz"/>
                                     <constraint firstItem="tWe-0D-Aal" firstAttribute="leading" secondItem="RQ3-zb-cSb" secondAttribute="leading" constant="18" id="4eg-6x-2kf"/>
-                                    <constraint firstItem="kaM-f9-4md" firstAttribute="top" secondItem="RQ3-zb-cSb" secondAttribute="top" id="Ahw-49-ZX3"/>
+                                    <constraint firstItem="IEt-9b-Zwv" firstAttribute="top" secondItem="RQ3-zb-cSb" secondAttribute="top" id="Hl2-Kw-KTa"/>
                                     <constraint firstAttribute="bottom" secondItem="tWe-0D-Aal" secondAttribute="bottom" id="J9x-bV-aYC"/>
                                     <constraint firstAttribute="trailing" secondItem="EHC-mA-9Nj" secondAttribute="trailing" id="T7v-bL-Ylw"/>
                                     <constraint firstItem="tWe-0D-Aal" firstAttribute="top" secondItem="EHC-mA-9Nj" secondAttribute="bottom" constant="-8" id="XiS-Sx-2P4"/>
-                                    <constraint firstItem="0Ra-FL-efe" firstAttribute="top" secondItem="RQ3-zb-cSb" secondAttribute="top" constant="-10" id="YVi-DT-kVD"/>
-                                    <constraint firstItem="kaM-f9-4md" firstAttribute="leading" secondItem="RQ3-zb-cSb" secondAttribute="leading" id="fkE-XI-XeY"/>
+                                    <constraint firstItem="IEt-9b-Zwv" firstAttribute="leading" secondItem="RQ3-zb-cSb" secondAttribute="leading" id="gLz-Og-2M1"/>
                                     <constraint firstAttribute="height" constant="172" id="gX9-CL-4jK"/>
                                     <constraint firstItem="EHC-mA-9Nj" firstAttribute="top" secondItem="llb-Nd-2av" secondAttribute="bottom" constant="-15" id="get-8R-Amb"/>
                                     <constraint firstItem="llb-Nd-2av" firstAttribute="centerX" secondItem="RQ3-zb-cSb" secondAttribute="centerX" id="hdB-qL-zNU"/>
-                                    <constraint firstItem="0Ra-FL-efe" firstAttribute="leading" secondItem="RQ3-zb-cSb" secondAttribute="leading" id="icO-P9-NHB"/>
-                                    <constraint firstAttribute="trailing" secondItem="0Ra-FL-efe" secondAttribute="trailing" id="id4-wc-WLl"/>
                                     <constraint firstAttribute="trailing" secondItem="tWe-0D-Aal" secondAttribute="trailing" constant="18" id="mYM-BQ-TME"/>
                                     <constraint firstItem="EHC-mA-9Nj" firstAttribute="leading" secondItem="RQ3-zb-cSb" secondAttribute="leading" id="vVW-jS-UO8"/>
-                                    <constraint firstAttribute="trailing" secondItem="kaM-f9-4md" secondAttribute="trailing" id="vs4-sk-5r6"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qlC-sp-dvX">
@@ -302,6 +326,8 @@
                     <connections>
                         <outlet property="btnFilter" destination="zaG-kR-wFu" id="JpX-Cf-vVf"/>
                         <outlet property="mapView" destination="qlC-sp-dvX" id="Xdl-kq-Nan"/>
+                        <outlet property="pgControl" destination="EHC-mA-9Nj" id="1lB-y4-fjG"/>
+                        <outlet property="scrvw" destination="IEt-9b-Zwv" id="e2z-4P-Uph"/>
                         <outlet property="tblFeed" destination="aj8-7o-XYg" id="gLl-4g-IyW"/>
                         <outlet property="viewSegment" destination="tWe-0D-Aal" id="mBC-gc-cMa"/>
                         <outlet property="vwFeed" destination="0oq-Jn-wd8" id="Jdi-sG-xhO"/>
@@ -848,7 +874,8 @@
                                     <action selector="btnAddNewLocationAction" destination="h12-fX-N8L" eventType="touchUpInside" id="vt0-Jw-E1V"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hnD-OY-Y8s">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hnD-OY-Y8s">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="3ES-vP-WTT"/>
                                 </constraints>
@@ -856,11 +883,14 @@
                                     <outlet property="delegate" destination="h12-fX-N8L" id="TgX-j6-WNK"/>
                                 </connections>
                             </mapView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xoa-2K-eOa">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoa-2K-eOa">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLo-8K-vzn" userLabel="Content View">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vLo-8K-vzn" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFo-5K-RIH" customClass="VIZIUITextField" customModule="VIZI" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFo-5K-RIH" customClass="VIZIUITextField" customModule="VIZI" customModuleProvider="target">
+                                                <frame key="frameInset" width="1000" height="1000"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="yNh-4H-1tV"/>
@@ -872,9 +902,11 @@
                                                     <outlet property="delegate" destination="h12-fX-N8L" id="xTM-aG-QII"/>
                                                 </connections>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-MK-QxO" userLabel="ViewCategory">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-MK-QxO" userLabel="ViewCategory">
+                                                <frame key="frameInset" width="1000" height="1000"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-4c-p3y">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-4c-p3y">
+                                                        <frame key="frameInset" width="1000" height="1000"/>
                                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Category" image="category_icon">
@@ -884,7 +916,9 @@
                                                             <action selector="btnOpenCategoryAction" destination="h12-fX-N8L" eventType="touchUpInside" id="HQu-Wb-nc5"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TT3-gH-V4l"/>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TT3-gH-V4l">
+                                                        <frame key="frameInset" width="1000" height="1000"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -897,9 +931,11 @@
                                                     <constraint firstItem="j3g-4c-p3y" firstAttribute="leading" secondItem="cZ3-MK-QxO" secondAttribute="leading" id="pLf-jW-8Ye"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXH-Hp-XiS" userLabel="ViewPhoto">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NXH-Hp-XiS" userLabel="ViewPhoto">
+                                                <frame key="frameInset" width="1000" height="1000"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33D-fQ-Byf">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33D-fQ-Byf">
+                                                        <frame key="frameInset" width="1000" height="1000"/>
                                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Photo" image="photo_icon">
@@ -909,7 +945,9 @@
                                                             <action selector="btnOpenPhotosAction" destination="h12-fX-N8L" eventType="touchUpInside" id="qkR-Rv-Ygu"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tns-Wv-x6B"/>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tns-Wv-x6B">
+                                                        <frame key="frameInset" width="1000" height="1000"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -922,9 +960,11 @@
                                                     <constraint firstItem="33D-fQ-Byf" firstAttribute="leading" secondItem="NXH-Hp-XiS" secondAttribute="leading" id="vlw-Bi-CDC"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNA-SC-t8f" userLabel="ViewBio">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lNA-SC-t8f" userLabel="ViewBio">
+                                                <frame key="frameInset" width="1000" height="1000"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkY-yd-3tI">
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkY-yd-3tI">
+                                                        <frame key="frameInset" width="1000" height="1000"/>
                                                         <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="HEZ-YJ-2NJ"/>
@@ -958,7 +998,8 @@
                                                     <constraint firstAttribute="height" constant="140" id="pTd-dH-y45"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-Hk-zEM">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-Hk-zEM">
+                                                <frame key="frameInset" width="1000" height="1000"/>
                                                 <color key="backgroundColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="cS7-eo-faZ"/>
@@ -2903,6 +2944,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLH-48-kGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1853.5" y="1646.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zGS-Ni-Bu2">
+            <objects>
+                <viewController id="okT-SC-Qtz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sMF-EG-jBT"/>
+                        <viewControllerLayoutGuide type="bottom" id="whp-cs-Rm7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ZC-nd-lfu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Sv-Rl-hhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
