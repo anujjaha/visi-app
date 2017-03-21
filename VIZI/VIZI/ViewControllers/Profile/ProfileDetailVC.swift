@@ -8,8 +8,10 @@
 
 import UIKit
 
-class BarCell: UITableViewCell {
+class BarCell: UITableViewCell
+{
     @IBOutlet weak var viewContainer : UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,9 +25,12 @@ class BarCell: UITableViewCell {
     }
 }
 
-class ProfileDetailVC: UIViewController {
-
-    override func viewDidLoad() {
+class ProfileDetailVC: UIViewController
+{
+    var dictCategory = NSDictionary()
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
@@ -33,14 +38,19 @@ class ProfileDetailVC: UIViewController {
         self.title = "Bars"
         // Do any additional setup after loading the view.
     }
-    func backButtonPressed() {
+    
+    func backButtonPressed()
+    {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    override func viewWillAppear(_ animated: Bool) {
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool)
+    {
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
     }

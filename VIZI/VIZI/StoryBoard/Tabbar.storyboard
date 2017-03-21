@@ -174,9 +174,9 @@
                                     <outlet property="delegate" destination="vRB-VR-Yo2" id="dSQ-MO-f5O"/>
                                 </connections>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="81" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-7o-XYg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-7o-XYg">
                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="81" id="y2q-p9-HK6" customClass="FeedCell" customModule="VIZI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="81"/>
@@ -1124,7 +1124,7 @@
                                             <frame key="frameInset" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqG-0l-XJF">
+                                                <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MqG-0l-XJF">
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_icon" translatesAutoresizingMaskIntoConstraints="NO" id="DvJ-Es-ZqD">
                                                             <constraints>
@@ -1234,14 +1234,14 @@
                             <constraint firstAttribute="trailing" secondItem="b4u-ui-ors" secondAttribute="trailing" id="2lB-LW-v5E"/>
                             <constraint firstItem="UqX-Xr-xQP" firstAttribute="top" secondItem="IAB-tu-Xv8" secondAttribute="bottom" constant="11" id="38A-Uq-9hG"/>
                             <constraint firstItem="P7B-fC-rYx" firstAttribute="top" secondItem="DES-87-asg" secondAttribute="bottom" id="C69-xw-NEU"/>
-                            <constraint firstItem="P7B-fC-rYx" firstAttribute="top" secondItem="b4u-ui-ors" secondAttribute="bottom" id="Cva-fk-ixg"/>
+                            <constraint firstItem="P7B-fC-rYx" firstAttribute="top" secondItem="b4u-ui-ors" secondAttribute="bottom" constant="5" id="Cva-fk-ixg"/>
                             <constraint firstItem="dIu-59-Hrh" firstAttribute="top" secondItem="IAB-tu-Xv8" secondAttribute="bottom" id="MT6-QQ-Y0q"/>
                             <constraint firstItem="DES-87-asg" firstAttribute="top" secondItem="tcK-Hr-Owy" secondAttribute="top" id="WAY-Ip-btn"/>
                             <constraint firstItem="b4u-ui-ors" firstAttribute="leading" secondItem="tcK-Hr-Owy" secondAttribute="leading" id="WbH-nb-2fq"/>
                             <constraint firstItem="dIu-59-Hrh" firstAttribute="leading" secondItem="tcK-Hr-Owy" secondAttribute="leading" id="dGX-Cg-mv1"/>
                             <constraint firstItem="UqX-Xr-xQP" firstAttribute="centerX" secondItem="tcK-Hr-Owy" secondAttribute="centerX" id="eSN-QP-6e7"/>
                             <constraint firstAttribute="trailing" secondItem="DES-87-asg" secondAttribute="trailing" id="hoC-cH-v3c"/>
-                            <constraint firstItem="s5W-2f-Ih1" firstAttribute="centerY" secondItem="tcK-Hr-Owy" secondAttribute="centerY" id="jZM-Fm-xrF"/>
+                            <constraint firstItem="s5W-2f-Ih1" firstAttribute="top" secondItem="dIu-59-Hrh" secondAttribute="bottom" constant="40" id="nE8-JV-KhH"/>
                             <constraint firstAttribute="trailing" secondItem="s5W-2f-Ih1" secondAttribute="trailing" id="o2e-6V-Fpl"/>
                             <constraint firstItem="P7B-fC-rYx" firstAttribute="top" secondItem="s5W-2f-Ih1" secondAttribute="bottom" constant="176" id="pEp-Pf-tiY"/>
                             <constraint firstItem="DES-87-asg" firstAttribute="leading" secondItem="tcK-Hr-Owy" secondAttribute="leading" id="uAy-zR-rOJ"/>
@@ -1340,7 +1340,7 @@
                 <navigationController storyboardIdentifier="navHome" automaticallyAdjustsScrollViewInsets="NO" id="QS5-Jk-CsC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="l5n-Xl-AFd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4lU-ap-6ve">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4lU-ap-6ve">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1359,7 +1359,7 @@
                 <navigationController storyboardIdentifier="navDiscover" automaticallyAdjustsScrollViewInsets="NO" id="ks0-tk-mbT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="jKy-my-KgH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bFr-Hd-lvz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bFr-Hd-lvz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1906,7 +1906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UE-1e-Cia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710.5" y="923.5"/>
+            <point key="canvasLocation" x="-296" y="923"/>
         </scene>
         <!--Filter PeopleVC-->
         <scene sceneID="ds0-nK-Pa1">
@@ -2058,7 +2058,7 @@
         <!--Profile DetailVC-->
         <scene sceneID="n0a-uY-Odb">
             <objects>
-                <viewController id="1MO-UR-7Q4" customClass="ProfileDetailVC" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileDetailVC" id="1MO-UR-7Q4" customClass="ProfileDetailVC" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V3A-Js-0au"/>
                         <viewControllerLayoutGuide type="bottom" id="EfL-d2-dVN"/>
@@ -2348,7 +2348,7 @@
                 <navigationController storyboardIdentifier="navProfile" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Chg-ES-q4t" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="YtC-Ae-HGs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xV8-On-lof">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xV8-On-lof">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2820,7 +2820,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ROf-eU-LbJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bYr-VP-vMN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYr-VP-vMN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -487,11 +487,29 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        self.performSegue(withIdentifier: "pushToDetail", sender: self)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+        homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+
+//        self.performSegue(withIdentifier: "pushToDetail", sender: self)
+        /*
+         
+         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "FollowersViewController") as! FollowersViewController
+         if(sender.tag == 1)
+         {
+         homeViewController.bFollowers = true
+         }
+         else
+         {
+         homeViewController.bFollowers = false
+         }
+         self.navigationController?.pushViewController(homeViewController, animated: true)
+
+         */
     }
 }
-
-
 extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int

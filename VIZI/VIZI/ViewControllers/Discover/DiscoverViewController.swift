@@ -27,6 +27,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak var scrvw : UIScrollView!
     @IBOutlet weak var pgControl : UIPageControl!
     var frame = CGRect.zero
+    
+    var arrNotification = NSMutableArray()
 
     override func viewDidLoad()
     {
@@ -110,8 +112,58 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = true
             tblFeed.isHidden = false
             btnFilter.isHidden = true
-            tblFeed.reloadData()
             
+            func getAllNotification()
+            {
+                arrNotification = NSMutableArray()
+                
+                let parameters = [
+                    "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                ]
+                
+                showProgress(inView: self.view)
+                print("parameters:>\(parameters)")
+                request("\(kServerURL)notifications.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                    
+                    print(response.result.debugDescription)
+                    
+                    hideProgress()
+                    switch(response.result)
+                    {
+                        
+                    case .success(_):
+                        if response.result.value != nil
+                        {
+                            print(response.result.value)
+                            
+                            if let json = response.result.value
+                            {
+                                print("json :> \(json)")
+                                
+                                let dictemp = json as! NSDictionary
+                                print("dictemp :> \(dictemp)")
+                                
+                                if dictemp.count > 0
+                                {
+                                    self.arrNotification = NSMutableArray(array:(dictemp[kkeydata] as? NSArray)!)
+                                    print("arrNotification :> \(self.arrNotification)")
+                                }
+                                else
+                                {
+                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                }
+                            }
+                            self.tblFeed.reloadData()
+                        }
+                        break
+                        
+                    case .failure(_):
+                        print(response.result.error)
+                        App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                        break
+                    }
+                }
+            }
         }
     }
     
