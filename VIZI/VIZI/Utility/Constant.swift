@@ -41,6 +41,7 @@ let kkeyLoginData = "LoginData"
 let kkeyisUserLogin = "UserLogin"
 let kkeytext = "text"
 let kkeytime = "time"
+let kkeytitle = "title"
 
 let kNO = "NO"
 let kYES = "YES"

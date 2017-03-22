@@ -1340,7 +1340,7 @@
                 <navigationController storyboardIdentifier="navHome" automaticallyAdjustsScrollViewInsets="NO" id="QS5-Jk-CsC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="l5n-Xl-AFd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4lU-ap-6ve">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4lU-ap-6ve">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1359,7 +1359,7 @@
                 <navigationController storyboardIdentifier="navDiscover" automaticallyAdjustsScrollViewInsets="NO" id="ks0-tk-mbT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="jKy-my-KgH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bFr-Hd-lvz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bFr-Hd-lvz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2070,58 +2070,45 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fB4-dp-0Qd">
                                 <color key="backgroundColor" red="0.17254901960784313" green="0.078431372549019607" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BarCell" rowHeight="180" id="KSq-7e-cL6" customClass="BarCell" customModule="VIZI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BarCell" rowHeight="210" id="KSq-7e-cL6" customClass="BarCell" customModule="VIZI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KSq-7e-cL6" id="U5Q-bx-ewK">
-                                            <frame key="frameInset" width="375" height="180"/>
+                                            <frame key="frameInset" width="375" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhh-6x-8Pz">
                                                     <subviews>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Bar1.png" translatesAutoresizingMaskIntoConstraints="NO" id="aF5-4X-JA9"/>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Aa-BY-dZY">
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lT7-XR-1pj">
-                                                                    <color key="backgroundColor" red="0.34901960784313724" green="0.24705882352941178" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="1" id="meL-SF-3pd"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anvil Bar &amp; Refuge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGT-K1-8oQ">
-                                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                                    <color key="textColor" red="0.97254901959999995" green="0.84313725490000002" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSU-lQ-X9t">
-                                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                                                                    <state key="normal" title="Houston, Texas." image="location_pin">
-                                                                        <color key="titleColor" red="0.91764705882352937" green="0.32549019607843138" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    </state>
-                                                                </button>
-                                                            </subviews>
-                                                            <color key="backgroundColor" red="0.27450980392156865" green="0.15294117647058825" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Bar1.png" translatesAutoresizingMaskIntoConstraints="NO" id="aF5-4X-JA9">
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="lT7-XR-1pj" secondAttribute="trailing" id="G5B-Rc-X8t"/>
-                                                                <constraint firstItem="lT7-XR-1pj" firstAttribute="top" secondItem="7Aa-BY-dZY" secondAttribute="top" id="JfK-fg-nNr"/>
-                                                                <constraint firstItem="xSU-lQ-X9t" firstAttribute="centerY" secondItem="7Aa-BY-dZY" secondAttribute="centerY" id="KDg-go-L3X"/>
-                                                                <constraint firstItem="KGT-K1-8oQ" firstAttribute="leading" secondItem="7Aa-BY-dZY" secondAttribute="leading" constant="8" id="TPb-CT-lub"/>
-                                                                <constraint firstItem="KGT-K1-8oQ" firstAttribute="centerY" secondItem="7Aa-BY-dZY" secondAttribute="centerY" id="UMc-zb-oyN"/>
-                                                                <constraint firstAttribute="height" constant="35" id="baj-M4-LSZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="xSU-lQ-X9t" secondAttribute="trailing" constant="8" id="lbQ-mn-OZu"/>
-                                                                <constraint firstItem="lT7-XR-1pj" firstAttribute="leading" secondItem="7Aa-BY-dZY" secondAttribute="leading" id="smz-mn-6fw"/>
+                                                                <constraint firstAttribute="height" constant="130" id="688-HI-UDt"/>
                                                             </constraints>
-                                                        </view>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anvil Bar &amp; Refuge" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGT-K1-8oQ">
+                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                            <color key="textColor" red="0.97254901959999995" green="0.84313725490000002" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSU-lQ-X9t">
+                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                                            <state key="normal" title="Houston, Texas." image="location_pin">
+                                                                <color key="titleColor" red="0.91764705882352937" green="0.32549019607843138" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="aF5-4X-JA9" secondAttribute="trailing" id="30D-3a-lN1"/>
-                                                        <constraint firstItem="7Aa-BY-dZY" firstAttribute="leading" secondItem="Fhh-6x-8Pz" secondAttribute="leading" id="7xA-f7-mE0"/>
+                                                        <constraint firstItem="xSU-lQ-X9t" firstAttribute="top" secondItem="KGT-K1-8oQ" secondAttribute="bottom" constant="8" id="5Yy-CI-Mj5"/>
+                                                        <constraint firstItem="KGT-K1-8oQ" firstAttribute="top" secondItem="aF5-4X-JA9" secondAttribute="bottom" constant="8" id="B1k-rJ-AQb"/>
+                                                        <constraint firstItem="xSU-lQ-X9t" firstAttribute="leading" secondItem="Fhh-6x-8Pz" secondAttribute="leading" constant="8" id="DgG-ts-mEc"/>
                                                         <constraint firstItem="aF5-4X-JA9" firstAttribute="leading" secondItem="Fhh-6x-8Pz" secondAttribute="leading" id="WT6-yy-f4h"/>
-                                                        <constraint firstAttribute="trailing" secondItem="7Aa-BY-dZY" secondAttribute="trailing" id="hao-rP-yFx"/>
-                                                        <constraint firstAttribute="bottom" secondItem="7Aa-BY-dZY" secondAttribute="bottom" id="kpk-iG-nIA"/>
-                                                        <constraint firstItem="7Aa-BY-dZY" firstAttribute="top" secondItem="aF5-4X-JA9" secondAttribute="bottom" id="q2G-Vv-ibh"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xSU-lQ-X9t" secondAttribute="bottom" constant="8" id="ar9-64-iPK"/>
+                                                        <constraint firstItem="xSU-lQ-X9t" firstAttribute="top" secondItem="KGT-K1-8oQ" secondAttribute="bottom" constant="8" id="fKa-Jc-9N5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="KGT-K1-8oQ" secondAttribute="trailing" constant="15" id="foG-aj-yDP"/>
+                                                        <constraint firstItem="KGT-K1-8oQ" firstAttribute="leading" secondItem="Fhh-6x-8Pz" secondAttribute="leading" constant="8" id="vbu-bL-JXB"/>
                                                         <constraint firstItem="aF5-4X-JA9" firstAttribute="top" secondItem="Fhh-6x-8Pz" secondAttribute="top" id="wTp-n4-Jfm"/>
+                                                        <constraint firstAttribute="trailing" secondItem="xSU-lQ-X9t" secondAttribute="trailing" constant="15" id="zTG-Xj-h3C"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -2135,6 +2122,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="btnAddress" destination="xSU-lQ-X9t" id="SOB-WK-DbP"/>
+                                            <outlet property="imgLocation" destination="aF5-4X-JA9" id="8Kj-cF-MaL"/>
+                                            <outlet property="lblName" destination="KGT-K1-8oQ" id="2g2-cp-BES"/>
                                             <outlet property="viewContainer" destination="Fhh-6x-8Pz" id="JBw-25-hEs"/>
                                             <segue destination="Xmr-G8-834" kind="push" id="tRf-a3-esu"/>
                                         </connections>
@@ -2155,6 +2145,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jwN-Nv-HcU"/>
+                    <connections>
+                        <outlet property="tbllocation" destination="fB4-dp-0Qd" id="sEr-kk-vDI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2GZ-QS-EVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2348,7 +2341,7 @@
                 <navigationController storyboardIdentifier="navProfile" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Chg-ES-q4t" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="YtC-Ae-HGs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xV8-On-lof">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xV8-On-lof">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2820,7 +2813,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ROf-eU-LbJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYr-VP-vMN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bYr-VP-vMN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
