@@ -15,7 +15,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
     @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var txtPlaceSearch : MVPlaceSearchTextField!
     @IBOutlet weak var vwSearch : UIView!
-
+    var mapChangedFromUserInteraction = Bool()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -120,6 +121,56 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
             vwSearch.isHidden = false
         }
     }
+    
+    
+    func mapViewRegionDidChangeFromUserInteraction() -> Bool
+    {
+        let view = self.mapView.subviews[0]
+        //  Look through gesture recognizers to determine whether this region change is from user interaction
+        if let gestureRecognizers = view.gestureRecognizers
+        {
+            for recognizer in gestureRecognizers {
+                if( recognizer.state == UIGestureRecognizerState.began || recognizer.state == UIGestureRecognizerState.ended ) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool)
+    {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        if (mapChangedFromUserInteraction)
+        {
+            // user changed map region
+        }
+    }
+
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool)
+    {
+        /*
+         Niyati Shah : 12-03-2017
+         Comment : Also, when you search a location and click on it, it should redirect the pin
+         to that location on the map
+           */
+        if (mapChangedFromUserInteraction)
+        {
+            mapView.removeAnnotations(mapView.annotations)
+            
+            let center = mapView.centerCoordinate
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            mapView.setRegion(region, animated: true)
+            
+            let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+            myAnnotation.coordinate = mapView.centerCoordinate
+            myAnnotation.title = "Add New Location"
+            mapView.addAnnotation(myAnnotation)
+        }
+
+    }
+
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {

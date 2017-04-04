@@ -16,7 +16,8 @@ class TabBarViewController: UITabBarController {
     @IBOutlet weak var btnDiscover : UIButton!
     @IBOutlet weak var btnUser : UIButton!
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.viewTab.frame = CGRect(x: 0, y: MainScreen.height-55, width: MainScreen.width, height: 55)
         self.view.addSubview(self.viewTab)
@@ -62,6 +63,7 @@ class TabBarViewController: UITabBarController {
         self.selectedIndex = 1
         btnDiscover.isSelected = false
         btnUser.isSelected = false
+
     }
     @IBAction func btnProfilePressed(sender:UIButton)
     {
