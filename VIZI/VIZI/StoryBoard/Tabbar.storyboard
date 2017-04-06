@@ -742,7 +742,7 @@
         <!--Place Search Delegate-->
         <scene sceneID="qGJ-VF-67S">
             <objects>
-                <viewController id="IJO-w7-dim" customClass="HomeViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="IJO-w7-dim" customClass="HomeViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uLu-Z4-pO8"/>
                         <viewControllerLayoutGuide type="bottom" id="v4k-vj-oRb"/>
@@ -801,6 +801,16 @@
                                     <constraint firstItem="HrJ-pr-3qb" firstAttribute="top" secondItem="zYr-7H-aKW" secondAttribute="top" constant="6" id="wmA-bG-k7r"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvR-uK-E49">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vln-kS-XQ0"/>
+                                    <constraint firstAttribute="width" constant="52" id="wSA-XQ-fuU"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="current_location"/>
+                                <connections>
+                                    <action selector="btnGotoCurrentLocation" destination="IJO-w7-dim" eventType="touchUpInside" id="xyC-G0-eT1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -810,6 +820,8 @@
                             <constraint firstAttribute="bottom" secondItem="gal-dd-Vv8" secondAttribute="bottom" constant="49" id="M4N-bk-CtN"/>
                             <constraint firstAttribute="trailing" secondItem="gal-dd-Vv8" secondAttribute="trailing" id="NgO-nU-s5b"/>
                             <constraint firstItem="5tb-Xa-0BE" firstAttribute="centerY" secondItem="gal-dd-Vv8" secondAttribute="centerY" id="T86-xl-feI"/>
+                            <constraint firstAttribute="trailing" secondItem="nvR-uK-E49" secondAttribute="trailing" constant="16" id="Wex-0E-8s7"/>
+                            <constraint firstItem="v4k-vj-oRb" firstAttribute="top" secondItem="nvR-uK-E49" secondAttribute="bottom" constant="58" id="Z9e-hi-QKt"/>
                             <constraint firstItem="zYr-7H-aKW" firstAttribute="leading" secondItem="bGP-qJ-0jg" secondAttribute="leading" constant="8" id="ngb-2j-Rnd"/>
                             <constraint firstItem="gal-dd-Vv8" firstAttribute="leading" secondItem="bGP-qJ-0jg" secondAttribute="leading" id="qXU-ga-6V4"/>
                             <constraint firstItem="gal-dd-Vv8" firstAttribute="top" secondItem="bGP-qJ-0jg" secondAttribute="top" constant="64" id="yGe-DT-12h"/>
@@ -830,7 +842,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lbe-ci-PwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="-542"/>
+            <point key="canvasLocation" x="710.5" y="-542.5"/>
         </scene>
         <!--New LocationVC-->
         <scene sceneID="TRN-jI-Nfm">
@@ -2987,6 +2999,7 @@
         <image name="category_icon" width="19" height="16"/>
         <image name="changepwd_icon" width="138" height="138"/>
         <image name="check_icon" width="16" height="16"/>
+        <image name="current_location" width="68" height="68"/>
         <image name="edit_icon" width="28" height="28"/>
         <image name="filter_icon" width="39" height="39"/>
         <image name="globe_icon" width="28" height="28"/>

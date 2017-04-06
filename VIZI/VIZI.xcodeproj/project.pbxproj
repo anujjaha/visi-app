@@ -235,6 +235,7 @@
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VIZI.entitlements; sourceTree = "<group>"; };
 		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
 		D3E5DB6E1E61B8110060912C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		D3E5DB701E61B8970060912C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -561,6 +562,7 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */,
 				D3E5DB911E61C0AB0060912C /* MVPlaceSearchTextField */,
 				D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */,
 				D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */,
@@ -714,6 +716,9 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -994,8 +999,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1012,7 +1018,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
-				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
+				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1024,8 +1030,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1042,7 +1049,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f1305cd-35a6-40b2-8826-44604e43cb96";
-				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
+				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

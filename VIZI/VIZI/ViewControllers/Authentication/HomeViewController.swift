@@ -16,7 +16,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
     @IBOutlet weak var txtPlaceSearch : MVPlaceSearchTextField!
     @IBOutlet weak var vwSearch : UIView!
     var mapChangedFromUserInteraction = Bool()
-    
+    var myAnnotation: MKPointAnnotation = MKPointAnnotation()
+  
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,11 +38,11 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
-        myAnnotation.title = "Add New Location"
-        myAnnotation.coordinate = self.mapView.centerCoordinate
-        self.mapView.addAnnotation(myAnnotation)
+        
+        self.myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
+        self.myAnnotation.title = "Add New Location"
+        self.myAnnotation.coordinate = self.mapView.centerCoordinate
+        self.mapView.addAnnotation(self.myAnnotation)
         }
         
         txtPlaceSearch.autoCompleteRegularFontName =  "HelveticaNeue-Bold";
@@ -122,7 +123,6 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         }
     }
     
-    
     func mapViewRegionDidChangeFromUserInteraction() -> Bool
     {
         let view = self.mapView.subviews[0]
@@ -141,12 +141,18 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool)
     {
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-        if (mapChangedFromUserInteraction)
-        {
-            // user changed map region
-        }
+//        if (mapChangedFromUserInteraction)
+//        {
+//            // user changed map region
+//            let center = mapView.centerCoordinate
+//            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//            mapView.setRegion(region, animated: true)
+//            
+//            myAnnotation.coordinate = mapView.centerCoordinate
+//            myAnnotation.title = "Add New Location"
+//            mapView.addAnnotation(myAnnotation)
+//        }
     }
-
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool)
     {
@@ -157,20 +163,13 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
            */
         if (mapChangedFromUserInteraction)
         {
-            mapView.removeAnnotations(mapView.annotations)
-            
             let center = mapView.centerCoordinate
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             mapView.setRegion(region, animated: true)
             
-            let myAnnotation: MKPointAnnotation = MKPointAnnotation()
             myAnnotation.coordinate = mapView.centerCoordinate
-            myAnnotation.title = "Add New Location"
-            mapView.addAnnotation(myAnnotation)
         }
-
     }
-
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {
@@ -200,14 +199,12 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //MARK: Search Place
     func placeSearch(_ textField: MVPlaceSearchTextField, responseForSelectedPlace responseDict: GMSPlace)
     {
         self.view.endEditing(true)
         print("SELECTED ADDRESS :\(responseDict)")
         print("SELECTED coordinate :\(responseDict.coordinate)")
-        
-        mapView.removeAnnotations(mapView.annotations)
 
         /*
          Niyati Shah : 12-03-2017
@@ -218,10 +215,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
 
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = responseDict.coordinate
-        myAnnotation.title = "Add New Location"
-        mapView.addAnnotation(myAnnotation)
+        mapChangedFromUserInteraction = true
     }
     
     func placeSearchWillShowResult(_ textField: MVPlaceSearchTextField)
@@ -241,6 +236,21 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
             cell.contentView.backgroundColor = UIColor.white
         }
     }
+    
+    //MARK:Go To current Location
+    @IBAction func btnGotoCurrentLocation()
+    {
+        txtPlaceSearch.text = ""
+        
+        let center = CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+        
+        myAnnotation.coordinate = self.mapView.centerCoordinate
+        mapChangedFromUserInteraction = true
+    }
+
+    
     /*
     // MARK: - Navigation
 

@@ -274,7 +274,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                         //            point.image = #imageLiteral(resourceName: "Following_pin")
                                         self.mapView.addAnnotation(point)
                                     
-                                    let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+                                    let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
                                     self.mapView.setRegion(region, animated: true)
                                 }
                             }

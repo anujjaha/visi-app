@@ -126,8 +126,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print(deviceTokenString)
         strDeviceToken = deviceTokenString as NSString
-    }
+    } 
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any])
+    {
+        print("Push Notification Info:>%@", userInfo)
+        var apsInfo: [AnyHashable: Any]? = (userInfo["aps"] as? [AnyHashable: Any])
+        let alert: NSDictionary? = (apsInfo?["alert"] as? NSDictionary)
+        
+        let state:UIApplicationState = application.applicationState
+        if (state == UIApplicationState.active) // active --- forground
+        {
+            if alert != nil
+            {
+                let strmessage = alert!["body"] as! String
+                App_showAlert(withMessage: strmessage, inView: (self.window?.rootViewController)!)
+            }
+        }
+        print("alert:>%@", alert)
+
+    }
     
     //MARK: Location Methods
     func determineCurrentLocation()
