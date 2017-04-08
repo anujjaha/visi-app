@@ -18,11 +18,14 @@ class SettingsViewController: UIViewController {
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.title = "Settings"
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
+  
+        
         DispatchQueue.main.async {
             self.viewPrivacy.layer.cornerRadius = 5.0
             self.viewPrivacy.layer.shadowOpacity = 0.3
@@ -64,13 +67,63 @@ class SettingsViewController: UIViewController {
         {
             btnMakePrivate.isSelected = true
             flagforswitch = true
-            strvisibilityvalue = "1";
+            strvisibilityvalue = "1"
+            
+            self.updateNotificationSetting(strnotificationText: "on")
         }
         else
         {
             btnMakePrivate.isSelected = false
             flagforswitch = false
             strvisibilityvalue = "0"
+            
+            self.updateNotificationSetting(strnotificationText: "off")
+        }
+    }
+    
+    func updateNotificationSetting(strnotificationText: String)
+    {
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "notification" : strnotificationText
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)update_notification.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        if dictemp.count > 0
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
         }
     }
 

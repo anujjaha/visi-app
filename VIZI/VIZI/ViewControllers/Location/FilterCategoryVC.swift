@@ -110,6 +110,15 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if UITableViewAutomaticDimension < 44.0
+        {
+            return 50.0
+        }
+        return UITableViewAutomaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let cell = tableView.cellForRow(at: indexPath) as! CategoryCell
