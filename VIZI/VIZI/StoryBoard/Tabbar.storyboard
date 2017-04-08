@@ -564,6 +564,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fax-Lz-Fqk"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axh-16-zJu">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="53c-Ys-ELi"/>
+                                                        <constraint firstAttribute="width" constant="30" id="YcU-BY-r2g"/>
+                                                    </constraints>
+                                                    <state key="normal" image="CancelIcon"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -571,8 +578,11 @@
                                             <constraint firstAttribute="trailing" secondItem="fax-Lz-Fqk" secondAttribute="trailing" id="6pK-la-GRc"/>
                                             <constraint firstAttribute="bottom" secondItem="fax-Lz-Fqk" secondAttribute="bottom" id="H8b-XP-Xy2"/>
                                             <constraint firstItem="fax-Lz-Fqk" firstAttribute="leading" secondItem="b44-uU-BjM" secondAttribute="leading" id="KTM-7Q-lJP"/>
+                                            <constraint firstAttribute="trailing" secondItem="Axh-16-zJu" secondAttribute="trailing" id="OLL-LC-pdX"/>
+                                            <constraint firstItem="Axh-16-zJu" firstAttribute="top" secondItem="b44-uU-BjM" secondAttribute="top" id="eNu-t3-htz"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="btnDeletePhoto" destination="Axh-16-zJu" id="BHz-DV-cOs"/>
                                             <outlet property="btnPhoto" destination="fax-Lz-Fqk" id="wpb-pN-ymG"/>
                                         </connections>
                                     </collectionViewCell>
@@ -994,13 +1004,22 @@
                                                             <action selector="btnNotesAction" destination="h12-fX-N8L" eventType="touchUpInside" id="8cz-KD-Ygt"/>
                                                         </connections>
                                                     </button>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ex2-h1-VWa">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ex2-h1-VWa" customClass="JVFloatLabeledTextView">
                                                         <frame key="frameInset" minX="9" minY="53" width="318" height="79"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter Notes"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderTextColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="h12-fX-N8L" id="VwX-8I-kvd"/>
                                                         </connections>

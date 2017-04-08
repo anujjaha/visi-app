@@ -9,8 +9,8 @@
 import UIKit
 import MapKit
 
-class NewLocationVC: UIViewController,MKMapViewDelegate {
-
+class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITextFieldDelegate
+{
     @IBOutlet weak var viewCategory : UIView!
     @IBOutlet weak var viewPhoto : UIView!
     @IBOutlet weak var txtTitle : VIZIUITextField!
@@ -28,6 +28,8 @@ class NewLocationVC: UIViewController,MKMapViewDelegate {
         self.txtTitle.layer.cornerRadius = 3.0
         
         self.txtTitle.attributedPlaceholder = NSAttributedString(string:"Title", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+        
+        txtvwNotes.delegate = self
         
         let center = CLLocationCoordinate2D(latitude: fcordinate.latitude, longitude: fcordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -214,10 +216,18 @@ class NewLocationVC: UIViewController,MKMapViewDelegate {
         _ = self.navigationController?.popViewController(animated: true)
     }
 
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         return true
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        return numberOfChars < 255
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
