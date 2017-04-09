@@ -19,6 +19,10 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak  var vwFeed : UIView!
     @IBOutlet weak  var tblFeed : UITableView!
     @IBOutlet weak  var btnFilter : UIButton!
+    
+    @IBOutlet weak  var btnMoveMapup : UIButton!
+    @IBOutlet weak var csofTopViewHeight : NSLayoutConstraint!
+    
     var iSelectedTab = Int()
     var arrDiscoverdata = NSMutableArray()
     var arrTrendingPlaces = NSMutableArray()
@@ -80,6 +84,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = false
             tblFeed.isHidden = true
             btnFilter.isHidden = false
+            btnMoveMapup.isHidden = false
             
             iSelectedTab = 1
         }
@@ -98,6 +103,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = true
             tblFeed.isHidden = false
             btnFilter.isHidden = true
+            btnMoveMapup.isHidden = true
+            
             tblFeed.reloadData()
         }
         else if(sender.tag == 3)
@@ -115,6 +122,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = true
             tblFeed.isHidden = false
             btnFilter.isHidden = true
+            btnMoveMapup.isHidden = true
+            
             self.getAllNotification()
         }
     }
@@ -377,6 +386,21 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
             }
+        }
+    }
+    
+    //MARK: Move Map up
+    @IBAction func btnMoveMapupClicked(sender: UIButton)
+    {
+        if btnMoveMapup.isSelected
+        {
+            btnMoveMapup.isSelected = false
+            csofTopViewHeight.constant = 172
+        }
+        else
+        {
+            btnMoveMapup.isSelected = true
+            csofTopViewHeight.constant = 0
         }
     }
     

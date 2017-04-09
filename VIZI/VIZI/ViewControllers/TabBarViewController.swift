@@ -42,9 +42,9 @@ class TabBarViewController: UITabBarController {
         self.cntViewSelectionLeading.constant = btnhome.frame.origin.x
         btnDiscover.isSelected = false
         btnUser.isSelected = false
-
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         self.cntViewSelectionLeading.constant = btnhome.frame.origin.x
     }
     
