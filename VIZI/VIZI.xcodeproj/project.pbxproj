@@ -109,26 +109,21 @@
 		D3E5DBA31E61C0AB0060912C /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */; };
 		D3E5DBA41E61C0AB0060912C /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */; };
 		D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DBA51E61C2970060912C /* Accelerate.framework */; };
-		FF08EABF1E101FB30017BCE8 /* Lake@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
-		FF08EAC31E10255B0017BCE8 /* BarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */; };
 		FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */; };
 		FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F50A11E0051BA0062AF57 /* AppDelegate.swift */; };
 		FF0F50A91E0051BA0062AF57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0F50A81E0051BA0062AF57 /* Assets.xcassets */; };
 		FF0F50AC1E0051BA0062AF57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0F50AA1E0051BA0062AF57 /* LaunchScreen.storyboard */; };
 		FF0F50BA1E005E8B0062AF57 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0F50B91E005E8B0062AF57 /* Authentication.storyboard */; };
 		FF1217F91E11735B00F8A6EA /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1217F81E11735B00F8A6EA /* DiscoverViewController.swift */; };
-		FF1217FB1E11826100F8A6EA /* Discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1217FA1E11826100F8A6EA /* Discover@2x.png */; };
 		FF1217FD1E11937000F8A6EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1217FC1E11937000F8A6EA /* SearchViewController.swift */; };
 		FF1217FF1E119FCD00F8A6EA /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1217FE1E119FCD00F8A6EA /* FollowersViewController.swift */; };
 		FF1218011E11A87500F8A6EA /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1218001E11A87500F8A6EA /* ChangePasswordVC.swift */; };
 		FF16CFA41E05B33000136873 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16CFA21E05B33000136873 /* AppUtils.swift */; };
 		FF16CFA51E05B33000136873 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16CFA31E05B33000136873 /* Constant.swift */; };
-		FF16CFA91E05C95A00136873 /* profile_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF16CFA81E05C95A00136873 /* profile_img@2x.png */; };
 		FF16CFAB1E05D70500136873 /* Profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF16CFAA1E05D70500136873 /* Profile.jpg */; };
 		FF16CFAE1E05D74500136873 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF16CFAD1E05D74500136873 /* ProfileViewController.swift */; };
 		FFDC7CF91E0695E8007A4451 /* ProfileDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC7CF81E0695E8007A4451 /* ProfileDetailVC.swift */; };
-		FFDC7CFB1E06A0E5007A4451 /* Bar1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC7CFA1E06A0E5007A4451 /* Bar1@2x.png */; };
 		FFDC7CFD1E06D4DA007A4451 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC7CFC1E06D4DA007A4451 /* SettingsViewController.swift */; };
 		FFDC7CFF1E06D4F9007A4451 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC7CFE1E06D4F9007A4451 /* EditProfileViewController.swift */; };
 		FFFF353F1E04651800C393B1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFF353E1E04651800C393B1 /* MapKit.framework */; };
@@ -307,9 +302,7 @@
 		D3E5DB9E1E61C0AB0060912C /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
 		D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
 		D3E5DBA51E61C2970060912C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake@2x.jpg"; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFull@2x.png"; sourceTree = "<group>"; };
 		FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIZIUITextField.swift; sourceTree = "<group>"; };
 		FF0F509E1E0051BA0062AF57 /* VIZI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIZI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0F50A11E0051BA0062AF57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -318,17 +311,14 @@
 		FF0F50AD1E0051BA0062AF57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF0F50B91E005E8B0062AF57 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		FF1217F81E11735B00F8A6EA /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
-		FF1217FA1E11826100F8A6EA /* Discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discover@2x.png"; sourceTree = "<group>"; };
 		FF1217FC1E11937000F8A6EA /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FF1217FE1E119FCD00F8A6EA /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		FF1218001E11A87500F8A6EA /* ChangePasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		FF16CFA21E05B33000136873 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		FF16CFA31E05B33000136873 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		FF16CFA81E05C95A00136873 /* profile_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_img@2x.png"; sourceTree = "<group>"; };
 		FF16CFAA1E05D70500136873 /* Profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Profile.jpg; sourceTree = "<group>"; };
 		FF16CFAD1E05D74500136873 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FFDC7CF81E0695E8007A4451 /* ProfileDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailVC.swift; sourceTree = "<group>"; };
-		FFDC7CFA1E06A0E5007A4451 /* Bar1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bar1@2x.png"; sourceTree = "<group>"; };
 		FFDC7CFC1E06D4DA007A4451 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FFDC7CFE1E06D4F9007A4451 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		FFFF353E1E04651800C393B1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -686,12 +676,7 @@
 		FF0F50B41E0052320062AF57 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				FF1217FA1E11826100F8A6EA /* Discover@2x.png */,
-				FFDC7CFA1E06A0E5007A4451 /* Bar1@2x.png */,
-				FF16CFA81E05C95A00136873 /* profile_img@2x.png */,
 				FF16CFAA1E05D70500136873 /* Profile.jpg */,
-				FF08EABE1E101FB30017BCE8 /* Lake@2x.jpg */,
-				FF08EAC21E10255B0017BCE8 /* BarFull@2x.png */,
 				FF0F50B91E005E8B0062AF57 /* Authentication.storyboard */,
 				FFFF35491E04660F00C393B1 /* Tabbar.storyboard */,
 			);
@@ -860,9 +845,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3849C2B1E99059500283C42 /* ELCAlbumPickerController.xib in Resources */,
-				FF16CFA91E05C95A00136873 /* profile_img@2x.png in Resources */,
-				FFDC7CFB1E06A0E5007A4451 /* Bar1@2x.png in Resources */,
-				FF08EAC31E10255B0017BCE8 /* BarFull@2x.png in Resources */,
 				D3B684771E4F2701008C412E /* Alamofire.xcworkspace in Resources */,
 				D3849C2C1E99059500283C42 /* ELCAssetPicker.xib in Resources */,
 				D3849C2E1E99059500283C42 /* Overlay.png in Resources */,
@@ -872,11 +854,9 @@
 				D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */,
 				D3B684EE1E4F28BA008C412E /* Info.plist in Resources */,
 				FF0F50AC1E0051BA0062AF57 /* LaunchScreen.storyboard in Resources */,
-				FF08EABF1E101FB30017BCE8 /* Lake@2x.jpg in Resources */,
 				FFFF354A1E04660F00C393B1 /* Tabbar.storyboard in Resources */,
 				FF0F50A91E0051BA0062AF57 /* Assets.xcassets in Resources */,
 				D3CA42B31E54007500365290 /* IQKeyboardManager.bundle in Resources */,
-				FF1217FB1E11826100F8A6EA /* Discover@2x.png in Resources */,
 				D3849C2D1E99059500283C42 /* ELCAssetTablePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
