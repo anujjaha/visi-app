@@ -39,10 +39,12 @@ class FollowersViewController: UIViewController
         if self.bFollowers == true
         {
             self.title = "Followers"
+            self.getFollowersList()
         }
         else
         {
             self.title = "Following"
+            self.getFollowingList()
         }
         
         self.navigationItem.hidesBackButton = true
@@ -53,7 +55,6 @@ class FollowersViewController: UIViewController
         self.tblFollowersList.rowHeight = UITableViewAutomaticDimension;
 
         
-        self.getFollowersList()
     }
     func backButtonPressed()
     {
@@ -72,7 +73,7 @@ class FollowersViewController: UIViewController
         
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
-        request("\(kServerURL)discover_search.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)my_followings.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
@@ -94,21 +95,8 @@ class FollowersViewController: UIViewController
                         
                         if dictemp.count > 0
                         {
-                            if self.bFollowers == true
-                            {
                                 self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("arrFollowersList :> \(self.arrFollowersList)")
-                            }
-                            else
-                            {
-                                for iindex in 0..<(dictemp["data"] as? NSArray)!.count
-                                {
-                                    if (((dictemp["data"] as? NSArray)![iindex] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 1
-                                    {
-                                        self.arrFollowersList.add((dictemp["data"] as? NSArray)![iindex])
-                                    }
-                                }
-                            }
                         }
                         else
                         {
@@ -130,6 +118,63 @@ class FollowersViewController: UIViewController
         tblFollowersList.dataSource = self
     }
     
+    func getFollowingList()
+    {
+        arrFollowersList = NSMutableArray()
+        
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
+            "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)my_followers.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+                
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
+                            print("arrFollowersList :> \(self.arrFollowersList)")
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                    self.tblFollowersList.reloadData()
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                self.tblFollowersList.reloadData()
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+        tblFollowersList.delegate = self
+        tblFollowersList.dataSource = self
+    }
+
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)

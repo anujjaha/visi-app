@@ -305,7 +305,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="filter_icon"/>
                                 <connections>
-                                    <segue destination="lfp-P2-7Ew" kind="push" id="4ZT-pX-ZoC"/>
+                                    <action selector="btnGotoFilterScreen:" destination="vRB-VR-Yo2" eventType="touchUpInside" id="QVS-Vn-Yjf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7i-ox-nVm">
@@ -882,6 +882,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnClear" destination="KBj-7C-gIu" id="dKt-WR-Abq"/>
                         <outlet property="mapView" destination="gal-dd-Vv8" id="rpu-E5-Oh1"/>
                         <outlet property="txtPlaceSearch" destination="HrJ-pr-3qb" id="O98-gK-D4K"/>
                         <outlet property="vwSearch" destination="PIF-Zb-5oc" id="p8C-hI-NBV"/>

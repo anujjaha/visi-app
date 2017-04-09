@@ -17,7 +17,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
     @IBOutlet weak var vwSearch : UIView!
     var mapChangedFromUserInteraction = Bool()
     var myAnnotation: MKPointAnnotation = MKPointAnnotation()
-  
+    @IBOutlet weak var btnClear : UIButton!
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -113,6 +114,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         {
             view.dragState = MKAnnotationViewDragState.dragging
             vwSearch.isHidden = true
+            btnClear.isHidden = true
+
         }
         else if (newState == MKAnnotationViewDragState.ending || newState == MKAnnotationViewDragState.canceling)
         {
@@ -120,6 +123,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
             let ann = view.annotation
             print("annotation dropped at: \(ann!.coordinate.latitude),\(ann!.coordinate.longitude)")
             vwSearch.isHidden = false
+            btnClear.isHidden = false
+
         }
     }
     
@@ -141,17 +146,19 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool)
     {
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-//        if (mapChangedFromUserInteraction)
-//        {
-//            // user changed map region
-//            let center = mapView.centerCoordinate
-//            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//            mapView.setRegion(region, animated: true)
-//            
-//            myAnnotation.coordinate = mapView.centerCoordinate
-//            myAnnotation.title = "Add New Location"
-//            mapView.addAnnotation(myAnnotation)
-//        }
+        if (mapChangedFromUserInteraction)
+        {
+            vwSearch.isHidden = true
+            btnClear.isHidden = true
+
+            // user changed map region
+            let center = mapView.centerCoordinate
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            mapView.setRegion(region, animated: true)
+            
+            myAnnotation.coordinate = mapView.centerCoordinate
+            myAnnotation.title = "Add New Location"
+        }
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool)
@@ -168,6 +175,9 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
             mapView.setRegion(region, animated: true)
             
             myAnnotation.coordinate = mapView.centerCoordinate
+            
+            vwSearch.isHidden = false
+            btnClear.isHidden = false
         }
     }
     
@@ -249,7 +259,6 @@ class HomeViewController: UIViewController,MKMapViewDelegate,PlaceSearchTextFiel
         myAnnotation.coordinate = self.mapView.centerCoordinate
         mapChangedFromUserInteraction = true
     }
-
     
     /*
     // MARK: - Navigation

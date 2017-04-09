@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
 
     @IBOutlet weak fileprivate var viewSegment : UIView!
@@ -33,6 +34,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var frame = CGRect.zero
     
     var arrNotification = NSMutableArray()
+    var bGoFilterScreen = Bool()
 
     override func viewDidLoad()
     {
@@ -53,12 +55,23 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         self.pgControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
         
-        self.tblFeed.estimatedRowHeight = 81.0 ;
-        self.tblFeed.rowHeight = UITableViewAutomaticDimension;
+        self.tblFeed.estimatedRowHeight = 81.0
+        self.tblFeed.rowHeight = UITableViewAutomaticDimension
+        
+        mapView.centerCoordinate = CLLocationCoordinate2DMake(0, 0)
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.getDiscoverdata()
+    override func viewWillAppear(_ animated: Bool)
+    {
+        if (bGoFilterScreen)
+        {
+            bGoFilterScreen = false
+        }
+        else
+        {
+            self.getDiscoverdata()
+        }
     }
     
     func searchPressed() {
@@ -239,6 +252,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     //MARK : Get Discover Data API Calling
     func getDiscoverdata()
     {
+        self.arrDiscoverdata = NSMutableArray()
+        
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
         ]
@@ -273,6 +288,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                             {
                                 self.arrDiscoverdata = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("discover.php :> \(dictemp2)")
+                                
+
                                 for i in 0..<self.arrDiscoverdata.count
                                 {
                                     let flat : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
@@ -282,9 +299,9 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                         point.coordinate = CLLocationCoordinate2DMake(flat, flon)
                                         //            point.image = #imageLiteral(resourceName: "Following_pin")
                                         self.mapView.addAnnotation(point)
-                                    
+
                                     let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-                                    self.mapView.setRegion(region, animated: true)
+                                    self.mapView.setRegion(region, animated: true)                                   
                                 }
                             }
                             else
@@ -387,6 +404,15 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 break
             }
         }
+    }
+    
+    //MARK:Go To Filter Screen
+    @IBAction func btnGotoFilterScreen(_ sender: UIButton)
+    {
+        bGoFilterScreen = true
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "FilterPeopleVC") as! FilterPeopleVC
+        self.navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     //MARK: Move Map up

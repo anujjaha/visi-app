@@ -66,7 +66,6 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                             {
                                 self.arrSelectedbutton.add(kNO)
                             }
-
                         }
                         else
                         {
