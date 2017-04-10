@@ -23,12 +23,17 @@ class PeopleCell: UITableViewCell
     }
 }
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController,UISearchBarDelegate
+{
 
     @IBOutlet weak var btnPeople : UIButton!
     @IBOutlet weak var btnPlaces : UIButton!
     @IBOutlet weak var cntViewSelection : NSLayoutConstraint!
     @IBOutlet weak var tblSearch : UITableView!
+   
+    @IBOutlet weak var searchBar: UISearchBar!
+    var shouldBeginEditing = Bool()
+
     var arrSearchList = NSArray()
     
     override func viewDidLoad() {
@@ -39,16 +44,22 @@ class SearchViewController: UIViewController {
         self.tblSearch.estimatedRowHeight = 81.0 ;
         self.tblSearch.rowHeight = UITableViewAutomaticDimension;
 
-        self.getSearchList()
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
+        
+        shouldBeginEditing = true
+
+        self.getSearchList(strsearchtext: "")
     }
     func backButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func getSearchList()
+    func getSearchList(strsearchtext: String)
     {
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "name": strsearchtext,
             "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
             "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
         ]
@@ -110,10 +121,47 @@ class SearchViewController: UIViewController {
         btnPlaces.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: UIControlState.normal)
         cntViewSelection.constant = btnPeople.frame.origin.x
     }
-    @IBAction func btnPlacesPressed() {
+    @IBAction func btnPlacesPressed()
+    {
         btnPeople.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: UIControlState.normal)
         btnPlaces.setTitleColor(UIColor.appDarkPinkColor(), for: UIControlState.normal)
         cntViewSelection.constant = btnPlaces.frame.origin.x
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        if (searchText.isEmpty)
+        {
+            searchBar.text = ""
+            self.getSearchList(strsearchtext: "")
+            searchBar.endEditing(true)
+            
+            if !searchBar.isFirstResponder
+            {
+                shouldBeginEditing = false
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        searchBar.resignFirstResponder()
+        self.getSearchList(strsearchtext: searchBar.text!)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
+        searchBar.text = ""
+        self.getSearchList(strsearchtext: "")
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarShouldBeginEditing(_ bar: UISearchBar) -> Bool
+    {
+        // reset the shouldBeginEditing BOOL ivar to YES, but first take its value and use it to return it from the method call
+        let boolToReturn: Bool = shouldBeginEditing
+        shouldBeginEditing = true
+        return boolToReturn
     }
     /*
     // MARK: - Navigation

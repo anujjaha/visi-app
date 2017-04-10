@@ -410,21 +410,32 @@
                                             <constraint firstAttribute="height" constant="2" id="V0o-aA-Cs0"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esf-jG-CWz">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esf-jG-CWz">
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search People" translatesAutoresizingMaskIntoConstraints="NO" id="FXc-Ov-Cv6">
+                                        <color key="barTintColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="EG8-lt-QTk" id="E87-96-MVr"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.078431372550000003" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="FXc-Ov-Cv6" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="2ne-lz-Mxr"/>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="leading" secondItem="Nsz-9p-u10" secondAttribute="trailing" id="5vR-yB-gOH"/>
                                     <constraint firstItem="MDZ-PU-Ogt" firstAttribute="width" secondItem="Nsz-9p-u10" secondAttribute="width" id="Fq0-Lz-DfK"/>
                                     <constraint firstAttribute="trailing" secondItem="NVQ-rT-FFO" secondAttribute="trailing" id="Hd3-92-Xdj"/>
+                                    <constraint firstAttribute="bottom" secondItem="FXc-Ov-Cv6" secondAttribute="bottom" id="Jp9-qT-oWY"/>
                                     <constraint firstAttribute="bottom" secondItem="esf-jG-CWz" secondAttribute="bottom" id="MhO-EJ-Fzj"/>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="width" secondItem="Nsz-9p-u10" secondAttribute="width" id="REz-K8-d0b"/>
+                                    <constraint firstAttribute="trailing" secondItem="FXc-Ov-Cv6" secondAttribute="trailing" id="SM2-zC-5NX"/>
                                     <constraint firstAttribute="bottom" secondItem="MDZ-PU-Ogt" secondAttribute="bottom" id="dIb-Ha-8lW"/>
                                     <constraint firstItem="esf-jG-CWz" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="dkC-NW-OVi"/>
+                                    <constraint firstItem="FXc-Ov-Cv6" firstAttribute="top" secondItem="18X-jh-HZ0" secondAttribute="top" id="ezf-zc-1n8"/>
                                     <constraint firstAttribute="trailing" secondItem="esf-jG-CWz" secondAttribute="trailing" id="hPN-5i-aut"/>
                                     <constraint firstItem="NVQ-rT-FFO" firstAttribute="top" secondItem="18X-jh-HZ0" secondAttribute="top" id="m7a-Z7-mGh"/>
                                     <constraint firstItem="Nsz-9p-u10" firstAttribute="leading" secondItem="18X-jh-HZ0" secondAttribute="leading" id="nsN-wg-RVQ"/>
@@ -514,6 +525,7 @@
                         <outlet property="btnPeople" destination="Nsz-9p-u10" id="Boa-aX-dxe"/>
                         <outlet property="btnPlaces" destination="NVQ-rT-FFO" id="iIL-i9-Uxt"/>
                         <outlet property="cntViewSelection" destination="z8i-g4-kOo" id="OGg-it-Ub9"/>
+                        <outlet property="searchBar" destination="FXc-Ov-Cv6" id="70n-hg-WCi"/>
                         <outlet property="tblSearch" destination="ysx-xe-2sz" id="3Bc-0I-bt5"/>
                     </connections>
                 </viewController>
@@ -1409,7 +1421,7 @@
                 <navigationController storyboardIdentifier="navHome" automaticallyAdjustsScrollViewInsets="NO" id="QS5-Jk-CsC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="l5n-Xl-AFd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4lU-ap-6ve">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4lU-ap-6ve">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1428,7 +1440,7 @@
                 <navigationController storyboardIdentifier="navDiscover" automaticallyAdjustsScrollViewInsets="NO" id="ks0-tk-mbT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="jKy-my-KgH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bFr-Hd-lvz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bFr-Hd-lvz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2441,7 +2453,7 @@
                 <navigationController storyboardIdentifier="navProfile" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Chg-ES-q4t" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="YtC-Ae-HGs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xV8-On-lof">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xV8-On-lof">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2952,7 +2964,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ROf-eU-LbJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bYr-VP-vMN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYr-VP-vMN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
