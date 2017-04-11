@@ -74,10 +74,18 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
-    func searchPressed() {
-        self.performSegue(withIdentifier: "presentSearch", sender: self)
+    //MARK: Search Pressed
+    func searchPressed()
+    {
+       // self.performSegue(withIdentifier: "presentSearch", sender: self)
+        bGoFilterScreen = true
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        self.navigationController?.pushViewController(homeViewController, animated: true)
     }
-    override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

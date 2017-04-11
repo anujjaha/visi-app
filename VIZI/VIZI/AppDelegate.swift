@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var arrNewLocationPhotos = NSMutableArray()
     var strNewLocationCategoryName = NSString()
     var strDeviceToken = NSString()
+    var bUserSelfProfile = Bool()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

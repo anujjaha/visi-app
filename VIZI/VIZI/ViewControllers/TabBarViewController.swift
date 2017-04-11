@@ -50,15 +50,17 @@ class TabBarViewController: UITabBarController {
     
 
     // MARK: - Action
-    @IBAction func btnDiscoverPressed(sender:UIButton) {
+    @IBAction func btnDiscoverPressed(sender:UIButton)
+    {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 0
         
         btnDiscover.isSelected = true
         btnUser.isSelected = false
-
     }
-    @IBAction func btnHomePressed(sender:UIButton) {
+    
+    @IBAction func btnHomePressed(sender:UIButton)
+    {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 1
         btnDiscover.isSelected = false
@@ -67,12 +69,14 @@ class TabBarViewController: UITabBarController {
     }
     @IBAction func btnProfilePressed(sender:UIButton)
     {
+        appDelegate.bUserSelfProfile = true
         btnDiscover.isSelected = false
         btnUser.isSelected = true
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 2
     }
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

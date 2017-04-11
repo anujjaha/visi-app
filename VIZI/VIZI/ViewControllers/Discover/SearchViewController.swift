@@ -51,8 +51,10 @@ class SearchViewController: UIViewController,UISearchBarDelegate
 
         self.getSearchList(strsearchtext: "")
     }
-    func backButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
+    func backButtonPressed()
+    {
+       // self.dismiss(animated: true, completion: nil)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func getSearchList(strsearchtext: String)
@@ -196,6 +198,16 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        tabbar.strotheruserID = "\((arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+        appDelegate.bUserSelfProfile = false
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension

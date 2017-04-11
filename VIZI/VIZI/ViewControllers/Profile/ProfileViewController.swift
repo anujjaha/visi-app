@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var btnMakePrivate : UIButton!
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
+    var strotheruserID = String()
 
     //Get Category data
     var arrCategorydata = NSArray()
@@ -64,8 +65,14 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var btnFollowers : UIButton!
     @IBOutlet weak var btnFollowing : UIButton!
     @IBOutlet weak var btnLocation : UIButton!
+    
+    @IBOutlet weak var btnFollowUser : UIButton!
+    @IBOutlet weak var heightofFollowBtn : NSLayoutConstraint!
 
-        override func viewDidLoad() {
+    var parameters = NSDictionary()
+
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         if appDelegate.arrLoginData.count > 0
         {
@@ -96,15 +103,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 }
             }
         }
-       
-       // self.getCategorydata()
+        
+        // self.getCategorydata()
         tblCategoryList.isHidden = true
         self.tblCategoryList.estimatedRowHeight = 81.0 ;
         self.tblCategoryList.rowHeight = UITableViewAutomaticDimension;
         self.tblCategoryList.delegate = self
         self.tblCategoryList.dataSource = self
-         
-            
+        
+        
         DispatchQueue.main.async {
             
             self.btnPlus.layer.borderWidth = 6
@@ -126,6 +133,17 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     
     override func viewWillAppear(_ animated: Bool)
     {
+        if(appDelegate.bUserSelfProfile)
+        {
+            btnFollowUser.isHidden = true
+            heightofFollowBtn.constant = 0
+        }
+        else
+        {
+            btnFollowUser.isHidden = false
+            heightofFollowBtn.constant = 30
+        }
+        
         self.getProfileData()
     }
     
@@ -176,15 +194,27 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     //MARK: - Get Profile Data
     func getProfileData()
     {
+        self.navigationController?.isNavigationBarHidden = true
+        
         showProgress(inView: self.view)
 
-        let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-        ]
+        if(appDelegate.bUserSelfProfile)
+        {
+            parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            ]
+        }
+        else
+        {
+            parameters = [
+                "user_id": strotheruserID,
+                "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)"
+            ]
+        }
         
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
-        request("\(kServerURL)profile.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)profile.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
