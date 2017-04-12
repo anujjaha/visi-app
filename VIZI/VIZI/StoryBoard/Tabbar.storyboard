@@ -510,7 +510,7 @@
                             <constraint firstAttribute="trailing" secondItem="ysx-xe-2sz" secondAttribute="trailing" id="6cl-Fp-J1x"/>
                             <constraint firstItem="3oq-ds-Vzj" firstAttribute="leading" secondItem="5F4-oj-Jvn" secondAttribute="leading" id="A3l-8X-trj"/>
                             <constraint firstItem="18X-jh-HZ0" firstAttribute="leading" secondItem="5F4-oj-Jvn" secondAttribute="leading" id="LRg-yG-4Pt"/>
-                            <constraint firstAttribute="bottom" secondItem="ysx-xe-2sz" secondAttribute="bottom" constant="50" id="QGX-s7-drt"/>
+                            <constraint firstAttribute="bottom" secondItem="ysx-xe-2sz" secondAttribute="bottom" constant="55" id="QGX-s7-drt"/>
                             <constraint firstItem="ysx-xe-2sz" firstAttribute="leading" secondItem="5F4-oj-Jvn" secondAttribute="leading" id="XvM-v9-m8U"/>
                             <constraint firstAttribute="trailing" secondItem="3oq-ds-Vzj" secondAttribute="trailing" id="b8L-uT-tD6"/>
                             <constraint firstAttribute="trailing" secondItem="18X-jh-HZ0" secondAttribute="trailing" id="fCZ-fa-78u"/>
@@ -1421,7 +1421,7 @@
                 <navigationController storyboardIdentifier="navHome" automaticallyAdjustsScrollViewInsets="NO" id="QS5-Jk-CsC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="l5n-Xl-AFd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4lU-ap-6ve">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4lU-ap-6ve">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1440,7 +1440,7 @@
                 <navigationController storyboardIdentifier="navDiscover" automaticallyAdjustsScrollViewInsets="NO" id="ks0-tk-mbT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="jKy-my-KgH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bFr-Hd-lvz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bFr-Hd-lvz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1471,6 +1471,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-8J-IIn">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="SyK-OH-5xk"/>
+                                    <constraint firstAttribute="height" constant="44" id="bNx-hj-tJd"/>
+                                </constraints>
+                                <state key="normal" image="back_icon"/>
+                                <connections>
+                                    <action selector="backButtonPressed" destination="P9U-pg-bqk" eventType="touchUpInside" id="b5p-qs-gQI"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wr-WY-syq">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="FGq-pp-crA"/>
@@ -1976,6 +1986,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zPc-8J-IIn" firstAttribute="top" secondItem="2eP-yG-Uyc" secondAttribute="bottom" constant="4" id="0e2-xc-BIQ"/>
                             <constraint firstItem="9FB-8r-ixY" firstAttribute="centerX" secondItem="FVi-1I-4eL" secondAttribute="centerX" id="22P-UK-BzF"/>
                             <constraint firstAttribute="trailing" secondItem="8wr-WY-syq" secondAttribute="trailing" id="248-Cz-R6G"/>
                             <constraint firstItem="R2Z-1U-Pu4" firstAttribute="leading" secondItem="FVi-1I-4eL" secondAttribute="leading" id="3VV-lX-DHz"/>
@@ -1986,6 +1997,7 @@
                             <constraint firstItem="joT-Mx-16z" firstAttribute="leading" secondItem="FVi-1I-4eL" secondAttribute="leading" id="G9x-dH-kt4"/>
                             <constraint firstItem="YOT-Bn-xrz" firstAttribute="width" secondItem="FVi-1I-4eL" secondAttribute="width" id="Han-tm-fGp"/>
                             <constraint firstItem="R2Z-1U-Pu4" firstAttribute="top" secondItem="FVi-1I-4eL" secondAttribute="top" id="OWm-dX-wby"/>
+                            <constraint firstItem="zPc-8J-IIn" firstAttribute="leading" secondItem="FVi-1I-4eL" secondAttribute="leading" id="R5K-yT-d5x"/>
                             <constraint firstItem="8wr-WY-syq" firstAttribute="top" secondItem="2eP-yG-Uyc" secondAttribute="bottom" id="S4G-Ab-QUN"/>
                             <constraint firstAttribute="trailing" secondItem="joT-Mx-16z" secondAttribute="trailing" id="ZIy-Jm-sel"/>
                             <constraint firstItem="9FB-8r-ixY" firstAttribute="top" secondItem="FVi-1I-4eL" secondAttribute="top" constant="35" id="ZhW-TP-qpb"/>
@@ -1998,6 +2010,7 @@
                     <navigationItem key="navigationItem" id="uHd-bA-epY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnBackButton" destination="zPc-8J-IIn" id="ZmV-XP-sUG"/>
                         <outlet property="btnCancel" destination="QDB-gu-QnX" id="oJk-Ee-50Z"/>
                         <outlet property="btnFollowUser" destination="gto-Jk-Hby" id="jSA-xK-Voa"/>
                         <outlet property="btnFollowers" destination="mng-OP-uEK" id="vJS-Km-8dn"/>
@@ -2470,7 +2483,7 @@
                 <navigationController storyboardIdentifier="navProfile" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Chg-ES-q4t" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="YtC-Ae-HGs"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xV8-On-lof">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xV8-On-lof">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

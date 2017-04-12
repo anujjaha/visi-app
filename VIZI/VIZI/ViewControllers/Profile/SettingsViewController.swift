@@ -42,7 +42,8 @@ class SettingsViewController: UIViewController {
             self.btnLogout.layer.cornerRadius = 5.0
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }

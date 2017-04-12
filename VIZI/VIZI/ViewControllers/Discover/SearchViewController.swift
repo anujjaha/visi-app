@@ -36,8 +36,10 @@ class SearchViewController: UIViewController,UISearchBarDelegate
 
     var arrSearchList = NSArray()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
         self.title = "Search"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         
@@ -51,6 +53,12 @@ class SearchViewController: UIViewController,UISearchBarDelegate
 
         self.getSearchList(strsearchtext: "")
     }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     func backButtonPressed()
     {
        // self.dismiss(animated: true, completion: nil)
@@ -196,6 +204,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource
         {
             cell.imgProfile.sd_setImage(with: URL(string: "\((arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
         }
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     

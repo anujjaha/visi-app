@@ -68,13 +68,14 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     
     @IBOutlet weak var btnFollowUser : UIButton!
     @IBOutlet weak var heightofFollowBtn : NSLayoutConstraint!
+    @IBOutlet weak var btnBackButton : UIButton!
 
     var parameters = NSDictionary()
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        if appDelegate.arrLoginData.count > 0
+       /* if appDelegate.arrLoginData.count > 0
         {
             self.lblName.text =  "\(appDelegate.arrLoginData[kkeyuser_name]!)"
             self.lblEmail.text = "\(appDelegate.arrLoginData[kkeyemail]!)"
@@ -103,6 +104,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 }
             }
         }
+        */
         
         // self.getCategorydata()
         tblCategoryList.isHidden = true
@@ -137,9 +139,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         {
             btnFollowUser.isHidden = true
             heightofFollowBtn.constant = 0
+            btnBackButton.isHidden = true
         }
         else
         {
+            btnBackButton.isHidden = false
             btnFollowUser.isHidden = false
             heightofFollowBtn.constant = 30
         }
@@ -240,6 +244,35 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 print("dictemp :> \(dictemp2)")
                                 self.dicprofiledata = NSMutableDictionary.init(dictionary: dictemp2)
                                 print("self.dicprofiledata :> \(self.dicprofiledata)")
+                                
+                                
+                                self.lblName.text =  "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyuser_name) as! String)"
+                                self.lblEmail.text = "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyemail) as! String)"
+                                
+                                if !"\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeybio) as? String)".isEmpty
+                                {
+                                    if (self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeybio) is NSNull
+                                    {
+                                        self.lblbio.text = ""
+                                    }
+                                    else
+                                    {
+                                        self.lblbio.text = "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeybio) as! String)"
+                                    }
+                                }
+                                
+                                if !"\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyimage) as? String)".isEmpty
+                                {
+                                    if (self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyimage) is NSNull
+                                    {
+                                        self.imgProfile.image = UIImage(named: "addimage_icon")
+                                    }
+                                    else
+                                    {
+                                        self.imgProfile.sd_setImage(with: URL(string: "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyimage) as! String)"), placeholderImage: UIImage(named: "addimage_icon"))
+                                    }
+                                }
+
                                 
                                 self.arrCategorydata = (self.dicprofiledata["categories"] as? NSArray)!
                                 print("arrCategorydata :> \(self.arrCategorydata)")
@@ -468,6 +501,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             strvisibilityvalue = "0"
         }
     }
+    
+    @IBAction func backButtonPressed() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
