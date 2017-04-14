@@ -328,6 +328,17 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         tblCategoryList.reloadData()
     }
     
+    @IBAction func btnPinPressed()
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "PinofUserVC") as! PinofUserVC
+        tabbar.strScreenTitle = self.lblName.text!
+        tabbar.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+    
+
+    
       // MARK: - Add Category Actions
     @IBAction func btnAddCategoryPressed()
     {

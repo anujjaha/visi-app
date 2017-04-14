@@ -1453,6 +1453,103 @@
             </objects>
             <point key="canvasLocation" x="179" y="186"/>
         </scene>
+        <!--Pinof UserVC-->
+        <scene sceneID="lFL-cd-gSj">
+            <objects>
+                <viewController storyboardIdentifier="PinofUserVC" id="ySE-Px-Gat" customClass="PinofUserVC" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ggf-02-4BZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Qh-Px-rkd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GTd-SO-9vO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="4qg-2p-dPa">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XlY-fL-X4x">
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCP-mo-wAs">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="BFO-ba-AVp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="Map View">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.82745098039999998" green="0.2156862745" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnMapViewPressed" destination="ySE-Px-Gat" eventType="touchUpInside" id="VbA-qy-qkd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5U-fx-8Z7">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="b1M-3g-APJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="List View">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.82745098039999998" green="0.2156862745" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnListViewPressed" destination="ySE-Px-Gat" eventType="touchUpInside" id="aGd-zW-wXL"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ski-N7-jg3">
+                                        <color key="backgroundColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="ydb-8K-6sC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.078431372550000003" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MCP-mo-wAs" firstAttribute="top" secondItem="XlY-fL-X4x" secondAttribute="top" id="LJ0-eE-P60"/>
+                                    <constraint firstItem="s5U-fx-8Z7" firstAttribute="top" secondItem="XlY-fL-X4x" secondAttribute="top" id="Mcm-Em-vET"/>
+                                    <constraint firstItem="s5U-fx-8Z7" firstAttribute="width" secondItem="MCP-mo-wAs" secondAttribute="width" id="VnE-ub-F1B"/>
+                                    <constraint firstAttribute="height" constant="44" id="elW-yF-A17"/>
+                                    <constraint firstItem="MCP-mo-wAs" firstAttribute="leading" secondItem="XlY-fL-X4x" secondAttribute="leading" id="fht-Qo-jfq"/>
+                                    <constraint firstItem="s5U-fx-8Z7" firstAttribute="leading" secondItem="MCP-mo-wAs" secondAttribute="trailing" id="i49-kh-F0H"/>
+                                    <constraint firstAttribute="trailing" secondItem="s5U-fx-8Z7" secondAttribute="trailing" id="kBR-yQ-JPo"/>
+                                    <constraint firstItem="Ski-N7-jg3" firstAttribute="leading" secondItem="XlY-fL-X4x" secondAttribute="leading" id="n7h-5i-9V9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ski-N7-jg3" secondAttribute="bottom" id="veO-aD-v7G"/>
+                                    <constraint firstItem="Ski-N7-jg3" firstAttribute="width" secondItem="MCP-mo-wAs" secondAttribute="width" id="y4l-v5-AIX"/>
+                                </constraints>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="w7j-zI-INT">
+                                <connections>
+                                    <outlet property="delegate" destination="ySE-Px-Gat" id="Sqi-NJ-WSG"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XlY-fL-X4x" firstAttribute="top" secondItem="ggf-02-4BZ" secondAttribute="bottom" constant="44" id="55K-g8-Kr2"/>
+                            <constraint firstItem="XlY-fL-X4x" firstAttribute="leading" secondItem="GTd-SO-9vO" secondAttribute="leading" id="Goy-30-EeW"/>
+                            <constraint firstAttribute="trailing" secondItem="w7j-zI-INT" secondAttribute="trailing" id="JMJ-fA-XSa"/>
+                            <constraint firstItem="w7j-zI-INT" firstAttribute="top" secondItem="XlY-fL-X4x" secondAttribute="bottom" constant="1" id="KEG-p8-VnU"/>
+                            <constraint firstItem="w7j-zI-INT" firstAttribute="leading" secondItem="GTd-SO-9vO" secondAttribute="leading" id="Qiq-WB-rbL"/>
+                            <constraint firstAttribute="trailing" secondItem="XlY-fL-X4x" secondAttribute="trailing" id="Stj-Uv-adq"/>
+                            <constraint firstItem="5Qh-Px-rkd" firstAttribute="top" secondItem="w7j-zI-INT" secondAttribute="bottom" id="aca-N9-lkd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnListView" destination="s5U-fx-8Z7" id="tm0-46-iRN"/>
+                        <outlet property="btnMapView" destination="MCP-mo-wAs" id="fKF-Rr-z9J"/>
+                        <outlet property="cntViewSelection" destination="n7h-5i-9V9" id="1gl-bC-Lts"/>
+                        <outlet property="mapView" destination="w7j-zI-INT" id="tDx-2U-PQG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gog-qO-CgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698.5" y="922.5"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="8gc-fu-6Xm">
             <objects>
@@ -1563,6 +1660,9 @@
                                                         <state key="normal" title="0">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="btnPinPressed" destination="P9U-pg-bqk" eventType="touchUpInside" id="Vnb-UU-CNi"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mng-OP-uEK">
                                                         <color key="backgroundColor" red="0.52941176470588236" green="0.18823529411764706" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>

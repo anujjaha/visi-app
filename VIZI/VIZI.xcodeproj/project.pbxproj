@@ -68,6 +68,15 @@
 		D3B999741E61359600441931 /* PhotosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B999731E61359600441931 /* PhotosVC.swift */; };
 		D3C848201E58274300349555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C8481F1E58274300349555 /* CoreLocation.framework */; };
 		D3C848241E5865EC00349555 /* NewLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C848231E5865EC00349555 /* NewLocationVC.swift */; };
+		D3C88BA61EA13D12004F362B /* Bar1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BA21EA13D12004F362B /* Bar1@2x.png */; };
+		D3C88BA71EA13D12004F362B /* BarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BA31EA13D12004F362B /* BarFull@2x.png */; };
+		D3C88BA81EA13D12004F362B /* Discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BA41EA13D12004F362B /* Discover@2x.png */; };
+		D3C88BA91EA13D12004F362B /* Lake@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BA51EA13D12004F362B /* Lake@2x.jpg */; };
+		D3C88BAC1EA14030004F362B /* PinofUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BAB1EA14030004F362B /* PinofUserVC.swift */; };
+		D3C88BB01EA1443D004F362B /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BAE1EA1443D004F362B /* CustomCalloutView.swift */; };
+		D3C88BB11EA1443D004F362B /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BAF1EA1443D004F362B /* CustomCalloutView.xib */; };
+		D3C88BB31EA14652004F362B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BB21EA14652004F362B /* AnnotationView.swift */; };
+		D3C88BB51EA14888004F362B /* ViziPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */; };
 		D3CA42A31E54007500365290 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */; };
 		D3CA42A41E54007500365290 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */; };
 		D3CA42A51E54007500365290 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */; };
@@ -251,6 +260,15 @@
 		D3B999731E61359600441931 /* PhotosVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosVC.swift; path = Location/PhotosVC.swift; sourceTree = "<group>"; };
 		D3C8481F1E58274300349555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D3C848231E5865EC00349555 /* NewLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationVC.swift; path = Location/NewLocationVC.swift; sourceTree = "<group>"; };
+		D3C88BA21EA13D12004F362B /* Bar1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bar1@2x.png"; sourceTree = "<group>"; };
+		D3C88BA31EA13D12004F362B /* BarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFull@2x.png"; sourceTree = "<group>"; };
+		D3C88BA41EA13D12004F362B /* Discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discover@2x.png"; sourceTree = "<group>"; };
+		D3C88BA51EA13D12004F362B /* Lake@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake@2x.jpg"; sourceTree = "<group>"; };
+		D3C88BAB1EA14030004F362B /* PinofUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinofUserVC.swift; sourceTree = "<group>"; };
+		D3C88BAE1EA1443D004F362B /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		D3C88BAF1EA1443D004F362B /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		D3C88BB21EA14652004F362B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViziPinAnnotation.swift; sourceTree = "<group>"; };
 		D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
@@ -521,6 +539,17 @@
 			name = NewLocation;
 			sourceTree = "<group>";
 		};
+		D3C88BAD1EA1443D004F362B /* CustomCallout */ = {
+			isa = PBXGroup;
+			children = (
+				D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */,
+				D3C88BB21EA14652004F362B /* AnnotationView.swift */,
+				D3C88BAE1EA1443D004F362B /* CustomCalloutView.swift */,
+				D3C88BAF1EA1443D004F362B /* CustomCalloutView.xib */,
+			);
+			path = CustomCallout;
+			sourceTree = "<group>";
+		};
 		D3CA428B1E54007500365290 /* IQKeyboardManagerSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +674,7 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3C88BAD1EA1443D004F362B /* CustomCallout */,
 				D3849C301E99187900283C42 /* JVFloatLabeledTextField */,
 				D3849C0C1E99059500283C42 /* ELCImagePicker */,
 				D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */,
@@ -676,6 +706,10 @@
 		FF0F50B41E0052320062AF57 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
+				D3C88BA21EA13D12004F362B /* Bar1@2x.png */,
+				D3C88BA31EA13D12004F362B /* BarFull@2x.png */,
+				D3C88BA41EA13D12004F362B /* Discover@2x.png */,
+				D3C88BA51EA13D12004F362B /* Lake@2x.jpg */,
 				FF16CFAA1E05D70500136873 /* Profile.jpg */,
 				FF0F50B91E005E8B0062AF57 /* Authentication.storyboard */,
 				FFFF35491E04660F00C393B1 /* Tabbar.storyboard */,
@@ -717,6 +751,7 @@
 				FF1217FE1E119FCD00F8A6EA /* FollowersViewController.swift */,
 				FF1218001E11A87500F8A6EA /* ChangePasswordVC.swift */,
 				D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */,
+				D3C88BAB1EA14030004F362B /* PinofUserVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -847,9 +882,14 @@
 				D3849C2B1E99059500283C42 /* ELCAlbumPickerController.xib in Resources */,
 				D3B684771E4F2701008C412E /* Alamofire.xcworkspace in Resources */,
 				D3849C2C1E99059500283C42 /* ELCAssetPicker.xib in Resources */,
+				D3C88BA71EA13D12004F362B /* BarFull@2x.png in Resources */,
+				D3C88BA81EA13D12004F362B /* Discover@2x.png in Resources */,
+				D3C88BB11EA1443D004F362B /* CustomCalloutView.xib in Resources */,
 				D3849C2E1E99059500283C42 /* Overlay.png in Resources */,
+				D3C88BA61EA13D12004F362B /* Bar1@2x.png in Resources */,
 				FF16CFAB1E05D70500136873 /* Profile.jpg in Resources */,
 				FF0F50BA1E005E8B0062AF57 /* Authentication.storyboard in Resources */,
+				D3C88BA91EA13D12004F362B /* Lake@2x.jpg in Resources */,
 				D3849C2F1E99059500283C42 /* Overlay@2x.png in Resources */,
 				D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */,
 				D3B684EE1E4F28BA008C412E /* Info.plist in Resources */,
@@ -880,8 +920,10 @@
 				D3CA42AD1E54007500365290 /* IQTextView.swift in Sources */,
 				D36565F01E54D9E100E1F6AE /* UIImage+MultiFormat.m in Sources */,
 				D3CA42AF1E54007500365290 /* IQPreviousNextView.swift in Sources */,
+				D3C88BB01EA1443D004F362B /* CustomCalloutView.swift in Sources */,
 				D3B6848C1E4F2701008C412E /* MultipartFormData.swift in Sources */,
 				D3CA42B21E54007500365290 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				D3C88BAC1EA14030004F362B /* PinofUserVC.swift in Sources */,
 				D3B684911E4F2701008C412E /* Response.swift in Sources */,
 				FFFF35451E04654800C393B1 /* LoginViewController.swift in Sources */,
 				FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */,
@@ -920,6 +962,7 @@
 				D3CA42AE1E54007500365290 /* IQBarButtonItem.swift in Sources */,
 				D3B684961E4F2701008C412E /* SessionManager.swift in Sources */,
 				FF1217FF1E119FCD00F8A6EA /* FollowersViewController.swift in Sources */,
+				D3C88BB51EA14888004F362B /* ViziPinAnnotation.swift in Sources */,
 				FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */,
 				FF1217F91E11735B00F8A6EA /* DiscoverViewController.swift in Sources */,
 				D3E5DBA21E61C0AB0060912C /* MVPlaceSearchTextField.m in Sources */,
@@ -938,6 +981,7 @@
 				D3CA42A51E54007500365290 /* IQUITextFieldView+Additions.swift in Sources */,
 				FFFF35481E04655E00C393B1 /* TabBarViewController.swift in Sources */,
 				D3CA42A61E54007500365290 /* IQUIView+Hierarchy.swift in Sources */,
+				D3C88BB31EA14652004F362B /* AnnotationView.swift in Sources */,
 				D3CA42A81E54007500365290 /* IQUIWindow+Hierarchy.swift in Sources */,
 				FFFF354C1E04682700C393B1 /* HomeViewController.swift in Sources */,
 				FFFF35441E04654800C393B1 /* ForgotViewController.swift in Sources */,

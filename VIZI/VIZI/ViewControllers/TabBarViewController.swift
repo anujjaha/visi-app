@@ -65,7 +65,6 @@ class TabBarViewController: UITabBarController {
         self.selectedIndex = 1
         btnDiscover.isSelected = false
         btnUser.isSelected = false
-
     }
     @IBAction func btnProfilePressed(sender:UIButton)
     {
