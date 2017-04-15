@@ -337,7 +337,8 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
                             {
                                 sender.backgroundColor = UIColor.appPinkColor()
                                 sender.setTitle("Follow", for: UIControlState.normal)
-                                
+                                sender.setImage(nil, for: UIControlState.normal)
+
                                 let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
                                 tempdict.setValue(0, forKey: kkeyfollowing)
                                 self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)

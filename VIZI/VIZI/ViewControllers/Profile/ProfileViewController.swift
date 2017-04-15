@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var btnFollowUser : UIButton!
     @IBOutlet weak var heightofFollowBtn : NSLayoutConstraint!
     @IBOutlet weak var btnBackButton : UIButton!
+    @IBOutlet weak var btnEditProfile : UIButton!
 
     var parameters = NSDictionary()
 
@@ -140,9 +141,12 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             btnFollowUser.isHidden = true
             heightofFollowBtn.constant = 0
             btnBackButton.isHidden = true
+            btnEditProfile.isHidden = false
         }
         else
         {
+            btnEditProfile.isHidden = true
+            
             btnBackButton.isHidden = false
             btnFollowUser.isHidden = false
             heightofFollowBtn.constant = 30
@@ -282,6 +286,17 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 self.btnFollowers.setTitle(self.dicprofiledata["followers"] as? String, for: .normal)
                                 self.btnFollowing.setTitle(self.dicprofiledata["followings"] as? String, for: .normal)
                                 
+                                if((self.dicprofiledata.object(forKey: kkeyis_following) as! NSString).isEqual(to: "0"))                                {
+                                    self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
+                                    self.btnFollowUser.setTitle("Follow", for: UIControlState.normal)
+                                }
+                                else
+                                {
+                                    self.btnFollowUser.backgroundColor = UIColor.appDarkChocColor()
+                                    self.btnFollowUser.setTitle("", for: UIControlState.normal)
+                                    self.btnFollowUser.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+                                }
+                                
                                 self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyaddress) as? String, for: .normal)
                             }
                             else
@@ -333,13 +348,131 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "PinofUserVC") as! PinofUserVC
         tabbar.strScreenTitle = self.lblName.text!
-        tabbar.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        
+        if(appDelegate.bUserSelfProfile)
+        {
+            tabbar.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        }
+        else
+        {
+            tabbar.strUserID = strotheruserID
+        }
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
     
+    // MARK: - Follow / Unfollow Action
+    @IBAction func btnFollowPressed(_ sender:UIButton)
+    {
+        if((self.dicprofiledata.object(forKey: kkeyis_following) as! NSString).isEqual(to: "0"))
+        {
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "follow_id" :  strotheruserID,
+                "follow"  : "\(1)"
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)follow.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                    
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                sender.backgroundColor = UIColor.appDarkChocColor()
+                                sender.setTitle("", for: UIControlState.normal)
+                                sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+                                
+                                self.dicprofiledata.setValue("1", forKey: kkeyis_following)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
 
+        }
+        else
+        {
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "follow_id" :  strotheruserID,
+                "follow"  : "\(0)"
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)follow.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                    
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                sender.backgroundColor = UIColor.appPinkColor()
+                                sender.setTitle("Follow", for: UIControlState.normal)
+                                sender.setImage(nil, for: UIControlState.normal)
+                                self.dicprofiledata.setValue("0", forKey: kkeyis_following)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+        }
+    }
     
-      // MARK: - Add Category Actions
+    
+    // MARK: - Add Category Actions
     @IBAction func btnAddCategoryPressed()
     {
         self.viewAddFilter.isHidden = false

@@ -1992,6 +1992,9 @@
                                                 <state key="normal" title="FOLLOW">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnFollowPressed:" destination="P9U-pg-bqk" eventType="touchUpInside" id="a20-Qi-qA1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2186,6 +2189,7 @@
                     <connections>
                         <outlet property="btnBackButton" destination="zPc-8J-IIn" id="ZmV-XP-sUG"/>
                         <outlet property="btnCancel" destination="QDB-gu-QnX" id="oJk-Ee-50Z"/>
+                        <outlet property="btnEditProfile" destination="R9q-68-0Ze" id="dgj-HQ-c94"/>
                         <outlet property="btnFollowUser" destination="gto-Jk-Hby" id="jSA-xK-Voa"/>
                         <outlet property="btnFollowers" destination="mng-OP-uEK" id="vJS-Km-8dn"/>
                         <outlet property="btnFollowing" destination="hOQ-fr-grM" id="KMG-Ce-KPi"/>
@@ -2615,37 +2619,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ghH-8S-SDz"/>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGJ-HE-2ex">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZEv-N0-k77">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.99215686270000003" green="0.84313725490000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKE-Fo-tg2">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="9TY-hR-ti6"/>
-                                    <constraint firstAttribute="height" constant="44" id="ZC2-ng-BEH"/>
-                                </constraints>
-                                <state key="normal" image="back_icon"/>
-                                <connections>
-                                    <action selector="backButtonPressed" destination="DgT-PN-W2N" eventType="touchUpInside" id="77X-ZU-F0U"/>
-                                </connections>
-                            </button>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ghH-8S-SDz" secondAttribute="trailing" id="1We-Z8-p9X"/>
-                            <constraint firstItem="LGJ-HE-2ex" firstAttribute="top" secondItem="JYW-9b-YdM" secondAttribute="bottom" constant="1" id="8Oi-fv-mXZ"/>
                             <constraint firstItem="gGy-G9-3oE" firstAttribute="top" secondItem="ghH-8S-SDz" secondAttribute="bottom" id="AYS-kj-GCo"/>
-                            <constraint firstItem="LGJ-HE-2ex" firstAttribute="centerX" secondItem="2AS-2A-2vw" secondAttribute="centerX" id="Gv5-Qv-YgL"/>
+                            <constraint firstItem="ZEv-N0-k77" firstAttribute="top" secondItem="JYW-9b-YdM" secondAttribute="bottom" id="H5V-Cx-L5L"/>
                             <constraint firstItem="ghH-8S-SDz" firstAttribute="top" secondItem="2AS-2A-2vw" secondAttribute="top" id="KsU-5f-Xyj"/>
-                            <constraint firstAttribute="trailing" secondItem="LGJ-HE-2ex" secondAttribute="trailing" constant="62" id="MKn-dr-asS"/>
-                            <constraint firstItem="tKE-Fo-tg2" firstAttribute="leading" secondItem="2AS-2A-2vw" secondAttribute="leading" id="To9-jQ-6kJ"/>
-                            <constraint firstItem="LGJ-HE-2ex" firstAttribute="leading" secondItem="tKE-Fo-tg2" secondAttribute="trailing" constant="17" id="UR3-Qu-T44"/>
-                            <constraint firstItem="tKE-Fo-tg2" firstAttribute="top" secondItem="2AS-2A-2vw" secondAttribute="top" constant="10" id="ZeG-gD-Ek3"/>
+                            <constraint firstItem="gGy-G9-3oE" firstAttribute="top" secondItem="ZEv-N0-k77" secondAttribute="bottom" id="e2d-1n-PhG"/>
+                            <constraint firstItem="ZEv-N0-k77" firstAttribute="leading" secondItem="2AS-2A-2vw" secondAttribute="leading" id="iQe-WZ-T1C"/>
                             <constraint firstItem="ghH-8S-SDz" firstAttribute="leading" secondItem="2AS-2A-2vw" secondAttribute="leading" id="ncj-IW-MBn"/>
+                            <constraint firstAttribute="trailing" secondItem="ZEv-N0-k77" secondAttribute="trailing" id="uJC-06-QAf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="toC-V1-KaG"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="txtvw" destination="ZEv-N0-k77" id="j7e-qZ-9EC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zH5-pz-HXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2935,6 +2934,9 @@
                                         <state key="normal" title="Privacy Policy">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnGotoPrivacyTerms:" destination="3TN-DV-Id0" eventType="touchUpInside" id="5rR-he-qM8"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IsG-iw-n68"/>
                                 </subviews>
@@ -2951,12 +2953,15 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsk-zW-Vcd">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUa-ub-3l1">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUa-ub-3l1">
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Terms &amp; Conditions">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnGotoPrivacyTerms:" destination="3TN-DV-Id0" eventType="touchUpInside" id="r4l-SN-5wk"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rightarrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Z6V-WP-ujo"/>
                                 </subviews>

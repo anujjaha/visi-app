@@ -61,6 +61,24 @@ class SettingsViewController: UIViewController {
         appdelegate.window!.rootViewController = nav
     }
     
+    
+    @IBAction func btnGotoPrivacyTerms(_ sender: UIButton)
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "PrivacyTermsVC") as! PrivacyTermsVC
+        
+        if(sender.tag == 1)
+        {
+            tabbar.bisPrivacy = false
+        }
+        else
+        {
+            tabbar.bisPrivacy = true
+        }
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+
+    
     //MARK: Switch Action
     @IBAction func switchaction(_ sender: UIButton)
     {

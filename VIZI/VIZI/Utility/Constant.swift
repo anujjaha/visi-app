@@ -43,6 +43,8 @@ let kkeytext = "text"
 let kkeytime = "time"
 let kkeytitle = "title"
 
+let kkeyis_following = "is_following"
+
 let kNO = "NO"
 let kYES = "YES"
 
