@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PinofUserVC: UIViewController,MKMapViewDelegate
+class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITableViewDataSource
 {
     var strScreenTitle = String()
     var strUserID = String()
@@ -17,6 +17,8 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
     var arrPinData = NSArray()
     
     @IBOutlet var mapView: MKMapView!
+    
+    @IBOutlet weak  var tblPinsList : UITableView!
     
     @IBOutlet weak var btnMapView : UIButton!
     @IBOutlet weak var btnListView : UIButton!
@@ -26,19 +28,22 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
     {
         super.viewDidLoad()
         self.title = strScreenTitle
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         
         self.mapView.delegate = self
         // 2
         
+        self.tblPinsList.estimatedRowHeight = 81.0
+        self.tblPinsList.rowHeight = UITableViewAutomaticDimension
+        
         self.getPinsofUser()
-
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func backButtonPressed()
@@ -51,12 +56,18 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
         btnListView.isSelected = false
         btnMapView.isSelected = true
         cntViewSelection.constant = btnMapView.frame.origin.x
+        mapView.isHidden = false
+        tblPinsList.isHidden = true
     }
     @IBAction func btnListViewPressed()
     {
         btnListView.isSelected = true
         btnMapView.isSelected = false
         cntViewSelection.constant = btnListView.frame.origin.x
+        
+        mapView.isHidden = true
+        tblPinsList.isHidden = false
+        tblPinsList.reloadData()
     }
     
     func getPinsofUser()
@@ -95,7 +106,51 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
                                 let flon : Double  = ("\((self.arrPinData[i] as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
 
                                 let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
-                                point.image =  #imageLiteral(resourceName: "Profile.jpg")
+                                
+                                if (self.arrPinData[i] as AnyObject).object(forKey: kkeyimage) is NSNull
+                                {
+                                    point.image =  #imageLiteral(resourceName: "Profile.jpg")
+                                }
+                                else
+                                {
+                                  /*  let imageUrlString = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyimage)!)"
+                                    let imageUrl:URL = URL(string: imageUrlString)!
+                                    let imageData:NSData = NSData(contentsOf: imageUrl)!
+                                    let imagetemp = UIImage(data: imageData as Data)
+                                    point.image = imagetemp*/
+                                    
+                                    
+                                    let catPictureURL = URL(string: "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyimage)!)")!
+                                    let session = URLSession(configuration: .default)
+                                    
+                                    // Define a download task. The download task will download the contents of the URL as a Data object and then you can do what you wish with that data.
+                                    let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
+                                        // The download has finished.
+                                        if let e = error {
+                                            print("Error downloading cat picture: \(e)")
+                                        } else {
+                                            // No errors found.
+                                            // It would be weird if we didn't have a response, so check for that too.
+                                            if let res = response as? HTTPURLResponse {
+                                                print("Downloaded cat picture with response code \(res.statusCode)")
+                                                if let imageData = data
+                                                {
+                                                    // Finally convert that Data into an image and do what you wish with it.
+                                                    let imagetemp = UIImage(data: imageData)
+                                                    point.image = imagetemp
+
+                                                    // Do something with your image.
+                                                } else {
+                                                    print("Couldn't get image: Image is nil")
+                                                }
+                                            } else {
+                                                print("Couldn't get response code for some reason")
+                                            }
+                                        }
+                                    }
+                                    downloadPicTask.resume()
+
+                                }
                                 point.name = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeytitle)!)"
                                 point.address = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyaddress)!)"
                                 self.mapView.addAnnotation(point)
@@ -173,6 +228,37 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
         }
     }
 
+    
+    //MARK: Tableview Delegates
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.arrPinData.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PinsListofUserCell") as! PinsListofUserCell
+            
+            cell.lblPeopleName.text =  "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
+            cell.lblPeopleAddress.text = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
+            
+            if (self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+            {
+                cell.imgProfile.image = UIImage(named: "Profile.jpg")
+            }
+            else
+            {
+                cell.imgProfile.sd_setImage(with: URL(string: "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
+            }
+            return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
+    }
+    
+
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -190,3 +276,16 @@ class PinofUserVC: UIViewController,MKMapViewDelegate
     */
 
 }
+
+class PinsListofUserCell: UITableViewCell
+{
+    @IBOutlet weak var imgProfile : UIImageView!
+    @IBOutlet weak var lblPeopleName : UILabel!
+    @IBOutlet weak var lblPeopleAddress : UILabel!
+    
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+    }
+}
+
