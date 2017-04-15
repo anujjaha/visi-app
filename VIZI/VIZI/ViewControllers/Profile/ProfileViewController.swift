@@ -249,7 +249,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 self.dicprofiledata = NSMutableDictionary.init(dictionary: dictemp2)
                                 print("self.dicprofiledata :> \(self.dicprofiledata)")
                                 
-                                
                                 self.lblName.text =  "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyuser_name) as! String)"
                                 self.lblEmail.text = "\((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyemail) as! String)"
                                 
@@ -318,9 +317,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 break
             }
         }
-
     }
-    
     
     // MARK: - Action
     @IBAction func btnGridPressed()
@@ -346,18 +343,19 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBAction func btnPinPressed()
     {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-        let tabbar = storyTab.instantiateViewController(withIdentifier: "PinofUserVC") as! PinofUserVC
-        tabbar.strScreenTitle = self.lblName.text!
+        let objPinofUserVC = storyTab.instantiateViewController(withIdentifier: "PinofUserVC") as! PinofUserVC
+        objPinofUserVC.strScreenTitle = self.lblName.text!
         
         if(appDelegate.bUserSelfProfile)
         {
-            tabbar.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+            objPinofUserVC.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
         }
         else
         {
-            tabbar.strUserID = strotheruserID
+            objPinofUserVC.strUserID = strotheruserID
         }
-        self.navigationController?.pushViewController(tabbar, animated: true)
+        objPinofUserVC.bisUserSelfPins = true
+        self.navigationController?.pushViewController(objPinofUserVC, animated: true)
     }
     
     // MARK: - Follow / Unfollow Action

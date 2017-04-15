@@ -386,8 +386,14 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                     myImageshadow.frame = self.frame
                                     myImageshadow.frame.origin.y = self.frame.origin.y - 10
                                     myImageshadow.frame.size.height = self.frame.size.height + 20
-
                                     self.scrvw.addSubview(myImageshadow)
+                                    
+                                    let btnGotoPins:UIButton = UIButton()
+                                    btnGotoPins.backgroundColor = UIColor.clear
+                                    btnGotoPins.frame = self.frame
+                                    btnGotoPins.tag = index
+                                    btnGotoPins.addTarget(self, action: #selector(self.btnPinPressed(sender:)), for: .touchUpInside)
+                                    self.scrvw.addSubview(btnGotoPins)
                                 }
                                 
                                 self.scrvw.contentSize = CGSize(width: self.scrvw.frame.size.width * CGFloat(self.arrTrendingPlaces.count), height: self.scrvw.frame.size.height)
@@ -414,6 +420,19 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
+    //MARK: Go To Pins
+    @IBAction func btnPinPressed(sender: UIButton)
+    {
+        bGoFilterScreen = true
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objPinofUserVC = storyTab.instantiateViewController(withIdentifier: "PinofUserVC") as! PinofUserVC
+        objPinofUserVC.strScreenTitle = "Trending Places"
+        objPinofUserVC.bisUserSelfPins = false
+        objPinofUserVC.arrTrendingPlacesPins = NSMutableArray(array:((self.arrTrendingPlaces[sender.tag] as AnyObject).object(forKey: kkeypins) as? NSArray)!)
+        print("objPinofUserVC.arrTrendingPlacesPins :> \(objPinofUserVC.arrTrendingPlacesPins)")
+        self.navigationController?.pushViewController(objPinofUserVC, animated: true)
+    }
+
     //MARK:Go To Filter Screen
     @IBAction func btnGotoFilterScreen(_ sender: UIButton)
     {

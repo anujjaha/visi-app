@@ -24,7 +24,6 @@ class PrivacyTermsVC: UIViewController
         {
             self.getprivacyData()
             self.title = "Privacy Policy"
-
         }
         else
         {

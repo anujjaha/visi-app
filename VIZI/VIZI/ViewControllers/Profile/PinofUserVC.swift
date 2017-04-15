@@ -23,6 +23,8 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
     @IBOutlet weak var btnMapView : UIButton!
     @IBOutlet weak var btnListView : UIButton!
     @IBOutlet weak var cntViewSelection : NSLayoutConstraint!
+    var arrTrendingPlacesPins = NSMutableArray()
+    var bisUserSelfPins = Bool()
 
     override func viewDidLoad()
     {
@@ -37,7 +39,27 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         self.tblPinsList.estimatedRowHeight = 81.0
         self.tblPinsList.rowHeight = UITableViewAutomaticDimension
         
-        self.getPinsofUser()
+        if(bisUserSelfPins)
+        {
+            self.getPinsofUser()
+        }
+        else
+        {
+            for i in 0..<self.arrTrendingPlacesPins.count
+            {
+                let flat : Double  = ("\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+                let flon : Double  = ("\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+                
+                let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
+                    point.image =  #imageLiteral(resourceName: "Following_pin")
+                point.name = "\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeytitle)!)"
+                point.address = "\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeyaddress)!)"
+                self.mapView.addAnnotation(point)
+            }
+            // 3
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+            self.mapView.setRegion(region, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -232,12 +254,21 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
     //MARK: Tableview Delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.arrPinData.count
+        if(bisUserSelfPins)
+        {
+            return self.arrPinData.count
+        }
+        else
+        {
+            return self.arrTrendingPlacesPins.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PinsListofUserCell") as! PinsListofUserCell
-            
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PinsListofUserCell") as! PinsListofUserCell
+        
+        if(bisUserSelfPins)
+        {
             cell.lblPeopleName.text =  "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
             cell.lblPeopleAddress.text = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
             
@@ -249,15 +280,20 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
             {
                 cell.imgProfile.sd_setImage(with: URL(string: "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
             }
-            return cell
+        }
+        else
+        {
+            cell.lblPeopleName.text =  "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
+            cell.lblPeopleAddress.text = "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
+            cell.imgProfile.image = #imageLiteral(resourceName: "Following_pin")
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
-    
-
     
     override func didReceiveMemoryWarning()
     {
