@@ -38,7 +38,7 @@ class ProfileDetailVC: UIViewController
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "addall_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "addall_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         self.title = dictCategory[kkeyname] as? String
         // Do any additional setup after loading the view.
         
@@ -161,7 +161,7 @@ extension ProfileDetailVC : UITableViewDelegate, UITableViewDataSource
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         objDetailVC.strPinID = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeypin_id) as! NSString)"
-        objDetailVC.strCategoryName = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeytitle) as! String)"
+        objDetailVC.strCategoryName = (dictCategory[kkeyname] as? String)!
         self.navigationController?.pushViewController(objDetailVC, animated: true)
     }
 

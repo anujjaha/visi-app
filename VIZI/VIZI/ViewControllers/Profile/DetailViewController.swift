@@ -150,7 +150,7 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-//        cell.lblCategoryName.text = strCategoryName
+        cell.lblCategoryName.text = strCategoryName
         if (arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
             cell.imgCategory.image = UIImage(named: "Lake.jpg")

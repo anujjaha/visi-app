@@ -624,6 +624,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         {
             homeViewController.bFollowers = false
         }
+        
+        if(appDelegate.bUserSelfProfile)
+        {
+            homeViewController.strUserID = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        }
+        else
+        {
+            homeViewController.strUserID = strotheruserID
+        }
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }
 

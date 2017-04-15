@@ -2517,7 +2517,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="13t-5j-KSR">
                                 <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="226" id="YXI-jm-f9C"/>
+                                    <constraint firstAttribute="height" constant="113" id="YXI-jm-f9C"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="GAg-6m-Vf2">
                                     <size key="itemSize" width="113" height="113"/>

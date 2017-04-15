@@ -31,6 +31,7 @@ class FollowersViewController: UIViewController
     var arrFollowersList = NSMutableArray()
     @IBOutlet weak var tblFollowersList: UITableView!
     var bFollowers = Bool()
+    var strUserID = String()
 
     override func viewDidLoad()
     {
@@ -66,7 +67,7 @@ class FollowersViewController: UIViewController
         arrFollowersList = NSMutableArray()
         
         let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "user_id": strUserID,
             "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
             "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
         ]
@@ -123,7 +124,7 @@ class FollowersViewController: UIViewController
         arrFollowersList = NSMutableArray()
         
         let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "user_id": strUserID,
             "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
             "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
         ]
@@ -235,6 +236,15 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
             cell.btnFollw.backgroundColor = UIColor.appDarkChocColor()
             cell.btnFollw.setTitle("", for: UIControlState.normal)
             cell.btnFollw.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+        }
+        
+        if(appDelegate.bUserSelfProfile)
+        {
+            cell.btnFollw.isEnabled = true
+        }
+        else
+        {
+             cell.btnFollw.isEnabled = false
         }
         return cell
     }
