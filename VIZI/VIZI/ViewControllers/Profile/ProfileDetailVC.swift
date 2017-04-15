@@ -90,14 +90,12 @@ class ProfileDetailVC: UIViewController
                             {
                                 App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                                 self.tbllocation.reloadData()
-
                             }
                         }
                         else
                         {
                             App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                             self.tbllocation.reloadData()
-
                         }
                     }
                 }
@@ -158,10 +156,17 @@ extension ProfileDetailVC : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        objDetailVC.strPinID = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeypin_id) as! NSString)"
+        objDetailVC.strCategoryName = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeytitle) as! String)"
+        self.navigationController?.pushViewController(objDetailVC, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
-
 }

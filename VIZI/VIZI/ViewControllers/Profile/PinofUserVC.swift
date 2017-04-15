@@ -25,6 +25,7 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
     @IBOutlet weak var cntViewSelection : NSLayoutConstraint!
     var arrTrendingPlacesPins = NSMutableArray()
     var bisUserSelfPins = Bool()
+    var arrLocation = NSMutableArray()
 
     override func viewDidLoad()
     {

@@ -2446,7 +2446,6 @@
                                             <outlet property="imgLocation" destination="aF5-4X-JA9" id="8Kj-cF-MaL"/>
                                             <outlet property="lblName" destination="KGT-K1-8oQ" id="2g2-cp-BES"/>
                                             <outlet property="viewContainer" destination="Fhh-6x-8Pz" id="JBw-25-hEs"/>
-                                            <segue destination="Xmr-G8-834" kind="push" id="tRf-a3-esu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2476,7 +2475,7 @@
         <!--Detail View Controller-->
         <scene sceneID="xqf-Um-CuX">
             <objects>
-                <viewController id="Xmr-G8-834" customClass="DetailViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="Xmr-G8-834" customClass="DetailViewController" customModule="VIZI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TYo-1O-Bbq"/>
                         <viewControllerLayoutGuide type="bottom" id="UFK-HM-K71"/>
@@ -2508,7 +2507,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7as-I9-tgI">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7as-I9-tgI">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="tjk-PU-Zzt"/>
                                     <constraint firstAttribute="width" constant="44" id="u7Q-6l-4JK"/>
@@ -2555,6 +2554,10 @@
                                             <constraint firstItem="Z0m-7N-7A4" firstAttribute="centerX" secondItem="3fc-1h-YdV" secondAttribute="centerX" id="wq6-Wp-1Kb"/>
                                             <constraint firstAttribute="bottom" secondItem="cqC-hZ-HYj" secondAttribute="bottom" id="xPq-L2-GBH"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imgCategory" destination="cqC-hZ-HYj" id="kF8-hs-njX"/>
+                                            <outlet property="lblCategoryName" destination="Z0m-7N-7A4" id="ceF-fa-Mg9"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -2570,6 +2573,13 @@
                                 <color key="textColor" red="0.99215686270000003" green="0.84313725490000002" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaV-TV-GCj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="UqB-vd-ENH"/>
+                                    <constraint firstAttribute="height" constant="27" id="kRS-o8-5I2"/>
+                                </constraints>
+                                <state key="normal" image="direction_icon"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.078431372549019607" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2583,6 +2593,7 @@
                             <constraint firstAttribute="trailing" secondItem="eaJ-m3-4JP" secondAttribute="trailing" id="Dil-5u-gAa"/>
                             <constraint firstItem="UFK-HM-K71" firstAttribute="top" secondItem="13t-5j-KSR" secondAttribute="bottom" constant="18" id="DsY-aN-4l1"/>
                             <constraint firstItem="Xmn-PC-9zm" firstAttribute="leading" secondItem="px0-d7-ozx" secondAttribute="leading" constant="18" id="G8L-8B-ahd"/>
+                            <constraint firstItem="Xmn-PC-9zm" firstAttribute="top" secondItem="JaV-TV-GCj" secondAttribute="bottom" constant="4" id="Jun-TV-Z41"/>
                             <constraint firstItem="eaJ-m3-4JP" firstAttribute="leading" secondItem="px0-d7-ozx" secondAttribute="leading" id="Mdq-kh-oGj"/>
                             <constraint firstAttribute="trailing" secondItem="kZa-Ea-6ee" secondAttribute="trailing" constant="18" id="S8k-zi-FKJ"/>
                             <constraint firstItem="BRW-Wl-GVC" firstAttribute="top" secondItem="TYo-1O-Bbq" secondAttribute="bottom" constant="10" id="U9b-FX-4rF"/>
@@ -2592,6 +2603,7 @@
                             <constraint firstAttribute="trailing" secondItem="rUt-vy-BM3" secondAttribute="trailing" id="YBJ-Mr-Bcd"/>
                             <constraint firstItem="13t-5j-KSR" firstAttribute="top" secondItem="eaJ-m3-4JP" secondAttribute="bottom" constant="5" id="eSp-1S-VpM"/>
                             <constraint firstItem="BRW-Wl-GVC" firstAttribute="centerX" secondItem="px0-d7-ozx" secondAttribute="centerX" id="grl-Sx-yrt"/>
+                            <constraint firstItem="JaV-TV-GCj" firstAttribute="leading" secondItem="px0-d7-ozx" secondAttribute="leading" constant="18" id="hEY-XD-L3K"/>
                             <constraint firstItem="yFZ-pF-Rfh" firstAttribute="top" secondItem="Xmn-PC-9zm" secondAttribute="bottom" id="iIr-zq-7KD"/>
                             <constraint firstAttribute="trailing" secondItem="7as-I9-tgI" secondAttribute="trailing" id="xvH-3E-jnl"/>
                             <constraint firstItem="rUt-vy-BM3" firstAttribute="leading" secondItem="px0-d7-ozx" secondAttribute="leading" id="zaT-qa-I6M"/>
@@ -2599,12 +2611,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="oNO-oH-lxU"/>
                     <connections>
+                        <outlet property="btnAddress" destination="yFZ-pF-Rfh" id="T9v-bz-j62"/>
                         <outlet property="colData" destination="13t-5j-KSR" id="HWR-jX-p8u"/>
+                        <outlet property="imgbgFull" destination="eaJ-m3-4JP" id="645-4u-CZW"/>
+                        <outlet property="lblScreenTitle" destination="BRW-Wl-GVC" id="vbm-cY-Tct"/>
+                        <outlet property="lblTitle" destination="Xmn-PC-9zm" id="2nN-xu-eEh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8A-Zp-zK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="923"/>
+            <point key="canvasLocation" x="1653.5" y="922.5"/>
         </scene>
         <!--Privacy TermsVC-->
         <scene sceneID="6yj-BV-ccL">
@@ -3330,6 +3346,7 @@
         <image name="changepwd_icon" width="138" height="138"/>
         <image name="check_icon" width="16" height="16"/>
         <image name="current_location" width="68" height="68"/>
+        <image name="direction_icon" width="27" height="27"/>
         <image name="downarrow_icon" width="20" height="20"/>
         <image name="edit_icon" width="28" height="28"/>
         <image name="filter_icon" width="39" height="39"/>

@@ -44,6 +44,8 @@ let kkeytime = "time"
 let kkeytitle = "title"
 let kkeypins = "pins"
 let kkeyis_following = "is_following"
+let kkeypin_id = "pin_id"
+let kkeybgimage = "bgimage"
 
 let kNO = "NO"
 let kYES = "YES"
