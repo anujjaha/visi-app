@@ -750,8 +750,20 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
         {
             cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
         }
+        
+        cell.selectionStyle = .none
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+        homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
+        print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension

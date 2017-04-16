@@ -137,12 +137,15 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
                                         appDelegate.iNewLocationCategoryID = 0
                                         appDelegate.arrNewLocationPhotos = NSMutableArray()
                                         
-                                        let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)
+                                        
+                                        _ = self.navigationController?.popViewController(animated: true)
+
+                                      /*  let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)
                                         let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
                                             _ = self.navigationController?.popViewController(animated: true)
                                         }
                                         alertView.addAction(OKAction)
-                                        self.present(alertView, animated: true, completion: nil)
+                                        self.present(alertView, animated: true, completion: nil)*/
                                     }
                                     else
                                     {
