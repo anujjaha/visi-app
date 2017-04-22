@@ -97,6 +97,7 @@
 		D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */; };
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
+		D3DA7EDA1EAB70D500BB317A /* GooglePlacesSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA7ED91EAB70D500BB317A /* GooglePlacesSearchController.swift */; };
 		D3DF34831E7EA30E00450CC7 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */; };
 		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
 		D3E5DB6F1E61B8110060912C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB6E1E61B8110060912C /* CoreMedia.framework */; };
@@ -112,11 +113,6 @@
 		D3E5DB831E61BF420060912C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB821E61BF420060912C /* libicucore.dylib */; };
 		D3E5DB8F1E61C0150060912C /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */; };
 		D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */; };
-		D3E5DBA01E61C0AB0060912C /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */; };
-		D3E5DBA11E61C0AB0060912C /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */; };
-		D3E5DBA21E61C0AB0060912C /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */; };
-		D3E5DBA31E61C0AB0060912C /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */; };
-		D3E5DBA41E61C0AB0060912C /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */; };
 		D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DBA51E61C2970060912C /* Accelerate.framework */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */; };
@@ -290,6 +286,7 @@
 		D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D3DA7ED91EAB70D500BB317A /* GooglePlacesSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesSearchController.swift; sourceTree = "<group>"; };
 		D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VIZI.entitlements; sourceTree = "<group>"; };
 		D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCategoryVC.swift; path = Location/FilterCategoryVC.swift; sourceTree = "<group>"; };
@@ -306,19 +303,6 @@
 		D3E5DB821E61BF420060912C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
-		D3E5DB931E61C0AB0060912C /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
-		D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
-		D3E5DB951E61C0AB0060912C /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
-		D3E5DB961E61C0AB0060912C /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
-		D3E5DB971E61C0AB0060912C /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
-		D3E5DB981E61C0AB0060912C /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
-		D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
-		D3E5DB9A1E61C0AB0060912C /* MVPlaceSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPlaceSearchTextField.h; sourceTree = "<group>"; };
-		D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVPlaceSearchTextField.m; sourceTree = "<group>"; };
-		D3E5DB9C1E61C0AB0060912C /* PlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetail.h; sourceTree = "<group>"; };
-		D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
-		D3E5DB9E1E61C0AB0060912C /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
-		D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
 		D3E5DBA51E61C2970060912C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIZIUITextField.swift; sourceTree = "<group>"; };
@@ -542,6 +526,7 @@
 		D3C88BAD1EA1443D004F362B /* CustomCallout */ = {
 			isa = PBXGroup;
 			children = (
+				D3DA7ED91EAB70D500BB317A /* GooglePlacesSearchController.swift */,
 				D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */,
 				D3C88BB21EA14652004F362B /* AnnotationView.swift */,
 				D3C88BAE1EA1443D004F362B /* CustomCalloutView.swift */,
@@ -615,34 +600,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		D3E5DB911E61C0AB0060912C /* MVPlaceSearchTextField */ = {
-			isa = PBXGroup;
-			children = (
-				D3E5DB921E61C0AB0060912C /* MLPAutoCompleteTextField */,
-				D3E5DB9A1E61C0AB0060912C /* MVPlaceSearchTextField.h */,
-				D3E5DB9B1E61C0AB0060912C /* MVPlaceSearchTextField.m */,
-				D3E5DB9C1E61C0AB0060912C /* PlaceDetail.h */,
-				D3E5DB9D1E61C0AB0060912C /* PlaceDetail.m */,
-				D3E5DB9E1E61C0AB0060912C /* PlaceObject.h */,
-				D3E5DB9F1E61C0AB0060912C /* PlaceObject.m */,
-			);
-			path = MVPlaceSearchTextField;
-			sourceTree = "<group>";
-		};
-		D3E5DB921E61C0AB0060912C /* MLPAutoCompleteTextField */ = {
-			isa = PBXGroup;
-			children = (
-				D3E5DB931E61C0AB0060912C /* MLPAutoCompleteTextField.h */,
-				D3E5DB941E61C0AB0060912C /* MLPAutoCompleteTextField.m */,
-				D3E5DB951E61C0AB0060912C /* MLPAutoCompleteTextFieldDataSource.h */,
-				D3E5DB961E61C0AB0060912C /* MLPAutoCompleteTextFieldDelegate.h */,
-				D3E5DB971E61C0AB0060912C /* MLPAutoCompletionObject.h */,
-				D3E5DB981E61C0AB0060912C /* NSString+Levenshtein.h */,
-				D3E5DB991E61C0AB0060912C /* NSString+Levenshtein.m */,
-			);
-			path = MLPAutoCompleteTextField;
-			sourceTree = "<group>";
-		};
 		FF0C0EC71E01B30100E77961 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,7 +635,6 @@
 				D3849C301E99187900283C42 /* JVFloatLabeledTextField */,
 				D3849C0C1E99059500283C42 /* ELCImagePicker */,
 				D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */,
-				D3E5DB911E61C0AB0060912C /* MVPlaceSearchTextField */,
 				D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */,
 				D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */,
 				D36565B71E54D9E100E1F6AE /* SDWebImage */,
@@ -914,6 +870,7 @@
 				D36565E61E54D9E100E1F6AE /* SDImageCache.m in Sources */,
 				FFDC7CFF1E06D4F9007A4451 /* EditProfileViewController.swift in Sources */,
 				FFDC7CF91E0695E8007A4451 /* ProfileDetailVC.swift in Sources */,
+				D3DA7EDA1EAB70D500BB317A /* GooglePlacesSearchController.swift in Sources */,
 				D3B684971E4F2701008C412E /* TaskDelegate.swift in Sources */,
 				D388998C1E509A4900F31808 /* SwiftyJSON.swift in Sources */,
 				D3A420B21E6891DC00F4BEC0 /* FilterPeopleVC.swift in Sources */,
@@ -929,7 +886,6 @@
 				FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */,
 				D36565EF1E54D9E100E1F6AE /* UIImage+GIF.m in Sources */,
 				D3849C371E99187900283C42 /* JVFloatLabeledTextField.m in Sources */,
-				D3E5DBA31E61C0AB0060912C /* PlaceDetail.m in Sources */,
 				D3CA42B11E54007500365290 /* IQToolbar.swift in Sources */,
 				D3B6848F1E4F2701008C412E /* ParameterEncoding.swift in Sources */,
 				D36565ED1E54D9E100E1F6AE /* SDWebImagePrefetcher.m in Sources */,
@@ -965,8 +921,6 @@
 				D3C88BB51EA14888004F362B /* ViziPinAnnotation.swift in Sources */,
 				FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */,
 				FF1217F91E11735B00F8A6EA /* DiscoverViewController.swift in Sources */,
-				D3E5DBA21E61C0AB0060912C /* MVPlaceSearchTextField.m in Sources */,
-				D3E5DBA11E61C0AB0060912C /* NSString+Levenshtein.m in Sources */,
 				D3CA42A71E54007500365290 /* IQUIViewController+Additions.swift in Sources */,
 				D3B684871E4F2701008C412E /* AFError.swift in Sources */,
 				D36565E81E54D9E100E1F6AE /* SDWebImageCompat.m in Sources */,
@@ -987,8 +941,6 @@
 				FFFF35441E04654800C393B1 /* ForgotViewController.swift in Sources */,
 				FFDC7CFD1E06D4DA007A4451 /* SettingsViewController.swift in Sources */,
 				D3CA42AB1E54007500365290 /* IQKeyboardManager.swift in Sources */,
-				D3E5DBA41E61C0AB0060912C /* PlaceObject.m in Sources */,
-				D3E5DBA01E61C0AB0060912C /* MLPAutoCompleteTextField.m in Sources */,
 				D3B6848E1E4F2701008C412E /* Notifications.swift in Sources */,
 				D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */,
 				D3B684921E4F2701008C412E /* ResponseSerialization.swift in Sources */,

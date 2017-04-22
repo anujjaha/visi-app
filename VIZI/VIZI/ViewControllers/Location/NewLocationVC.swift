@@ -77,10 +77,10 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
         {
             App_showAlert(withMessage: "Please add photos", inView: self)
         }*/
-        else if (self.txtvwNotes.text?.isEmpty)!
+     /*   else if (self.txtvwNotes.text?.isEmpty)!
         {
             App_showAlert(withMessage: "Please enter note", inView: self)
-        }
+        }*/
         else
         {
             showProgress(inView: self.view)
@@ -136,8 +136,6 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
                                         appDelegate.strNewLocationCategoryName = ""
                                         appDelegate.iNewLocationCategoryID = 0
                                         appDelegate.arrNewLocationPhotos = NSMutableArray()
-                                        
-                                        
                                         _ = self.navigationController?.popViewController(animated: true)
 
                                       /*  let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)

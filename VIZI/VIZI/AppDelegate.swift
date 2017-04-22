@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         strDeviceToken = "asdfghjkl"
         
-        GMSServices.provideAPIKey("AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4")
+        GMSServices.provideAPIKey(kGOOGLEAPIKEY)
         
         if #available(iOS 10.0, *)
         {

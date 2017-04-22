@@ -3,7 +3,7 @@
 //
 
 #import "UIImageView+WebCache.h"
-#import "MVPlaceSearchTextField.h"
+//#import "MVPlaceSearchTextField.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "ELCImagePickerController.h"
 #import "JVFloatLabeledTextView.h"
