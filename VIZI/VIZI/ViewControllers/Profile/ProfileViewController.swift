@@ -70,6 +70,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var heightofFollowBtn : NSLayoutConstraint!
     @IBOutlet weak var btnBackButton : UIButton!
     @IBOutlet weak var btnEditProfile : UIButton!
+    @IBOutlet weak var btnSettingsProfile : UIButton!
 
     var parameters = NSDictionary()
 
@@ -142,10 +143,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             heightofFollowBtn.constant = 0
             btnBackButton.isHidden = true
             btnEditProfile.isHidden = false
+            btnPlus.isHidden = false
+            btnSettingsProfile.isHidden = false
         }
         else
         {
             btnEditProfile.isHidden = true
+            btnPlus.isHidden = true
+            lblEmail.isHidden = true
+            btnSettingsProfile.isHidden = true
             
             btnBackButton.isHidden = false
             btnFollowUser.isHidden = false
@@ -292,8 +298,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 else
                                 {
                                     self.btnFollowUser.backgroundColor = UIColor.appDarkChocColor()
-                                    self.btnFollowUser.setTitle("", for: UIControlState.normal)
-                                    self.btnFollowUser.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+                                    self.btnFollowUser.setTitle("Following", for: UIControlState.normal)
                                 }
                                 
                                 self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyaddress) as? String, for: .normal)
@@ -394,8 +399,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                             if dictemp.count > 0
                             {
                                 sender.backgroundColor = UIColor.appDarkChocColor()
-                                sender.setTitle("", for: UIControlState.normal)
-                                sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+                                sender.setTitle("Following", for: UIControlState.normal)
                                 
                                 self.dicprofiledata.setValue("1", forKey: kkeyis_following)
                             }
@@ -449,7 +453,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                             {
                                 sender.backgroundColor = UIColor.appPinkColor()
                                 sender.setTitle("Follow", for: UIControlState.normal)
-                                sender.setImage(nil, for: UIControlState.normal)
                                 self.dicprofiledata.setValue("0", forKey: kkeyis_following)
                             }
                             else

@@ -14,6 +14,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate
     @IBOutlet weak var mapView : GMSMapView!
     let locationManager = CLLocationManager()
     var fCurrentcordinate = CLLocationCoordinate2D()
+    @IBOutlet weak var btnPin : UIButton!
+    @IBOutlet weak var btnAddnewLoaction : UIButton!
 
     override func viewDidLoad()
     {
@@ -47,6 +49,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate
             self.navigationController?.pushViewController(tabbar, animated: true)
         }
     }
+    
+
     
     @IBAction func NotificationPressed()
     {
@@ -89,6 +93,31 @@ class HomeViewController: UIViewController,MKMapViewDelegate
         
         present(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func btnPinAction(sender: UIButton)
+    {
+        if(btnPin.isSelected)
+        {
+            btnPin.isSelected = false
+            btnAddnewLoaction.isHidden = true
+        }
+        else
+        {
+            btnPin.isSelected = true
+            btnAddnewLoaction.isHidden = false
+        }
+    }
+    
+    @IBAction func btnAddNewLocationAction(sender: UIButton)
+    {
+        btnPin.isSelected = false
+        btnAddnewLoaction.isHidden = true
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "NewLocationVC") as! NewLocationVC
+        tabbar.fcordinate = self.fCurrentcordinate
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+
     
     /*
     // MARK: - Navigation

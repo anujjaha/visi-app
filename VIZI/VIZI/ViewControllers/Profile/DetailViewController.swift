@@ -161,7 +161,7 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
         }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "pushToDetail", sender: self)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
     }
 }

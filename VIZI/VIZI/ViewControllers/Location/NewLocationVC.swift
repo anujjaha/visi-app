@@ -32,14 +32,9 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
         txtvwNotes.delegate = self
         
         let center = CLLocationCoordinate2D(latitude: fcordinate.latitude, longitude: fcordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.setRegion(region, animated: true)
         
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(appDelegate.userLocation.coordinate.latitude, appDelegate.userLocation.coordinate.longitude);
-        myAnnotation.title = "Current location"
-        myAnnotation.coordinate = mapView.centerCoordinate
-        mapView.addAnnotation(myAnnotation)
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -181,37 +176,6 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
         txtvwNotes.becomeFirstResponder()
     }
 
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // Don't want to show a custom image if the annotation is the user's location.
-        guard !(annotation is MKUserLocation) else {
-            return nil
-        }
-        
-        // Better to make this class property
-        let annotationIdentifier = "AnnotationIdentifier"
-        
-        var annotationView: MKAnnotationView?
-        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        {
-            annotationView = dequeuedAnnotationView
-            annotationView?.annotation = annotation
-        }
-        else
-        {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        
-        if let annotationView = annotationView
-        {
-            // Configure your annotation view here
-            annotationView.canShowCallout = false
-            annotationView.image = UIImage(named: "MapPin")
-            annotationView.isDraggable = false
-        }
-        return annotationView
-    }
-
     
     @IBAction func backButtonPressed() {
         _ = self.navigationController?.popViewController(animated: true)
@@ -226,7 +190,7 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
     {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count // for Swift use count(newText)
-        return numberOfChars < 255
+        return numberOfChars < 140
     }
 
 

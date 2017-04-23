@@ -453,7 +453,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         else
         {
             btnMoveMapup.isSelected = true
-            csofTopViewHeight.constant = 0
+            csofTopViewHeight.constant = 48
         }
     }
     
