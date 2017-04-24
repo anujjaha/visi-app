@@ -161,50 +161,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         self.getProfileData()
     }
     
-    //MARK: - Get Category Data
-    func getCategorydata()
-    {
-        showProgress(inView: self.view)
-        
-        request("\(kServerURL)categories.php", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            
-            hideProgress()
-            
-            switch(response.result)
-            {
-            case .success(_):
-                if response.result.value != nil
-                {
-                    print(response.result.value)
-                    if let json = response.result.value {
-                        print("json :> \(json)")
-                        
-                        let dictemp = json as! NSDictionary
-                        print("dictemp :> \(dictemp)")
-                        
-                        if dictemp.count > 0
-                        {
-                            self.arrCategorydata = (dictemp["data"] as? NSArray)!
-                            print("arrCategorydata :> \(self.arrCategorydata)")
-                            self.cvCategory.reloadData()
-                        }
-                        else
-                        {
-                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
-                        }
-                    }
-                }
-                break
-                
-            case .failure(_):
-                print(response.result.error)
-                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
-                self.cvCategory.reloadData()
-                break
-            }
-        }
-    }
-    
     //MARK: - Get Profile Data
     func getProfileData()
     {
@@ -297,7 +253,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 }
                                 else
                                 {
-                                    self.btnFollowUser.backgroundColor = UIColor.appDarkChocColor()
+                                    self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
                                     self.btnFollowUser.setTitle("Following", for: UIControlState.normal)
                                 }
                                 
@@ -398,7 +354,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                             
                             if dictemp.count > 0
                             {
-                                sender.backgroundColor = UIColor.appDarkChocColor()
+                                self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
                                 sender.setTitle("Following", for: UIControlState.normal)
                                 
                                 self.dicprofiledata.setValue("1", forKey: kkeyis_following)

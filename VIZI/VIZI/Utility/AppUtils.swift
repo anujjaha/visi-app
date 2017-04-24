@@ -9,12 +9,22 @@
 import Foundation
 import UIKit
 
-func App_showAlert(withMessage message:String, inView viewC : UIViewController) {
+func App_showAlert(withMessage message:String, inView viewC : UIViewController)
+{
     let alert = UIAlertController(title: Application_Name, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
     alert.addAction(action)
     viewC.present(alert, animated: true, completion: nil)
 }
+
+func App_showAlertwithTitle(withMessage message:String,withTitle:String, inView viewC : UIViewController)
+{
+    let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+    alert.addAction(action)
+    viewC.present(alert, animated: true, completion: nil)
+}
+
 
 func isValidEmailID(strEmail: String) -> Bool {
     

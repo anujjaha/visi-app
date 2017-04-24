@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var colData : UICollectionView!
     var strPinID = String()
+    var strCategoryID = String()
     var dictLocation = NSMutableDictionary()
     var arrLocation = NSMutableArray()
     @IBOutlet weak var imgbgFull : UIImageView!
@@ -19,6 +20,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var btnAddress : UIButton!
     @IBOutlet weak var lblScreenTitle : UILabel!
     var strCategoryName = String()
+    @IBOutlet weak var btnAddPin : UIButton!
 
     override func viewDidLoad()
     {
@@ -26,11 +28,22 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.async {
             self.colData.layer.cornerRadius = 5.0
         }
-        // Do any additional setup after loading the view.
         
+        if(appDelegate.bUserSelfProfile)
+        {
+            btnAddPin.isHidden = true
+        }
+        else
+        {
+            btnAddPin.isHidden = false
+        }
+        
+        // Do any additional setup after loading the view.
         self.getPinDetailData()
     }
 
+    
+    
     //MARK: - Get Pin Detail Data
     func getPinDetailData()
     {
@@ -77,8 +90,16 @@ class DetailViewController: UIViewController {
                                     self.imgbgFull.sd_setImage(with: URL(string: "\(self.dictLocation.object(forKey: kkeybgimage)!)"), placeholderImage: UIImage(named: "BarFull@2x.png"))
                                 }
                                 
-                                self.lblScreenTitle.text = "\(self.dictLocation.object(forKey: kkeytitle)!)"
-                                self.lblTitle.text = "\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeytitle)!)"
+                                /*
+                                 Niyati Shah : 24-04-2017
+                                 Comment : ○ When looking at a specific pin you’ve saved it should say “Directions To Here” in the yellow, and the name of the location in white on top where it currently says “Lake Details”
+                                 */
+//                                self.lblScreenTitle.text = "\(self.dictLocation.object(forKey: kkeytitle)!)"
+//                                self.lblTitle.text = "\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeytitle)!)"
+
+                                self.lblScreenTitle.text = "\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeytitle)!)"
+                                self.lblTitle.text = "Directions To Here"
+
                                 self.btnAddress.setTitle("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeyaddress)!)", for: .normal)
                                 self.arrLocation = NSMutableArray(array:((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "images")! as? NSArray)!)
                                 
@@ -126,6 +147,62 @@ class DetailViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func btnAddPinPressed()
+    {
+        /*
+         http://35.154.46.190/vizi/api/add_to_list.php
+         user_id
+         category_id
+         pin_ids -> This will be comma separated like 1,2,3
+        */
+        showProgress(inView: self.view)
+        
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "category_id": strCategoryID,
+            "pin_ids": strPinID
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)add_to_list.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+    }
+    
+    @IBAction func btnNotesPressed()
+    {
+        if(self.dictLocation.count > 0)
+        {
+            App_showAlertwithTitle(withMessage:"\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "note")!)", withTitle: "Notes", inView: self)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

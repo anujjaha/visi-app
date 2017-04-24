@@ -58,7 +58,7 @@ class ProfileDetailVC: UIViewController
         ]
         
         showProgress(inView: self.view)
-        print("parameters:>\(parameters)")
+        print("pins_from_location.php parameters:>\(parameters)")
         request("\(kServerURL)pins_from_location.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
@@ -162,6 +162,7 @@ extension ProfileDetailVC : UITableViewDelegate, UITableViewDataSource
         let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         objDetailVC.strPinID = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeypin_id) as! NSString)"
         objDetailVC.strCategoryName = (dictCategory[kkeyname] as? String)!
+        objDetailVC.strCategoryID = "\(dictCategory[kkeyuserid]!)"
         self.navigationController?.pushViewController(objDetailVC, animated: true)
     }
 
