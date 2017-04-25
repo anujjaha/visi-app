@@ -71,6 +71,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var btnBackButton : UIButton!
     @IBOutlet weak var btnEditProfile : UIButton!
     @IBOutlet weak var btnSettingsProfile : UIButton!
+    @IBOutlet weak var heightofScrView : NSLayoutConstraint!
+    @IBOutlet weak var heightofVWGrid : NSLayoutConstraint!
 
     var parameters = NSDictionary()
 
@@ -241,6 +243,19 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 
                                 self.arrCategorydata = (self.dicprofiledata["categories"] as? NSArray)!
                                 print("arrCategorydata :> \(self.arrCategorydata)")
+                                
+                                
+                                print("ceil(Double(self.arrCategorydata.count/3)) :> \(ceil(Double(self.arrCategorydata.count/3)))")
+                                
+                                let collectionWidth = MainScreen.width - 36
+                                let temphg = Double((collectionWidth-2)/3)
+                                let itemp = 389 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+                                self.heightofScrView.constant = CGFloat(itemp)
+                                
+                                let iHeighofGrid = 47 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+                                self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
+                                print("itemp:> \(itemp)")
+
                                 self.cvCategory.reloadData()
                                 
                                 self.btnPin.setTitle(self.dicprofiledata["pins"] as? String, for: .normal)
@@ -289,8 +304,19 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         viewList.alpha = 0.4
         tblCategoryList.isHidden = true
         cvCategory.isHidden = false
+        
+        let collectionWidth = MainScreen.width - 36
+        let temphg = Double((collectionWidth-2)/3)
+        let itemp = 389 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+        self.heightofScrView.constant = CGFloat(itemp)
+        
+        let iHeighofGrid = 47 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+        self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
+        print("itemp:> \(itemp)")
+
     }
-    @IBAction func btnListPressed() {
+    @IBAction func btnListPressed()
+    {
         viewList.backgroundColor = UIColor.appPinkColor()
         viewList.alpha = 1.0
         viewGrid.backgroundColor = UIColor.clear
@@ -299,6 +325,13 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         tblCategoryList.isHidden = false
         cvCategory.isHidden = true
         tblCategoryList.reloadData()
+        
+        let itemp = 389 + (80 * self.arrCategorydata.count)
+        self.heightofScrView.constant = CGFloat(itemp)
+        
+        let iHeighofGrid = 47 + (80 * self.arrCategorydata.count)
+        self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
+        print("itemp:> \(itemp)")
     }
     
     @IBAction func btnPinPressed()

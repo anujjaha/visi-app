@@ -46,7 +46,15 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"
         ]
         
-        request("\(kServerURL)user_categories.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        print("Category.php parameters:>\(parameters)")
+
+        //category.php - user_categories.php
+       /* request("\(kServerURL)category.php", method: .post, parameters:parameters).responseString{ response in
+                print(response)
+         }
+        hideProgress()*/
+
+        request("\(kServerURL)categories.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             
             hideProgress()
             
