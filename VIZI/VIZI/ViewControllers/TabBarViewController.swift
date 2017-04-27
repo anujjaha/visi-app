@@ -53,18 +53,24 @@ class TabBarViewController: UITabBarController {
     @IBAction func btnDiscoverPressed(sender:UIButton)
     {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
-        self.selectedIndex = 0
-        
         btnDiscover.isSelected = true
         btnUser.isSelected = false
+        self.selectedIndex = 0
+        
+        let rootView = self.viewControllers![self.selectedIndex] as! UINavigationController
+        rootView.popToRootViewController(animated: false)
     }
     
     @IBAction func btnHomePressed(sender:UIButton)
     {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
-        self.selectedIndex = 1
         btnDiscover.isSelected = false
         btnUser.isSelected = false
+        self.selectedIndex = 1
+        
+        let rootView = self.viewControllers![self.selectedIndex] as! UINavigationController
+        rootView.popToRootViewController(animated: false)
+
     }
     @IBAction func btnProfilePressed(sender:UIButton)
     {
@@ -73,7 +79,12 @@ class TabBarViewController: UITabBarController {
         btnUser.isSelected = true
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         self.selectedIndex = 2
+        
+        let rootView = self.viewControllers![self.selectedIndex] as! UINavigationController
+        rootView.popToRootViewController(animated: false)
     }
+    
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

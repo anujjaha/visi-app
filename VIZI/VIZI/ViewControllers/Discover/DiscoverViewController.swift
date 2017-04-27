@@ -59,7 +59,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.tblFeed.rowHeight = UITableViewAutomaticDimension
         
         mapView.centerCoordinate = CLLocationCoordinate2DMake(0, 0)
-        
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -159,14 +158,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
-        request("\(kServerURL)notifications.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)feeds.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
             hideProgress()
             switch(response.result)
             {
-                
             case .success(_):
                 if response.result.value != nil
                 {

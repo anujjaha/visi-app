@@ -249,10 +249,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 
                                 let collectionWidth = MainScreen.width - 36
                                 let temphg = Double((collectionWidth-2)/3)
-                                let itemp = 389 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+                                let icountdouble = Double(self.arrCategorydata.count)
+                                let itemp = 389 + (temphg * ceil(Double(icountdouble/3.0)))
                                 self.heightofScrView.constant = CGFloat(itemp)
                                 
-                                let iHeighofGrid = 47 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+                                let iHeighofGrid = 47 + (temphg * ceil(Double(icountdouble/3)))
                                 self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
                                 print("itemp:> \(itemp)")
 
@@ -307,10 +308,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         
         let collectionWidth = MainScreen.width - 36
         let temphg = Double((collectionWidth-2)/3)
-        let itemp = 389 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+        let icountdouble = Double(self.arrCategorydata.count)
+        let itemp = 389 + (temphg * ceil(Double(icountdouble/3)))
         self.heightofScrView.constant = CGFloat(itemp)
         
-        let iHeighofGrid = 47 + (temphg * ceil(Double(self.arrCategorydata.count/3)))
+        let iHeighofGrid = 47 + (temphg * ceil(Double(icountdouble/3)))
         self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
         print("itemp:> \(itemp)")
 
