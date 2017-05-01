@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ProfileCell: UICollectionViewCell {
-    
+class ProfileCell: UICollectionViewCell
+{
     @IBOutlet weak var lblCategoryName : UILabel!
     @IBOutlet weak var imgCategory : UIImageView!
+    @IBOutlet weak var btnDeleteCategory : UIButton!
 }
 
 class CategoryListCell: UITableViewCell
@@ -174,6 +175,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         {
             parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)"
             ]
         }
         else
@@ -696,6 +698,25 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
             print(escapedString!)*/
             cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
         }
+        
+        cell.btnDeleteCategory.tag = indexPath.row
+        cell.btnDeleteCategory.addTarget(self, action: #selector(btnDeleteCategoryAction(_:)), for: .touchUpInside)
+
+        if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) is NSNull
+        {
+            cell.btnDeleteCategory.isHidden = true
+        }
+        else
+        {
+            if ((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) as! NSNumber) == 0
+            {
+                cell.btnDeleteCategory.isHidden = true
+            }
+            else
+            {
+                cell.btnDeleteCategory.isHidden = false
+            }
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
@@ -706,7 +727,7 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         self.navigationController?.pushViewController(homeViewController, animated: true)
 
-//        self.performSegue(withIdentifier: "pushToDetail", sender: self)
+        //        self.performSegue(withIdentifier: "pushToDetail", sender: self)
         /*
          
          let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
@@ -720,8 +741,12 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
          homeViewController.bFollowers = false
          }
          self.navigationController?.pushViewController(homeViewController, animated: true)
-
          */
+    }
+    
+    @IBAction func btnDeleteCategoryAction(_ sender: UIButton)
+    {
+        
     }
 }
 extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
