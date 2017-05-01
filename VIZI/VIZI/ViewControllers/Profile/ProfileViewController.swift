@@ -702,21 +702,30 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         cell.btnDeleteCategory.tag = indexPath.row
         cell.btnDeleteCategory.addTarget(self, action: #selector(btnDeleteCategoryAction(_:)), for: .touchUpInside)
 
-        if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) is NSNull
+        
+        if(appDelegate.bUserSelfProfile)
         {
-            cell.btnDeleteCategory.isHidden = true
-        }
-        else
-        {
-            if ((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) as! NSNumber) == 0
+            if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) is NSNull
             {
                 cell.btnDeleteCategory.isHidden = true
             }
             else
             {
-                cell.btnDeleteCategory.isHidden = false
+                if ((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) as! NSNumber) == 0
+                {
+                    cell.btnDeleteCategory.isHidden = true
+                }
+                else
+                {
+                    cell.btnDeleteCategory.isHidden = false
+                }
             }
         }
+        else
+        {
+            cell.btnDeleteCategory.isHidden = true
+        }
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
@@ -746,7 +755,61 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
     
     @IBAction func btnDeleteCategoryAction(_ sender: UIButton)
     {
+        print("sender :> \(sender.tag)")
         
+        let alertView = UIAlertController(title: Application_Name, message: "Are you sure want to delete category?", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .default)
+        { (action) in
+            showProgress(inView: self.view)
+            self.parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "category_id" : "\((self.arrCategorydata[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)"
+            ]
+            print("parameters:>\(self.parameters)")
+            request("\(kServerURL)delete_category.php", method: .post, parameters:self.parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+                print(response.result.debugDescription)
+                hideProgress()
+                switch(response.result)
+                {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                self.getProfileData()
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+        }
+        alertView.addAction(OKAction)
+        
+        let CancelAction = UIAlertAction(title: "No", style: .default) { (action) in
+        }
+        alertView.addAction(CancelAction)
+
+        self.present(alertView, animated: true, completion: nil)
+
     }
 }
 extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
