@@ -37,7 +37,10 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         
-        arrPhotos = appDelegate.arrNewLocationPhotos
+        for index in 0..<appDelegate.arrNewLocationPhotos.count
+        {
+            arrPhotos.addObjects(from: [appDelegate.arrNewLocationPhotos[index]])
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false

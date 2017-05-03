@@ -248,8 +248,16 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 
                                 
                                 print("ceil(Double(self.arrCategorydata.count/3)) :> \(ceil(Double(self.arrCategorydata.count/3)))")
+                                if(self.tblCategoryList.isHidden == false)
+                                {
+                                    self.btnListPressed()
+                                }
+                                else
+                                {
+                                    self.btnGridPressed()
+                                }
                                 
-                                let collectionWidth = MainScreen.width - 36
+                                /*let collectionWidth = MainScreen.width - 36
                                 let temphg = Double((collectionWidth-2)/3)
                                 let icountdouble = Double(self.arrCategorydata.count)
                                 let itemp = 389 + (temphg * ceil(Double(icountdouble/3.0)))
@@ -259,7 +267,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
                                 print("itemp:> \(itemp)")
 
-                                self.cvCategory.reloadData()
+                                self.cvCategory.reloadData()*/
                                 
                                 self.btnPin.setTitle(self.dicprofiledata["pins"] as? String, for: .normal)
                                 self.btnFollowers.setTitle(self.dicprofiledata["followers"] as? String, for: .normal)
@@ -317,7 +325,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         let iHeighofGrid = 47 + (temphg * ceil(Double(icountdouble/3)))
         self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
         print("itemp:> \(itemp)")
-
+        
+        self.cvCategory.reloadData()
     }
     @IBAction func btnListPressed()
     {
@@ -330,10 +339,10 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         cvCategory.isHidden = true
         tblCategoryList.reloadData()
         
-        let itemp = 389 + (80 * self.arrCategorydata.count)
+        let itemp = 389 + (70 * self.arrCategorydata.count)
         self.heightofScrView.constant = CGFloat(itemp)
         
-        let iHeighofGrid = 47 + (80 * self.arrCategorydata.count)
+        let iHeighofGrid = 47 + (70 * self.arrCategorydata.count)
         self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
         print("itemp:> \(itemp)")
     }
@@ -752,7 +761,6 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
          self.navigationController?.pushViewController(homeViewController, animated: true)
          */
     }
-    
     @IBAction func btnDeleteCategoryAction(_ sender: UIButton)
     {
         print("sender :> \(sender.tag)")
@@ -804,12 +812,12 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         }
         alertView.addAction(OKAction)
         
-        let CancelAction = UIAlertAction(title: "No", style: .default) { (action) in
+        let CancelAction = UIAlertAction(title: "No", style: .default)
+        {
+            (action) in
         }
         alertView.addAction(CancelAction)
-
         self.present(alertView, animated: true, completion: nil)
-
     }
 }
 extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
@@ -849,5 +857,91 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        if(appDelegate.bUserSelfProfile)
+        {
+            if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) is NSNull
+            {
+                return false
+            }
+            else
+            {
+                if ((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyshow_delete) as! NSNumber) == 0
+                {
+                    return false
+                }
+                else
+                {
+                    return true
+                }
+            }
+        }
+        else
+        {
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if (editingStyle == UITableViewCellEditingStyle.delete)
+        {
+            let alertView = UIAlertController(title: Application_Name, message: "Are you sure want to delete category?", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "Yes", style: .default)
+            { (action) in
+                showProgress(inView: self.view)
+                self.parameters = [
+                    "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                    "category_id" : "\((self.arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyuserid)!)"
+                ]
+                print("parameters:>\(self.parameters)")
+                request("\(kServerURL)delete_category.php", method: .post, parameters:self.parameters as? Parameters).responseJSON
+                    {
+                        (response:DataResponse<Any>) in
+                        print(response.result.debugDescription)
+                        hideProgress()
+                        switch(response.result)
+                        {
+                        case .success(_):
+                            if response.result.value != nil
+                            {
+                                print(response.result.value)
+                                
+                                if let json = response.result.value
+                                {
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    
+                                    if dictemp.count > 0
+                                    {
+                                        self.getProfileData()
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+                            }
+                            break
+                            
+                        case .failure(_):
+                            print(response.result.error)
+                            App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                            break
+                        }
+                }
+            }
+            alertView.addAction(OKAction)
+            
+            let CancelAction = UIAlertAction(title: "No", style: .default)
+            {
+                (action) in
+            }
+            alertView.addAction(CancelAction)
+            self.present(alertView, animated: true, completion: nil)
+        }
     }
 }

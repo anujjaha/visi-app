@@ -630,8 +630,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYn-HY-O5v">
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6Pb-zs-C4H"/>
-                                    <constraint firstAttribute="width" constant="120" id="c9N-HW-yH7"/>
+                                    <constraint firstAttribute="height" constant="40" id="6Pb-zs-C4H"/>
+                                    <constraint firstAttribute="width" constant="200" id="c9N-HW-yH7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Save">

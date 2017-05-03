@@ -12,7 +12,7 @@ import MapKit
 class HomeViewController: UIViewController,MKMapViewDelegate
 {
     @IBOutlet weak var mapView : GMSMapView!
-    let locationManager = CLLocationManager()
+    let locationManagerofHome = CLLocationManager()
     var fCurrentcordinate = CLLocationCoordinate2D()
     @IBOutlet weak var btnPin : UIButton!
     @IBOutlet weak var btnAddnewLoaction : UIButton!
@@ -22,12 +22,12 @@ class HomeViewController: UIViewController,MKMapViewDelegate
         super.viewDidLoad()
 //        let annotation = MKAnnotation()
         
-
         self.title = "VIZI"
         
         //mapview
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManagerofHome.delegate = self
+        locationManagerofHome.requestWhenInUseAuthorization()
+        locationManagerofHome.startUpdatingLocation()
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self
@@ -76,11 +76,16 @@ class HomeViewController: UIViewController,MKMapViewDelegate
     {
         let controller = GooglePlacesSearchController(
             apiKey: kGOOGLEAPIKEY,
-            placeType: PlaceType.address,
+            placeType: PlaceType.all,
             coordinate: fCurrentcordinate,
             radius: 10
         )
-        
+
+//        let controller = GooglePlacesSearchController(
+//            apiKey: kGOOGLEAPIKEY,
+//            placeType: PlaceType.address
+//        )
+
         controller.didSelectGooglePlace { (place) -> Void in
             print(place.description)
             
@@ -132,7 +137,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate
 
 extension HomeViewController : UITextFieldDelegate
 {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         textField.resignFirstResponder()
         return true
     }
@@ -140,24 +146,15 @@ extension HomeViewController : UITextFieldDelegate
 
 extension HomeViewController: CLLocationManagerDelegate
 {
-    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    {
-        if status == .authorizedWhenInUse
-        {
-            locationManager.startUpdatingLocation()
-            mapView.isMyLocationEnabled = true
-            mapView.settings.myLocationButton = true
-        }
-    }
-    
-    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         if let location = locations.first
         {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            locationManager.stopUpdatingLocation()
+            locationManagerofHome.stopUpdatingLocation()
         }
     }
+
 }
 
 // MARK: - GMSMapViewDelegate
