@@ -39,7 +39,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         
         for index in 0..<appDelegate.arrNewLocationPhotos.count
         {
-            arrPhotos.addObjects(from: [appDelegate.arrNewLocationPhotos[index]])
+            arrPhotos.add(appDelegate.arrNewLocationPhotos[index])
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -197,7 +197,12 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let image = resize(chosenImage)
+        
+        let imageData: Data? = UIImageJPEGRepresentation(chosenImage, 0.8)
+        let image = UIImage(data: imageData!)!
+
+//        let image = resize(chosenImage)
+
         if (bReplaceImage)
         {
             arrPhotos.replaceObject(at: iindexPhotoSelected, with: image)
@@ -255,7 +260,14 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
                 self.arrPhotos.add(image)
             }
         }
-        appDelegate.arrNewLocationPhotos = arrPhotos
+        
+        appDelegate.arrNewLocationPhotos = NSMutableArray()
+        for index in 0..<arrPhotos.count
+        {
+            appDelegate.arrNewLocationPhotos.add(arrPhotos[index])
+        }
+        
+//        appDelegate.arrNewLocationPhotos = arrPhotos
         dismiss(animated: true, completion: { _ in })
         bReplaceImage = false
         cvPhotos.reloadData()

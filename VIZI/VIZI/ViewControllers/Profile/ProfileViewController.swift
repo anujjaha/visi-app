@@ -697,7 +697,7 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         
         if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
-            cell.imgCategory.image = UIImage(named: "Lake.jpg")
+            cell.imgCategory.image = UIImage(named: "Placeholder")
         }
         else
         {
@@ -705,7 +705,7 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
             let originalString = "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) as? String!)"
             let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
             print(escapedString!)*/
-            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         
         cell.btnDeleteCategory.tag = indexPath.row
@@ -834,11 +834,11 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
         
         if (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
-            cell.imgCategory.image = UIImage(named: "Lake.jpg")
+            cell.imgCategory.image = UIImage(named: "Placeholder")
         }
         else
         {
-            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         
         cell.selectionStyle = .none

@@ -110,11 +110,11 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 
         if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
-            cell.imgProfile.image = UIImage(named: "Profile.jpg")
+            cell.imgProfile.image = UIImage(named: "Placeholder")
         }
         else
         {
-            cell.imgProfile.sd_setImage(with: URL(string: "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
+            cell.imgProfile.sd_setImage(with: URL(string: "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         return cell
     }

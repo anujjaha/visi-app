@@ -87,7 +87,7 @@ class DetailViewController: UIViewController {
                                 }
                                 else
                                 {
-                                    self.imgbgFull.sd_setImage(with: URL(string: "\(self.dictLocation.object(forKey: kkeybgimage)!)"), placeholderImage: UIImage(named: "BarFull@2x.png"))
+                                    self.imgbgFull.sd_setImage(with: URL(string: "\(self.dictLocation.object(forKey: kkeybgimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
                                 }
                                 
                                 /*
@@ -230,11 +230,11 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
         cell.lblCategoryName.text = strCategoryName
         if (arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
-            cell.imgCategory.image = UIImage(named: "Lake.jpg")
+            cell.imgCategory.image = UIImage(named: "Placeholder")
         }
         else
         {
-            cell.imgCategory.sd_setImage(with: URL(string: "\((arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Lake.jpg"))
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         return cell
     }

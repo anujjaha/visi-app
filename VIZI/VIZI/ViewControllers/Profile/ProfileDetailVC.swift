@@ -147,11 +147,11 @@ extension ProfileDetailVC : UITableViewDelegate, UITableViewDataSource
         
         if (self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
-            cell.imgLocation.image = UIImage(named: "Profile.jpg")
+            cell.imgLocation.image = UIImage(named: "Placeholder")
         }
         else
         {
-            cell.imgLocation.sd_setImage(with: URL(string: "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Profile.jpg"))
+            cell.imgLocation.sd_setImage(with: URL(string: "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         return cell
     }
