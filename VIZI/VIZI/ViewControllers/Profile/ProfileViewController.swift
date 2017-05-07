@@ -326,6 +326,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
         print("itemp:> \(itemp)")
         
+        self.cvCategory.isScrollEnabled = false
         self.cvCategory.reloadData()
     }
     @IBAction func btnListPressed()

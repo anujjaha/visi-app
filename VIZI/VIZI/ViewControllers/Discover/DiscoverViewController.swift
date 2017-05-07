@@ -50,7 +50,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.viewSegment.layer.cornerRadius = 5.0
         }
         
-//        self.getDiscoverdata()
+//        self.getDiscoverdata()5
 //        self.getTrendingPlaces()
         
         self.pgControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
@@ -63,6 +63,12 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool)
     {
+        if appDelegate.bFilterScreenCalledAPI == true
+        {
+            self.arrDiscoverdata = NSMutableArray(array:(appDelegate.dictfilterdata["data"] as? NSArray)!)
+            self.fillDiscoveryData()
+        }
+        
         if (bGoFilterScreen)
         {
             bGoFilterScreen = false
@@ -72,6 +78,9 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.getDiscoverdata()
         }
     }
+    
+    
+
     
     //MARK: Search Pressed
     func searchPressed()
@@ -295,71 +304,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                 self.arrDiscoverdata = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("discover.php :> \(dictemp2)")
                                 
-
-                                for i in 0..<self.arrDiscoverdata.count
-                                {
-                                    let flat : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
-                                    let flon : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
-
-                                    
-                                   let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
-                                            
-                                        if (self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage) is NSNull
-                                            {
-                                                point.image =  #imageLiteral(resourceName: "Profile.jpg")
-                                            }
-                                            else
-                                            {
-                                                /*  let imageUrlString = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyimage)!)"
-                                                 let imageUrl:URL = URL(string: imageUrlString)!
-                                                 let imageData:NSData = NSData(contentsOf: imageUrl)!
-                                                 let imagetemp = UIImage(data: imageData as Data)
-                                                 point.image = imagetemp*/
-                                                
-                                                
-                                                let catPictureURL = URL(string: "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage)!)")!
-                                                let session = URLSession(configuration: .default)
-                                                
-                                                // Define a download task. The download task will download the contents of the URL as a Data object and then you can do what you wish with that data.
-                                                let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
-                                                    // The download has finished.
-                                                    if let e = error {
-                                                        print("Error downloading cat picture: \(e)")
-                                                    } else {
-                                                        // No errors found.
-                                                        // It would be weird if we didn't have a response, so check for that too.
-                                                        if let res = response as? HTTPURLResponse {
-                                                            print("Downloaded cat picture with response code \(res.statusCode)")
-                                                            if let imageData = data
-                                                            {
-                                                                // Finally convert that Data into an image and do what you wish with it.
-                                                                let imagetemp = UIImage(data: imageData)
-                                                                point.image = imagetemp
-                                                                
-                                                                // Do something with your image.
-                                                            } else {
-                                                                print("Couldn't get image: Image is nil")
-                                                            }
-                                                        } else {
-                                                            print("Couldn't get response code for some reason")
-                                                        }
-                                                    }
-                                                }
-                                                downloadPicTask.resume()
-                                                
-                                            }
-                                    
-                                            point.name =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyuser)!)"
-                                            point.address = "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyaddress)!)"
-                                            self.mapView.addAnnotation(point)
-
-//                                        let point = MKPointAnnotation()
-//                                        point.coordinate = CLLocationCoordinate2DMake(flat, flon)
-//                                        self.mapView.addAnnotation(point)
-
-                                    let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-                                    self.mapView.setRegion(region, animated: true)                                   
-                                }
+                                self.fillDiscoveryData()
                             }
                             else
                             {
@@ -381,6 +326,78 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 break
             }
         }
+    }
+    
+    func fillDiscoveryData()
+    {
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
+        
+        for i in 0..<self.arrDiscoverdata.count
+        {
+            let flat : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+            let flon : Double  = ("\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+            
+            
+            let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
+            
+            if (self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage) is NSNull
+            {
+                point.image =  #imageLiteral(resourceName: "Profile.jpg")
+            }
+            else
+            {
+                /*  let imageUrlString = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyimage)!)"
+                 let imageUrl:URL = URL(string: imageUrlString)!
+                 let imageData:NSData = NSData(contentsOf: imageUrl)!
+                 let imagetemp = UIImage(data: imageData as Data)
+                 point.image = imagetemp*/
+                
+                
+                let catPictureURL = URL(string: "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage)!)")!
+                let session = URLSession(configuration: .default)
+                
+                // Define a download task. The download task will download the contents of the URL as a Data object and then you can do what you wish with that data.
+                let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
+                    // The download has finished.
+                    if let e = error {
+                        print("Error downloading cat picture: \(e)")
+                    } else {
+                        // No errors found.
+                        // It would be weird if we didn't have a response, so check for that too.
+                        if let res = response as? HTTPURLResponse {
+                            print("Downloaded cat picture with response code \(res.statusCode)")
+                            if let imageData = data
+                            {
+                                // Finally convert that Data into an image and do what you wish with it.
+                                let imagetemp = UIImage(data: imageData)
+                                point.image = imagetemp
+                                
+                                // Do something with your image.
+                            } else {
+                                print("Couldn't get image: Image is nil")
+                            }
+                        } else {
+                            print("Couldn't get response code for some reason")
+                        }
+                    }
+                }
+                downloadPicTask.resume()
+                
+            }
+            
+            point.name =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyuser)!)"
+            point.address = "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyaddress)!)"
+            self.mapView.addAnnotation(point)
+            
+            //                                        let point = MKPointAnnotation()
+            //                                        point.coordinate = CLLocationCoordinate2DMake(flat, flon)
+            //                                        self.mapView.addAnnotation(point)
+            
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
+            self.mapView.setRegion(region, animated: true)
+        }
+
     }
     
     func getTrendingPlaces()

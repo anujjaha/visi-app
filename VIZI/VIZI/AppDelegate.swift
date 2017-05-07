@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var strNewLocationCategoryName = NSString()
     var strDeviceToken = NSString()
     var bUserSelfProfile = Bool()
-    
+    var dictfilterdata = NSDictionary()
+    var bFilterScreenCalledAPI = Bool()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         self.determineCurrentLocation()

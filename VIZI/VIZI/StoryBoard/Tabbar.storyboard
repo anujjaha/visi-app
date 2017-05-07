@@ -2410,15 +2410,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlq-Zn-LTD">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlq-Zn-LTD">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="5dB-Av-gxX"/>
                                     <constraint firstAttribute="width" constant="44" id="DiA-Fo-w6v"/>
                                 </constraints>
                                 <state key="normal" image="right_icon"/>
-                                <connections>
-                                    <action selector="btnAddNewLocationAction" destination="h12-fX-N8L" eventType="touchUpInside" id="TvJ-m5-qPV"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="81" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="QvD-tP-M7K">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2511,15 +2508,31 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyT-Z0-OPK">
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="dYw-7l-j9F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnFilterSaveClickedWithSender:" destination="lfp-P2-7Ew" eventType="touchUpInside" id="V5o-3l-JGO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="hO6-Wx-OAF" secondAttribute="trailing" id="5ba-2e-1IW"/>
+                            <constraint firstAttribute="trailing" secondItem="RyT-Z0-OPK" secondAttribute="trailing" constant="40" id="8eZ-yv-Cmm"/>
+                            <constraint firstItem="5TV-tJ-ohD" firstAttribute="top" secondItem="RyT-Z0-OPK" secondAttribute="bottom" constant="15" id="8hn-Og-1Lt"/>
                             <constraint firstAttribute="trailing" secondItem="QvD-tP-M7K" secondAttribute="trailing" id="9VS-P1-HHW"/>
                             <constraint firstItem="hO6-Wx-OAF" firstAttribute="leading" secondItem="roZ-Qa-sbM" secondAttribute="leading" id="FbM-3V-Amy"/>
+                            <constraint firstItem="RyT-Z0-OPK" firstAttribute="leading" secondItem="roZ-Qa-sbM" secondAttribute="leading" constant="40" id="Hx8-Gd-XtH"/>
                             <constraint firstItem="sMF-Wa-i3w" firstAttribute="top" secondItem="6UW-9V-x0w" secondAttribute="bottom" constant="11" id="HzJ-l1-Koh"/>
                             <constraint firstItem="QvD-tP-M7K" firstAttribute="top" secondItem="hO6-Wx-OAF" secondAttribute="bottom" constant="8" id="IGj-Z9-blJ"/>
-                            <constraint firstItem="5TV-tJ-ohD" firstAttribute="top" secondItem="QvD-tP-M7K" secondAttribute="bottom" id="X7q-Fc-dqo"/>
+                            <constraint firstItem="RyT-Z0-OPK" firstAttribute="top" secondItem="QvD-tP-M7K" secondAttribute="bottom" constant="10" id="Pcn-zY-3wd"/>
                             <constraint firstItem="QvD-tP-M7K" firstAttribute="leading" secondItem="roZ-Qa-sbM" secondAttribute="leading" id="a99-Xx-bcm"/>
                             <constraint firstAttribute="trailing" secondItem="wlq-Zn-LTD" secondAttribute="trailing" id="dxM-6X-Ogq"/>
                             <constraint firstItem="wlq-Zn-LTD" firstAttribute="top" secondItem="6UW-9V-x0w" secondAttribute="bottom" id="fmp-Qd-0Ls"/>
@@ -2531,6 +2544,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mGM-Pt-XoN"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tblPeople" destination="QvD-tP-M7K" id="POd-EM-JeG"/>
                     </connections>
