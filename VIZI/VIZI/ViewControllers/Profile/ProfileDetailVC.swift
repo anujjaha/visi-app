@@ -32,6 +32,8 @@ class ProfileDetailVC: UIViewController
     var dictCategory = NSDictionary()
     var arrLocation = NSMutableArray()
     @IBOutlet weak  var tbllocation : UITableView!
+    var parameters = NSDictionary()
+    var strotheruserID = String()
 
     override func viewDidLoad()
     {
@@ -53,13 +55,30 @@ class ProfileDetailVC: UIViewController
         arrLocation = NSMutableArray()
         showProgress(inView: self.view)
         
-        let parameters = [
-            "category_id": "\(dictCategory[kkeyuserid]!)",
-        ]
+        
+        if(appDelegate.bUserSelfProfile)
+        {
+            parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "category_id": "\(dictCategory[kkeyuserid]!)"
+            ]
+        }
+        else
+        {
+            parameters = [
+                "user_id": strotheruserID,
+                "category_id": "\(dictCategory[kkeyuserid]!)"
+            ]
+        }
+
+//        let parameters = [
+//            "category_id": "\(dictCategory[kkeyuserid]!)",
+//            "user_id"
+//        ]
         
         showProgress(inView: self.view)
         print("pins_from_location.php parameters:>\(parameters)")
-        request("\(kServerURL)pins_from_location.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)pins_from_location.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
@@ -110,6 +129,56 @@ class ProfileDetailVC: UIViewController
         }
     }
 
+    /*@IBAction func btnAddPinPressed()
+    {
+        /*
+         http://35.154.46.190/vizi/api/add_to_list.php
+         user_id
+         category_id
+         pin_ids -> This will be comma separated like 1,2,3
+         */
+        showProgress(inView: self.view)
+        
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "category_id": strCategoryID,
+            "pin_ids": strPinID
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)add_to_list.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+    }*/
+    
+
+    
     
     func backButtonPressed()
     {

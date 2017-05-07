@@ -74,6 +74,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var btnSettingsProfile : UIButton!
     @IBOutlet weak var heightofScrView : NSLayoutConstraint!
     @IBOutlet weak var heightofVWGrid : NSLayoutConstraint!
+    @IBOutlet weak var btnReportAbuse : UIButton!
 
     var parameters = NSDictionary()
 
@@ -148,6 +149,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             btnEditProfile.isHidden = false
             btnPlus.isHidden = false
             btnSettingsProfile.isHidden = false
+            btnReportAbuse.isHidden = true
         }
         else
         {
@@ -159,6 +161,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             btnBackButton.isHidden = false
             btnFollowUser.isHidden = false
             heightofFollowBtn.constant = 30
+            btnReportAbuse.isHidden = false
         }
         
         self.getProfileData()
@@ -189,8 +192,6 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
         request("\(kServerURL)profile.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
-            
-            print(response.result.debugDescription)
             
             hideProgress()
             switch(response.result)
@@ -663,6 +664,53 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         _ = self.navigationController?.popViewController(animated: true)
     }
 
+    //MARK: Report Abuse
+    /*
+        [30/04/17, 2:54:08 PM] Smit: http://35.154.46.190/vizi/api/report.php
+        current_user_id (id of user who is reporting)
+        user_id (id of user who is been reported)
+        [30/04/17, 2:54:50 PM] Yash Shah: current_user_id (id of user who is reporting) - means logged in user
+        [30/04/17, 2:54:58 PM] Smit: yes
+        [30/04/17, 2:55:17 PM] Yash Shah: user_id - its user id of for which i want to report
+     */
+    @IBAction func ReportAbusehaction(_ sender: UIButton)
+    {
+        parameters = [
+            "user_id": strotheruserID,
+            "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)report.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("report.php.json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("report.php :> \(dictemp)")
+                        
+                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -743,6 +791,7 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
+        homeViewController.strotheruserID = strotheruserID
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         self.navigationController?.pushViewController(homeViewController, animated: true)
 
@@ -851,7 +900,9 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
+        homeViewController.strotheruserID = strotheruserID
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
+        
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }
     

@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblScreenTitle : UILabel!
     var strCategoryName = String()
     @IBOutlet weak var btnAddPin : UIButton!
+    @IBOutlet weak var btnDeletePin : UIButton!
 
     override func viewDidLoad()
     {
@@ -103,6 +104,29 @@ class DetailViewController: UIViewController {
                                 self.btnAddress.setTitle("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeyaddress)!)", for: .normal)
                                 self.arrLocation = NSMutableArray(array:((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "images")! as? NSArray)!)
                                 
+                                if(appDelegate.bUserSelfProfile)
+                                {
+                                    if ((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "can_delete")!) is NSNull
+                                    {
+                                        self.btnDeletePin.isHidden = true
+                                    }
+                                    else
+                                    {
+                                        if ((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "can_delete") as! NSNumber) == 0
+                                        {
+                                            self.btnDeletePin.isHidden = true
+                                        }
+                                        else
+                                        {
+                                            self.btnDeletePin.isHidden = false
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    self.btnDeletePin.isHidden = true
+                                }
+                                
                                 if self.arrLocation.count > 0
                                 {
                                     self.colData.isHidden = false
@@ -139,7 +163,6 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     // MARK: - Action
     @IBAction func btnBackPressed()
@@ -195,6 +218,72 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func btnDeletePinPressed()
+    {
+        /*
+         http://35.154.46.190/vizi/api/add_to_list.php
+         user_id
+         category_id
+         pin_ids -> This will be comma separated like 1,2,3
+         */
+        
+        let alertView = UIAlertController(title: Application_Name, message: "Are you sure want to delete pin?", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .default)
+        { (action) in
+            showProgress(inView: self.view)
+            
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "pin_id": self.strPinID
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)delete_pin.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            //                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            
+                            self.view.makeToast(dictemp[kkeymessage]! as! String, duration: 3.0, position: .center)
+                            
+                            _  = self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+            
+        }
+        alertView.addAction(OKAction)
+        
+        let CancelAction = UIAlertAction(title: "No", style: .default)
+        {
+            (action) in
+        }
+        alertView.addAction(CancelAction)
+        self.present(alertView, animated: true, completion: nil)
+
+    }
+
     @IBAction func btnNotesPressed()
     {
         if(self.dictLocation.count > 0)
@@ -202,6 +291,19 @@ class DetailViewController: UIViewController {
             App_showAlertwithTitle(withMessage:"\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "note")!)", withTitle: "Notes", inView: self)
         }
     }
+    
+    @IBAction func btnGoToDirectionPressed()
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objDetailVC = storyTab.instantiateViewController(withIdentifier: "MapRootVC") as! MapRootVC
+        objDetailVC.strpinTitle = self.lblScreenTitle.text!
+        
+        let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+        let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+        objDetailVC.fcordinate = CLLocationCoordinate2D(latitude: flat, longitude: flon)
+        self.navigationController?.pushViewController(objDetailVC, animated: true)
+    }
+
     
     /*
     // MARK: - Navigation

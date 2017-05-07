@@ -63,6 +63,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewWillAppear(_ animated: Bool)
     {
+        self.navigationController?.isNavigationBarHidden = false
+
         if appDelegate.bFilterScreenCalledAPI == true
         {
             self.arrDiscoverdata = NSMutableArray(array:(appDelegate.dictfilterdata["data"] as? NSArray)!)
@@ -393,11 +395,10 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             //                                        let point = MKPointAnnotation()
             //                                        point.coordinate = CLLocationCoordinate2DMake(flat, flon)
             //                                        self.mapView.addAnnotation(point)
-            
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: flat, longitude: flon), span: MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0))
-            self.mapView.setRegion(region, animated: true)
         }
 
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 15, longitudeDelta: 15))
+        self.mapView.setRegion(region, animated: true)
     }
     
     func getTrendingPlaces()

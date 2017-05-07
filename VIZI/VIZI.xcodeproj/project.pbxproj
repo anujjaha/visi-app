@@ -77,6 +77,8 @@
 		D3C88BB11EA1443D004F362B /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3C88BAF1EA1443D004F362B /* CustomCalloutView.xib */; };
 		D3C88BB31EA14652004F362B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BB21EA14652004F362B /* AnnotationView.swift */; };
 		D3C88BB51EA14888004F362B /* ViziPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */; };
+		D3C963FE1EBF5203001F7C7E /* MapRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C963FD1EBF5203001F7C7E /* MapRootVC.swift */; };
+		D3C964021EBF57CD001F7C7E /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C964011EBF57CD001F7C7E /* Toast.swift */; };
 		D3CA42A31E54007500365290 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */; };
 		D3CA42A41E54007500365290 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */; };
 		D3CA42A51E54007500365290 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */; };
@@ -265,6 +267,8 @@
 		D3C88BAF1EA1443D004F362B /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		D3C88BB21EA14652004F362B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		D3C88BB41EA14888004F362B /* ViziPinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViziPinAnnotation.swift; sourceTree = "<group>"; };
+		D3C963FD1EBF5203001F7C7E /* MapRootVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapRootVC.swift; sourceTree = "<group>"; };
+		D3C964011EBF57CD001F7C7E /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		D3CA428D1E54007500365290 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		D3CA428E1E54007500365290 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		D3CA428F1E54007500365290 /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
@@ -535,6 +539,14 @@
 			path = CustomCallout;
 			sourceTree = "<group>";
 		};
+		D3C964001EBF57CD001F7C7E /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				D3C964011EBF57CD001F7C7E /* Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		D3CA428B1E54007500365290 /* IQKeyboardManagerSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +643,7 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3C964001EBF57CD001F7C7E /* Toast */,
 				D3C88BAD1EA1443D004F362B /* CustomCallout */,
 				D3849C301E99187900283C42 /* JVFloatLabeledTextField */,
 				D3849C0C1E99059500283C42 /* ELCImagePicker */,
@@ -708,6 +721,7 @@
 				FF1218001E11A87500F8A6EA /* ChangePasswordVC.swift */,
 				D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */,
 				D3C88BAB1EA14030004F362B /* PinofUserVC.swift */,
+				D3C963FD1EBF5203001F7C7E /* MapRootVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -919,6 +933,7 @@
 				D3B684961E4F2701008C412E /* SessionManager.swift in Sources */,
 				FF1217FF1E119FCD00F8A6EA /* FollowersViewController.swift in Sources */,
 				D3C88BB51EA14888004F362B /* ViziPinAnnotation.swift in Sources */,
+				D3C964021EBF57CD001F7C7E /* Toast.swift in Sources */,
 				FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */,
 				FF1217F91E11735B00F8A6EA /* DiscoverViewController.swift in Sources */,
 				D3CA42A71E54007500365290 /* IQUIViewController+Additions.swift in Sources */,
@@ -926,6 +941,7 @@
 				D36565E81E54D9E100E1F6AE /* SDWebImageCompat.m in Sources */,
 				D3B684901E4F2701008C412E /* Request.swift in Sources */,
 				D3B684941E4F2701008C412E /* ServerTrustPolicy.swift in Sources */,
+				D3C963FE1EBF5203001F7C7E /* MapRootVC.swift in Sources */,
 				D3B684931E4F2701008C412E /* Result.swift in Sources */,
 				D3849C271E99059500283C42 /* ELCAssetTablePicker.m in Sources */,
 				FF1217FD1E11937000F8A6EA /* SearchViewController.swift in Sources */,

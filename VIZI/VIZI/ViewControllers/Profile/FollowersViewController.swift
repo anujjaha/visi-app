@@ -37,6 +37,9 @@ class FollowersViewController: UIViewController
     {
         super.viewDidLoad()
         
+        //my_followings.php -> ava users ke jene hu follow karu chu
+        //my_followers.php -> ava users ke je mane follow kare che
+        
         if self.bFollowers == true
         {
             self.title = "Followers"
@@ -62,7 +65,7 @@ class FollowersViewController: UIViewController
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func getFollowersList()
+    func getFollowingList()
     {
         arrFollowersList = NSMutableArray()
         
@@ -119,7 +122,7 @@ class FollowersViewController: UIViewController
         tblFollowersList.dataSource = self
     }
     
-    func getFollowingList()
+    func getFollowersList()
     {
         arrFollowersList = NSMutableArray()
         
@@ -246,6 +249,9 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         {
              cell.btnFollw.isEnabled = false
         }
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     
