@@ -40,7 +40,7 @@ class MapRootVC: UIViewController, MKMapViewDelegate
         }
         
         let destinationAnnotation = MKPointAnnotation()
-        destinationAnnotation.title = "Empire State Building"
+        destinationAnnotation.title = strpinTitle
         
         if let location = destinationPlacemark.location
         {

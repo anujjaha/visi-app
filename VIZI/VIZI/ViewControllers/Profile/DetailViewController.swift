@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
-
+class DetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
+{
     @IBOutlet weak var colData : UICollectionView!
     var strPinID = String()
     var strCategoryID = String()
@@ -22,6 +22,13 @@ class DetailViewController: UIViewController {
     var strCategoryName = String()
     @IBOutlet weak var btnAddPin : UIButton!
     @IBOutlet weak var btnDeletePin : UIButton!
+    
+    //Add Pin To Category
+    @IBOutlet weak var vwAddPinToCategory : UIView!
+    var arrCategorydata = NSArray()
+    @IBOutlet weak var tblCategory: UITableView!
+    var arrSelectedbutton = NSMutableArray()
+    var iSelectedCategoryID = Int()
 
     override func viewDidLoad()
     {
@@ -172,50 +179,10 @@ class DetailViewController: UIViewController {
 
     @IBAction func btnAddPinPressed()
     {
-        /*
-         http://35.154.46.190/vizi/api/add_to_list.php
-         user_id
-         category_id
-         pin_ids -> This will be comma separated like 1,2,3
-        */
-        showProgress(inView: self.view)
-        
-        let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-            "category_id": strCategoryID,
-            "pin_ids": strPinID
-        ]
-        
-        showProgress(inView: self.view)
-        print("parameters:>\(parameters)")
-        request("\(kServerURL)add_to_list.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
-            
-            print(response.result.debugDescription)
-            
-            hideProgress()
-            switch(response.result)
-            {
-            case .success(_):
-                if response.result.value != nil
-                {
-                    print(response.result.value)
-                    
-                    if let json = response.result.value
-                    {
-                        print("json :> \(json)")
-                        let dictemp = json as! NSDictionary
-                        print("dictemp :> \(dictemp)")
-                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
-                    }
-                }
-                break
-                
-            case .failure(_):
-                print(response.result.error)
-                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
-                break
-            }
-        }
+        vwAddPinToCategory.isHidden = false
+        tblCategory.delegate = self
+        tblCategory.dataSource = self
+        self.getCategorydata()
     }
     
     @IBAction func btnDeletePinPressed()
@@ -304,7 +271,226 @@ class DetailViewController: UIViewController {
         self.navigationController?.pushViewController(objDetailVC, animated: true)
     }
 
+    //MARK: Get Pin Category Data
+    func getCategorydata()
+    {
+        tblCategory.estimatedRowHeight = 60.0
+        tblCategory.rowHeight = UITableViewAutomaticDimension
+
+        if (self.arrCategorydata.count > 0)
+        {
+            self.tblCategory.reloadData()
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"
+            ]
+            
+            print("Category.php parameters:>\(parameters)")
+            
+            //category.php - user_categories.php
+            /* request("\(kServerURL)category.php", method: .post, parameters:parameters).responseString{ response in
+             print(response)
+             }
+             hideProgress()*/
+            
+            request("\(kServerURL)categories.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+                
+                hideProgress()
+                
+                switch(response.result)
+                {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                self.arrCategorydata = (dictemp["data"] as? NSArray)!
+                                print("arrCategorydata :> \(self.arrCategorydata)")
+                                
+                                for _ in 0..<self.arrCategorydata.count
+                                {
+                                    self.arrSelectedbutton.add(kNO)
+                                }
+                                self.tblCategory.reloadData()
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                    }
+                    break
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    self.tblCategory.reloadData()
+                    break
+                }
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.arrCategorydata.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
+        cell.lblCategoryName.text = (arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyname) as? String
+        cell.btnselectRadio.tag = indexPath.row
+        
+        if ((arrSelectedbutton[indexPath.row] as! NSString) as String == kNO)
+        {
+            cell.btnselectRadio.isSelected = false
+        }
+        else
+        {
+            cell.btnselectRadio.isSelected = true
+        }
+        
+        cell.btnselectRadio.addTarget(self, action: #selector(RadioButtonPressed(sender:)), for: .touchUpInside)
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if UITableViewAutomaticDimension < 44.0
+        {
+            return 50.0
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let cell = tableView.cellForRow(at: indexPath) as! CategoryCell
+        
+        if ((arrSelectedbutton[indexPath.row] as! NSString) as String == kNO)
+        {
+            cell.btnselectRadio.isSelected = true
+            arrSelectedbutton = NSMutableArray()
+            for _ in 0..<self.arrCategorydata.count
+            {
+                self.arrSelectedbutton.add(kNO)
+            }
+            arrSelectedbutton.replaceObject(at: indexPath.row, with: kYES)
+            iSelectedCategoryID = Int(((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as? String)!)!
+        }
+        else
+        {
+            cell.btnselectRadio.isSelected = false
+            
+            arrSelectedbutton = NSMutableArray()
+            for _ in 0..<self.arrCategorydata.count
+            {
+                self.arrSelectedbutton.add(kNO)
+            }
+            arrSelectedbutton.replaceObject(at: indexPath.row, with: kNO)
+            iSelectedCategoryID = 0
+        }
+        tblCategory.reloadData()
+    }
+    
+    @IBAction func RadioButtonPressed(sender: UIButton)
+    {
+        arrSelectedbutton = NSMutableArray()
+        for _ in 0..<self.arrCategorydata.count
+        {
+            self.arrSelectedbutton.add(kNO)
+        }
+        
+        if sender.isSelected
+        {
+            sender.isSelected = false
+            
+            arrSelectedbutton.replaceObject(at: sender.tag, with: kNO)
+            iSelectedCategoryID = 0
+        }
+        else
+        {
+            sender.isSelected = true
+            arrSelectedbutton.replaceObject(at: sender.tag, with: kYES)
+            iSelectedCategoryID = Int(((arrCategorydata[sender.tag] as AnyObject).object(forKey: kkeyuserid) as? String)!)!
+        }
+        tblCategory.reloadData()
+    }
+    
+    @IBAction func btnCategorySelected(sender: UIButton)
+    {
+        if (iSelectedCategoryID <= 0)
+        {
+            App_showAlert(withMessage: "Please select category", inView: self)
+        }
+        else
+        {
+            /*
+             http://35.154.46.190/vizi/api/add_to_list.php
+             user_id
+             category_id
+             pin_ids -> This will be comma separated like 1,2,3
+             */
+            showProgress(inView: self.view)
+            
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "category_id": "\(iSelectedCategoryID)",
+                "pin_ids": strPinID
+            ]
+            
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)add_to_list.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+                
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
+                {
+                case .success(_):
+                    if response.result.value != nil
+                    {
+                        print(response.result.value)
+                        
+                        if let json = response.result.value
+                        {
+                            print("json :> \(json)")
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            self.vwAddPinToCategory.isHidden = true
+                        }
+                    }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
+                }
+            }
+
+        }
+    }
+    // MARK: - Action
+    @IBAction func CancelCategoryviewPressed()
+    {
+        vwAddPinToCategory.isHidden = true
+    }
+
     /*
     // MARK: - Navigation
 
