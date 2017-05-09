@@ -141,6 +141,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     
     override func viewWillAppear(_ animated: Bool)
     {
+        if(strotheruserID.isEmpty)
+        {
+            appDelegate.bUserSelfProfile = true
+        }
+        
         if(appDelegate.bUserSelfProfile)
         {
             btnFollowUser.isHidden = true

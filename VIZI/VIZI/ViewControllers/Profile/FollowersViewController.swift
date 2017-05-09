@@ -260,6 +260,15 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let tabbar = storyTab.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        tabbar.strotheruserID = "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+        appDelegate.bUserSelfProfile = false
+        self.navigationController?.pushViewController(tabbar, animated: true)
+    }
+
     @IBAction func btnFollowPressed(_ sender:UIButton)
     {
         if ((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0

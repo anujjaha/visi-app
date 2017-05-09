@@ -131,6 +131,10 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
                                         appDelegate.strNewLocationCategoryName = ""
                                         appDelegate.iNewLocationCategoryID = 0
                                         appDelegate.arrNewLocationPhotos = NSMutableArray()
+                                        
+                                        /*let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+                                        let tabbarobj = storyTab.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                                        tabbarobj.btnProfilePressed(sender: tabbarobj.btnUser)*/
                                         _ = self.navigationController?.popViewController(animated: true)
 
                                       /*  let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)
