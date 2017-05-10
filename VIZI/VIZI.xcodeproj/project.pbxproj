@@ -1102,8 +1102,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1119,8 +1119,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c20e53c2-da1f-4857-a6c7-80459bac42d1";
-				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
+				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
+				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1133,8 +1133,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1150,8 +1150,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c20e53c2-da1f-4857-a6c7-80459bac42d1";
-				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
+				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
+				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

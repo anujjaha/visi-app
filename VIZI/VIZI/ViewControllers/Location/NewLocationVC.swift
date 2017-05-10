@@ -79,6 +79,20 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
         else
         {
             showProgress(inView: self.view)
+            
+            let newimagearray = NSMutableArray()
+
+            for i in 0..<appDelegate.arrNewLocationPhotos.count
+            {
+                if let imageData2 = UIImageJPEGRepresentation(appDelegate.arrNewLocationPhotos[i] as! UIImage, 1)
+                {
+//                    multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
+                    newimagearray.add(imageData2)
+                }
+            }
+
+            
+            
             // define parameters
             let parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
@@ -92,11 +106,11 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
             upload(multipartFormData:
                 { (multipartFormData) in
                     
-                    for i in 0..<appDelegate.arrNewLocationPhotos.count
+                   for i in 0..<appDelegate.arrNewLocationPhotos.count
                     {
                         if let imageData2 = UIImageJPEGRepresentation(appDelegate.arrNewLocationPhotos[i] as! UIImage, 1)
                         {
-                            multipartFormData.append(imageData2, withName: "image\(i)", fileName: "myImage\(i).png", mimeType: "File")
+                            multipartFormData.append(imageData2, withName: "image[]", fileName: "myImage\(i).png", mimeType: "File")
                         }
                     }
                     for (key, value) in parameters

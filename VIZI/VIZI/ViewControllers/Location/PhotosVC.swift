@@ -198,11 +198,13 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        let imageData: Data? = UIImageJPEGRepresentation(chosenImage, 0.8)
-        let image = UIImage(data: imageData!)!
+//        let imageData: Data? = UIImageJPEGRepresentation(chosenImage, 0.1)
+//        let image = UIImage(data: imageData!)!
+//
+        let image = resize(chosenImage)
 
-//        let image = resize(chosenImage)
-
+//        let image = chosenImage.resized(withPercentage: 0.1)
+        
         if (bReplaceImage)
         {
             arrPhotos.replaceObject(at: iindexPhotoSelected, with: image)
@@ -257,7 +259,8 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
             {
                 let imageInfo = info[index] as! NSDictionary
                 let image = (imageInfo.value(forKey: UIImagePickerControllerOriginalImage) as! UIImage)
-                self.arrPhotos.add(image)
+                let imgtemp = resize(image)
+                self.arrPhotos.add(imgtemp)
             }
         }
         
