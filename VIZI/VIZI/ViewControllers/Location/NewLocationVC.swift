@@ -142,14 +142,28 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
                                     {
                                        //App_showAlert(withMessage: "Location Added Successfully", inView: self)
                                         
+
                                         appDelegate.strNewLocationCategoryName = ""
                                         appDelegate.iNewLocationCategoryID = 0
                                         appDelegate.arrNewLocationPhotos = NSMutableArray()
                                         
-                                        /*let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-                                        let tabbarobj = storyTab.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-                                        tabbarobj.btnProfilePressed(sender: tabbarobj.btnUser)*/
-                                        _ = self.navigationController?.popViewController(animated: true)
+                                        
+//                                        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+//                                        let tabbarobj = storyTab.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                                        /*
+                                         Niyati Shah : 14-05-2017
+                                         Comment : ○When you finish saving a location we want a quick notification to pop up that says
+                                         “Successfully Saved” and then redirect to the profile screen, not the homepage
+
+                                         */
+                                        appDelegate.window?.rootViewController?.view.makeToast("Successfully Saved", duration: 3.0, position: .center)
+                                        let tabbarobj: TabBarViewController = (self.tabBarController as? TabBarViewController)!
+                                        appDelegate.bUserSelfProfile = true
+                                        tabbarobj.btnProfilePressed(sender: tabbarobj.btnUser)
+                                        
+                                        //self.tabBarController?.selectedIndex = 2
+                                        
+                                        //                                        _ = self.navigationController?.popViewController(animated: true)
 
                                       /*  let alertView = UIAlertController(title: Application_Name, message: "Location Added Successfully", preferredStyle: .alert)
                                         let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in

@@ -490,6 +490,25 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     {
         vwAddPinToCategory.isHidden = true
     }
+    
+    //MARK open Image in big View
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+    }
+    
+    func dismissFullscreenImage(_ sender: UITapGestureRecognizer)
+    {
+        sender.view?.removeFromSuperview()
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -515,7 +534,7 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        cell.lblCategoryName.text = strCategoryName
+        //        cell.lblCategoryName.text = strCategoryName
         if (arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
             cell.imgCategory.image = UIImage(named: "Placeholder")
@@ -524,6 +543,10 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
         {
             cell.imgCategory.sd_setImage(with: URL(string: "\((arrLocation[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        cell.imgCategory.addGestureRecognizer(tap)
+
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)

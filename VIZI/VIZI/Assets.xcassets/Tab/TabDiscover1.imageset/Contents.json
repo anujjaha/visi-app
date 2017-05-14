@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "discover_slticon@1x.png",
+      "filename" : "discover_slticon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "TabDiscover1@2x.png",
+      "filename" : "discover_slticon@2x.png",
       "scale" : "2x"
     },
     {
