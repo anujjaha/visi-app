@@ -397,7 +397,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             //                                        self.mapView.addAnnotation(point)
         }
 
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 15, longitudeDelta: 15))
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 5, longitudeDelta: 5))
         self.mapView.setRegion(region, animated: true)
     }
     
