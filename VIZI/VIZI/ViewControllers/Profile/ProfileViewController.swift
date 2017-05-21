@@ -75,6 +75,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var heightofScrView : NSLayoutConstraint!
     @IBOutlet weak var heightofVWGrid : NSLayoutConstraint!
     @IBOutlet weak var btnReportAbuse : UIButton!
+    
+    //for Globe Feature
+    var strCategory = String()
+    var bFilterCategory = Bool()
+    var arrallCategorydata = NSArray()
 
     var parameters = NSDictionary()
 
@@ -169,7 +174,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             btnReportAbuse.isHidden = false
         }
         
-        self.getProfileData()
+        if(bFilterCategory)
+        {
+            bFilterCategory = false
+            self.filtercategorydata()
+        }
+        else
+        {
+            self.getProfileData()
+        }
     }
     
     //MARK: - Get Profile Data
@@ -250,6 +263,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
 
                                 
                                 self.arrCategorydata = (self.dicprofiledata["categories"] as? NSArray)!
+                                self.arrallCategorydata = (self.dicprofiledata["categories"] as? NSArray)!
                                 print("arrCategorydata :> \(self.arrCategorydata)")
                                 
                                 
@@ -308,6 +322,25 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                 print(response.result.error)
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
+            }
+        }
+    }
+    
+    //MARK: Filter Category Data
+    func filtercategorydata()
+    {
+        if(self.arrallCategorydata.count > 0)
+        {
+            let resultPredicate = NSPredicate(format: "ANY city.address contains[c] %@", strCategory)
+            self.arrCategorydata = self.arrallCategorydata.filtered(using: resultPredicate) as NSArray
+            
+            if(self.tblCategoryList.isHidden == false)
+            {
+                self.btnListPressed()
+            }
+            else
+            {
+                self.btnGridPressed()
             }
         }
     }
@@ -664,8 +697,24 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             strvisibilityvalue = "0"
         }
     }
+    @IBAction func btngotoSettingScreen(_ sender: UIButton)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objSettingsViewController = mainStoryboard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        
+        if((self.dicprofiledata["user"] as! NSDictionary).object(forKey: "notification") as! NSNumber == 1)
+        {
+            objSettingsViewController.flagforswitch = true
+        }
+        else
+        {
+            objSettingsViewController.flagforswitch = false
+        }
+        self.navigationController?.pushViewController(objSettingsViewController, animated: true)
+    }
     
-    @IBAction func backButtonPressed() {
+    @IBAction func backButtonPressed()
+    {
         _ = self.navigationController?.popViewController(animated: true)
     }
 
@@ -716,6 +765,16 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             }
         }
     }
+    
+    //MARK: Globe feature
+    @IBAction func btnGlobeAction(_ sender: UIButton)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objGlobeVC = mainStoryboard.instantiateViewController(withIdentifier: "GlobeVC") as! GlobeVC
+        objGlobeVC.objProfileViewController = self
+        self.navigationController?.pushViewController(objGlobeVC, animated: false)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

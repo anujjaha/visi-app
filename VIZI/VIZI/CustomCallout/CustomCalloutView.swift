@@ -13,6 +13,7 @@ class CustomCalloutView: UIView {
     @IBOutlet var starbucksImage: UIImageView!
     @IBOutlet var starbucksName: UILabel!
     @IBOutlet var starbucksAddress: UILabel!
+    @IBOutlet var btnDetailofPin: UIButton!
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

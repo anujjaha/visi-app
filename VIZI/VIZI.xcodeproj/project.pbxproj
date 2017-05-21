@@ -99,6 +99,7 @@
 		D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */; };
 		D3CBC6331E56A74900ACAEB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6321E56A74900ACAEB4 /* Social.framework */; };
 		D3CBC6361E56A75100ACAEB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CBC6351E56A75100ACAEB4 /* Accounts.framework */; };
+		D3D49B011ED1C0F20000ED81 /* GlobeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D49B001ED1C0F20000ED81 /* GlobeVC.swift */; };
 		D3DA7EDA1EAB70D500BB317A /* GooglePlacesSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DA7ED91EAB70D500BB317A /* GooglePlacesSearchController.swift */; };
 		D3DF34831E7EA30E00450CC7 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */; };
 		D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */; };
@@ -290,6 +291,7 @@
 		D3CB0D9C1E62EAC2008F1658 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D3CBC6321E56A74900ACAEB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D3CBC6351E56A75100ACAEB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D3D49B001ED1C0F20000ED81 /* GlobeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobeVC.swift; sourceTree = "<group>"; };
 		D3DA7ED91EAB70D500BB317A /* GooglePlacesSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesSearchController.swift; sourceTree = "<group>"; };
 		D3DF34821E7EA30E00450CC7 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VIZI.entitlements; sourceTree = "<group>"; };
@@ -722,6 +724,7 @@
 				D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */,
 				D3C88BAB1EA14030004F362B /* PinofUserVC.swift */,
 				D3C963FD1EBF5203001F7C7E /* MapRootVC.swift */,
+				D3D49B001ED1C0F20000ED81 /* GlobeVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 			files = (
 				D3CA42A31E54007500365290 /* IQNSArray+Sort.swift in Sources */,
 				D3849C251E99059500283C42 /* ELCAsset.m in Sources */,
+				D3D49B011ED1C0F20000ED81 /* GlobeVC.swift in Sources */,
 				D36565EC1E54D9E100E1F6AE /* SDWebImageManager.m in Sources */,
 				D36565E61E54D9E100E1F6AE /* SDImageCache.m in Sources */,
 				FFDC7CFF1E06D4F9007A4451 /* EditProfileViewController.swift in Sources */,

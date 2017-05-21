@@ -264,9 +264,36 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     {
         return UITableViewAutomaticDimension
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if(iSelectedTab == 2)
+        {
+            bGoFilterScreen = true
 
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+            objDetailVC.bfromDiscovery = true
+            appDelegate.bUserSelfProfile = false
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+        }
+        else
+        {
+        }
+    }
 
-    //MARK : Get Discover Data API Calling
+    @IBAction func gotToDetailsofPin(sender: UIButton)
+    {
+        bGoFilterScreen = true
+        let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+        let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        objDetailVC.strPinID = "\((self.arrDiscoverdata[sender.tag] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+        objDetailVC.bfromDiscovery = true
+        appDelegate.bUserSelfProfile = false
+        self.navigationController?.pushViewController(objDetailVC, animated: true)
+    }
+    
+    //MARK: Get Discover Data API Calling
     func getDiscoverdata()
     {
         self.arrDiscoverdata = NSMutableArray()
@@ -286,7 +313,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
             switch(response.result)
             {
-                
             case .success(_):
                 if response.result.value != nil
                 {
@@ -388,10 +414,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 
             }
             
-            point.name =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyuser)!)"
+            point.name =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeytitle)!)"
             point.address = "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyaddress)!)"
-            self.mapView.addAnnotation(point)
+            point.iPintag = i
+           // point.btnDetailofPin.tag = i
             
+//            point.btnDetailPin.setImage(#imageLiteral(resourceName: "rightarrow_icon"), for: UIControlState.normal)
+            self.mapView.addAnnotation(point)
             //                                        let point = MKPointAnnotation()
             //                                        point.coordinate = CLLocationCoordinate2DMake(flat, flon)
             //                                        self.mapView.addAnnotation(point)
@@ -496,6 +525,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         objPinofUserVC.strScreenTitle = "Trending Places"
         objPinofUserVC.bisUserSelfPins = false
         objPinofUserVC.arrTrendingPlacesPins = NSMutableArray(array:((self.arrTrendingPlaces[sender.tag] as AnyObject).object(forKey: kkeypins) as? NSArray)!)
+        
         print("objPinofUserVC.arrTrendingPlacesPins :> \(objPinofUserVC.arrTrendingPlacesPins)")
         self.navigationController?.pushViewController(objPinofUserVC, animated: true)
     }
@@ -602,10 +632,13 @@ extension DiscoverViewController : MKMapViewDelegate
         let calloutView = views?[0] as! CustomCalloutView
         calloutView.starbucksName.text = starbucksAnnotation.name
         calloutView.starbucksAddress.text = starbucksAnnotation.address
-        
         calloutView.starbucksImage.image = starbucksAnnotation.image
-        // 3
+       
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+       
+        calloutView.btnDetailofPin.tag = starbucksAnnotation.iPintag
+        calloutView.btnDetailofPin.addTarget(self, action: #selector(gotToDetailsofPin(sender:)), for: .touchUpInside)
+
         view.addSubview(calloutView)
         mapView.setCenter((view.annotation?.coordinate)!, animated: true)
     }

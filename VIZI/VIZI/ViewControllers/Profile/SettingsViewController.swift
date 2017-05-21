@@ -25,6 +25,19 @@ class SettingsViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
   
+        if flagforswitch == false
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
+        else
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1"
+        }
+        
         
         DispatchQueue.main.async {
             self.viewPrivacy.layer.cornerRadius = 5.0
@@ -50,17 +63,58 @@ class SettingsViewController: UIViewController {
     
     @IBAction func btnLogoutPressed()
     {
-        UserDefaults.standard.set("", forKey: kkeyLoginData)
-        UserDefaults.standard.set(false, forKey: kkeyisUserLogin)
-
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        let nav = UINavigationController(rootViewController: homeViewController)
-        nav.isNavigationBarHidden = true
-        appdelegate.window!.rootViewController = nav
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        ]
+        
+        showProgress(inView: self.view)
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)logout.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            UserDefaults.standard.set("", forKey: kkeyLoginData)
+                            UserDefaults.standard.set(false, forKey: kkeyisUserLogin)
+                            
+                            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+                            let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                            let nav = UINavigationController(rootViewController: homeViewController)
+                            nav.isNavigationBarHidden = true
+                            appdelegate.window!.rootViewController = nav
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
     }
-    
     
     @IBAction func btnGotoPrivacyTerms(_ sender: UIButton)
     {

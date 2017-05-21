@@ -29,6 +29,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var tblCategory: UITableView!
     var arrSelectedbutton = NSMutableArray()
     var iSelectedCategoryID = Int()
+    var bfromDiscovery = Bool()
 
     override func viewDidLoad()
     {
@@ -50,7 +51,22 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.getPinDetailData()
     }
 
+    override func viewWillAppear(_ animated: Bool)
+    {
+        if (bfromDiscovery)
+        {
+            self.navigationController?.isNavigationBarHidden = true
+        }
+    }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        if (bfromDiscovery)
+        {
+            bfromDiscovery = false
+            self.navigationController?.isNavigationBarHidden = false
+        }
+    }
     
     //MARK: - Get Pin Detail Data
     func getPinDetailData()

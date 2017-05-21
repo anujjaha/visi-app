@@ -84,7 +84,8 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         }
     }
-
+    
+    //MARK: Tableview delegate and DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.arrFollowersList.count
@@ -135,7 +136,11 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         tblPeople.reloadData()
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
+    }
+
     @IBAction func RadioButtonPressed(sender: UIButton)
     {
         if sender.isSelected
