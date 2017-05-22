@@ -15,6 +15,7 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     var arrSelectedbutton = NSMutableArray()
     var objProfileViewController = ProfileViewController()
     var strCityName = String()
+    var struseridofpin = String()
 
     override func viewDidLoad()
     {
@@ -30,7 +31,7 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         showProgress(inView: self.view)
         let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"
+            "user_id": struseridofpin
         ]
         
         print("Category.php parameters:>\(parameters)")
@@ -60,14 +61,21 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         if dictemp.count > 0
                         {
-                            self.arrCitydata = (dictemp["data"] as? NSArray)!
-                            print("self.arrCitydata :> \(self.arrCitydata)")
-                            
-                            for _ in 0..<self.arrCitydata.count
+                            if (dictemp["data"] as? NSNull) != nil
                             {
-                                self.arrSelectedbutton.add(kNO)
+                                self.tblCityList.reloadData()
                             }
-                            self.tblCityList.reloadData()
+                            else
+                            {
+                                self.arrCitydata = (dictemp["data"] as? NSArray)!
+                                print("self.arrCitydata :> \(self.arrCitydata)")
+                                
+                                for _ in 0..<self.arrCitydata.count
+                                {
+                                    self.arrSelectedbutton.add(kNO)
+                                }
+                                self.tblCityList.reloadData()
+                            }
                         }
                         else
                         {

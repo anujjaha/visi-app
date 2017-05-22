@@ -67,8 +67,8 @@ func resize(_ image: UIImage) -> UIImage
 {
     var actualHeight: Float = Float(image.size.height)
     var actualWidth: Float = Float(image.size.width)
-    let maxHeight: Float = 300.0
-    let maxWidth: Float = 400.0
+    let maxHeight: Float = 1000.0
+    let maxWidth: Float = 1000.0
     var imgRatio: Float = actualWidth / actualHeight
     let maxRatio: Float = maxWidth / maxHeight
     if actualHeight > maxHeight || actualWidth > maxWidth {

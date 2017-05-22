@@ -55,7 +55,9 @@ let kFBAPPID = "128398547683260"
 
 
 //let kServerURL = "http://vizi.intellactsoft.com/api/"
-let kServerURL = "http://35.154.46.190/vizi/api/"
+//let kServerURL = "http://35.154.46.190/vizi/api/"
+let kServerURL = "http://app.theviziapp.com/api/"
+
 
 //let kGOOGLEAPIKEY = "AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4"
 let kGOOGLEAPIKEY = "AIzaSyCQsja54oBXysiyM6Xc4NAFtpGYL6i-1es"

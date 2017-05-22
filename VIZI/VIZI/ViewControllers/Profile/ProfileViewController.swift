@@ -82,6 +82,10 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     var arrallCategorydata = NSArray()
 
     var parameters = NSDictionary()
+    
+    //for report abus reason
+    @IBOutlet weak var vwreportabuse : UIView!
+    @IBOutlet weak var txtReason : UITextView!
 
     override func viewDidLoad()
     {
@@ -729,14 +733,43 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
      */
     @IBAction func ReportAbusehaction(_ sender: UIButton)
     {
-        parameters = [
-            "user_id": strotheruserID,
-            "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        let alertView = UIAlertController(title: Application_Name, message: "Are you sure want to report user?", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Yes", style: .default)
+        { (action) in
+
+            self.vwreportabuse.isHidden = false
+
+        }
+        alertView.addAction(OKAction)
+        
+        let CancelAction = UIAlertAction(title: "No", style: .default)
+        {
+            (action) in
+        }
+        alertView.addAction(CancelAction)
+        self.present(alertView, animated: true, completion: nil)
+
+       
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        return numberOfChars < 140
+    }
+
+    @IBAction func btnReportAbuseAction()
+    {
+        self.parameters = [
+            "user_id": self.strotheruserID,
+            "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "reason" : txtReason.text!
         ]
         
         showProgress(inView: self.view)
-        print("parameters:>\(parameters)")
-        request("\(kServerURL)report.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+        print("parameters:>\(self.parameters)")
+        request("\(kServerURL)report.php", method: .post, parameters:self.parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
             
             hideProgress()
             switch(response.result)
@@ -753,6 +786,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                         let dictemp = json as! NSDictionary
                         print("report.php :> \(dictemp)")
                         
+                        self.vwreportabuse.isHidden = true
+
                         App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                     }
                 }
@@ -765,6 +800,10 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             }
         }
     }
+    @IBAction func btnCancelReportAbuse()
+    {
+        self.vwreportabuse.isHidden = true
+    }
     
     //MARK: Globe feature
     @IBAction func btnGlobeAction(_ sender: UIButton)
@@ -772,6 +811,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
         let objGlobeVC = mainStoryboard.instantiateViewController(withIdentifier: "GlobeVC") as! GlobeVC
         objGlobeVC.objProfileViewController = self
+        if(appDelegate.bUserSelfProfile)
+        {
+            objGlobeVC.struseridofpin = "\(appDelegate.arrLoginData[kkeyuserid]!)"
+        }
+        else
+        {
+            objGlobeVC.struseridofpin = strotheruserID
+        }
+
         self.navigationController?.pushViewController(objGlobeVC, animated: false)
     }
 
