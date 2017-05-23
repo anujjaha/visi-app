@@ -58,9 +58,18 @@ class NotificationVC: UIViewController {
                         
                         if dictemp.count > 0
                         {
-                            self.vwStaticText.isHidden = true
-                            self.tblNotification.isHidden = false
                             self.arrNotification = NSMutableArray(array:(dictemp[kkeydata] as? NSArray)!)
+                            if (self.arrNotification.count > 0)
+                            {
+                                self.vwStaticText.isHidden = true
+                                self.tblNotification.isHidden = false
+                            }
+                            else
+                            {
+                                self.vwStaticText.isHidden = false
+                                self.tblNotification.isHidden = true
+
+                            }
                             print("arrNotification :> \(self.arrNotification)")
                         }
                         else

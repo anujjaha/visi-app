@@ -138,7 +138,14 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return UITableViewAutomaticDimension
+        if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String != nil
+        {
+            return UITableViewAutomaticDimension
+        }
+        else
+        {
+            return 70.0
+        }
     }
 
     @IBAction func RadioButtonPressed(sender: UIButton)
