@@ -91,7 +91,7 @@ class LoginViewController: UIViewController {
             
             showProgress(inView: self.view)
             print("parameters:>\(parameters)")
-           request("\(kServerURL)login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+         request("\(kServerURL)login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
                 
                 print(response.result.debugDescription)
                 
