@@ -150,7 +150,7 @@ extension HomeViewController: CLLocationManagerDelegate
     {
         if let location = locations.first
         {
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 0, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             mapView.setMinZoom(0, maxZoom: 15)
             locationManagerofHome.stopUpdatingLocation()
         }

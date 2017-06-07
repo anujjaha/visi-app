@@ -45,7 +45,6 @@
 		D3849C391E99187900283C42 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C361E99187900283C42 /* NSString+TextDirectionality.m */; };
 		D388998C1E509A4900F31808 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388998B1E509A4900F31808 /* SwiftyJSON.swift */; };
 		D3A420B21E6891DC00F4BEC0 /* FilterPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A420B11E6891DC00F4BEC0 /* FilterPeopleVC.swift */; };
-		D3B684771E4F2701008C412E /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = D3B684061E4F2700008C412E /* Alamofire.xcworkspace */; };
 		D3B684871E4F2701008C412E /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684201E4F2700008C412E /* AFError.swift */; };
 		D3B684881E4F2701008C412E /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684221E4F2700008C412E /* Alamofire.swift */; };
 		D3B684891E4F2701008C412E /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684231E4F2700008C412E /* DispatchQueue+Alamofire.swift */; };
@@ -63,7 +62,6 @@
 		D3B684971E4F2701008C412E /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684311E4F2700008C412E /* TaskDelegate.swift */; };
 		D3B684981E4F2701008C412E /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684321E4F2700008C412E /* Timeline.swift */; };
 		D3B684991E4F2701008C412E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684331E4F2700008C412E /* Validation.swift */; };
-		D3B684EE1E4F28BA008C412E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3B684ED1E4F28BA008C412E /* Info.plist */; };
 		D3B684F21E4F32A0008C412E /* PrivacyTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */; };
 		D3B999741E61359600441931 /* PhotosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B999731E61359600441931 /* PhotosVC.swift */; };
 		D3C848201E58274300349555 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C8481F1E58274300349555 /* CoreLocation.framework */; };
@@ -143,23 +141,6 @@
 		FFFF354C1E04682700C393B1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF354B1E04682700C393B1 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D3B684DA1E4F2701008C412E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3B684031E4F2700008C412E /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		D3B684EF1E4F28E5008C412E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3B684031E4F2700008C412E /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		D30F6DE71E60A5C600C785DD /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationVC.swift; path = Notification/NotificationVC.swift; sourceTree = "<group>"; };
 		D36565B21E54D96400E1F6AE /* VIZI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VIZI-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -234,8 +215,6 @@
 		D388998A1E509A4900F31808 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		D388998B1E509A4900F31808 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D3A420B11E6891DC00F4BEC0 /* FilterPeopleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPeopleVC.swift; sourceTree = "<group>"; };
-		D3B684031E4F2700008C412E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
-		D3B684061E4F2700008C412E /* Alamofire.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = Alamofire.xcworkspace; sourceTree = "<group>"; };
 		D3B684201E4F2700008C412E /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFError.swift; sourceTree = "<group>"; };
 		D3B684211E4F2700008C412E /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		D3B684221E4F2700008C412E /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
@@ -254,7 +233,6 @@
 		D3B684311E4F2700008C412E /* TaskDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDelegate.swift; sourceTree = "<group>"; };
 		D3B684321E4F2700008C412E /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		D3B684331E4F2700008C412E /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
-		D3B684ED1E4F28BA008C412E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3B684F11E4F32A0008C412E /* PrivacyTermsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTermsVC.swift; sourceTree = "<group>"; };
 		D3B999731E61359600441931 /* PhotosVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosVC.swift; path = Location/PhotosVC.swift; sourceTree = "<group>"; };
 		D3C8481F1E58274300349555 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -478,25 +456,14 @@
 			children = (
 				D388998A1E509A4900F31808 /* SwiftyJSON.h */,
 				D388998B1E509A4900F31808 /* SwiftyJSON.swift */,
-				D3B684031E4F2700008C412E /* Alamofire.xcodeproj */,
-				D3B684061E4F2700008C412E /* Alamofire.xcworkspace */,
 				D3B6841F1E4F2700008C412E /* Source */,
 			);
 			path = WebServiceClass;
 			sourceTree = "<group>";
 		};
-		D3B684041E4F2700008C412E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D3B684DB1E4F2701008C412E /* Alamofire.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D3B6841F1E4F2700008C412E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D3B684ED1E4F28BA008C412E /* Info.plist */,
 				D3B684201E4F2700008C412E /* AFError.swift */,
 				D3B684211E4F2700008C412E /* Alamofire.h */,
 				D3B684221E4F2700008C412E /* Alamofire.swift */,
@@ -780,7 +747,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D3B684F01E4F28E5008C412E /* PBXTargetDependency */,
 			);
 			name = VIZI;
 			productName = VIZI;
@@ -824,12 +790,6 @@
 			mainGroup = FF0F50951E0051B90062AF57;
 			productRefGroup = FF0F509F1E0051BA0062AF57 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D3B684041E4F2700008C412E /* Products */;
-					ProjectRef = D3B684031E4F2700008C412E /* Alamofire.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				FF0F509D1E0051B90062AF57 /* VIZI */,
@@ -837,23 +797,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		D3B684DB1E4F2701008C412E /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = D3B684DA1E4F2701008C412E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		FF0F509C1E0051B90062AF57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D3849C2B1E99059500283C42 /* ELCAlbumPickerController.xib in Resources */,
-				D3B684771E4F2701008C412E /* Alamofire.xcworkspace in Resources */,
 				D3849C2C1E99059500283C42 /* ELCAssetPicker.xib in Resources */,
 				D3C88BA71EA13D12004F362B /* BarFull@2x.png in Resources */,
 				D3C88BA81EA13D12004F362B /* Discover@2x.png in Resources */,
@@ -865,7 +814,6 @@
 				D3C88BA91EA13D12004F362B /* Lake@2x.jpg in Resources */,
 				D3849C2F1E99059500283C42 /* Overlay@2x.png in Resources */,
 				D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */,
-				D3B684EE1E4F28BA008C412E /* Info.plist in Resources */,
 				FF0F50AC1E0051BA0062AF57 /* LaunchScreen.storyboard in Resources */,
 				FFFF354A1E04660F00C393B1 /* Tabbar.storyboard in Resources */,
 				FF0F50A91E0051BA0062AF57 /* Assets.xcassets in Resources */,
@@ -981,14 +929,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D3B684F01E4F28E5008C412E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = D3B684EF1E4F28E5008C412E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		FF0F50AA1E0051BA0062AF57 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -1047,7 +987,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
+				PROVISIONING_PROFILE = "d31556a7-7dab-4ee4-8cb7-e5b5cd52aec5";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1093,7 +1033,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
+				PROVISIONING_PROFILE = "d31556a7-7dab-4ee4-8cb7-e5b5cd52aec5";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -1106,8 +1046,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1123,8 +1063,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
-				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
+				PROVISIONING_PROFILE = "c20e53c2-da1f-4857-a6c7-80459bac42d1";
+				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1137,8 +1077,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = VIZI/VIZI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Ferguson (JGGFCEYKLN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Ferguson (Q3YPMY79N9)";
 				DEVELOPMENT_TEAM = JGGFCEYKLN;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1154,8 +1094,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vizi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c4e9c4e4-730d-49bd-be7d-d48901aa7dd0";
-				PROVISIONING_PROFILE_SPECIFIER = VIZI_Dist;
+				PROVISIONING_PROFILE = "c20e53c2-da1f-4857-a6c7-80459bac42d1";
+				PROVISIONING_PROFILE_SPECIFIER = Vizi_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "VIZI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
