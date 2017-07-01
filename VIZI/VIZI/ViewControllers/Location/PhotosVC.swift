@@ -17,6 +17,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     var imagePicker = UIImagePickerController()
     var iindexPhotoSelected = Int()
     var bReplaceImage = Bool()
+    var bImagePickerOpen = Bool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,16 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         
-        for index in 0..<appDelegate.arrNewLocationPhotos.count
+        if(bImagePickerOpen == true)
         {
-            arrPhotos.add(appDelegate.arrNewLocationPhotos[index])
+            bImagePickerOpen = false
+        }
+        else
+        {
+            for index in 0..<appDelegate.arrNewLocationPhotos.count
+            {
+                arrPhotos.add(appDelegate.arrNewLocationPhotos[index])
+            }
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,7 +148,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
                 UIAlertAction in
                 self.openCamera()
             }
-            let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.default)
+            let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.default)
             {
                 UIAlertAction in
                 self.openGallary()
@@ -163,8 +171,9 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     {
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
         {
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.bImagePickerOpen = true
             imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -174,6 +183,8 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     }
     func openGallary()
     {
+        self.bImagePickerOpen = true
+
         let picker = ELCImagePickerController(imagePicker: ())
         if (bReplaceImage)
         {
@@ -213,7 +224,8 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         else
         {
             arrPhotos.add(image)
-            appDelegate.arrNewLocationPhotos.add(image)
+            //appDelegate.arrNewLocationPhotos.add(image)
+            appDelegate.arrNewLocationPhotos = arrPhotos
         }
         dismiss(animated: true, completion: nil)
         cvPhotos.reloadData()

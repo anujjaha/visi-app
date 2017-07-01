@@ -123,7 +123,7 @@
     CGFloat startX;
     
     if (self.alignmentLeft) {
-        startX = 4;
+        startX = 15;
     }else {
         startX = (self.bounds.size.width - totalWidth) / 2;
     }
@@ -139,7 +139,7 @@
         [overlayView setFrame:frame];
         [self addSubview:overlayView];
 		
-		frame.origin.x = frame.origin.x + frame.size.width + 4;
+		frame.origin.x = frame.origin.x + frame.size.width + 15;
 	}
 }
 

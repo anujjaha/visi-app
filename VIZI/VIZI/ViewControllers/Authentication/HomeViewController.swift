@@ -151,7 +151,11 @@ extension HomeViewController: CLLocationManagerDelegate
         if let location = locations.first
         {
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            mapView.setMinZoom(0, maxZoom: 15)
+                /*
+                 Niyati Shah : 01-07-2017
+                 Comment : ○  - [ ] zoom in see buildings-not able to”
+                 */
+            mapView.setMinZoom(0, maxZoom: 30)
             locationManagerofHome.stopUpdatingLocation()
         }
     }

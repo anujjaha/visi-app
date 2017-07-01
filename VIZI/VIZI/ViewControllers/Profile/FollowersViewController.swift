@@ -32,6 +32,7 @@ class FollowersViewController: UIViewController
     @IBOutlet weak var tblFollowersList: UITableView!
     var bFollowers = Bool()
     var strUserID = String()
+    var arrIndexSection = ["A","B","C","D", "E", "F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
     override func viewDidLoad()
     {
@@ -57,7 +58,8 @@ class FollowersViewController: UIViewController
         
         self.tblFollowersList.estimatedRowHeight = 81.0 ;
         self.tblFollowersList.rowHeight = UITableViewAutomaticDimension;
-
+        self.tblFollowersList.sectionIndexColor = UIColor.white
+        self.tblFollowersList.sectionIndexBackgroundColor = UIColor.appPinkColor()
         
     }
     func backButtonPressed()
@@ -216,7 +218,7 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowersCell") as! FollowersCell
         
         cell.lblName.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
-        cell.lblAddress.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
+      // cell.lblAddress.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
 
         if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
@@ -269,6 +271,17 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
 
+    func sectionIndexTitles(for tableView: UITableView) -> [String]?
+    {
+        return arrIndexSection
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int
+    {
+        let temp = arrIndexSection as NSArray
+        return temp.index(of: title)
+    }
+    
     @IBAction func btnFollowPressed(_ sender:UIButton)
     {
         if ((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
