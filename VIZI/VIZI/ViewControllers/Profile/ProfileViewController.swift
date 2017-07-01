@@ -86,6 +86,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     //for report abus reason
     @IBOutlet weak var vwreportabuse : UIView!
     @IBOutlet weak var txtReason : UITextView!
+    var bImagePickerOpen = Bool()
 
     override func viewDidLoad()
     {
@@ -185,7 +186,14 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         }
         else
         {
-            self.getProfileData()
+            if(bImagePickerOpen == true)
+            {
+                bImagePickerOpen = false
+            }
+            else
+            {
+                self.getProfileData()
+            }
         }
     }
     
@@ -580,10 +588,17 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                     print("dictemp :> \(dictemp)")
                                     if dictemp.count > 0
                                     {
-                                        App_showAlert(withMessage: "Category Added Successfully", inView: self)
-                                        self.viewAddFilter.isHidden = true
-                                        self.txtAddCategory.text = ""
-                                        self.imgCategory.image = UIImage(named: "photo_icon")
+//                                        App_showAlert(withMessage: "Category Added Successfully", inView: self)
+                                            let alertView = UIAlertController(title: Application_Name, message: "Category Added Successfully", preferredStyle: .alert)
+                                            let OKAction = UIAlertAction(title: "OK", style: .default)
+                                            { (action) in
+                                                self.getProfileData()
+                                                self.viewAddFilter.isHidden = true
+                                                self.txtAddCategory.text = ""
+                                                self.imgCategory.image = UIImage(named: "photo_icon")
+                                            }
+                                            alertView.addAction(OKAction)
+                                            self.present(alertView, animated: true, completion: nil)
                                     }
                                     else
                                     {
@@ -634,6 +649,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             imagePicker.allowsEditing = true
+            bImagePickerOpen = true
             self .present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -645,6 +661,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.allowsEditing = true
+        bImagePickerOpen = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     

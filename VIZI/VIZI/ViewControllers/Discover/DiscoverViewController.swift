@@ -248,6 +248,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.lblFeedText.text = (self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeytext) as? String
             cell.lblFeedTime.text = (self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeytime) as? String
             
+            cell.selectionStyle = .none
+            
             if (self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
                 cell.imgProfile.image = UIImage(named: "Placeholder")
