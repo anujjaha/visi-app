@@ -12,29 +12,49 @@ class PrivacyTermsVC: UIViewController
 {
     var bisPrivacy = Bool()
     @IBOutlet weak var txtvw : UITextView!
+    @IBOutlet weak var webView : UIWebView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+//        webView.isOpaque = false
+//        webView.backgroundColor = UIColor.clear
+
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
 
         if(bisPrivacy)
         {
-            self.getprivacyData()
+//            self.getprivacyData()
             self.title = "Privacy Policy"
+            
+            let url = NSURL (string: kPrivacyURL)
+            let requestObj = NSURLRequest(url: url! as URL)
+            webView.loadRequest(requestObj as URLRequest)
         }
         else
         {
-            self.gettermsData()
+//            self.gettermsData()
             self.title = "Terms & Conditions"
+            let url = NSURL (string: kTermsURL)
+            let requestObj = NSURLRequest(url: url! as URL)
+            webView.loadRequest(requestObj as URLRequest)
         }
     }
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+
+    func webViewDidStartLoad(webView : UIWebView)
+    {
+        showProgress(inView: self.view)
+    }
+    
+    func webViewDidFinishLoad(webView : UIWebView)
+    {
+        hideProgress()
     }
 
     func getprivacyData()
@@ -62,10 +82,12 @@ class PrivacyTermsVC: UIViewController
                         if dictemp.count > 0
                         {
                             self.txtvw.text = dictemp["data"] as? String
+//                            self.webView.loadHTMLString("<html><body>\(dictemp["data"] as? String)!</body></html>", baseURL: nil)
                         }
                         else
                         {
                             self.txtvw.text = ""
+//                            self.webView.loadHTMLString("", baseURL: nil)
                             App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                         }
                     }
@@ -105,10 +127,12 @@ class PrivacyTermsVC: UIViewController
                         if dictemp.count > 0
                         {
                             self.txtvw.text = dictemp["data"] as? String
+//                            self.webView.loadHTMLString("<html><body>\(dictemp["data"] as? String)!</body></html>", baseURL: nil)
                         }
                         else
                         {
                             self.txtvw.text = ""
+//                            self.webView.loadHTMLString("", baseURL: nil)
                             App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
                         }
                     }

@@ -62,6 +62,10 @@ let kServerURL = "http://app.theviziapp.com/api/"
 //let kGOOGLEAPIKEY = "AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4"
 let kGOOGLEAPIKEY = "AIzaSyCQsja54oBXysiyM6Xc4NAFtpGYL6i-1es"
 
+let kPrivacyURL = "http://app.theviziapp.com/api/privacy_policy.php"
+let kTermsURL = "http://app.theviziapp.com/api/terms_condition.php"
+
+
 
 //var CurrentUser : UserModel = UserModel()
 
