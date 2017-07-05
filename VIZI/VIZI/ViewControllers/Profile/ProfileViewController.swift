@@ -13,13 +13,15 @@ class ProfileCell: UICollectionViewCell
     @IBOutlet weak var lblCategoryName : UILabel!
     @IBOutlet weak var imgCategory : UIImageView!
     @IBOutlet weak var btnDeleteCategory : UIButton!
+    @IBOutlet weak var imgLockPrivate : UIImageView!
 }
 
 class CategoryListCell: UITableViewCell
 {
     @IBOutlet weak var imgCategory : UIImageView!
     @IBOutlet weak var lblName : UILabel!
-    
+//    @IBOutlet weak var imgLockPrivate : UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         //        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
@@ -889,6 +891,16 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         cell.btnDeleteCategory.tag = indexPath.row
         cell.btnDeleteCategory.addTarget(self, action: #selector(btnDeleteCategoryAction(_:)), for: .touchUpInside)
 
+        let iIsPrivate = "\((arrCategorydata[indexPath.row] as AnyObject).object(forKey: kkeyis_private)!)"
+        
+        if iIsPrivate == "0"
+        {
+            cell.imgLockPrivate.isHidden = true
+        }
+        else
+        {
+            cell.imgLockPrivate.isHidden = false
+        }
         
         if(appDelegate.bUserSelfProfile)
         {

@@ -47,6 +47,7 @@ let kkeyis_following = "is_following"
 let kkeypin_id = "pin_id"
 let kkeybgimage = "bgimage"
 let kkeyshow_delete = "show_delete"
+let kkeyis_private = "is_private"
 
 let kNO = "NO"
 let kYES = "YES"
