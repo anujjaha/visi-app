@@ -23,6 +23,8 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var btnAddPin : UIButton!
     @IBOutlet weak var btnDeletePin : UIButton!
     
+    @IBOutlet weak var btnEditPin : UIButton!
+
     //Add Pin To Category
     @IBOutlet weak var vwAddPinToCategory : UIView!
     var arrCategorydata = NSArray()
@@ -132,21 +134,25 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
                                     if ((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "can_delete")!) is NSNull
                                     {
                                         self.btnDeletePin.isHidden = true
+                                        self.btnEditPin.isHidden = true
                                     }
                                     else
                                     {
                                         if ((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "can_delete") as! NSNumber) == 0
                                         {
                                             self.btnDeletePin.isHidden = true
+                                            self.btnEditPin.isHidden = true
                                         }
                                         else
                                         {
                                             self.btnDeletePin.isHidden = false
+                                            self.btnEditPin.isHidden = false
                                         }
                                     }
                                 }
                                 else
                                 {
+                                    self.btnDeletePin.isHidden = true
                                     self.btnDeletePin.isHidden = true
                                 }
                                 
@@ -201,6 +207,11 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.getCategorydata()
     }
     
+    @IBAction func btnEditPinPressed()
+    {
+        
+    }
+
     @IBAction func btnDeletePinPressed()
     {
         /*

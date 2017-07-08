@@ -44,6 +44,7 @@
 		D3849C381E99187900283C42 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C341E99187900283C42 /* JVFloatLabeledTextView.m */; };
 		D3849C391E99187900283C42 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C361E99187900283C42 /* NSString+TextDirectionality.m */; };
 		D388998C1E509A4900F31808 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388998B1E509A4900F31808 /* SwiftyJSON.swift */; };
+		D39026A71F115B8700605682 /* EditLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39026A61F115B8700605682 /* EditLocationVC.swift */; };
 		D3A420B21E6891DC00F4BEC0 /* FilterPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A420B11E6891DC00F4BEC0 /* FilterPeopleVC.swift */; };
 		D3B684871E4F2701008C412E /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684201E4F2700008C412E /* AFError.swift */; };
 		D3B684881E4F2701008C412E /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B684221E4F2700008C412E /* Alamofire.swift */; };
@@ -214,6 +215,7 @@
 		D3849C361E99187900283C42 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
 		D388998A1E509A4900F31808 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		D388998B1E509A4900F31808 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		D39026A61F115B8700605682 /* EditLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditLocationVC.swift; path = Location/EditLocationVC.swift; sourceTree = "<group>"; };
 		D3A420B11E6891DC00F4BEC0 /* FilterPeopleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPeopleVC.swift; sourceTree = "<group>"; };
 		D3B684201E4F2700008C412E /* AFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFError.swift; sourceTree = "<group>"; };
 		D3B684211E4F2700008C412E /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				D3C848231E5865EC00349555 /* NewLocationVC.swift */,
 				D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */,
 				D3B999731E61359600441931 /* PhotosVC.swift */,
+				D39026A61F115B8700605682 /* EditLocationVC.swift */,
 			);
 			name = NewLocation;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				D36565EE1E54D9E100E1F6AE /* UIButton+WebCache.m in Sources */,
 				D3B684891E4F2701008C412E /* DispatchQueue+Alamofire.swift in Sources */,
 				D36565F31E54D9E100E1F6AE /* UIImageView+WebCache.m in Sources */,
+				D39026A71F115B8700605682 /* EditLocationVC.swift in Sources */,
 				D30F6DE81E60A5C600C785DD /* NotificationVC.swift in Sources */,
 				D3849C281E99059500283C42 /* ELCConsole.m in Sources */,
 				D3849C261E99059500283C42 /* ELCAssetCell.m in Sources */,
