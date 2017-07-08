@@ -111,7 +111,7 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
             UIAlertAction in
             self.openCamera()
         }
-        let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.default)
+        let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.default)
         {
             UIAlertAction in
             self.openGallary()

@@ -13,6 +13,8 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     @IBOutlet weak var tblCategory: UITableView!
     var arrCategorydata = NSArray()
     var arrSelectedbutton = NSMutableArray()
+    
+    
     @IBOutlet weak var txtAddCategory : VIZIUITextField!
     @IBOutlet weak var imgCategory : UIImageView!
     var imagePicker = UIImagePickerController()
@@ -327,7 +329,7 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             UIAlertAction in
             self.openCamera()
         }
-        let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.default)
+        let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.default)
         {
             UIAlertAction in
             self.openGallary()

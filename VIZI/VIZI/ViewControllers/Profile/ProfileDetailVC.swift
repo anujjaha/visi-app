@@ -27,7 +27,7 @@ class BarCell: UITableViewCell
     }
 }
 
-class ProfileDetailVC: UIViewController
+class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     var dictCategory = NSDictionary()
     var arrLocation = NSMutableArray()
@@ -42,6 +42,17 @@ class ProfileDetailVC: UIViewController
     var arrSelectedbutton = NSMutableArray()
     var iSelectedCategoryID = Int()
     var strPinID = String()
+    
+    // Edit Category
+    @IBOutlet weak var txtAddCategory : VIZIUITextField!
+    @IBOutlet weak var imgCategory : UIImageView!
+    var imagePicker = UIImagePickerController()
+    var imageData = NSData()
+    @IBOutlet weak var btnMakePrivate : UIButton!
+    var flagforswitch = Bool()
+    var strvisibilityvalue = NSString()
+    @IBOutlet weak var viewAddFilter : UIView!
+
 
     override func viewDidLoad()
     {
@@ -53,6 +64,18 @@ class ProfileDetailVC: UIViewController
         //IOS
         if(appDelegate.bUserSelfProfile)
         {
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.editCategoryPressed))
+
+            print(dictCategory)
+            let button = UIButton.init(type: .custom)
+            button.setImage(UIImage.init(named: "edit_icon"), for: UIControlState.normal)
+            button.addTarget(self, action:#selector(self.editCategoryPressed), for: UIControlEvents.touchUpInside)
+            button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
+            let barButton = UIBarButtonItem.init(customView: button)
+            self.navigationItem.rightBarButtonItem = barButton
+            
+            
+
         }
         else
         {
@@ -151,6 +174,7 @@ class ProfileDetailVC: UIViewController
     {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -338,6 +362,189 @@ class ProfileDetailVC: UIViewController
     {
         vwAddPinToCategory.isHidden = true
     }
+
+    //MARK: Edit Category Data
+    func editCategoryPressed()
+    {
+        self.viewAddFilter.isHidden = false
+        
+        txtAddCategory.text = dictCategory.object(forKey: kkeyname) as? String
+        if (dictCategory.object(forKey: kkeyimage)) is NSNull
+        {
+            imgCategory.image = UIImage(named: "Placeholder")
+        }
+        else
+        {
+            imgCategory.sd_setImage(with: URL(string: "\(dictCategory.object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+        }
+        
+        let iIsPrivate = "\(dictCategory.object(forKey: kkeyis_private)!)"
+        if iIsPrivate == "0"
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
+        else
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1"
+        }
+    }
+    @IBAction func btnCancelPressed()
+    {
+        self.viewAddFilter.isHidden = true
+    }
+    
+    @IBAction func switchaction(_ sender: UIButton)
+    {
+        if flagforswitch == false
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1";
+        }
+        else
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+        }
+    }
+    @IBAction func EditCatgegoryonServeraction(_ sender: UIButton)
+    {
+        if (self.txtAddCategory.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter category name", inView: self)
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "name": "\(self.txtAddCategory.text!)",
+                "private" : "\(strvisibilityvalue)",
+                "category_id" : "\(dictCategory[kkeyuserid]!)"
+            ]
+            
+            upload(multipartFormData:
+                { (multipartFormData) in
+                    
+                    if let imageData2 = UIImageJPEGRepresentation(self.imgCategory.image!, 1)
+                    {
+                        multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
+                    }
+                    for (key, value) in parameters
+                    {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                }, to: "\(kServerURL)edit_category.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
+                {
+                    (result) in
+                    switch result
+                    {
+                    case .success(let upload, _, _):
+                        upload.responseJSON
+                            {
+                                response in
+                                hideProgress()
+                                
+                                print(response.request) // original URL request
+                                print(response.response) // URL response
+                                print(response.data) // server data
+                                print(response.result) // result of response serialization
+                                
+                                if let json = response.result.value
+                                {
+                                    print("json :> \(json)")
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    if dictemp.count > 0
+                                    {
+                                        let alertView = UIAlertController(title: Application_Name, message: "Category Updated Successfully", preferredStyle: .alert)
+                                        let OKAction = UIAlertAction(title: "OK", style: .default)
+                                        { (action) in
+                                            
+                                            self.viewAddFilter.isHidden = true
+                                        }
+                                        alertView.addAction(OKAction)
+                                        self.present(alertView, animated: true, completion: nil)
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+                        }
+                        
+                    case .failure(let encodingError):
+                        hideProgress()
+                        print(encodingError)
+                        App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
+                    }
+            })
+        }
+
+    }
+    @IBAction func SelectImage()
+    {
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openCamera()
+        }
+        let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openGallary()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        imagePicker.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(gallaryAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
+            self .present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            App_showAlert(withMessage: "You don't have camera", inView: self)
+        }
+    }
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //PickerView Delegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imgCategory.image = resize(chosenImage)
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        print("picker cancel.")
+    }
+    
 
     
     override func didReceiveMemoryWarning() {
