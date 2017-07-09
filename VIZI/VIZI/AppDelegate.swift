@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var bUserSelfProfile = Bool()
     var dictfilterdata = NSDictionary()
     var bFilterScreenCalledAPI = Bool()
+    var strSelectedLocationAdreess = String()
+    var fSelectedCordinateEditLocation = CLLocationCoordinate2D()
+    var arrEditLocationPhotosID = NSMutableArray()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

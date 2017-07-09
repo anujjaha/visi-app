@@ -23,6 +23,7 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
     @IBOutlet weak var viewAddFilter : UIView!
+    var bfromEditLoction = Bool()
 
     override func viewDidLoad()
     {
@@ -105,13 +106,18 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        if (!bfromEditLoction)
+        {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
-        self.navigationController?.isNavigationBarHidden = false
-        super.viewWillAppear(animated)
+        if (!bfromEditLoction)
+        {
+            self.navigationController?.isNavigationBarHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int

@@ -18,6 +18,8 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     var iindexPhotoSelected = Int()
     var bReplaceImage = Bool()
     var bImagePickerOpen = Bool()
+    var bfromEditLoction = Bool()
+    var strPinID = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,10 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        if (!bfromEditLoction)
+        {
+            self.navigationController?.isNavigationBarHidden = true
+        }
         
         if(bImagePickerOpen == true)
         {
@@ -50,9 +55,12 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
             }
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-        super.viewWillAppear(animated)
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        if (!bfromEditLoction)
+        {
+            self.navigationController?.isNavigationBarHidden = false
+        }
     }
 
     
@@ -87,9 +95,17 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         let alertView = UIAlertController(title: Application_Name, message: "Are you sure want to delete photo?", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "Ok", style: .default)
         { (action) in
-            self.arrPhotos.removeObject(at: sender.tag)
-            appDelegate.arrNewLocationPhotos = self.arrPhotos
-            self.cvPhotos.reloadData()
+            
+            if(!self.bfromEditLoction)
+            {
+                self.arrPhotos.removeObject(at: sender.tag)
+                appDelegate.arrNewLocationPhotos = self.arrPhotos
+                self.cvPhotos.reloadData()
+            }
+            else
+            {
+                self.deletePinPhoto(imageid: "\(appDelegate.arrEditLocationPhotosID[sender.tag])",iTagofDelete: sender.tag)
+            }
         }
         let CancelAction = UIAlertAction(title: "Cancel", style: .default)
         { (action) in
@@ -98,6 +114,60 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         alertView.addAction(CancelAction)
 
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func deletePinPhoto(imageid : String ,iTagofDelete : Int)
+    {
+        showProgress(inView: self.view)
+        
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "image_id": imageid,
+            "pin_id": self.strPinID
+        ]
+        
+        print("parameters:>\(parameters)")
+        request("\(kServerURL)delete_pin_image.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if (dictemp["status"] as! String == "fail")
+                        {
+                            
+                        }
+                        else
+                        {
+                            self.view.makeToast("Image Deleted Successfully", duration: 3.0, position: .center)
+                            
+                            appDelegate.arrEditLocationPhotosID.removeObject(at: iTagofDelete)
+                            self.arrPhotos.removeObject(at: iTagofDelete)
+                            appDelegate.arrNewLocationPhotos = self.arrPhotos
+                            self.cvPhotos.reloadData()
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+        }
     }
     
     //MARK: Replace Image

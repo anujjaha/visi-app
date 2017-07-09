@@ -199,8 +199,9 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
     @IBAction func btnOpenPhotosAction()
     {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
-        let tabbar = storyTab.instantiateViewController(withIdentifier: "PhotosVC")
-        self.navigationController?.pushViewController(tabbar, animated: true)
+        let objPhotosVC = storyTab.instantiateViewController(withIdentifier: "PhotosVC") as! PhotosVC
+        objPhotosVC.bfromEditLoction = false
+        self.navigationController?.pushViewController(objPhotosVC, animated: true)
     }
     
     @IBAction func btnNotesAction()

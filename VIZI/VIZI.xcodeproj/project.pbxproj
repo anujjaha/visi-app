@@ -28,6 +28,7 @@
 		D36565F41E54D9E100E1F6AE /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565DF1E54D9E100E1F6AE /* UIView+WebCache.m */; };
 		D36565F51E54D9E100E1F6AE /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565E11E54D9E100E1F6AE /* UIView+WebCacheOperation.m */; };
 		D36565F71E54DA2300E1F6AE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36565F61E54DA2300E1F6AE /* ImageIO.framework */; };
+		D379F03D1F122ED900D2B9EA /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379F03C1F122ED900D2B9EA /* SelectLocationVC.swift */; };
 		D3849C241E99059500283C42 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C0E1E99059500283C42 /* ELCAlbumPickerController.m */; };
 		D3849C251E99059500283C42 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C101E99059500283C42 /* ELCAsset.m */; };
 		D3849C261E99059500283C42 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C121E99059500283C42 /* ELCAssetCell.m */; };
@@ -185,6 +186,7 @@
 		D36565E01E54D9E100E1F6AE /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		D36565E11E54D9E100E1F6AE /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		D36565F61E54DA2300E1F6AE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D379F03C1F122ED900D2B9EA /* SelectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectLocationVC.swift; path = Location/SelectLocationVC.swift; sourceTree = "<group>"; };
 		D3849C0D1E99059500283C42 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		D3849C0E1E99059500283C42 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		D3849C0F1E99059500283C42 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				D3E463481E5F4D4100438EAA /* FilterCategoryVC.swift */,
 				D3B999731E61359600441931 /* PhotosVC.swift */,
 				D39026A61F115B8700605682 /* EditLocationVC.swift */,
+				D379F03C1F122ED900D2B9EA /* SelectLocationVC.swift */,
 			);
 			name = NewLocation;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				D3CA42AB1E54007500365290 /* IQKeyboardManager.swift in Sources */,
 				D3B6848E1E4F2701008C412E /* Notifications.swift in Sources */,
 				D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */,
+				D379F03D1F122ED900D2B9EA /* SelectLocationVC.swift in Sources */,
 				D3B684921E4F2701008C412E /* ResponseSerialization.swift in Sources */,
 				D3CA42AC1E54007500365290 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				D3849C2A1E99059500283C42 /* ELCOverlayImageView.m in Sources */,

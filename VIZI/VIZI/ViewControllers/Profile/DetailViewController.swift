@@ -22,7 +22,6 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     var strCategoryName = String()
     @IBOutlet weak var btnAddPin : UIButton!
     @IBOutlet weak var btnDeletePin : UIButton!
-    
     @IBOutlet weak var btnEditPin : UIButton!
 
     //Add Pin To Category
@@ -209,9 +208,29 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func btnEditPinPressed()
     {
-        
+        if (self.dictLocation.count > 0)
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objEditLocation = storyTab.instantiateViewController(withIdentifier: "EditLocationVC") as! EditLocationVC
+            objEditLocation.dictLocation = dictLocation
+            objEditLocation.strCategoryName = strCategoryName
+            objEditLocation.strCategoryID = strCategoryID
+            objEditLocation.strPinID = self.strPinID
+            
+//            if let temp = (dictLocation.object(forKey: kkeylat)) as? String
+//            {
+                let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey:kkeylat)!)" as NSString).doubleValue
+                let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey:kkeylon)!)" as NSString).doubleValue
+                appDelegate.fSelectedCordinateEditLocation = CLLocationCoordinate2D(latitude: flat, longitude: flon)
+//            }
+//            else
+//            {
+//                appDelegate.fSelectedCordinateEditLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+//
+//            }
+            self.navigationController?.pushViewController(objEditLocation, animated: true)
+        }
     }
-
     @IBAction func btnDeletePinPressed()
     {
         /*
