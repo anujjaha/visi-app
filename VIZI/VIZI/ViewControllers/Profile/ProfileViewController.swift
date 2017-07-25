@@ -146,8 +146,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             self.txtAddCategory.attributedPlaceholder = NSAttributedString(string:"Add Category", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             
             self.viewPhotoCategory.layer.cornerRadius = 5.0
-            self.btnSave.layer.cornerRadius = 5.0
-            self.btnCancel.layer.cornerRadius = 5.0
+//            self.btnSave.layer.cornerRadius = 5.0
+//            self.btnCancel.layer.cornerRadius = 5.0
         }
     }
     

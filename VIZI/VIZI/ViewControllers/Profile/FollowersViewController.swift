@@ -32,7 +32,7 @@ class FollowersViewController: UIViewController
     @IBOutlet weak var tblFollowersList: UITableView!
     var bFollowers = Bool()
     var strUserID = String()
-    var arrIndexSection = ["A","B","C","D", "E", "F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    var arrIndexSection = [String]()
 
     override func viewDidLoad()
     {
@@ -70,6 +70,7 @@ class FollowersViewController: UIViewController
     func getFollowingList()
     {
         arrFollowersList = NSMutableArray()
+        arrIndexSection = [String]()
         
         let parameters = [
             "user_id": strUserID,
@@ -79,7 +80,7 @@ class FollowersViewController: UIViewController
         
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
-        request("\(kServerURL)my_followings.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)my_alpha_followings.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
@@ -103,6 +104,13 @@ class FollowersViewController: UIViewController
                         {
                                 self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("arrFollowersList :> \(self.arrFollowersList)")
+                            
+                            
+                            for i in 0..<self.arrFollowersList.count
+                            {
+                                self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
+                            }
+                            
                         }
                         else
                         {
@@ -127,6 +135,7 @@ class FollowersViewController: UIViewController
     func getFollowersList()
     {
         arrFollowersList = NSMutableArray()
+        arrIndexSection = [String]()
         
         let parameters = [
             "user_id": strUserID,
@@ -136,7 +145,7 @@ class FollowersViewController: UIViewController
         
         showProgress(inView: self.view)
         print("parameters:>\(parameters)")
-        request("\(kServerURL)my_followers.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)my_alpha_followers.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
@@ -160,6 +169,11 @@ class FollowersViewController: UIViewController
                         {
                             self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                             print("arrFollowersList :> \(self.arrFollowersList)")
+                            
+                            for i in 0..<self.arrFollowersList.count
+                            {
+                                self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
+                            }
                         }
                         else
                         {
@@ -209,32 +223,51 @@ class FollowersViewController: UIViewController
 }
 extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         return self.arrFollowersList.count
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 44
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return ((self.arrFollowersList[section] as AnyObject).object(forKey: "dataKey") as! String).uppercased()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return ((self.arrFollowersList[section] as AnyObject).object(forKey: "values") as! NSArray).count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowersCell") as! FollowersCell
         
-        cell.lblName.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
+        let dataarray = ((self.arrFollowersList[indexPath.section] as AnyObject).object(forKey: "values") as! NSArray)
+        
+       cell.lblName.text = (dataarray[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
       // cell.lblAddress.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
 
-        if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+        if (dataarray[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
             cell.imgProfile.image = UIImage(named: "Placeholder")
         }
         else
         {
-            cell.imgProfile.sd_setImage(with: URL(string: "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+            cell.imgProfile.sd_setImage(with: URL(string: "\((dataarray[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
         }
         
         cell.btnFollw.tag = indexPath.row
         
-        if ((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
+        if ((dataarray[indexPath.row] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
         {
             cell.btnFollw.backgroundColor = UIColor.appPinkColor()
             cell.btnFollw.setTitle("Follow", for: UIControlState.normal)
+            cell.btnFollw.setImage(UIImage(named:""), for: UIControlState.normal)
         }
         else
         {
@@ -266,7 +299,9 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
     {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        tabbar.strotheruserID = "\((arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+        
+        let dataarray = ((self.arrFollowersList[indexPath.section] as AnyObject).object(forKey: "values") as! NSArray)
+        tabbar.strotheruserID = "\((dataarray[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
         appDelegate.bUserSelfProfile = false
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
@@ -284,11 +319,15 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
     
     @IBAction func btnFollowPressed(_ sender:UIButton)
     {
-        if ((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
+        let btnPos: CGPoint = sender.convert(CGPoint.zero, to: self.tblFollowersList)
+        let indexPath: NSIndexPath = self.tblFollowersList.indexPathForRow(at: btnPos)! as NSIndexPath
+        let dataarray = ((self.arrFollowersList[indexPath.section] as AnyObject).object(forKey: "values") as! NSArray)
+
+        if ((dataarray[sender.tag] as AnyObject).object(forKey: kkeyfollowing) as! NSNumber) == 0
         {
             let parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-                "follow_id" :  "\((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
+                "follow_id" :  "\((dataarray[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
                 "follow"  : "\(1)"
             ]
             
@@ -316,13 +355,23 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
                             
                             if dictemp.count > 0
                             {
-                                sender.backgroundColor = UIColor.appDarkChocColor()
-                                sender.setTitle("", for: UIControlState.normal)
-                                sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
+//                                sender.backgroundColor = UIColor.appDarkChocColor()
+//                                sender.setTitle("", for: UIControlState.normal)
+//                                sender.setImage(#imageLiteral(resourceName: "following_icon"), for: UIControlState.normal)
                                 
-                                let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
-                                tempdict.setValue(1, forKey: kkeyfollowing)
-                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
+//                                let tempdict = NSMutableDictionary(dictionary:dataarray[sender.tag] as! NSDictionary)
+//                                tempdict.setValue(1, forKey: kkeyfollowing)
+//                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
+
+                                if self.bFollowers == true
+                                {
+                                    self.getFollowersList()
+                                }
+                                else
+                                {
+                                    self.getFollowingList()
+                                }
+
                             }
                             else
                             {
@@ -345,7 +394,7 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         {
             let parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-                "follow_id" :  "\((arrFollowersList[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
+                "follow_id" :  "\((dataarray[sender.tag] as AnyObject).object(forKey: kkeyuserid)!)",
                 "follow"  : "\(0)"
             ]
             
@@ -373,13 +422,25 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
                             
                             if dictemp.count > 0
                             {
-                                sender.backgroundColor = UIColor.appPinkColor()
-                                sender.setTitle("Follow", for: UIControlState.normal)
-                                sender.setImage(nil, for: UIControlState.normal)
+//                                sender.backgroundColor = UIColor.appPinkColor()
+//                                sender.setTitle("Follow", for: UIControlState.normal)
+//                                sender.setImage(nil, for: UIControlState.normal)
 
-                                let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
-                                tempdict.setValue(0, forKey: kkeyfollowing)
-                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
+                                
+                                if self.bFollowers == true
+                                {
+                                    self.title = "Followers"
+                                    self.getFollowersList()
+                                }
+                                else
+                                {
+                                    self.title = "Following"
+                                    self.getFollowingList()
+                                }
+
+//                                let tempdict = NSMutableDictionary(dictionary:self.arrFollowersList[sender.tag] as! NSDictionary)
+//                                tempdict.setValue(0, forKey: kkeyfollowing)
+//                                self.arrFollowersList.replaceObject(at: sender.tag, with: tempdict)
                             }
                             else
                             {
