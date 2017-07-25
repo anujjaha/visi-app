@@ -29,18 +29,6 @@
 		D36565F51E54D9E100E1F6AE /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565E11E54D9E100E1F6AE /* UIView+WebCacheOperation.m */; };
 		D36565F71E54DA2300E1F6AE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36565F61E54DA2300E1F6AE /* ImageIO.framework */; };
 		D379F03D1F122ED900D2B9EA /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379F03C1F122ED900D2B9EA /* SelectLocationVC.swift */; };
-		D3849C241E99059500283C42 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C0E1E99059500283C42 /* ELCAlbumPickerController.m */; };
-		D3849C251E99059500283C42 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C101E99059500283C42 /* ELCAsset.m */; };
-		D3849C261E99059500283C42 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C121E99059500283C42 /* ELCAssetCell.m */; };
-		D3849C271E99059500283C42 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C161E99059500283C42 /* ELCAssetTablePicker.m */; };
-		D3849C281E99059500283C42 /* ELCConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C181E99059500283C42 /* ELCConsole.m */; };
-		D3849C291E99059500283C42 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C1A1E99059500283C42 /* ELCImagePickerController.m */; };
-		D3849C2A1E99059500283C42 /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C1D1E99059500283C42 /* ELCOverlayImageView.m */; };
-		D3849C2B1E99059500283C42 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3849C1F1E99059500283C42 /* ELCAlbumPickerController.xib */; };
-		D3849C2C1E99059500283C42 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3849C201E99059500283C42 /* ELCAssetPicker.xib */; };
-		D3849C2D1E99059500283C42 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3849C211E99059500283C42 /* ELCAssetTablePicker.xib */; };
-		D3849C2E1E99059500283C42 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D3849C221E99059500283C42 /* Overlay.png */; };
-		D3849C2F1E99059500283C42 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3849C231E99059500283C42 /* Overlay@2x.png */; };
 		D3849C371E99187900283C42 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C321E99187900283C42 /* JVFloatLabeledTextField.m */; };
 		D3849C381E99187900283C42 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C341E99187900283C42 /* JVFloatLabeledTextView.m */; };
 		D3849C391E99187900283C42 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = D3849C361E99187900283C42 /* NSString+TextDirectionality.m */; };
@@ -117,6 +105,33 @@
 		D3E5DB8F1E61C0150060912C /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */; };
 		D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */; };
 		D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DBA51E61C2970060912C /* Accelerate.framework */; };
+		D3F190B91F24C332004D2BBE /* ActivityIndicatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190991F24C332004D2BBE /* ActivityIndicatable.swift */; };
+		D3F190BA1F24C332004D2BBE /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909A1F24C332004D2BBE /* AlbumCell.swift */; };
+		D3F190BB1F24C332004D2BBE /* AlbumListEmptyIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909B1F24C332004D2BBE /* AlbumListEmptyIndicator.swift */; };
+		D3F190BC1F24C332004D2BBE /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909C1F24C332004D2BBE /* AlbumListViewController.swift */; };
+		D3F190BD1F24C332004D2BBE /* AnimatableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909D1F24C332004D2BBE /* AnimatableNavigationController.swift */; };
+		D3F190BE1F24C332004D2BBE /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909E1F24C332004D2BBE /* AssetCell.swift */; };
+		D3F190BF1F24C332004D2BBE /* AssetDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909F1F24C332004D2BBE /* AssetDetailCell.swift */; };
+		D3F190C01F24C332004D2BBE /* AssetDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A01F24C332004D2BBE /* AssetDetailListViewController.swift */; };
+		D3F190C11F24C332004D2BBE /* AssetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A11F24C332004D2BBE /* AssetListViewController.swift */; };
+		D3F190C21F24C332004D2BBE /* ContractingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A21F24C332004D2BBE /* ContractingAnimationController.swift */; };
+		D3F190C31F24C332004D2BBE /* EmptyIndicatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A31F24C332004D2BBE /* EmptyIndicatable.swift */; };
+		D3F190C41F24C332004D2BBE /* NohanaImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3F190A41F24C332004D2BBE /* NohanaImagePicker.strings */; };
+		D3F190C51F24C332004D2BBE /* ExpandingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A61F24C332004D2BBE /* ExpandingAnimationController.swift */; };
+		D3F190C71F24C332004D2BBE /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190A81F24C332004D2BBE /* ItemList.swift */; };
+		D3F190C81F24C332004D2BBE /* MomentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190AA1F24C332004D2BBE /* MomentCell.swift */; };
+		D3F190C91F24C332004D2BBE /* MomentSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190AB1F24C332004D2BBE /* MomentSectionHeaderView.swift */; };
+		D3F190CA1F24C332004D2BBE /* MomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190AC1F24C332004D2BBE /* MomentViewController.swift */; };
+		D3F190CB1F24C332004D2BBE /* NohanaImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F190AE1F24C332004D2BBE /* NohanaImagePicker.storyboard */; };
+		D3F190CC1F24C332004D2BBE /* NohanaImagePicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F190AF1F24C332004D2BBE /* NohanaImagePicker.xcassets */; };
+		D3F190CD1F24C332004D2BBE /* NohanaImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B01F24C332004D2BBE /* NohanaImagePickerController.swift */; };
+		D3F190CE1F24C332004D2BBE /* NotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B11F24C332004D2BBE /* NotificationInfo.swift */; };
+		D3F190CF1F24C332004D2BBE /* PhotoKitAlbumList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B21F24C332004D2BBE /* PhotoKitAlbumList.swift */; };
+		D3F190D01F24C332004D2BBE /* PhotoKitAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B31F24C332004D2BBE /* PhotoKitAsset.swift */; };
+		D3F190D11F24C332004D2BBE /* PhotoKitAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B41F24C332004D2BBE /* PhotoKitAssetList.swift */; };
+		D3F190D21F24C332004D2BBE /* PickedAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B51F24C332004D2BBE /* PickedAssetList.swift */; };
+		D3F190D31F24C332004D2BBE /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B71F24C332004D2BBE /* Size.swift */; };
+		D3F190D41F24C332004D2BBE /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B81F24C332004D2BBE /* SwipeInteractionController.swift */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */; };
 		FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F50A11E0051BA0062AF57 /* AppDelegate.swift */; };
@@ -187,28 +202,6 @@
 		D36565E11E54D9E100E1F6AE /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		D36565F61E54DA2300E1F6AE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		D379F03C1F122ED900D2B9EA /* SelectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectLocationVC.swift; path = Location/SelectLocationVC.swift; sourceTree = "<group>"; };
-		D3849C0D1E99059500283C42 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
-		D3849C0E1E99059500283C42 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
-		D3849C0F1E99059500283C42 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
-		D3849C101E99059500283C42 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
-		D3849C111E99059500283C42 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
-		D3849C121E99059500283C42 /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
-		D3849C131E99059500283C42 /* ELCAssetPickerFilterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetPickerFilterDelegate.h; sourceTree = "<group>"; };
-		D3849C141E99059500283C42 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
-		D3849C151E99059500283C42 /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
-		D3849C161E99059500283C42 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
-		D3849C171E99059500283C42 /* ELCConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCConsole.h; sourceTree = "<group>"; };
-		D3849C181E99059500283C42 /* ELCConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCConsole.m; sourceTree = "<group>"; };
-		D3849C191E99059500283C42 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
-		D3849C1A1E99059500283C42 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		D3849C1B1E99059500283C42 /* ELCImagePickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerHeader.h; sourceTree = "<group>"; };
-		D3849C1C1E99059500283C42 /* ELCOverlayImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCOverlayImageView.h; sourceTree = "<group>"; };
-		D3849C1D1E99059500283C42 /* ELCOverlayImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCOverlayImageView.m; sourceTree = "<group>"; };
-		D3849C1F1E99059500283C42 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
-		D3849C201E99059500283C42 /* ELCAssetPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetPicker.xib; sourceTree = "<group>"; };
-		D3849C211E99059500283C42 /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetTablePicker.xib; sourceTree = "<group>"; };
-		D3849C221E99059500283C42 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
-		D3849C231E99059500283C42 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		D3849C311E99187900283C42 /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
 		D3849C321E99187900283C42 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
 		D3849C331E99187900283C42 /* JVFloatLabeledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextView.h; sourceTree = "<group>"; };
@@ -292,6 +285,36 @@
 		D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		D3E5DBA51E61C2970060912C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D3F190991F24C332004D2BBE /* ActivityIndicatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatable.swift; sourceTree = "<group>"; };
+		D3F1909A1F24C332004D2BBE /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		D3F1909B1F24C332004D2BBE /* AlbumListEmptyIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListEmptyIndicator.swift; sourceTree = "<group>"; };
+		D3F1909C1F24C332004D2BBE /* AlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
+		D3F1909D1F24C332004D2BBE /* AnimatableNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableNavigationController.swift; sourceTree = "<group>"; };
+		D3F1909E1F24C332004D2BBE /* AssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
+		D3F1909F1F24C332004D2BBE /* AssetDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDetailCell.swift; sourceTree = "<group>"; };
+		D3F190A01F24C332004D2BBE /* AssetDetailListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDetailListViewController.swift; sourceTree = "<group>"; };
+		D3F190A11F24C332004D2BBE /* AssetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListViewController.swift; sourceTree = "<group>"; };
+		D3F190A21F24C332004D2BBE /* ContractingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractingAnimationController.swift; sourceTree = "<group>"; };
+		D3F190A31F24C332004D2BBE /* EmptyIndicatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyIndicatable.swift; sourceTree = "<group>"; };
+		D3F190A51F24C332004D2BBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NohanaImagePicker.strings; sourceTree = "<group>"; };
+		D3F190A61F24C332004D2BBE /* ExpandingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingAnimationController.swift; sourceTree = "<group>"; };
+		D3F190A81F24C332004D2BBE /* ItemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
+		D3F190A91F24C332004D2BBE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NohanaImagePicker.strings; sourceTree = "<group>"; };
+		D3F190AA1F24C332004D2BBE /* MomentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentCell.swift; sourceTree = "<group>"; };
+		D3F190AB1F24C332004D2BBE /* MomentSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentSectionHeaderView.swift; sourceTree = "<group>"; };
+		D3F190AC1F24C332004D2BBE /* MomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentViewController.swift; sourceTree = "<group>"; };
+		D3F190AD1F24C332004D2BBE /* NohanaImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NohanaImagePicker.h; sourceTree = "<group>"; };
+		D3F190AE1F24C332004D2BBE /* NohanaImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NohanaImagePicker.storyboard; sourceTree = "<group>"; };
+		D3F190AF1F24C332004D2BBE /* NohanaImagePicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NohanaImagePicker.xcassets; sourceTree = "<group>"; };
+		D3F190B01F24C332004D2BBE /* NohanaImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NohanaImagePickerController.swift; sourceTree = "<group>"; };
+		D3F190B11F24C332004D2BBE /* NotificationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationInfo.swift; sourceTree = "<group>"; };
+		D3F190B21F24C332004D2BBE /* PhotoKitAlbumList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoKitAlbumList.swift; sourceTree = "<group>"; };
+		D3F190B31F24C332004D2BBE /* PhotoKitAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoKitAsset.swift; sourceTree = "<group>"; };
+		D3F190B41F24C332004D2BBE /* PhotoKitAssetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoKitAssetList.swift; sourceTree = "<group>"; };
+		D3F190B51F24C332004D2BBE /* PickedAssetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickedAssetList.swift; sourceTree = "<group>"; };
+		D3F190B61F24C332004D2BBE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/NohanaImagePicker.strings; sourceTree = "<group>"; };
+		D3F190B71F24C332004D2BBE /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		D3F190B81F24C332004D2BBE /* SwipeInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIZIUITextField.swift; sourceTree = "<group>"; };
 		FF0F509E1E0051BA0062AF57 /* VIZI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIZI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,43 +426,6 @@
 				D36565E11E54D9E100E1F6AE /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
-			sourceTree = "<group>";
-		};
-		D3849C0C1E99059500283C42 /* ELCImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				D3849C0D1E99059500283C42 /* ELCAlbumPickerController.h */,
-				D3849C0E1E99059500283C42 /* ELCAlbumPickerController.m */,
-				D3849C0F1E99059500283C42 /* ELCAsset.h */,
-				D3849C101E99059500283C42 /* ELCAsset.m */,
-				D3849C111E99059500283C42 /* ELCAssetCell.h */,
-				D3849C121E99059500283C42 /* ELCAssetCell.m */,
-				D3849C131E99059500283C42 /* ELCAssetPickerFilterDelegate.h */,
-				D3849C141E99059500283C42 /* ELCAssetSelectionDelegate.h */,
-				D3849C151E99059500283C42 /* ELCAssetTablePicker.h */,
-				D3849C161E99059500283C42 /* ELCAssetTablePicker.m */,
-				D3849C171E99059500283C42 /* ELCConsole.h */,
-				D3849C181E99059500283C42 /* ELCConsole.m */,
-				D3849C191E99059500283C42 /* ELCImagePickerController.h */,
-				D3849C1A1E99059500283C42 /* ELCImagePickerController.m */,
-				D3849C1B1E99059500283C42 /* ELCImagePickerHeader.h */,
-				D3849C1C1E99059500283C42 /* ELCOverlayImageView.h */,
-				D3849C1D1E99059500283C42 /* ELCOverlayImageView.m */,
-				D3849C1E1E99059500283C42 /* Resources */,
-			);
-			path = ELCImagePicker;
-			sourceTree = "<group>";
-		};
-		D3849C1E1E99059500283C42 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D3849C1F1E99059500283C42 /* ELCAlbumPickerController.xib */,
-				D3849C201E99059500283C42 /* ELCAssetPicker.xib */,
-				D3849C211E99059500283C42 /* ELCAssetTablePicker.xib */,
-				D3849C221E99059500283C42 /* Overlay.png */,
-				D3849C231E99059500283C42 /* Overlay@2x.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		D3849C301E99187900283C42 /* JVFloatLabeledTextField */ = {
@@ -587,6 +573,41 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D3F190981F24C332004D2BBE /* NohanaImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				D3F190991F24C332004D2BBE /* ActivityIndicatable.swift */,
+				D3F1909A1F24C332004D2BBE /* AlbumCell.swift */,
+				D3F1909B1F24C332004D2BBE /* AlbumListEmptyIndicator.swift */,
+				D3F1909C1F24C332004D2BBE /* AlbumListViewController.swift */,
+				D3F1909D1F24C332004D2BBE /* AnimatableNavigationController.swift */,
+				D3F1909E1F24C332004D2BBE /* AssetCell.swift */,
+				D3F1909F1F24C332004D2BBE /* AssetDetailCell.swift */,
+				D3F190A01F24C332004D2BBE /* AssetDetailListViewController.swift */,
+				D3F190A11F24C332004D2BBE /* AssetListViewController.swift */,
+				D3F190A21F24C332004D2BBE /* ContractingAnimationController.swift */,
+				D3F190A31F24C332004D2BBE /* EmptyIndicatable.swift */,
+				D3F190A41F24C332004D2BBE /* NohanaImagePicker.strings */,
+				D3F190A61F24C332004D2BBE /* ExpandingAnimationController.swift */,
+				D3F190A81F24C332004D2BBE /* ItemList.swift */,
+				D3F190AA1F24C332004D2BBE /* MomentCell.swift */,
+				D3F190AB1F24C332004D2BBE /* MomentSectionHeaderView.swift */,
+				D3F190AC1F24C332004D2BBE /* MomentViewController.swift */,
+				D3F190AD1F24C332004D2BBE /* NohanaImagePicker.h */,
+				D3F190AE1F24C332004D2BBE /* NohanaImagePicker.storyboard */,
+				D3F190AF1F24C332004D2BBE /* NohanaImagePicker.xcassets */,
+				D3F190B01F24C332004D2BBE /* NohanaImagePickerController.swift */,
+				D3F190B11F24C332004D2BBE /* NotificationInfo.swift */,
+				D3F190B21F24C332004D2BBE /* PhotoKitAlbumList.swift */,
+				D3F190B31F24C332004D2BBE /* PhotoKitAsset.swift */,
+				D3F190B41F24C332004D2BBE /* PhotoKitAssetList.swift */,
+				D3F190B51F24C332004D2BBE /* PickedAssetList.swift */,
+				D3F190B71F24C332004D2BBE /* Size.swift */,
+				D3F190B81F24C332004D2BBE /* SwipeInteractionController.swift */,
+			);
+			path = NohanaImagePicker;
+			sourceTree = "<group>";
+		};
 		FF0C0EC71E01B30100E77961 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,10 +639,10 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3F190981F24C332004D2BBE /* NohanaImagePicker */,
 				D3C964001EBF57CD001F7C7E /* Toast */,
 				D3C88BAD1EA1443D004F362B /* CustomCallout */,
 				D3849C301E99187900283C42 /* JVFloatLabeledTextField */,
-				D3849C0C1E99059500283C42 /* ELCImagePicker */,
 				D3E0E1C11E96BE32004BBF08 /* VIZI.entitlements */,
 				D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */,
 				D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */,
@@ -792,6 +813,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				ru,
 			);
 			mainGroup = FF0F50951E0051B90062AF57;
 			productRefGroup = FF0F509F1E0051BA0062AF57 /* Products */;
@@ -808,23 +831,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3849C2B1E99059500283C42 /* ELCAlbumPickerController.xib in Resources */,
-				D3849C2C1E99059500283C42 /* ELCAssetPicker.xib in Resources */,
+				D3F190CB1F24C332004D2BBE /* NohanaImagePicker.storyboard in Resources */,
 				D3C88BA71EA13D12004F362B /* BarFull@2x.png in Resources */,
 				D3C88BA81EA13D12004F362B /* Discover@2x.png in Resources */,
 				D3C88BB11EA1443D004F362B /* CustomCalloutView.xib in Resources */,
-				D3849C2E1E99059500283C42 /* Overlay.png in Resources */,
 				D3C88BA61EA13D12004F362B /* Bar1@2x.png in Resources */,
 				FF16CFAB1E05D70500136873 /* Profile.jpg in Resources */,
 				FF0F50BA1E005E8B0062AF57 /* Authentication.storyboard in Resources */,
 				D3C88BA91EA13D12004F362B /* Lake@2x.jpg in Resources */,
-				D3849C2F1E99059500283C42 /* Overlay@2x.png in Resources */,
+				D3F190CC1F24C332004D2BBE /* NohanaImagePicker.xcassets in Resources */,
 				D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */,
 				FF0F50AC1E0051BA0062AF57 /* LaunchScreen.storyboard in Resources */,
 				FFFF354A1E04660F00C393B1 /* Tabbar.storyboard in Resources */,
 				FF0F50A91E0051BA0062AF57 /* Assets.xcassets in Resources */,
+				D3F190C41F24C332004D2BBE /* NohanaImagePicker.strings in Resources */,
 				D3CA42B31E54007500365290 /* IQKeyboardManager.bundle in Resources */,
-				D3849C2D1E99059500283C42 /* ELCAssetTablePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,8 +857,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3CA42A31E54007500365290 /* IQNSArray+Sort.swift in Sources */,
-				D3849C251E99059500283C42 /* ELCAsset.m in Sources */,
+				D3F190C21F24C332004D2BBE /* ContractingAnimationController.swift in Sources */,
 				D3D49B011ED1C0F20000ED81 /* GlobeVC.swift in Sources */,
+				D3F190BE1F24C332004D2BBE /* AssetCell.swift in Sources */,
+				D3F190B91F24C332004D2BBE /* ActivityIndicatable.swift in Sources */,
 				D36565EC1E54D9E100E1F6AE /* SDWebImageManager.m in Sources */,
 				D36565E61E54D9E100E1F6AE /* SDImageCache.m in Sources */,
 				FFDC7CFF1E06D4F9007A4451 /* EditProfileViewController.swift in Sources */,
@@ -848,6 +871,8 @@
 				D3A420B21E6891DC00F4BEC0 /* FilterPeopleVC.swift in Sources */,
 				D3CA42AD1E54007500365290 /* IQTextView.swift in Sources */,
 				D36565F01E54D9E100E1F6AE /* UIImage+MultiFormat.m in Sources */,
+				D3F190D31F24C332004D2BBE /* Size.swift in Sources */,
+				D3F190C51F24C332004D2BBE /* ExpandingAnimationController.swift in Sources */,
 				D3CA42AF1E54007500365290 /* IQPreviousNextView.swift in Sources */,
 				D3C88BB01EA1443D004F362B /* CustomCalloutView.swift in Sources */,
 				D3B6848C1E4F2701008C412E /* MultipartFormData.swift in Sources */,
@@ -856,13 +881,16 @@
 				D3B684911E4F2701008C412E /* Response.swift in Sources */,
 				FFFF35451E04654800C393B1 /* LoginViewController.swift in Sources */,
 				FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */,
+				D3F190CA1F24C332004D2BBE /* MomentViewController.swift in Sources */,
 				D36565EF1E54D9E100E1F6AE /* UIImage+GIF.m in Sources */,
 				D3849C371E99187900283C42 /* JVFloatLabeledTextField.m in Sources */,
 				D3CA42B11E54007500365290 /* IQToolbar.swift in Sources */,
 				D3B6848F1E4F2701008C412E /* ParameterEncoding.swift in Sources */,
+				D3F190BF1F24C332004D2BBE /* AssetDetailCell.swift in Sources */,
 				D36565ED1E54D9E100E1F6AE /* SDWebImagePrefetcher.m in Sources */,
 				D3B6848D1E4F2701008C412E /* NetworkReachabilityManager.swift in Sources */,
 				D36565F51E54D9E100E1F6AE /* UIView+WebCacheOperation.m in Sources */,
+				D3F190C91F24C332004D2BBE /* MomentSectionHeaderView.swift in Sources */,
 				D3CA42A41E54007500365290 /* IQUIScrollView+Additions.swift in Sources */,
 				D3CA42A91E54007500365290 /* IQKeyboardManagerConstants.swift in Sources */,
 				D3B684F21E4F32A0008C412E /* PrivacyTermsVC.swift in Sources */,
@@ -871,15 +899,17 @@
 				D3849C381E99187900283C42 /* JVFloatLabeledTextView.m in Sources */,
 				D3B684991E4F2701008C412E /* Validation.swift in Sources */,
 				FF16CFAE1E05D74500136873 /* ProfileViewController.swift in Sources */,
+				D3F190BB1F24C332004D2BBE /* AlbumListEmptyIndicator.swift in Sources */,
 				D36565EE1E54D9E100E1F6AE /* UIButton+WebCache.m in Sources */,
 				D3B684891E4F2701008C412E /* DispatchQueue+Alamofire.swift in Sources */,
 				D36565F31E54D9E100E1F6AE /* UIImageView+WebCache.m in Sources */,
 				D39026A71F115B8700605682 /* EditLocationVC.swift in Sources */,
 				D30F6DE81E60A5C600C785DD /* NotificationVC.swift in Sources */,
-				D3849C281E99059500283C42 /* ELCConsole.m in Sources */,
-				D3849C261E99059500283C42 /* ELCAssetCell.m in Sources */,
-				D3849C241E99059500283C42 /* ELCAlbumPickerController.m in Sources */,
-				D3849C291E99059500283C42 /* ELCImagePickerController.m in Sources */,
+				D3F190BC1F24C332004D2BBE /* AlbumListViewController.swift in Sources */,
+				D3F190CD1F24C332004D2BBE /* NohanaImagePickerController.swift in Sources */,
+				D3F190BD1F24C332004D2BBE /* AnimatableNavigationController.swift in Sources */,
+				D3F190D01F24C332004D2BBE /* PhotoKitAsset.swift in Sources */,
+				D3F190C01F24C332004D2BBE /* AssetDetailListViewController.swift in Sources */,
 				FF16CFA51E05B33000136873 /* Constant.swift in Sources */,
 				D36565E31E54D9E100E1F6AE /* MKAnnotationView+WebCache.m in Sources */,
 				D36565EA1E54D9E100E1F6AE /* SDWebImageDownloader.m in Sources */,
@@ -887,6 +917,7 @@
 				D36565F11E54D9E100E1F6AE /* UIImage+WebP.m in Sources */,
 				D3CA42AA1E54007500365290 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				FF16CFA41E05B33000136873 /* AppUtils.swift in Sources */,
+				D3F190BA1F24C332004D2BBE /* AlbumCell.swift in Sources */,
 				D3C848241E5865EC00349555 /* NewLocationVC.swift in Sources */,
 				D3CA42AE1E54007500365290 /* IQBarButtonItem.swift in Sources */,
 				D3B684961E4F2701008C412E /* SessionManager.swift in Sources */,
@@ -898,11 +929,12 @@
 				D3CA42A71E54007500365290 /* IQUIViewController+Additions.swift in Sources */,
 				D3B684871E4F2701008C412E /* AFError.swift in Sources */,
 				D36565E81E54D9E100E1F6AE /* SDWebImageCompat.m in Sources */,
+				D3F190C81F24C332004D2BBE /* MomentCell.swift in Sources */,
 				D3B684901E4F2701008C412E /* Request.swift in Sources */,
 				D3B684941E4F2701008C412E /* ServerTrustPolicy.swift in Sources */,
+				D3F190C11F24C332004D2BBE /* AssetListViewController.swift in Sources */,
 				D3C963FE1EBF5203001F7C7E /* MapRootVC.swift in Sources */,
 				D3B684931E4F2701008C412E /* Result.swift in Sources */,
-				D3849C271E99059500283C42 /* ELCAssetTablePicker.m in Sources */,
 				FF1217FD1E11937000F8A6EA /* SearchViewController.swift in Sources */,
 				D36565F41E54D9E100E1F6AE /* UIView+WebCache.m in Sources */,
 				D3B684981E4F2701008C412E /* Timeline.swift in Sources */,
@@ -913,15 +945,20 @@
 				D3C88BB31EA14652004F362B /* AnnotationView.swift in Sources */,
 				D3CA42A81E54007500365290 /* IQUIWindow+Hierarchy.swift in Sources */,
 				FFFF354C1E04682700C393B1 /* HomeViewController.swift in Sources */,
+				D3F190D11F24C332004D2BBE /* PhotoKitAssetList.swift in Sources */,
 				FFFF35441E04654800C393B1 /* ForgotViewController.swift in Sources */,
 				FFDC7CFD1E06D4DA007A4451 /* SettingsViewController.swift in Sources */,
 				D3CA42AB1E54007500365290 /* IQKeyboardManager.swift in Sources */,
 				D3B6848E1E4F2701008C412E /* Notifications.swift in Sources */,
+				D3F190CF1F24C332004D2BBE /* PhotoKitAlbumList.swift in Sources */,
+				D3F190C31F24C332004D2BBE /* EmptyIndicatable.swift in Sources */,
 				D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */,
+				D3F190D21F24C332004D2BBE /* PickedAssetList.swift in Sources */,
 				D379F03D1F122ED900D2B9EA /* SelectLocationVC.swift in Sources */,
+				D3F190C71F24C332004D2BBE /* ItemList.swift in Sources */,
 				D3B684921E4F2701008C412E /* ResponseSerialization.swift in Sources */,
+				D3F190CE1F24C332004D2BBE /* NotificationInfo.swift in Sources */,
 				D3CA42AC1E54007500365290 /* IQKeyboardReturnKeyHandler.swift in Sources */,
-				D3849C2A1E99059500283C42 /* ELCOverlayImageView.m in Sources */,
 				D3B684951E4F2701008C412E /* SessionDelegate.swift in Sources */,
 				D3CA42B01E54007500365290 /* IQTitleBarButtonItem.swift in Sources */,
 				D3849C391E99187900283C42 /* NSString+TextDirectionality.m in Sources */,
@@ -931,6 +968,7 @@
 				D36565E71E54D9E100E1F6AE /* SDImageCacheConfig.m in Sources */,
 				D36565F21E54D9E100E1F6AE /* UIImageView+HighlightedWebCache.m in Sources */,
 				D3E463491E5F4D4100438EAA /* FilterCategoryVC.swift in Sources */,
+				D3F190D41F24C332004D2BBE /* SwipeInteractionController.swift in Sources */,
 				FF1218011E11A87500F8A6EA /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,6 +976,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D3F190A41F24C332004D2BBE /* NohanaImagePicker.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3F190A51F24C332004D2BBE /* en */,
+				D3F190A91F24C332004D2BBE /* ja */,
+				D3F190B61F24C332004D2BBE /* ru */,
+			);
+			name = NohanaImagePicker.strings;
+			sourceTree = "<group>";
+		};
 		FF0F50AA1E0051BA0062AF57 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

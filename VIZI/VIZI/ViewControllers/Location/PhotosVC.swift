@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,ELCImagePickerControllerDelegate
+class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,NohanaImagePickerControllerDelegate
 {
 
     @IBOutlet weak var cvPhotos : UICollectionView!
@@ -251,11 +251,12 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
             App_showAlert(withMessage: "You don't have camera", inView: self)
         }
     }
+    
     func openGallary()
     {
         self.bImagePickerOpen = true
-
-        let picker = ELCImagePickerController(imagePicker: ())
+        
+        let picker = NohanaImagePickerController()
         if (bReplaceImage)
         {
             imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -264,14 +265,14 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
         }
         else
         {
-            picker?.maximumImagesCount = 3
-            picker?.imagePickerDelegate = self
-            self.present(picker!, animated: true, completion: nil)
+            picker.maximumNumberOfSelection = 3 - appDelegate.arrNewLocationPhotos.count
+            picker.delegate = self
+            self.present(picker, animated: true, completion: nil)
         }
         
         /*imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)*/
+         imagePicker.allowsEditing = true
+         self.present(imagePicker, animated: true, completion: nil)*/
     }
     
     //PickerView Delegate Methods
@@ -333,36 +334,81 @@ class PhotosVC: UIViewController,UINavigationControllerDelegate, UIImagePickerCo
      * @param picker
      * @param info An NSArray containing dictionary's with the key UIImagePickerControllerOriginalImage, which is a rotated, and sized for the screen 'default representation' of the image selected. If you want to get the original image, use the UIImagePickerControllerReferenceURL key.
      */
-    public func elcImagePickerController(_ picker: ELCImagePickerController!, didFinishPickingMediaWithInfo info: [Any]!)
+    func nohanaImagePickerDidCancel(_ picker: NohanaImagePickerController)
     {
-        if info.count > 0
+        print("🐷Canceled🙅")
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, didFinishPickingPhotoKitAssets pickedAssts :[PHAsset]) {
+        print("🐷Completed🙆\n\tpickedAssets = \(pickedAssts)")
+        
+        for asset in pickedAssts
         {
-            for index in 0..<info.count
+            if (asset.mediaType == PHAssetMediaType.image)
             {
-                let imageInfo = info[index] as! NSDictionary
-                let image = (imageInfo.value(forKey: UIImagePickerControllerOriginalImage) as! UIImage)
-                let imgtemp = resize(image)
-                self.arrPhotos.add(imgtemp)
+                PHImageManager.default().requestImage(for: asset , targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (pickedImage, info) in
+                    let imgtemp = resize(pickedImage!)
+                    self.arrPhotos.add(imgtemp)
+                    
+                    appDelegate.arrNewLocationPhotos = NSMutableArray()
+                    for index in 0..<self.arrPhotos.count
+                    {
+                        appDelegate.arrNewLocationPhotos.add(self.arrPhotos[index])
+                    }
+                    self.bReplaceImage = false
+                    self.cvPhotos.reloadData()
+                })
             }
         }
-        
-        appDelegate.arrNewLocationPhotos = NSMutableArray()
-        for index in 0..<arrPhotos.count
-        {
-            appDelegate.arrNewLocationPhotos.add(arrPhotos[index])
-        }
-        
-//        appDelegate.arrNewLocationPhotos = arrPhotos
-        dismiss(animated: true, completion: { _ in })
-        bReplaceImage = false
-        cvPhotos.reloadData()
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, willPickPhotoKitAsset asset: PHAsset, pickedAssetsCount: Int) -> Bool
+    {
+        print("🐷\(#function)\n\tasset = \(asset)\n\tpickedAssetsCount = \(pickedAssetsCount)")
+        return true
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, didPickPhotoKitAsset asset: PHAsset, pickedAssetsCount: Int) {
+        print("🐷\(#function)\n\tasset = \(asset)\n\tpickedAssetsCount = \(pickedAssetsCount)")
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, willDropPhotoKitAsset asset: PHAsset, pickedAssetsCount: Int) -> Bool {
+        print("🐷\(#function)\n\tasset = \(asset)\n\tpickedAssetsCount = \(pickedAssetsCount)")
+        return true
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, didDropPhotoKitAsset asset: PHAsset, pickedAssetsCount: Int) {
+        print("🐷\(#function)\n\tasset = \(asset)\n\tpickedAssetsCount = \(pickedAssetsCount)")
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, didSelectPhotoKitAsset asset: PHAsset) {
+        print("🐷\(#function)\n\tasset = \(asset)\n\t")
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, didSelectPhotoKitAssetList assetList: PHAssetCollection) {
+        print("🐷\(#function)\n\t\tassetList = \(assetList)\n\t")
+    }
+    
+    func nohanaImagePickerDidSelectMoment(_ picker: NohanaImagePickerController) -> Void {
+        print("🐷\(#function)")
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, assetListViewController: UICollectionViewController, cell: UICollectionViewCell, indexPath: IndexPath, photoKitAsset: PHAsset) -> UICollectionViewCell {
+        print("🐷\(#function)\n\tindexPath = \(indexPath)\n\tphotoKitAsset = \(photoKitAsset)")
+        return cell
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, assetDetailListViewController: UICollectionViewController, cell: UICollectionViewCell, indexPath: IndexPath, photoKitAsset: PHAsset) -> UICollectionViewCell {
+        print("🐷\(#function)\n\tindexPath = \(indexPath)\n\tphotoKitAsset = \(photoKitAsset)")
+        return cell
+    }
+    
+    func nohanaImagePicker(_ picker: NohanaImagePickerController, assetDetailListViewController: UICollectionViewController, didChangeAssetDetailPage indexPath: IndexPath, photoKitAsset: PHAsset) {
+        print("🐷\(#function)\n\tindexPath = \(indexPath)")
     }
 
-    func elcImagePickerControllerDidCancel(_ picker: ELCImagePickerController)
-    {
-        bReplaceImage = false
-        dismiss(animated: true, completion: { _ in })
-    }
     /*
     // MARK: - Navigation
 

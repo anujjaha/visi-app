@@ -82,9 +82,13 @@
 - (void)cellTapped:(UITapGestureRecognizer *)tapRecognizer
 {
     CGPoint point = [tapRecognizer locationInView:self];
-    int c = (int32_t)self.rowAssets.count;
+//    int c = (int32_t)self.rowAssets.count;
+    int c = 4;
     CGFloat totalWidth = c * 75 + (c - 1) * 4;
     CGFloat startX;
+
+    CGFloat tempwidth = (self.bounds.size.width - 2 * ((c) -1)) / c ;
+
     
     if (self.alignmentLeft) {
         startX = 4;
@@ -92,7 +96,7 @@
         startX = (self.bounds.size.width - totalWidth) / 2;
     }
     
-	CGRect frame = CGRectMake(startX, 2, 75, 75);
+	CGRect frame = CGRectMake(startX, 2, tempwidth, tempwidth);
 	
 	for (int i = 0; i < [_rowAssets count]; ++i) {
         if (CGRectContainsPoint(frame, point)) {
@@ -112,24 +116,30 @@
             }
             break;
         }
-        frame.origin.x = frame.origin.x + frame.size.width + 4;
+        frame.origin.x = frame.origin.x + frame.size.width + 2;
     }
 }
 
 - (void)layoutSubviews
 {
-    int c = (int32_t)self.rowAssets.count;
+//    int c = (int32_t)self.rowAssets.count;
+    int c = 4;
     CGFloat totalWidth = c * 75 + (c - 1) * 4;
+    
+    //(view.frame.width - cellMargin * (CGFloat(numberOfColumns) - 1)) / CGFloat(numberOfColumns)
+    CGFloat tempwidth = (self.bounds.size.width - 2 * ((c) -1)) / c ;
+    
     CGFloat startX;
     
     if (self.alignmentLeft) {
-        startX = 15;
+        startX = 2;
     }else {
         startX = (self.bounds.size.width - totalWidth) / 2;
     }
     
-	CGRect frame = CGRectMake(startX, 2, 75, 75);
-	
+//	CGRect frame = CGRectMake(startX, 2, 78, 78);
+    CGRect frame = CGRectMake(startX, 2, tempwidth, tempwidth);
+
 	for (int i = 0; i < [_rowAssets count]; ++i) {
 		UIImageView *imageView = [_imageViewArray objectAtIndex:i];
 		[imageView setFrame:frame];
@@ -139,7 +149,7 @@
         [overlayView setFrame:frame];
         [self addSubview:overlayView];
 		
-		frame.origin.x = frame.origin.x + frame.size.width + 15;
+		frame.origin.x = frame.origin.x + frame.size.width + 2;
 	}
 }
 

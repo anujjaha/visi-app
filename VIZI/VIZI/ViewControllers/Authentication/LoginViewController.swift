@@ -55,19 +55,19 @@ class LoginViewController: UIViewController {
         else
         {
             /*let arrRequest = NSMutableArray()
-            var dictRequestParameters = NSMutableDictionary()
-            dictRequestParameters.setValue("\(self.txtUsername.text)", forKey: "user_name")
-            arrRequest.add(dictRequestParameters)
-            
-            dictRequestParameters = NSMutableDictionary()
-            dictRequestParameters.setValue("\(self.txtPassword.text)", forKey: "password")
-            arrRequest.add(dictRequestParameters)
-            
-            //UIDevice.current.identifierForVendor!.uuidString
-            dictRequestParameters = NSMutableDictionary()
-            dictRequestParameters.setValue("asdfghjkl", forKey: "device_id")
-            arrRequest.add(dictRequestParameters)
-            
+             var dictRequestParameters = NSMutableDictionary()
+             dictRequestParameters.setValue("\(self.txtUsername.text)", forKey: "user_name")
+             arrRequest.add(dictRequestParameters)
+             
+             dictRequestParameters = NSMutableDictionary()
+             dictRequestParameters.setValue("\(self.txtPassword.text)", forKey: "password")
+             arrRequest.add(dictRequestParameters)
+             
+             //UIDevice.current.identifierForVendor!.uuidString
+             dictRequestParameters = NSMutableDictionary()
+             dictRequestParameters.setValue("asdfghjkl", forKey: "device_id")
+             arrRequest.add(dictRequestParameters)
+             
              // Storing the dictionary
              var data = NSKeyedArchiver.archivedDataWithRootObject(theDict)
              NSUserDefaults.standardUserDefaults().setObject(data, forKey: tableViewData)
@@ -75,10 +75,10 @@ class LoginViewController: UIViewController {
              // Retrieving the dictionary
              var outData = NSUserDefaults.standardUserDefaults().dataForKey(tableViewData)
              var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData)
-
-            let parameters: Parameters = [
-                "data": arrRequest
-            ]*/
+             
+             let parameters: Parameters = [
+             "data": arrRequest
+             ]*/
             
             let parameters = [
                 "user_name":  "\(self.txtUsername.text!)",
@@ -87,18 +87,18 @@ class LoginViewController: UIViewController {
                 "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
                 "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
             ]
-
+            
             
             showProgress(inView: self.view)
             print("parameters:>\(parameters)")
-         request("\(kServerURL)login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            request("\(kServerURL)login.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
                 
                 print(response.result.debugDescription)
                 
                 hideProgress()
                 switch(response.result)
                 {
-
+                    
                 case .success(_):
                     if response.result.value != nil
                     {
@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
                                     let data = NSKeyedArchiver.archivedData(withRootObject: appDelegate.arrLoginData)
                                     UserDefaults.standard.set(data, forKey: kkeyLoginData)
                                     UserDefaults.standard.set(true, forKey: kkeyisUserLogin)
-                                   
+                                    
                                     let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
                                     let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
                                     self.navigationController?.pushViewController(tabbar, animated: true)
@@ -148,9 +148,9 @@ class LoginViewController: UIViewController {
             }
             
             /*request("\(kServerURL)login.php", method: .post, parameters:parameters).responseString{ response in
-                debugPrint(response)
-            }*/
-           
+             debugPrint(response)
+             }*/
+            
         }
         /*let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
@@ -207,7 +207,6 @@ class LoginViewController: UIViewController {
         request?.account = facebookAccount
         request?.perform( handler: { data, response, error in
          
-
             if (data != nil)
             {
                 if (response?.statusCode)! >= 200 && (response?.statusCode)! < 300
