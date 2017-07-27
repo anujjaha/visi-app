@@ -33,26 +33,23 @@
                     <color key="textColor" red="0.8862745098" green="0.2274509804" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZt-Ey-XUG">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Ih8-2Y-bDc"/>
-                        <constraint firstAttribute="width" constant="30" id="J4w-bT-BFG"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZt-Ey-XUG">
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
                     <state key="normal" image="rightarrow_icon"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.27450980390000002" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="HZt-Ey-XUG" secondAttribute="trailing" constant="2" id="56N-9Z-7Tv"/>
+                <constraint firstItem="HZt-Ey-XUG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="D5e-t5-UlC"/>
                 <constraint firstItem="vbz-X3-0mT" firstAttribute="top" secondItem="HF6-1M-H5a" secondAttribute="bottom" id="N00-KS-S9w"/>
                 <constraint firstItem="HF6-1M-H5a" firstAttribute="leading" secondItem="08t-aW-Ig0" secondAttribute="trailing" constant="8" id="PeB-5C-bFz"/>
-                <constraint firstItem="HZt-Ey-XUG" firstAttribute="leading" secondItem="HF6-1M-H5a" secondAttribute="trailing" constant="1" id="Qn3-oR-ueM"/>
+                <constraint firstItem="HZt-Ey-XUG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SUu-Ol-t10"/>
+                <constraint firstAttribute="trailing" secondItem="HZt-Ey-XUG" secondAttribute="trailing" constant="2" id="bZd-Ui-lAd"/>
                 <constraint firstItem="HF6-1M-H5a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="egk-cT-Hnb"/>
                 <constraint firstItem="08t-aW-Ig0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fxL-LB-cgr"/>
+                <constraint firstAttribute="bottom" secondItem="HZt-Ey-XUG" secondAttribute="bottom" constant="2" id="i1w-8G-7cN"/>
                 <constraint firstItem="vbz-X3-0mT" firstAttribute="leading" secondItem="08t-aW-Ig0" secondAttribute="trailing" constant="8" id="j0O-Bu-5Wc"/>
-                <constraint firstItem="HZt-Ey-XUG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="leH-jg-eik"/>
                 <constraint firstItem="08t-aW-Ig0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qdq-v8-eL8"/>
-                <constraint firstItem="HZt-Ey-XUG" firstAttribute="leading" secondItem="vbz-X3-0mT" secondAttribute="trailing" constant="1" id="wkc-Du-Jkb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

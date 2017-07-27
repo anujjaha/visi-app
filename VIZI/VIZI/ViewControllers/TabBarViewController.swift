@@ -22,12 +22,12 @@ class TabBarViewController: UITabBarController {
         self.viewTab.frame = CGRect(x: 0, y: MainScreen.height-55, width: MainScreen.width, height: 55)
         self.view.addSubview(self.viewTab)
         
-        self.viewTab.layer.shadowColor = UIColor.black.cgColor
+     /*   self.viewTab.layer.shadowColor = UIColor.black.cgColor
         self.viewTab.layer.shadowOpacity = 0.3
         self.viewTab.layer.shadowOffset = CGSize(width: 0, height: -2)
         let shadowPath = CGRect(x: self.viewTab.bounds.origin.x-10, y: -2, width: self.viewTab.bounds.size.width+20, height: 5)
         self.viewTab.layer.shadowPath = UIBezierPath(rect: shadowPath).cgPath
-        self.viewTab.layer.shouldRasterize = true
+        self.viewTab.layer.shouldRasterize = true*/
         
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let navDiscover = storyTab.instantiateViewController(withIdentifier: "navDiscover")
@@ -65,6 +65,7 @@ class TabBarViewController: UITabBarController {
     {
         self.cntViewSelectionLeading.constant = sender.frame.origin.x
         btnDiscover.isSelected = false
+
         btnUser.isSelected = false
         self.selectedIndex = 1
         
