@@ -105,7 +105,10 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
             "bio":"\(self.txtvwBio.text!)",
-            "visibility":"\(strvisibilityvalue)"]
+            "visibility":"\(strvisibilityvalue)",
+            "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
+            "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
+        ]
         
         upload(multipartFormData:
             { (multipartFormData) in

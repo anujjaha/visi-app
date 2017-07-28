@@ -317,7 +317,16 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                     self.btnFollowUser.setTitle("Following", for: UIControlState.normal)
                                 }
                                 
-                                self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyaddress) as? String, for: .normal)
+                                self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyuser_city) as? String, for: .normal)
+                                
+                                //Globe
+                                if(appDelegate.bUserSelfProfile)
+                                {
+                                    if !self.strCategory.isEmpty
+                                    {
+                                        self.filtercategorydata()
+                                    }
+                                }
                             }
                             else
                             {

@@ -48,6 +48,7 @@ let kkeypin_id = "pin_id"
 let kkeybgimage = "bgimage"
 let kkeyshow_delete = "show_delete"
 let kkeyis_private = "is_private"
+let kkeyuser_city = "user_city"
 
 let kNO = "NO"
 let kYES = "YES"

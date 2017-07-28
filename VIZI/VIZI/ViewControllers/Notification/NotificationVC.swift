@@ -209,7 +209,6 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource
                         if dictemp.count > 0
                         {
                             self.getAllNotification()
-
                         }
                         else
                         {

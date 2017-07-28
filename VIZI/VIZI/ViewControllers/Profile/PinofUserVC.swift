@@ -288,6 +288,9 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
             cell.lblPeopleAddress.text = "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
             cell.imgProfile.image = #imageLiteral(resourceName: "Following_pin")
         }
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     
