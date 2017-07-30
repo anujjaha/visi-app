@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D30F6DE81E60A5C600C785DD /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30F6DE71E60A5C600C785DD /* NotificationVC.swift */; };
+		D32877221F2DA1D000CEBA77 /* TourGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32877211F2DA1D000CEBA77 /* TourGuideVC.swift */; };
 		D36565E31E54D9E100E1F6AE /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565BC1E54D9E100E1F6AE /* MKAnnotationView+WebCache.m */; };
 		D36565E41E54D9E100E1F6AE /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565BE1E54D9E100E1F6AE /* NSData+ImageContentType.m */; };
 		D36565E51E54D9E100E1F6AE /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D36565C01E54D9E100E1F6AE /* NSImage+WebCache.m */; };
@@ -160,6 +161,7 @@
 
 /* Begin PBXFileReference section */
 		D30F6DE71E60A5C600C785DD /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationVC.swift; path = Notification/NotificationVC.swift; sourceTree = "<group>"; };
+		D32877211F2DA1D000CEBA77 /* TourGuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuideVC.swift; sourceTree = "<group>"; };
 		D36565B21E54D96400E1F6AE /* VIZI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VIZI-Bridging-Header.h"; sourceTree = "<group>"; };
 		D36565BB1E54D9E100E1F6AE /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		D36565BC1E54D9E100E1F6AE /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				FFFF35421E04654800C393B1 /* LoginViewController.swift */,
 				FFFF35431E04654800C393B1 /* SignupViewController.swift */,
 				FFFF354B1E04682700C393B1 /* HomeViewController.swift */,
+				D32877211F2DA1D000CEBA77 /* TourGuideVC.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -889,6 +892,7 @@
 				D3F190BF1F24C332004D2BBE /* AssetDetailCell.swift in Sources */,
 				D36565ED1E54D9E100E1F6AE /* SDWebImagePrefetcher.m in Sources */,
 				D3B6848D1E4F2701008C412E /* NetworkReachabilityManager.swift in Sources */,
+				D32877221F2DA1D000CEBA77 /* TourGuideVC.swift in Sources */,
 				D36565F51E54D9E100E1F6AE /* UIView+WebCacheOperation.m in Sources */,
 				D3F190C91F24C332004D2BBE /* MomentSectionHeaderView.swift in Sources */,
 				D3CA42A41E54007500365290 /* IQUIScrollView+Additions.swift in Sources */,

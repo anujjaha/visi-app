@@ -68,6 +68,7 @@ let kPrivacyURL = "http://app.theviziapp.com/api/privacy_policy.php"
 let kTermsURL = "http://app.theviziapp.com/api/terms_condition.php"
 
 
+let kkeyTutorial = "Tutorial"
 
 //var CurrentUser : UserModel = UserModel()
 

@@ -91,12 +91,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         else
         {
-            let appdelegate = UIApplication.shared.delegate as! AppDelegate
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            let nav = UINavigationController(rootViewController: homeViewController)
-            nav.isNavigationBarHidden = true
-            appdelegate.window!.rootViewController = nav
+            if (userDefaults.bool(forKey: kkeyTutorial))
+            {
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+                let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                let nav = UINavigationController(rootViewController: homeViewController)
+                nav.isNavigationBarHidden = true
+                appdelegate.window!.rootViewController = nav
+
+            }
+            else
+            {
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+                let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "TourGuideVC") as! TourGuideVC
+                let nav = UINavigationController(rootViewController: homeViewController)
+                nav.isNavigationBarHidden = true
+                appdelegate.window!.rootViewController = nav
+
+            }
         }
         return true
     }
@@ -118,6 +132,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         UserDefaults.standard.register(defaults: [kkeyisUserLogin : false])
+        UserDefaults.standard.register(defaults: [kkeyTutorial : false])
+
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
