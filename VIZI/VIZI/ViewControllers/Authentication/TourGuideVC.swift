@@ -47,19 +47,19 @@ class TourGuideVC: UIViewController,UIScrollViewDelegate
                 myiconImgView.image =  UIImage(named: "Default_bg736h")!
                 break
             case 1:
-                lblText.text = "Here is your home screen. Tap the pin to save your current location or use the search icon to find somewhere you have been before"
+                lblText.text = "Here is your home screen. Tap the pin to save your current location or use the search bar to find somewhere you have been before"
                 myiconImgView.image =  #imageLiteral(resourceName: "appstore1")
                 break
             case 2:
-                lblText.text = "Here’s your profile. All your pins show up here in customized categories that you create.Create new categories with the plus icon and use the globe to filter your saved locations by city."
+                lblText.text = "Here’s your profile. All your pins show up here in customized categories that you create. Create new categories with the plus icon and use the globe to filter your saved locations by city."
                 myiconImgView.image  = #imageLiteral(resourceName: "appstore2")
                 break
             case 3:
-                lblText.text = "All of your friend’s pins show up here. Filter by one or see them all and always have their favorite spots wherever you go – they can see yours too!.Use the search icon to find and follow new people."
+                lblText.text = "All of your friend’s pins show up here. Filter by one or see them all – they can see yours too! Use the search icon to find and follow new people."
                 myiconImgView.image = #imageLiteral(resourceName: "appstore3")
                 break
             case 4:
-                lblText.text = "What was the name of that spot in San Francisco again!?” –The Old You “Happy pinning!"
+                lblText.text = "That’s it! Never forget your favorite spots. \n Happy pinning"
                 myiconImgView.image =  UIImage(named: "Default_bg736h")!
                 break
                 

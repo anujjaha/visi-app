@@ -15,8 +15,9 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
     @IBOutlet weak var viewPhoto : UIView!
     @IBOutlet weak var txtTitle : VIZIUITextField!
     @IBOutlet weak var txtvwNotes: UITextView!
-    @IBOutlet weak var mapView : MKMapView!
+//    @IBOutlet weak var mapView : MKMapView!
     @IBOutlet weak var btnCategory : UIButton!
+    @IBOutlet weak var mapView : GMSMapView!
 
     var fcordinate = CLLocationCoordinate2D()
     
@@ -30,12 +31,24 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
         self.txtTitle.attributedPlaceholder = NSAttributedString(string:"Title", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
         
         txtvwNotes.delegate = self
-        
+     
+        mapView.isMyLocationEnabled = false
+        mapView.settings.myLocationButton = false
+        mapView.camera = GMSCameraPosition(target: fcordinate, zoom: 5, bearing: 0, viewingAngle: 0)
+        mapView.delegate = self
+        mapView.isUserInteractionEnabled = false
+        /*
         let center = CLLocationCoordinate2D(latitude: fcordinate.latitude, longitude: fcordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
-        mapView.setRegion(region, animated: true)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+        mapView.setRegion(region, animated: true)*/
         
     }
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D)
+    {
+        print("coordinate :> \(coordinate)")
+    }
+
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -243,4 +256,27 @@ class NewLocationVC: UIViewController,MKMapViewDelegate,UITextViewDelegate,UITex
     }
     */
 
+}
+// MARK: - GMSMapViewDelegate
+extension NewLocationVC: GMSMapViewDelegate
+{
+    func mapView(_ mapView: GMSMapView!, idleAt position: GMSCameraPosition!)
+    {
+        reverseGeocodeCoordinate(coordinate: position.target)
+    }
+    
+    func mapView(_ mapView: GMSMapView!, willMove gesture: Bool)
+    {
+    }
+    
+    func mapView(_ mapView: GMSMapView!, didTap marker: GMSMarker!) -> Bool
+    {
+        return false
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView!) -> Bool
+    {
+        mapView.selectedMarker = nil
+        return false
+    }
 }

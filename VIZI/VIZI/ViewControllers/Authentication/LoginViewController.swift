@@ -184,7 +184,7 @@ class LoginViewController: UIViewController {
                 {
                     DispatchQueue.main.async
                     {
-                            App_showAlert(withMessage: "There is no Facebook accounts configured. you can add or created a Facebook account in your settings.", inView: self)
+                            App_showAlert(withMessage: "There is no Facebook accounts configured. You can add or created a Facebook account in your settings.", inView: self)
                     }
                 }
                 else
