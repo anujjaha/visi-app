@@ -543,6 +543,8 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
+
     }
     
 

@@ -686,6 +686,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
+
     }
     
     //MARK : Go To Followers Screen

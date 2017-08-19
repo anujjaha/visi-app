@@ -383,6 +383,8 @@ class FilterCategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         print("picker cancel.")
+        dismiss(animated: true, completion: nil)
+
     }
 
     
