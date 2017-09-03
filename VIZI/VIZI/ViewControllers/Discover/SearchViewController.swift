@@ -75,7 +75,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate
         ]
         
         showProgress(inView: self.view)
-        print("parameters:>\(parameters)")
+        print("discover_search.php parameters:>\(parameters)")
         request("\(kServerURL)discover_search.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)

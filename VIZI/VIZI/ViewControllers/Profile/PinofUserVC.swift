@@ -176,6 +176,8 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
                                 }
                                 point.name = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeytitle)!)"
                                 point.address = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyaddress)!)"
+                                point.iPintag = i
+
                                 self.mapView.addAnnotation(point)
                             }
                             // 3
@@ -236,6 +238,10 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         calloutView.starbucksImage.image = starbucksAnnotation.image
         // 3
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+        
+        calloutView.btnDetailofPin.tag = starbucksAnnotation.iPintag
+        calloutView.btnDetailofPin.addTarget(self, action: #selector(gotToDetailsofPin(sender:)), for: .touchUpInside)
+        
         view.addSubview(calloutView)
         mapView.setCenter((view.annotation?.coordinate)!, animated: true)
     }
@@ -292,6 +298,34 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if(bisUserSelfPins)
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: "pinId")!)"
+            objDetailVC.strCategoryName = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: "categoryName") as! NSString)"
+            objDetailVC.strCategoryID = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: "categoryId")!)"
+            objDetailVC.bfromDiscovery = true
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+        }
+    }
+
+    @IBAction func gotToDetailsofPin(sender: UIButton)
+    {
+        if(bisUserSelfPins)
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "pinId")!)"
+            objDetailVC.strCategoryName = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "categoryName") as! NSString)"
+            objDetailVC.strCategoryID = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "categoryId")!)"
+            objDetailVC.bfromDiscovery = true
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

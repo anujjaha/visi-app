@@ -243,7 +243,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="f0X-sL-8Ci" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j3I-LI-jWf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j3I-LI-jWf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -541,9 +541,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-sP-AUR">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-sP-AUR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="IK0-8w-uNA">
                                 <rect key="frame" x="0.0" y="610" width="375" height="37"/>
@@ -565,10 +564,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="C9F-sP-AUR" firstAttribute="leading" secondItem="hrc-oc-5hZ" secondAttribute="leading" id="0qA-qn-wka"/>
+                            <constraint firstItem="RSg-cc-o6f" firstAttribute="top" secondItem="C9F-sP-AUR" secondAttribute="bottom" id="BQ1-LO-1SB"/>
                             <constraint firstItem="IK0-8w-uNA" firstAttribute="leading" secondItem="hrc-oc-5hZ" secondAttribute="leading" id="GLK-JA-6Z9"/>
                             <constraint firstAttribute="trailing" secondItem="IK0-8w-uNA" secondAttribute="trailing" id="Mkg-Yp-FlM"/>
                             <constraint firstItem="ZGZ-Rg-y8R" firstAttribute="centerX" secondItem="hrc-oc-5hZ" secondAttribute="centerX" id="YWB-GN-lh7"/>
                             <constraint firstItem="RSg-cc-o6f" firstAttribute="top" secondItem="ZGZ-Rg-y8R" secondAttribute="bottom" constant="8" id="b4Y-XX-Emm"/>
+                            <constraint firstItem="C9F-sP-AUR" firstAttribute="top" secondItem="hrc-oc-5hZ" secondAttribute="top" id="bB9-n3-oH9"/>
+                            <constraint firstAttribute="trailing" secondItem="C9F-sP-AUR" secondAttribute="trailing" id="n4G-Sg-yV1"/>
                             <constraint firstItem="RSg-cc-o6f" firstAttribute="top" secondItem="IK0-8w-uNA" secondAttribute="bottom" constant="20" id="xdO-jZ-qWH"/>
                         </constraints>
                     </view>

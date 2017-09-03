@@ -343,7 +343,8 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
                             print("json :> \(json)")
                             let dictemp = json as! NSDictionary
                             print("dictemp :> \(dictemp)")
-                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+//                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            App_showAlert(withMessage: "Pin was Successfully Added", inView: self)
                             self.vwAddPinToCategory.isHidden = true
                         }
                     }
@@ -355,7 +356,6 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
                     break
                 }
             }
-            
         }
     }
     @IBAction func CancelCategoryviewPressed()

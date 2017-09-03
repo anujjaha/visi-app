@@ -233,10 +233,24 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
         return 44
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        return ((self.arrFollowersList[section] as AnyObject).object(forKey: "dataKey") as! String).uppercased()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width-20, height: 30))
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = ((self.arrFollowersList[section] as AnyObject).object(forKey: "dataKey") as! String).uppercased()
+        label.textColor = UIColor.appPinkColor()
+        label.textAlignment = .left
+        view.addSubview(label)
+        return view
     }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+//    {
+////        return ((self.arrFollowersList[section] as AnyObject).object(forKey: "dataKey") as! String).uppercased()
+//
+//
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
