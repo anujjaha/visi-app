@@ -31,7 +31,8 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     var arrSelectedbutton = NSMutableArray()
     var iSelectedCategoryID = Int()
     var bfromDiscovery = Bool()
-
+    var bgotoDirection = Bool()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -62,10 +63,17 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewWillDisappear(_ animated: Bool)
     {
-        if (bfromDiscovery)
+        if (bgotoDirection)
         {
-            bfromDiscovery = false
-            self.navigationController?.isNavigationBarHidden = false
+            bgotoDirection = false
+        }
+        else
+        {
+            if (bfromDiscovery)
+            {
+                bfromDiscovery = false
+                self.navigationController?.isNavigationBarHidden = false
+            }
         }
     }
     
@@ -310,6 +318,8 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let objDetailVC = storyTab.instantiateViewController(withIdentifier: "MapRootVC") as! MapRootVC
         objDetailVC.strpinTitle = self.lblScreenTitle.text!
+        
+        bgotoDirection = true
         
         let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
         let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue

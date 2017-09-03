@@ -231,6 +231,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             cell.lblPeopleName.text =  "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyuser)!)"
             cell.lblPeopleAddress.text = "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
+            
+            cell.lblPinname.text =  "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
 
             if (self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
@@ -281,6 +283,13 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
         else
         {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
+            objDetailVC.bfromDiscovery = true
+            appDelegate.bUserSelfProfile = false
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+
         }
     }
 
@@ -382,7 +391,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                  let imageData:NSData = NSData(contentsOf: imageUrl)!
                  let imagetemp = UIImage(data: imageData as Data)
                  point.image = imagetemp*/
-                
+                point.image =  #imageLiteral(resourceName: "Profile.jpg")
                 
                 let catPictureURL = URL(string: "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage)!)")!
                 let session = URLSession(configuration: .default)
@@ -674,7 +683,8 @@ class PlaceListCell: UITableViewCell
     @IBOutlet weak var imgProfile : UIImageView!
     @IBOutlet weak var lblPeopleName : UILabel!
     @IBOutlet weak var lblPeopleAddress : UILabel!
-    
+    @IBOutlet weak var lblPinname : UILabel!
+
     override func awakeFromNib()
     {
         super.awakeFromNib()
