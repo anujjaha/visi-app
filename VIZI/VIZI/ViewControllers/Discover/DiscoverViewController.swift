@@ -360,7 +360,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 
             case .failure(_):
                 print(response.result.error)
-                
+                hideProgress()
+
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
             }

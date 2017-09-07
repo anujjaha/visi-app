@@ -168,6 +168,16 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
             btnSettingsProfile.isHidden = false
             btnReportAbuse.isHidden = true
         }
+        else if(strotheruserID == "\(appDelegate.arrLoginData[kkeyuserid]!)")
+        {
+            btnFollowUser.isHidden = true
+            heightofFollowBtn.constant = 0
+            btnBackButton.isHidden = true
+            btnEditProfile.isHidden = false
+            btnPlus.isHidden = false
+            btnSettingsProfile.isHidden = false
+            btnReportAbuse.isHidden = true
+        }
         else
         {
             btnEditProfile.isHidden = true
@@ -207,6 +217,13 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         showProgress(inView: self.view)
 
         if(appDelegate.bUserSelfProfile)
+        {
+            parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "current_user_id" : "\(appDelegate.arrLoginData[kkeyuserid]!)"
+            ]
+        }
+        else if(strotheruserID == "\(appDelegate.arrLoginData[kkeyuserid]!)")
         {
             parameters = [
                 "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",

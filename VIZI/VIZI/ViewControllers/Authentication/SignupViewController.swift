@@ -14,6 +14,8 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
     @IBOutlet weak var txtEmail : VIZIUITextField!
     @IBOutlet weak var txtPassword : VIZIUITextField!
     @IBOutlet weak var txtConfPassword : VIZIUITextField!
+    @IBOutlet weak var txtName : VIZIUITextField!
+
     var arrRes = [String:Any]() //Array of dictionary
     var imagePicker = UIImagePickerController()
     var imageData = NSData()
@@ -32,6 +34,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
             self.btnSignUp.layer.cornerRadius = 3.0
             
             self.txtUsername.attributedPlaceholder = NSAttributedString(string:"Username", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+            self.txtName.attributedPlaceholder = NSAttributedString(string:"Name", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtEmail.attributedPlaceholder = NSAttributedString(string:"Email", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtPassword.attributedPlaceholder = NSAttributedString(string:"Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
             self.txtConfPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
@@ -53,6 +56,10 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
         if (self.txtUsername.text?.isEmpty)!
         {
             App_showAlert(withMessage: "Please enter username", inView: self)
+        }
+        else if (self.txtName.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter name", inView: self)
         }
         else if (self.txtEmail.text?.isEmpty)!
         {
@@ -78,6 +85,7 @@ class SignupViewController: UIViewController,UINavigationControllerDelegate, UII
             let parameters = [
                 "email": "\(self.txtEmail.text!)",
                 "user_name": "\(self.txtUsername.text!)",
+                "name" : "\(self.txtName.text!)",
                 "password":"\(self.txtPassword.text!)",
                 "device_id":"\(appDelegate.strDeviceToken)",
                 "lat" : "\(appDelegate.userLocation.coordinate.latitude)",

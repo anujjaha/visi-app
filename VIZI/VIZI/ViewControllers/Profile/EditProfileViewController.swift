@@ -71,6 +71,18 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
                     strvisibilityvalue = "\(appDelegate.arrLoginData[kkeyvisibility]!)" as NSString
                 }
             }
+            
+            if strvisibilityvalue == "1"
+            {
+                btnMakePrivate.isSelected = true
+                flagforswitch = true
+            }
+            else
+            {
+                btnMakePrivate.isSelected = false
+                flagforswitch = false
+            }
+
 
 //            strvisibilityvalue
         }
