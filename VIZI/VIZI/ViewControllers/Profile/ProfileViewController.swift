@@ -869,9 +869,18 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
 
         self.navigationController?.pushViewController(objGlobeVC, animated: false)
     }
-
     
-    override func didReceiveMemoryWarning() {
+    //MARK: Globe feature
+    @IBAction func btnEditProfileAction(_ sender: UIButton)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        var objEditProfileVC = mainStoryboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        objEditProfileVC.dictuser = self.dicprofiledata["user"] as! NSDictionary
+        self.navigationController?.pushViewController(objEditProfileVC, animated: false)
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

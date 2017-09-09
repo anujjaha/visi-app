@@ -19,18 +19,65 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var lblEmail : UILabel!
     @IBOutlet weak var txtvwBio: UITextView!
     @IBOutlet weak var btnMakePrivate : UIButton!
-    
+    @IBOutlet weak var txtName : VIZIUITextField!
+
     var imageData = NSData()
     var imagePicker = UIImagePickerController()
     var image = UIImage()
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
+    var dictuser = NSDictionary()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         flagforswitch = true
 
+        self.lblName.text =  "\(dictuser.object(forKey: kkeyuser_name) as! String)"
+        self.lblEmail.text = "\(dictuser.object(forKey: kkeyemail) as! String)"
+        self.txtName.text = "\(dictuser.object(forKey: "name") as! String)"
+
+        if !"\(dictuser.object(forKey: kkeybio) as? String)".isEmpty
+        {
+            if dictuser.object(forKey: kkeybio) is NSNull
+            {
+                self.txtvwBio.text = ""
+            }
+            else
+            {
+                self.txtvwBio.text = "\(dictuser.object(forKey: kkeybio) as! String)"
+            }
+        }
+        
+        if !"\(dictuser.object(forKey: kkeyimage) as? String)".isEmpty
+        {
+            if dictuser.object(forKey: kkeyimage) is NSNull
+            {
+                self.imgProfile.image = UIImage(named: "addimage_icon")
+            }
+            else
+            {
+                self.imgProfile.sd_setImage(with: URL(string: "\(dictuser.object(forKey: kkeyimage) as! String)"), placeholderImage: UIImage(named: "addimage_icon"))
+            }
+        }
+
+        
+        if (dictuser.object(forKey: "is_private") as! String) == "1"
+        {
+            btnMakePrivate.isSelected = true
+            flagforswitch = true
+            strvisibilityvalue = "1"
+        }
+        else
+        {
+            btnMakePrivate.isSelected = false
+            flagforswitch = false
+            strvisibilityvalue = "0"
+
+        }
+        
+       /*
         if appDelegate.arrLoginData.count > 0
         {
             self.lblName.text =  "\(appDelegate.arrLoginData[kkeyuser_name]!)"
@@ -85,7 +132,7 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
 
 
 //            strvisibilityvalue
-        }
+        }*/
         
         DispatchQueue.main.async {
             self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width/2
@@ -101,6 +148,9 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
             self.viewChangePassword.layer.cornerRadius = 5.0
             self.viewChangePassword.layer.shadowOpacity = 0.3
             self.viewChangePassword.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+            
+            self.txtName.attributedPlaceholder = NSAttributedString(string:"Name", attributes:[NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+
         }
         // Do any additional setup after loading the view.
     }
@@ -111,81 +161,88 @@ class EditProfileViewController: UIViewController,UINavigationControllerDelegate
         /*
          {"id":"c8540203-5700-7f7c-892e-ccc915d2814c","headers":"","url":"http:\/\/vizi.intellactsoft.com\/api\/update_profile.php","preRequestScript":null,"pathVariables":[],"method":"POST","data":[{"key":"user_id","value":"21","type":"text","enabled":true},{"key":"bio","value":"This is some dummy text for the bio of the user","type":"text","enabled":true},{"key":"visibility","value":"1","type":"text","enabled":true},{"key":"image","value":"myImage.jpg","type":"file","enabled":true}],"dataMode":"params","tests":null,"currentHelper":"normal","helperAttributes":[],"time":1486884656406,"name":"Update Profile #9","description":"","collectionId":"efc1c4cb-0558-9221-7410-fda3f9d020ba","responses":[]}
          */
-        showProgress(inView: self.view)
-        
-        
-        let parameters = [
-            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-            "bio":"\(self.txtvwBio.text!)",
-            "visibility":"\(strvisibilityvalue)",
-            "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
-            "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
-        ]
-        
-        upload(multipartFormData:
-            { (multipartFormData) in
-                
-                if let imageData2 = UIImageJPEGRepresentation(self.image, 1)
-                {
-                    multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
-                }
-                
-                for (key, value) in parameters
-                {
-                    multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-                }
-            }, to: "\(kServerURL)update_profile.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
-            {
-                (result) in
-                switch result
-                {
-                case .success(let upload, _, _):
-                    upload.responseJSON
-                        {
-                            response in
-                            hideProgress()
-                            
-                            print(response.request) // original URL request
-                            print(response.response) // URL response
-                            print(response.data) // server data
-                            print(response.result) // result of response serialization
-                            
-                            if let json = response.result.value
-                            {
-                                print("json :> \(json)")
-                                let dictemp = json as! NSDictionary
-                                print("dictemp :> \(dictemp)")
-                                if dictemp.count > 0
-                                {
-                                    if  let dictemp2 = dictemp["data"] as? NSDictionary
-                                    {
-                                        print("dictemp :> \(dictemp2)")                                        
-                                        appDelegate.arrLoginData = dictemp2
-                                    }
-
-                                    let alertView = UIAlertController(title: Application_Name, message: "Profile Updated Successfully", preferredStyle: .alert)
-                                    let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                                        _ = self.navigationController?.popViewController(animated: true)
-                                    }
-                                    alertView.addAction(OKAction)
-                                    self.present(alertView, animated: true, completion: nil)
-                                }
-                                else
-                                {
-                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
-                                }
-                            }
+        if (self.txtName.text?.isEmpty)!
+        {
+            App_showAlert(withMessage: "Please enter name", inView: self)
+        }
+        else
+        {
+            showProgress(inView: self.view)
+            
+            let parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                "bio":"\(self.txtvwBio.text!)",
+                "visibility":"\(strvisibilityvalue)",
+                "is_private":"\(strvisibilityvalue)",
+                "name" : "\(self.txtName.text!)",
+                "lat" : "\(appDelegate.userLocation.coordinate.latitude)",
+                "lon" : "\(appDelegate.userLocation.coordinate.longitude)"
+            ]
+            
+            upload(multipartFormData:
+                { (multipartFormData) in
+                    
+                    if let imageData2 = UIImageJPEGRepresentation(self.image, 1)
+                    {
+                        multipartFormData.append(imageData2, withName: "image", fileName: "myImage.png", mimeType: "File")
                     }
                     
-                case .failure(let encodingError):
-                    hideProgress()
-                    print(encodingError)
-                    App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
-                }
-                
-        })
-
-        
+                    for (key, value) in parameters
+                    {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+            }, to: "\(kServerURL)update_profile.php", method: .post, headers: ["Content-Type": "application/x-www-form-urlencoded"], encodingCompletion:
+                {
+                    (result) in
+                    switch result
+                    {
+                    case .success(let upload, _, _):
+                        upload.responseJSON
+                            {
+                                response in
+                                hideProgress()
+                                
+                                print(response.request) // original URL request
+                                print(response.response) // URL response
+                                print(response.data) // server data
+                                print(response.result) // result of response serialization
+                                
+                                if let json = response.result.value
+                                {
+                                    print("json :> \(json)")
+                                    let dictemp = json as! NSDictionary
+                                    print("dictemp :> \(dictemp)")
+                                    if dictemp.count > 0
+                                    {
+                                        if  let dictemp2 = dictemp["data"] as? NSDictionary
+                                        {
+                                            print("dictemp :> \(dictemp2)")
+                                            appDelegate.arrLoginData = dictemp2
+                                        }
+                                        
+                                        let alertView = UIAlertController(title: Application_Name, message: "Profile Updated Successfully", preferredStyle: .alert)
+                                        let OKAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                                            _ = self.navigationController?.popViewController(animated: true)
+                                        }
+                                        alertView.addAction(OKAction)
+                                        self.present(alertView, animated: true, completion: nil)
+                                    }
+                                    else
+                                    {
+                                        App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    }
+                                }
+                        }
+                        
+                    case .failure(let encodingError):
+                        hideProgress()
+                        print(encodingError)
+                        App_showAlert(withMessage: encodingError.localizedDescription, inView: self)
+                    }
+                    
+            })
+            
+        }
         /*request("\(kServerURL)update_profile.php", method: .post, parameters: ["user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)","bio":"\(self.txtvwBio.text!)","image":imageData]).responseJSON { (response:DataResponse<Any>) in
          
             hideProgress()

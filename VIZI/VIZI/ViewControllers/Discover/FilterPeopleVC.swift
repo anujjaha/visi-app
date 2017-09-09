@@ -8,16 +8,23 @@
 
 import UIKit
 
-class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
 
     @IBOutlet weak  var tblPeople : UITableView!
     var arrFollowersList = NSMutableArray()
+    var arrAllDataFollowers = NSMutableArray()
     var arrSelectedbutton = NSMutableArray()
+    @IBOutlet weak var searchBar: UISearchBar!
+    var shouldBeginEditing = Bool()
+
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+        searchBar.showsCancelButton = false
+        shouldBeginEditing = true
         
         self.tblPeople.estimatedRowHeight = 81.0
         self.tblPeople.rowHeight = UITableViewAutomaticDimension
@@ -61,6 +68,7 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                         {
                             self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                             print("arrFollowersList :> \(self.arrFollowersList)")
+                            self.arrAllDataFollowers = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                             
                             for _ in 0..<self.arrFollowersList.count
                             {
@@ -248,6 +256,78 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBAction func backButtonPressed() {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: Search Bar Delegate 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        if (searchText.isEmpty)
+        {
+            searchBar.text = ""
+            searchBar.endEditing(true)
+            
+            if !searchBar.isFirstResponder
+            {
+                shouldBeginEditing = false
+            }
+            
+            self.arrFollowersList = self.arrAllDataFollowers
+            self.tblPeople.reloadData()
+        }
+        else
+        {
+            let resultPredicate = NSPredicate(format: "user_name contains[c] %@", searchBar.text!)
+            let arrtemp = self.arrAllDataFollowers.filtered(using: resultPredicate) as NSArray
+            
+            if arrtemp.count > 0
+            {
+                self.arrFollowersList = NSMutableArray(array:arrtemp)
+                print("arrFollowersList :> \(self.arrFollowersList)")
+            }
+            else
+            {
+                self.arrFollowersList = NSMutableArray()
+            }
+            self.tblPeople.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        if(self.arrAllDataFollowers.count > 0)
+        {
+            let resultPredicate = NSPredicate(format: "user_name contains[c] %@", searchBar.text!)
+            let arrtemp = self.arrAllDataFollowers.filtered(using: resultPredicate) as NSArray
+            
+            if arrtemp.count > 0
+            {
+                self.arrFollowersList = NSMutableArray(array:arrtemp)
+                print("arrFollowersList :> \(self.arrFollowersList)")
+            }
+            else
+            {
+                self.arrFollowersList = NSMutableArray()
+            }
+        }
+        searchBar.resignFirstResponder()
+        self.tblPeople.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        self.arrFollowersList = self.arrAllDataFollowers
+        self.tblPeople.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ bar: UISearchBar) -> Bool
+    {
+        // reset the shouldBeginEditing BOOL ivar to YES, but first take its value and use it to return it from the method call
+        let boolToReturn: Bool = shouldBeginEditing
+        shouldBeginEditing = true
+        return boolToReturn
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

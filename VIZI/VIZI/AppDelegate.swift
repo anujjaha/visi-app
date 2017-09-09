@@ -42,9 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         IQKeyboardManager.sharedManager().enable = true
-        //IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        IQKeyboardManager.sharedManager().shouldHidePreviousNext = false
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
         
         strDeviceToken = "asdfghjkl"
         
