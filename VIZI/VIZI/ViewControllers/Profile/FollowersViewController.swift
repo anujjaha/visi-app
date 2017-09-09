@@ -102,15 +102,21 @@ class FollowersViewController: UIViewController
                         
                         if dictemp.count > 0
                         {
+                            if let temp = dictemp["data"] as? NSArray
+                            {
                                 self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("arrFollowersList :> \(self.arrFollowersList)")
-                            
-                            
-                            for i in 0..<self.arrFollowersList.count
-                            {
-                                self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
+                                
+                                
+                                for i in 0..<self.arrFollowersList.count
+                                {
+                                    self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
+                                }
                             }
-                            
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
                         }
                         else
                         {

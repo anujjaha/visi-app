@@ -77,7 +77,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     @IBOutlet weak var heightofScrView : NSLayoutConstraint!
     @IBOutlet weak var heightofVWGrid : NSLayoutConstraint!
     @IBOutlet weak var btnReportAbuse : UIButton!
-    
+    @IBOutlet weak var btnGlobeCity : UIButton!
+
     //for Globe Feature
     var strCategory = String()
     var bFilterCategory = Bool()
@@ -172,7 +173,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         {
             btnFollowUser.isHidden = true
             heightofFollowBtn.constant = 0
-            btnBackButton.isHidden = true
+            btnBackButton.isHidden = false
             btnEditProfile.isHidden = false
             btnPlus.isHidden = false
             btnSettingsProfile.isHidden = false
@@ -342,6 +343,32 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                     if !self.strCategory.isEmpty
                                     {
                                         self.filtercategorydata()
+                                    }
+                                }
+                                
+                                if(appDelegate.bUserSelfProfile)
+                                {
+                                    self.viewGridList.isHidden = false
+                                    self.viewTab.isUserInteractionEnabled = true
+                                }
+                                else if(self.strotheruserID == "\(appDelegate.arrLoginData[kkeyuserid]!)")
+                                {
+                                    self.viewGridList.isHidden = false
+                                    self.viewTab.isUserInteractionEnabled = true
+                                }
+                                else
+                                {
+                                    if ((self.dicprofiledata["user"] as! NSDictionary).object(forKey: "is_private") as! String) == "1"
+                                    {
+                                        self.viewGridList.isHidden = true
+                                        self.viewTab.isUserInteractionEnabled = false
+                                        self.btnGlobeCity.isHidden = true
+                                    }
+                                    else
+                                    {
+                                        self.viewGridList.isHidden = false
+                                        self.viewTab.isUserInteractionEnabled = true
+                                        self.btnGlobeCity.isHidden = false
                                     }
                                 }
                             }

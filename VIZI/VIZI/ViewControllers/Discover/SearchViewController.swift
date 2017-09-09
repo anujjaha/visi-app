@@ -35,7 +35,9 @@ class SearchViewController: UIViewController,UISearchBarDelegate
     var shouldBeginEditing = Bool()
 
     var arrSearchList = NSArray()
-    
+    var arrAllAppUsers = NSArray()
+    var arrMainList = NSArray()
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -51,7 +53,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate
         
         shouldBeginEditing = true
 
-        self.getSearchList(strsearchtext: "")
+        self.getallAppUsers()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -98,6 +100,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate
                         if dictemp.count > 0
                         {
                             self.arrSearchList = (dictemp["data"] as? NSArray)!
+                            self.arrMainList = (dictemp["data"] as? NSArray)!
                             print("arrSearchList :> \(self.arrSearchList)")
                         }
                         else
@@ -115,13 +118,62 @@ class SearchViewController: UIViewController,UISearchBarDelegate
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
             }
+            
+
         }
         tblSearch.delegate = self
         tblSearch.dataSource = self
     }
 
+    func getallAppUsers()
+    {
+        let parameters = [
+            "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"]
+        
+        showProgress(inView: self.view)
+        print("app_users.php parameters:>\(parameters)")
+        request("\(kServerURL)app_users.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            print(response.result.debugDescription)
+            
+            hideProgress()
+            switch(response.result)
+            {
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        if dictemp.count > 0
+                        {
+                            self.arrAllAppUsers = (dictemp["data"] as? NSArray)!
+                            print("arrAllAppUsers :> \(self.arrAllAppUsers)")
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
+            }
+            
+            self.getSearchList(strsearchtext: "")
+
+        }
+    }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -143,20 +195,54 @@ class SearchViewController: UIViewController,UISearchBarDelegate
         if (searchText.isEmpty)
         {
             searchBar.text = ""
-            self.getSearchList(strsearchtext: "")
+//            self.getSearchList(strsearchtext: "")
             searchBar.endEditing(true)
+
+            self.arrSearchList = self.arrMainList
             
             if !searchBar.isFirstResponder
             {
                 shouldBeginEditing = false
             }
         }
+        else
+        {
+            let resultPredicate = NSPredicate(format: "user_name contains[c] %@ OR name contains[c] %@", searchBar.text!, searchBar.text!)
+            let arrtemp = self.arrAllAppUsers.filtered(using: resultPredicate) as NSArray
+            
+            if arrtemp.count > 0
+            {
+                self.arrSearchList = arrtemp
+            }
+            else
+            {
+                self.arrSearchList = NSArray()
+            }
+            
+        }
+        self.tblSearch.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
+        if(self.arrAllAppUsers.count > 0)
+        {
+            let resultPredicate = NSPredicate(format: "user_name contains[c] %@ OR name contains[c] %@", searchBar.text!, searchBar.text!)
+            let arrtemp = self.arrAllAppUsers.filtered(using: resultPredicate) as NSArray
+            
+            if arrtemp.count > 0
+            {
+                self.arrSearchList = arrtemp
+            }
+            else
+            {
+                self.arrSearchList = NSArray()
+            }
+        }
         searchBar.resignFirstResponder()
-        self.getSearchList(strsearchtext: searchBar.text!)
+        self.tblSearch.reloadData()
+
+//        self.getSearchList(strsearchtext: searchBar.text!)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
