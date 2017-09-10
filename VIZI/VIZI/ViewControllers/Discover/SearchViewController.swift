@@ -302,6 +302,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource
         let tabbar = storyTab.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         tabbar.strotheruserID = "\((arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyuserid) as! NSString)"
         appDelegate.bUserSelfProfile = false
+        appDelegate.strSelectedCity = ""
         self.navigationController?.pushViewController(tabbar, animated: true)
     }
 

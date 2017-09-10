@@ -11,7 +11,7 @@ import UIKit
 class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 {
     @IBOutlet weak var tblCityList : UITableView!
-    var arrCitydata = NSArray()
+    var arrCitydata = NSMutableArray()
     var arrSelectedbutton = NSMutableArray()
     var objProfileViewController = ProfileViewController()
     var strCityName = String()
@@ -67,12 +67,27 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                             }
                             else
                             {
-                                self.arrCitydata = (dictemp["data"] as? NSArray)!
+                                self.arrCitydata = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
+                                self.arrCitydata.add("Select All Category")
                                 print("self.arrCitydata :> \(self.arrCitydata)")
                                 
-                                for _ in 0..<self.arrCitydata.count
+                                for iIndex in 0..<self.arrCitydata.count
                                 {
-                                    self.arrSelectedbutton.add(kNO)
+                                    if appDelegate.strSelectedCity.isEmpty
+                                    {
+                                        self.arrSelectedbutton.add(kNO)
+                                    }
+                                    else
+                                    {
+                                        if self.arrCitydata[iIndex] as! String == appDelegate.strSelectedCity
+                                        {
+                                            self.arrSelectedbutton.add(kYES)
+                                        }
+                                        else
+                                        {
+                                            self.arrSelectedbutton.add(kNO)
+                                        }
+                                    }
                                 }
                                 self.tblCityList.reloadData()
                             }
@@ -103,10 +118,12 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         if strCityName.isEmpty
         {
+            appDelegate.strSelectedCity = ""
             App_showAlert(withMessage: "Please select city", inView: self)
         }
         else
         {
+            appDelegate.strSelectedCity = strCityName
             objProfileViewController.strCategory = strCityName
             objProfileViewController.bFilterCategory = true
             _ = self.navigationController?.popViewController(animated: false)

@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var strSelectedLocationAdreess = String()
     var fSelectedCordinateEditLocation = CLLocationCoordinate2D()
     var arrEditLocationPhotosID = NSMutableArray()
+    var strSelectedCity = String()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

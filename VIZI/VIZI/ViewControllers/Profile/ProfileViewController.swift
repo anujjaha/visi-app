@@ -398,8 +398,15 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     {
         if(self.arrallCategorydata.count > 0)
         {
-            let resultPredicate = NSPredicate(format: "ANY city.address contains[c] %@", strCategory)
-            self.arrCategorydata = self.arrallCategorydata.filtered(using: resultPredicate) as NSArray
+            if strCategory == "Select All Category"
+            {
+                self.arrCategorydata = self.arrallCategorydata
+            }
+            else
+            {
+                let resultPredicate = NSPredicate(format: "ANY city.address contains[c] %@", strCategory)
+                self.arrCategorydata = self.arrallCategorydata.filtered(using: resultPredicate) as NSArray
+            }
             
             if(self.tblCategoryList.isHidden == false)
             {
