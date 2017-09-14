@@ -68,7 +68,9 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                             else
                             {
                                 self.arrCitydata = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
-                                self.arrCitydata.add("Select All Category")
+//                                self.arrCitydata.add(kkeySelectAllPlaces)
+                                self.arrCitydata.insert(kkeySelectAllPlaces, at: 0)
+                                
                                 print("self.arrCitydata :> \(self.arrCitydata)")
                                 
                                 for iIndex in 0..<self.arrCitydata.count

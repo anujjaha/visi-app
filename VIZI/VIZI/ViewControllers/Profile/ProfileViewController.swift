@@ -398,7 +398,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
     {
         if(self.arrallCategorydata.count > 0)
         {
-            if strCategory == "Select All Category"
+            if strCategory == kkeySelectAllPlaces
             {
                 self.arrCategorydata = self.arrallCategorydata
             }

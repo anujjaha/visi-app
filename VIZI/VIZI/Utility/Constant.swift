@@ -70,6 +70,8 @@ let kTermsURL = "http://app.theviziapp.com/api/terms_condition.php"
 
 let kkeyTutorial = "Tutorial"
 
+let kkeySelectAllPlaces = "Select All Places"
+
 //var CurrentUser : UserModel = UserModel()
 
 var progressView : UIView?

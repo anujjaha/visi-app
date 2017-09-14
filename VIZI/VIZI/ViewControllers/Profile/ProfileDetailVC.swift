@@ -99,17 +99,54 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
         
         if(appDelegate.bUserSelfProfile)
         {
-            parameters = [
-                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
-                "category_id": "\(dictCategory[kkeyuserid]!)"
-            ]
+            if appDelegate.strSelectedCity.isEmpty
+            {
+                parameters = [
+                    "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                    "category_id": "\(dictCategory[kkeyuserid]!)"
+                ]
+            }
+            else if appDelegate.strSelectedCity == kkeySelectAllPlaces
+            {
+                parameters = [
+                    "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                    "category_id": "\(dictCategory[kkeyuserid]!)"
+                ]
+            }
+            else
+            {
+                parameters = [
+                    "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+                    "category_id": "\(dictCategory[kkeyuserid]!)",
+                    "city_name" : "\(appDelegate.strSelectedCity)"
+                ]
+            }
         }
         else
         {
-            parameters = [
-                "user_id": strotheruserID,
-                "category_id": "\(dictCategory[kkeyuserid]!)"
-            ]
+            if appDelegate.strSelectedCity.isEmpty
+            {
+                parameters = [
+                    "user_id": strotheruserID,
+                    "category_id": "\(dictCategory[kkeyuserid]!)"
+                ]
+                
+            }
+            else if appDelegate.strSelectedCity == kkeySelectAllPlaces
+            {
+                parameters = [
+                    "user_id": strotheruserID,
+                    "category_id": "\(dictCategory[kkeyuserid]!)"
+                ]
+            }
+            else
+            {
+                parameters = [
+                    "user_id": strotheruserID,
+                    "category_id": "\(dictCategory[kkeyuserid]!)",
+                    "city_name" : "\(appDelegate.strSelectedCity)"
+                ]
+            }
         }
 
 //        let parameters = [
@@ -119,8 +156,9 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
         
         showProgress(inView: self.view)
         print("pins_from_location.php parameters:>\(parameters)")
-        request("\(kServerURL)pins_from_location.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
-            
+//        request("\(kServerURL)pins_from_location.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)pins_from_city.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+
             print(response.result.debugDescription)
             
             hideProgress()
@@ -140,11 +178,19 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
                         
                         if dictemp.count > 0
                         {
-                            self.arrLocation = NSMutableArray(array:(dictemp[kkeydata] as? NSArray)!)
-                            print("arrLocation :> \(self.arrLocation)")
-                            if (self.arrLocation.count > 0)
+                            if  let dictemp2 = dictemp[kkeydata] as? NSArray
                             {
-                                self.tbllocation.reloadData()
+                                self.arrLocation = NSMutableArray(array:(dictemp[kkeydata] as? NSArray)!)
+                                print("arrLocation :> \(self.arrLocation)")
+                                if (self.arrLocation.count > 0)
+                                {
+                                    self.tbllocation.reloadData()
+                                }
+                                else
+                                {
+                                    App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                                    self.tbllocation.reloadData()
+                                }
                             }
                             else
                             {
