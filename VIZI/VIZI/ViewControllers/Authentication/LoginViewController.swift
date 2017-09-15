@@ -10,12 +10,14 @@ import UIKit
 import Accounts
 import Social
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var txtUsername : VIZIUITextField!
     @IBOutlet weak var txtPassword : VIZIUITextField!
     @IBOutlet weak var btnLogin : UIButton!
-    @IBOutlet weak var btnFacebook : UIButton!
+  //  @IBOutlet weak var btnFacebook : UIButton!
+    @IBOutlet var btnFacebook: FBSDKLoginButton!
+
     var arrRes = NSMutableDictionary() //Array of dictionary
     var facebookAccount: ACAccount?
     var accountStore: ACAccountStore?
@@ -24,6 +26,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureFacebook()
         DispatchQueue.main.async {
             self.txtUsername.layer.cornerRadius = 5.0
             self.txtPassword.layer.cornerRadius = 5.0
@@ -37,6 +40,13 @@ class LoginViewController: UIViewController {
 //            self.txtPassword.text = "test"
         }
     }
+    
+    func configureFacebook()
+    {
+        btnFacebook.readPermissions = ["public_profile", "email", "user_about_me"];
+        btnFacebook.delegate = self
+    }
+    
     // MARK: - Navigation
     @IBAction func btnLoginNowPressed()
     {
@@ -283,6 +293,11 @@ class LoginViewController: UIViewController {
                                 
                                 appDelegate.arrLoginData = dictemp2
                                 
+                                let data = NSKeyedArchiver.archivedData(withRootObject: appDelegate.arrLoginData)
+                                UserDefaults.standard.set(data, forKey: kkeyLoginData)
+                                UserDefaults.standard.set(true, forKey: kkeyisUserLogin)
+                                UserDefaults.standard.set(true, forKey: kkeyFBLogin)
+
                                 let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
                                 let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")
                                 self.navigationController?.pushViewController(tabbar, animated: true)
@@ -337,115 +352,55 @@ class LoginViewController: UIViewController {
     
     
     //MARK: Facebook Login
-    //  The converted code is limited by 2 KB.
-    //  Upgrade your plan to remove this limitation.
-    
-    //  Converted with Swiftify v1.0.6242 - https://objectivec2swift.com/
-    
-   /* func facebook() {
-        self.accountStore = ACAccountStore()
-        var FBaccountType: ACAccountType? = self.accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
-        var key: String = "451805654875339"
-        var dictFB: [AnyHashable: Any] = [
-            ACFacebookAppIdKey : key,
-            ACFacebookPermissionsKey : ["email"]
-        ]
-        
-        self.accountStore.requestAccessToAccounts(withType: FBaccountType, options: dictFB, completion: {(_ granted: Bool, _ e: Error) -> Void in
-            if granted {
-                var accounts: [Any] = self.accountStore.accounts(withAccountType: FBaccountType)
-                //it will always be the last object with single sign on
-                self.facebookAccount = accounts.last
-                var facebookCredential: ACAccountCredential? = self.facebookAccount.credential
-                var accessToken: String? = facebookCredential?.oauthToken
-                print("Facebook Access Token: \(accessToken)")
-                print("facebook account =\(self.facebookAccount)")
-                self.get()
-                self.getFBFriends()
-                isFacebookAvailable = 1
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
+    {
+        if ((FBSDKAccessToken.current()) != nil)
+        {
+
+        let access_token: String = FBSDKAccessToken.current().tokenString
+       /* FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name, id, gender"], tokenString: access_token, version: nil, httpMethod: "GET").start(completionHandler: {(_ connection: FBSDKGraphRequestConnection, _ result: Any, _ error: Error?) -> Void in
+       
+            if let result = result as? NSDictionary
+            {
+                let email = result["email"] as? String
+                let user_name = result["name"] as? String
+                let user_gender = result["gender"] as? String
+                let user_id_fb = result["id"]  as? String
             }
-            else {
-                //Fail gracefully...
-                print("error getting permission yupeeeeeee \(e)")
-                sleep(10)
-                print("awake from sleep")
-                isFacebookAvailable = 0
+            else
+            {
+                return
             }
-        })
-    }
-    
-    func checkfacebookstatus() {
-        if isFacebookAvailable == 0 {
-            self.checkFacebook()
-            isFacebookAvailable = 1
+            })*/
+
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"email,first_name,last_name,picture.width(1000).height(1000),birthday,gender"], tokenString: access_token, version: nil, httpMethod: "GET")
+            .start(completionHandler:  { (connection, result, error) in
+                
+                if let result = result as? NSDictionary
+                {
+                    self.dictFBdata = result
+                    print(self.dictFBdata)
+
+                    self.fblogin()
+                }
+                else
+                {
+                    App_showAlert(withMessage: (error?.localizedDescription)!, inView: self)
+                    return
+                }
+            })
         }
-        else {
-            print("Get out from our game")
+        else
+        {
+            App_showAlert(withMessage: "Please login again", inView: self)
         }
     }
-    
-    func get() {
-        var requestURL = URL(string: "https://graph.facebook.com/me")
-        var request = SLRequest(for: SLServiceTypeFacebook, requestMethod: SLRequestMethodGET, url: requestURL, parameters: nil)
-        request.account = self.facebookAccount
-        request.perform(withHandler: {(_ data: Data, _ response: HTTPURLResponse, _ error: Error) -> Void in
-            if error == nil {
-                var list: [AnyHashable: Any]? = (try? JSONSerialization.jsonObject(withData: data, options: kNilOptions))
-                print("Dictionary contains: \(list)")
-                self.globalmailID = "\(list?["email"] as? String)"
-                print("global mail ID : \(globalmailID)")
-                fbname = "\(list?["name"] as? String)"
-                print("faceboooookkkk name \(fbname)")
-                if (list?["error"] as? String) != nil {
-                    self.attemptRenewCredentials()
-                }
-                DispatchQueue.main.async(execute: {() -> Void in
-                })
-            }
-            else {
-                //handle error gracefully
-                print("error from get\(error)")
-                //attempt to revalidate credentials
-            }
-        })
-        self.accountStore = ACAccountStore()
-        var FBaccountType: ACAccountType? = self.accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierFacebook)
-        var key: String = "451805654875339"
-        var dictFB: [AnyHashable: Any] = [
-            ACFacebookAppIdKey : key,
-            ACFacebookPermissionsKey : ["friends_videos"]
-        ]
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
+    {
         
-        self.accountStore.requestAccessToAccounts(withType: FBaccountType, options: dictFB, completion: {(_ granted: Bool, _ e: Error) -> Void in
-        })
     }
-    
-    func accountChanged(_ notification: Notification) {
-        self.attemptRenewCredentials()
-    }
-    
-    func attemptRenewCredentials() {
-        self.accountStore.renewCredentials(forAccount: (self.facebookAccount as? ACAccount), completion: {(_ renewResult: ACAccountCredentialRenewResult, _ error: Error) -> Void in
-            if error == { _ in } {
-                switch renewResult {
-                case .renewed:
-                    print("Good to go")
-                    self.get()
-                case .rejected:
-                    print("User declined permission")
-                case .failed:
-                    print("non-user-initiated cancel, you may attempt to retry")
-                default:
-                    break
-                }
-            }
-            else {
-                //handle error gracefully
-                print("error from renew credentials\(error)")
-            }
-        })
-    }*/
 }
+
 extension LoginViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

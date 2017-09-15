@@ -7,3 +7,5 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "JVFloatLabeledTextView.h"
 #import "JVFloatLabeledTextField.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>

@@ -90,6 +90,12 @@ class SettingsViewController: UIViewController {
                         
                         if dictemp.count > 0
                         {
+                            if (userDefaults.bool(forKey: kkeyFBLogin))
+                            {
+                                let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+                                loginManager.logOut()
+                            }
+                            
                             UserDefaults.standard.set("", forKey: kkeyLoginData)
                             UserDefaults.standard.set(false, forKey: kkeyisUserLogin)
                             

@@ -133,6 +133,8 @@
 		D3F190D21F24C332004D2BBE /* PickedAssetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B51F24C332004D2BBE /* PickedAssetList.swift */; };
 		D3F190D31F24C332004D2BBE /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B71F24C332004D2BBE /* Size.swift */; };
 		D3F190D41F24C332004D2BBE /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190B81F24C332004D2BBE /* SwipeInteractionController.swift */; };
+		D3FCEC501F6C542E006880A3 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCEC4E1F6C542E006880A3 /* FBSDKCoreKit.framework */; };
+		D3FCEC511F6C542E006880A3 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FCEC4F1F6C542E006880A3 /* FBSDKLoginKit.framework */; };
 		FF08EAC11E1022CF0017BCE8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */; };
 		FF0C0EC91E01B32E00E77961 /* VIZIUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */; };
 		FF0F50A21E0051BA0062AF57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F50A11E0051BA0062AF57 /* AppDelegate.swift */; };
@@ -317,6 +319,8 @@
 		D3F190B61F24C332004D2BBE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/NohanaImagePicker.strings; sourceTree = "<group>"; };
 		D3F190B71F24C332004D2BBE /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		D3F190B81F24C332004D2BBE /* SwipeInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
+		D3FCEC4E1F6C542E006880A3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		D3FCEC4F1F6C542E006880A3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		FF08EAC01E1022CF0017BCE8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FF0C0EC81E01B32E00E77961 /* VIZIUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIZIUITextField.swift; sourceTree = "<group>"; };
 		FF0F509E1E0051BA0062AF57 /* VIZI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIZI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,9 +358,11 @@
 				D3CB0D9D1E62EAC2008F1658 /* CoreBluetooth.framework in Frameworks */,
 				D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */,
 				D3E5DB7D1E61BF360060912C /* GLKit.framework in Frameworks */,
+				D3FCEC501F6C542E006880A3 /* FBSDKCoreKit.framework in Frameworks */,
 				D3E5DB7B1E61BF260060912C /* OpenGLES.framework in Frameworks */,
 				D3E5DB7F1E61BF3D0060912C /* libz.dylib in Frameworks */,
 				D3E5DB831E61BF420060912C /* libicucore.dylib in Frameworks */,
+				D3FCEC511F6C542E006880A3 /* FBSDKLoginKit.framework in Frameworks */,
 				D3E5DB811E61BF400060912C /* libc++.dylib in Frameworks */,
 				D3E5DB791E61B9810060912C /* QuartzCore.framework in Frameworks */,
 				D3E5DB771E61B8EB0060912C /* libz.tbd in Frameworks */,
@@ -641,6 +647,8 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3FCEC4E1F6C542E006880A3 /* FBSDKCoreKit.framework */,
+				D3FCEC4F1F6C542E006880A3 /* FBSDKLoginKit.framework */,
 				D3F190981F24C332004D2BBE /* NohanaImagePicker */,
 				D3C964001EBF57CD001F7C7E /* Toast */,
 				D3C88BAD1EA1443D004F362B /* CustomCallout */,
