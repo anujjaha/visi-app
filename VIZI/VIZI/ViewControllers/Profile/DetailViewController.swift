@@ -315,16 +315,27 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func btnGoToDirectionPressed()
     {
+        //https://www.google.com/maps?saddr=My+Location&daddr=760+West+Genesee+Street+Syracuse+NY+13204
+        let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+        let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+
+        guard
+            let url = URL(string: "https://www.google.com/maps?saddr=\(appDelegate.userLocation.coordinate.latitude),\(appDelegate.userLocation.coordinate.longitude)&daddr=\(flat),\(flon)")
+            else { return }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+        /*
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let objDetailVC = storyTab.instantiateViewController(withIdentifier: "MapRootVC") as! MapRootVC
         objDetailVC.strpinTitle = self.lblScreenTitle.text!
         
         bgotoDirection = true
         
-        let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
-        let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
         objDetailVC.fcordinate = CLLocationCoordinate2D(latitude: flat, longitude: flon)
-        self.navigationController?.pushViewController(objDetailVC, animated: true)
+        self.navigationController?.pushViewController(objDetailVC, animated: true)*/
     }
 
     //MARK: Get Pin Category Data

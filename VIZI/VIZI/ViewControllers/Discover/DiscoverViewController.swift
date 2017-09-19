@@ -311,6 +311,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
+            "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
+            "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
         ]
         
         showProgress(inView: self.view)
