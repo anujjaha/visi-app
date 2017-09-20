@@ -132,7 +132,7 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
                                 
                                 if (self.arrPinData[i] as AnyObject).object(forKey: kkeyimage) is NSNull
                                 {
-                                    point.image =  #imageLiteral(resourceName: "Profile.jpg")
+                                    point.image =   #imageLiteral(resourceName: "Placeholder")
                                 }
                                 else
                                 {

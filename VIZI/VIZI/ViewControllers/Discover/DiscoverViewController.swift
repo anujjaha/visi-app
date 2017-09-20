@@ -385,7 +385,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             if (self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
-                point.image =  #imageLiteral(resourceName: "Profile.jpg")
+                point.image = #imageLiteral(resourceName: "Placeholder")
             }
             else
             {
@@ -394,7 +394,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                  let imageData:NSData = NSData(contentsOf: imageUrl)!
                  let imagetemp = UIImage(data: imageData as Data)
                  point.image = imagetemp*/
-                point.image =  #imageLiteral(resourceName: "Profile.jpg")
+                point.image =  #imageLiteral(resourceName: "Placeholder")
                 
                 let catPictureURL = URL(string: "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage)!)")!
                 let session = URLSession(configuration: .default)
