@@ -55,6 +55,8 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
                     point.image =  #imageLiteral(resourceName: "Following_pin")
                 point.name = "\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeytitle)!)"
                 point.address = "\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeyaddress)!)"
+                point.iPintag = i
+
                 self.mapView.addAnnotation(point)
             }
             // 3
@@ -312,6 +314,16 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
             objDetailVC.bfromDiscovery = true
             self.navigationController?.pushViewController(objDetailVC, animated: true)
         }
+        else
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: "pinId")!)"
+            objDetailVC.strCategoryName = "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: "categoryName") as! NSString)"
+            objDetailVC.strCategoryID = "\((self.arrTrendingPlacesPins[indexPath.row] as AnyObject).object(forKey: "categoryId")!)"
+            objDetailVC.bfromDiscovery = true
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+        }
     }
 
     @IBAction func gotToDetailsofPin(sender: UIButton)
@@ -323,6 +335,16 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
             objDetailVC.strPinID = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "pinId")!)"
             objDetailVC.strCategoryName = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "categoryName") as! NSString)"
             objDetailVC.strCategoryID = "\((self.arrPinData[sender.tag] as AnyObject).object(forKey: "categoryId")!)"
+            objDetailVC.bfromDiscovery = true
+            self.navigationController?.pushViewController(objDetailVC, animated: true)
+        }
+        else
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            objDetailVC.strPinID = "\((self.arrTrendingPlacesPins[sender.tag] as AnyObject).object(forKey: "pinId")!)"
+            objDetailVC.strCategoryName = "\((self.arrTrendingPlacesPins[sender.tag] as AnyObject).object(forKey: "categoryName") as! NSString)"
+            objDetailVC.strCategoryID = "\((self.arrTrendingPlacesPins[sender.tag] as AnyObject).object(forKey: "categoryId")!)"
             objDetailVC.bfromDiscovery = true
             self.navigationController?.pushViewController(objDetailVC, animated: true)
         }
