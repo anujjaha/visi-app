@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UserDefaults.standard.register(defaults: [kkeyisUserLogin : false])
         UserDefaults.standard.register(defaults: [kkeyTutorial : false])
         UserDefaults.standard.register(defaults: [kkeyFBLogin : false])
-
+        UserDefaults.standard.register(defaults: [kkeyUnreadBadgeCount : "0"])
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

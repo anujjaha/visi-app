@@ -22,6 +22,9 @@ class HomeViewController: UIViewController,MKMapViewDelegate
         super.viewDidLoad()
 //        let annotation = MKAnnotation()
         
+
+       
+        
         self.title = "VIZI"
         
         //mapview
@@ -36,7 +39,31 @@ class HomeViewController: UIViewController,MKMapViewDelegate
 
     override func viewWillAppear(_ animated: Bool)
     {
+        let viewFN = UIView(frame: CGRect(x:0, y:0, width:85, height:32))
+        viewFN.backgroundColor = UIColor.clear
         
+        let button2: UIButton = UIButton()
+        button2.setImage(UIImage(named: "Notification"), for: .normal)
+        button2.frame = CGRect(x:30,y:0,  width:60, height:32)
+        button2.addTarget(self, action: #selector(NotificationPressed(sender:)), for: .touchUpInside)
+        viewFN.addSubview(button2)
+        
+        let badge = BadgeSwift()
+        badge.text = "112"
+        // Font
+        badge.font = UIFont.systemFont(ofSize: 8)
+        // Text color
+        badge.textColor = UIColor.white
+        // Badge color
+        badge.badgeColor = UIColor.red
+        badge.frame = CGRect(x:60,y:-6,  width:24, height:24)
+        
+        viewFN.addSubview(badge)
+
+        
+        let rightBarButton = UIBarButtonItem(customView: viewFN)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
@@ -52,7 +79,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate
     
 
     
-    @IBAction func NotificationPressed()
+    @IBAction func NotificationPressed(sender : UIButton)
     {
         let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
         let tabbar = storyTab.instantiateViewController(withIdentifier: "NotificationVC")
@@ -72,7 +99,8 @@ class HomeViewController: UIViewController,MKMapViewDelegate
         fCurrentcordinate = coordinate
     }
     
-    @IBAction func searchAddress(_ sender: UIBarButtonItem)
+//    @IBAction func searchAddress(_ sender: UIBarButtonItem)
+    @IBAction func searchAddress()
     {
         let controller = GooglePlacesSearchController(
             apiKey: kGOOGLEAPIKEY,

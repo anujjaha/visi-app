@@ -71,6 +71,7 @@ let kTermsURL = "http://app.theviziapp.com/api/terms_condition.php"
 
 let kkeyTutorial = "Tutorial"
 let kkeyFBLogin = "FBLogin"
+let kkeyUnreadBadgeCount = "UnreadBadgeCount"
 
 let kkeySelectAllPlaces = "Select All Places"
 

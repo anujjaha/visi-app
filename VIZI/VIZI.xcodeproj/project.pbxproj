@@ -106,6 +106,7 @@
 		D3E5DB8F1E61C0150060912C /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */; };
 		D3E5DB901E61C0150060912C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */; };
 		D3E5DBA61E61C2970060912C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5DBA51E61C2970060912C /* Accelerate.framework */; };
+		D3EE7B901F7FBF7D00392D97 /* BadgeSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EE7B8F1F7FBF7D00392D97 /* BadgeSwift.swift */; };
 		D3F190B91F24C332004D2BBE /* ActivityIndicatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F190991F24C332004D2BBE /* ActivityIndicatable.swift */; };
 		D3F190BA1F24C332004D2BBE /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909A1F24C332004D2BBE /* AlbumCell.swift */; };
 		D3F190BB1F24C332004D2BBE /* AlbumListEmptyIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F1909B1F24C332004D2BBE /* AlbumListEmptyIndicator.swift */; };
@@ -289,6 +290,8 @@
 		D3E5DB8D1E61C0150060912C /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		D3E5DB8E1E61C0150060912C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		D3E5DBA51E61C2970060912C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D3EE7B8E1F7FBF7D00392D97 /* BadgeSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeSwift.h; sourceTree = "<group>"; };
+		D3EE7B8F1F7FBF7D00392D97 /* BadgeSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeSwift.swift; sourceTree = "<group>"; };
 		D3F190991F24C332004D2BBE /* ActivityIndicatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatable.swift; sourceTree = "<group>"; };
 		D3F1909A1F24C332004D2BBE /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		D3F1909B1F24C332004D2BBE /* AlbumListEmptyIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListEmptyIndicator.swift; sourceTree = "<group>"; };
@@ -581,6 +584,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D3EE7B8D1F7FBF7D00392D97 /* BadgeSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D3EE7B8E1F7FBF7D00392D97 /* BadgeSwift.h */,
+				D3EE7B8F1F7FBF7D00392D97 /* BadgeSwift.swift */,
+			);
+			path = BadgeSwift;
+			sourceTree = "<group>";
+		};
 		D3F190981F24C332004D2BBE /* NohanaImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +659,7 @@
 		FF0F50A01E0051BA0062AF57 /* VIZI */ = {
 			isa = PBXGroup;
 			children = (
+				D3EE7B8D1F7FBF7D00392D97 /* BadgeSwift */,
 				D3FCEC4E1F6C542E006880A3 /* FBSDKCoreKit.framework */,
 				D3FCEC4F1F6C542E006880A3 /* FBSDKLoginKit.framework */,
 				D3F190981F24C332004D2BBE /* NohanaImagePicker */,
@@ -878,6 +891,7 @@
 				FFDC7CF91E0695E8007A4451 /* ProfileDetailVC.swift in Sources */,
 				D3DA7EDA1EAB70D500BB317A /* GooglePlacesSearchController.swift in Sources */,
 				D3B684971E4F2701008C412E /* TaskDelegate.swift in Sources */,
+				D3EE7B901F7FBF7D00392D97 /* BadgeSwift.swift in Sources */,
 				D388998C1E509A4900F31808 /* SwiftyJSON.swift in Sources */,
 				D3A420B21E6891DC00F4BEC0 /* FilterPeopleVC.swift in Sources */,
 				D3CA42AD1E54007500365290 /* IQTextView.swift in Sources */,

@@ -143,6 +143,9 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource
         
         cell.btnaccept.tag = indexPath.row
         cell.btnReject.tag = indexPath.row
+        
+        cell.selectionStyle = .none
+        
 
         if((self.arrNotification[indexPath.row] as AnyObject).object(forKey: "requested") as! Bool)
         {
@@ -171,6 +174,22 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource
 
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if((self.arrNotification[indexPath.row] as AnyObject).object(forKey: "requested") as! Bool)
+        {
+        }
+        else
+        {
+            let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
+            let tabbar = storyTab.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            tabbar.strotheruserID = "\((arrNotification[indexPath.row] as AnyObject).object(forKey: "toUserId") as! NSString)"
+            appDelegate.bUserSelfProfile = false
+            appDelegate.strSelectedCity = ""
+            self.navigationController?.pushViewController(tabbar, animated: true)
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -230,7 +249,7 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource
     {
         let parameters = [
             "notification_id": "\((self.arrNotification[sender.tag] as AnyObject).object(forKey: "id")!)",
-            "accept" :  "accept"
+            "accept" :  "reject"
         ]
         
         showProgress(inView: self.view)
