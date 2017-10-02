@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UserDefaults.standard.register(defaults: [kkeyisUserLogin : false])
         UserDefaults.standard.register(defaults: [kkeyTutorial : false])
         UserDefaults.standard.register(defaults: [kkeyFBLogin : false])
-        UserDefaults.standard.register(defaults: [kkeyUnreadBadgeCount : "0"])
+        UserDefaults.standard.register(defaults: [kkeyUnreadBadgeCount : 0])
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -171,6 +171,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if alert != nil
             {
                 let strmessage = alert!["body"] as! String
+                
+                let ibadgeCount = alert!["badgeCount"] as! NSNumber
+                UserDefaults.standard.set(ibadgeCount, forKey: kkeyUnreadBadgeCount)
+                UserDefaults.standard.synchronize()
+                
+                NotificationCenter.default
+                    .post(name: Notification.Name(rawValue: "updatebadgecount"), object: nil)
+
                 App_showAlert(withMessage: strmessage, inView: (self.window?.rootViewController)!)
             }
         }

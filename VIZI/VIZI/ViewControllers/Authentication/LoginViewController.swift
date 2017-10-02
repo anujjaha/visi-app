@@ -132,6 +132,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate {
                                     let data = NSKeyedArchiver.archivedData(withRootObject: appDelegate.arrLoginData)
                                     UserDefaults.standard.set(data, forKey: kkeyLoginData)
                                     UserDefaults.standard.set(true, forKey: kkeyisUserLogin)
+                                    UserDefaults.standard.synchronize()
                                     
                                     let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
                                     let tabbar = storyTab.instantiateViewController(withIdentifier: "TabBarViewController")

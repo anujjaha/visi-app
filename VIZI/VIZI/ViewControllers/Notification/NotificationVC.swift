@@ -21,8 +21,8 @@ class NotificationVC: UIViewController {
         vwStaticText.isHidden = false
         tblNotification.isHidden = true
         // Do any additional setup after loading the view.
-        self.tblNotification.estimatedRowHeight = 81.0 ;
-        self.tblNotification.rowHeight = UITableViewAutomaticDimension;
+        self.tblNotification.estimatedRowHeight = 81.0
+        self.tblNotification.rowHeight = UITableViewAutomaticDimension
         self.getAllNotification()
     }
 
@@ -58,6 +58,9 @@ class NotificationVC: UIViewController {
                         
                         if dictemp.count > 0
                         {
+                            UserDefaults.standard.set(0, forKey: kkeyUnreadBadgeCount)
+                            UserDefaults.standard.synchronize()
+                            
                             self.arrNotification = NSMutableArray(array:(dictemp[kkeydata] as? NSArray)!)
                             if (self.arrNotification.count > 0)
                             {
@@ -68,7 +71,7 @@ class NotificationVC: UIViewController {
                             {
                                 self.vwStaticText.isHidden = false
                                 self.tblNotification.isHidden = true
-
+                                
                             }
                             print("arrNotification :> \(self.arrNotification)")
                         }
