@@ -363,6 +363,8 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                         self.viewGridList.isHidden = true
                                         self.viewTab.isUserInteractionEnabled = false
                                         self.btnGlobeCity.isHidden = true
+                                        
+                                        self.heightofScrView.constant = 389 + 15
                                     }
                                     else
                                     {
@@ -433,7 +435,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
         let temphg = Double((collectionWidth-2)/3)
         let icountdouble = Double(self.arrCategorydata.count)
         let itemp = 389 + (temphg * ceil(Double(icountdouble/3)))
-        self.heightofScrView.constant = CGFloat(itemp)
+        self.heightofScrView.constant = CGFloat(itemp) + 15
         
         let iHeighofGrid = 47 + (temphg * ceil(Double(icountdouble/3)))
         self.heightofVWGrid.constant = CGFloat(iHeighofGrid)
