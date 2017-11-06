@@ -409,6 +409,11 @@ extension FollowersViewController : UITableViewDelegate, UITableViewDataSource
                     break
                 }
             }
+            
+           /* request("\(kServerURL)follow.php", method: .post, parameters:parameters).responseString{ response in
+             debugPrint(response)
+             }*/
+
         }
         else
         {

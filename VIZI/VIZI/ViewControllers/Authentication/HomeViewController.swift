@@ -49,20 +49,28 @@ class HomeViewController: UIViewController,MKMapViewDelegate
         button2.addTarget(self, action: #selector(NotificationPressed(sender:)), for: .touchUpInside)
         viewFN.addSubview(button2)
         
-        let iBadgeCount = userDefaults.value(forKey: kkeyUnreadBadgeCount) as! NSNumber
-        if (iBadgeCount > 0)
+        if let itBadgeCount = userDefaults.value(forKey: kkeyUnreadBadgeCount)
         {
-            let badge = BadgeSwift()
-            badge.text = "\(iBadgeCount)"
-            // Font
-            badge.font = UIFont.systemFont(ofSize: 8)
-            // Text color
-            badge.textColor = UIColor.white
-            // Badge color
-            badge.badgeColor = UIColor.red
-            badge.frame = CGRect(x:60,y:-6,  width:24, height:24)
-            
-            viewFN.addSubview(badge)
+          print(itBadgeCount)
+           let iBadgeCount = userDefaults.value(forKey: kkeyUnreadBadgeCount) as! NSNumber
+            if (iBadgeCount > 0)
+            {
+                let badge = BadgeSwift()
+                badge.text = "\(iBadgeCount)"
+                // Font
+                badge.font = UIFont.systemFont(ofSize: 8)
+                // Text color
+                badge.textColor = UIColor.white
+                // Badge color
+                badge.badgeColor = UIColor.red
+                badge.frame = CGRect(x:60,y:-6,  width:24, height:24)
+                
+                viewFN.addSubview(badge)
+            }
+            else
+            {
+                viewFN.frame = CGRect(x:0,y:0,  width:70, height:32)
+            }
         }
         else
         {
