@@ -322,7 +322,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             print(response.result.debugDescription)
             
             hideProgress()
-            self.getTrendingPlaces()
 
             switch(response.result)
             {
@@ -330,7 +329,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 if response.result.value != nil
                 {
                     print(response.result.value)
-                    
+                    self.getTrendingPlaces()
+
                     if let json = response.result.value
                     {
                         print("json :> \(json)")
@@ -363,6 +363,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             case .failure(_):
                 print(response.result.error)
                 hideProgress()
+                self.getTrendingPlaces()
 
                 App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
                 break
@@ -539,7 +540,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         objPinofUserVC.strScreenTitle = "Trending Places"
         objPinofUserVC.bisUserSelfPins = false
         objPinofUserVC.arrTrendingPlacesPins = NSMutableArray(array:((self.arrTrendingPlaces[sender.tag] as AnyObject).object(forKey: kkeypins) as? NSArray)!)
-        
+        objPinofUserVC.arrTrendingCategories = NSMutableArray(array:((self.arrTrendingPlaces[sender.tag] as AnyObject).object(forKey: "categories") as? NSArray)!)
+
         print("objPinofUserVC.arrTrendingPlacesPins :> \(objPinofUserVC.arrTrendingPlacesPins)")
         self.navigationController?.pushViewController(objPinofUserVC, animated: true)
     }

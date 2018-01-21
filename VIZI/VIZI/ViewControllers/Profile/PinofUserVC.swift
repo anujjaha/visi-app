@@ -26,7 +26,14 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
     var arrTrendingPlacesPins = NSMutableArray()
     var bisUserSelfPins = Bool()
     var arrLocation = NSMutableArray()
+    
+    //CategoryDisplay
+    @IBOutlet weak var vwTrendingHTCT : NSLayoutConstraint!
+    var arrTrendingCategories = NSMutableArray()
+    @IBOutlet weak var vwTrending : UIView!
+    @IBOutlet weak var clTrendingCategory : UICollectionView!
 
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -43,9 +50,11 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         if(bisUserSelfPins)
         {
             self.getPinsofUser()
+            vwTrendingHTCT.constant = 0
         }
         else
         {
+            vwTrendingHTCT.constant = 120
             for i in 0..<self.arrTrendingPlacesPins.count
             {
                 let flat : Double  = ("\((self.arrTrendingPlacesPins[i] as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
@@ -62,6 +71,11 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
             // 3
             let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: appDelegate.userLocation.coordinate.latitude, longitude: appDelegate.userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
             self.mapView.setRegion(region, animated: true)
+            
+            if arrTrendingCategories.count > 0
+            {
+                clTrendingCategory.reloadData()
+            }
         }
     }
     
@@ -382,6 +396,60 @@ class PinsListofUserCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
+    }
+}
+class TrendingCategoryCell: UICollectionViewCell
+{
+    @IBOutlet weak var imgCategory : UIImageView!
+    @IBOutlet weak var lblCategoryName : UILabel!
+    
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+    }
+}
+
+extension PinofUserVC : UICollectionViewDelegate, UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return arrTrendingCategories.count
+    }
+    /*
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+     {
+     let collectionWidth = MainScreen.width - 36
+     return CGSize(width: (collectionWidth-2)/3, height: (collectionWidth-2)/3)
+     }
+     */
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCategoryCell", for: indexPath) as! TrendingCategoryCell
+        cell.lblCategoryName.text = (arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyname) as? String
+        
+        cell.imgCategory.layer.masksToBounds = true
+        cell.imgCategory.layer.borderWidth = 1
+        cell.imgCategory.layer.borderColor = UIColor.appPinkColor().cgColor
+        cell.imgCategory.layer.cornerRadius = 64/2
+
+        if (arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            cell.imgCategory.image = UIImage(named: "Placeholder")
+        }
+        else
+        {
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+        }
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+        homeViewController.dictCategory = arrTrendingCategories[indexPath.row] as! NSDictionary
+        homeViewController.strotheruserID = appDelegate.arrLoginData[kkeyuserid]! as! String
+        print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
+        self.navigationController?.pushViewController(homeViewController, animated: true)
     }
 }
 
