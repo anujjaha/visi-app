@@ -50,6 +50,9 @@ let kkeyshow_delete = "show_delete"
 let kkeyis_private = "is_private"
 let kkeyuser_city = "user_city"
 
+let kkeycategoryTitle = "categoryTitle"
+let kkeycategoryImage = "categoryImage"
+
 let kNO = "NO"
 let kYES = "YES"
 

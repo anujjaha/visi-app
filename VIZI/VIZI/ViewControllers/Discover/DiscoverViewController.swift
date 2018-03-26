@@ -29,9 +29,9 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var arrTrendingPlaces = NSMutableArray()
     
     //Trending Places
-    @IBOutlet weak var scrvw : UIScrollView!
-    @IBOutlet weak var pgControl : UIPageControl!
     var frame = CGRect.zero
+    var arrTrendingCategories = NSMutableArray()
+    @IBOutlet weak var clTrendingCategory : UICollectionView!
     
     var arrNotification = NSMutableArray()
     var bGoFilterScreen = Bool()
@@ -53,7 +53,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
 //        self.getDiscoverdata()5
 //        self.getTrendingPlaces()
         
-        self.pgControl.addTarget(self, action: Selector(("changePage:")), for: UIControlEvents.valueChanged)
         
         self.tblFeed.estimatedRowHeight = 81.0
         self.tblFeed.rowHeight = UITableViewAutomaticDimension
@@ -162,7 +161,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func getAllNotification()
     {
         arrNotification = NSMutableArray()
-        
+        tblFeed.reloadData()
+
         let parameters = [
             "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)",
         ]
@@ -270,6 +270,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         if(iSelectedTab == 2)
         {
             bGoFilterScreen = true
@@ -448,7 +450,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func getTrendingPlaces()
     {
         showProgress(inView: self.view)
-        request("\(kServerURL)admin_pins.php", method: .post, parameters:nil).responseJSON { (response:DataResponse<Any>) in
+        request("\(kServerURL)admin_categories.php", method: .post, parameters:nil).responseJSON { (response:DataResponse<Any>) in
             
             print(response.result.debugDescription)
             
@@ -475,39 +477,8 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                                 print("admin_pins.php :> \(dictemp2)")
                                 self.arrTrendingPlaces = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 
-                                //Congiure Page Control
-                                self.pgControl.numberOfPages = self.arrTrendingPlaces.count
-                                self.pgControl.currentPage = 0
-                                
-                                for index in 0..<self.arrTrendingPlaces.count
-                                {
-                                    self.frame.origin.x = self.scrvw.frame.size.width * CGFloat(index)
-                                    self.frame.size = self.scrvw.frame.size
-                                    self.scrvw.isPagingEnabled = true
-                                    
-                                    let myImageView:UIImageView = UIImageView()
-                                    myImageView.sd_setImage(with: URL(string: "\((self.arrTrendingPlaces[index] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Discover.png"))
-                                    myImageView.contentMode = UIViewContentMode.scaleAspectFill
-                                    myImageView.frame = self.frame
-                                    self.scrvw.addSubview(myImageView)
-                                    
-                                    let myImageshadow:UIImageView = UIImageView()
-                                    myImageshadow.image =  UIImage(named: "DiscoverShadow")!
-                                    myImageshadow.contentMode = UIViewContentMode.scaleAspectFill
-                                    myImageshadow.frame = self.frame
-                                    myImageshadow.frame.origin.y = self.frame.origin.y - 10
-                                    myImageshadow.frame.size.height = self.frame.size.height + 20
-                                    self.scrvw.addSubview(myImageshadow)
-                                    
-                                    let btnGotoPins:UIButton = UIButton()
-                                    btnGotoPins.backgroundColor = UIColor.clear
-                                    btnGotoPins.frame = self.frame
-                                    btnGotoPins.tag = index
-                                    btnGotoPins.addTarget(self, action: #selector(self.btnPinPressed(sender:)), for: .touchUpInside)
-                                    self.scrvw.addSubview(btnGotoPins)
-                                }
-                                
-                                self.scrvw.contentSize = CGSize(width: self.scrvw.frame.size.width * CGFloat(self.arrTrendingPlaces.count), height: self.scrvw.frame.size.height)
+                                self.arrTrendingCategories = NSMutableArray(array:((self.arrTrendingPlaces[0] as AnyObject).object(forKey: "trendingCategories") as? NSArray)!)
+                                self.clTrendingCategory.reloadData()
                             }
                             else
                             {
@@ -570,19 +541,6 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
-    //MARK: Paging Methods
-    func changePage(sender: AnyObject) -> ()
-    {
-        let x = CGFloat(pgControl.currentPage) * self.scrvw.frame.size.width
-        self.scrvw.setContentOffset(CGPoint(x: x,y :0), animated: true)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-    {
-        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-        pgControl.currentPage = Int(pageNumber)
-    }
-
     /*
     // MARK: - Navigation
 
@@ -670,6 +628,42 @@ extension DiscoverViewController : MKMapViewDelegate
         }
     }
 
+}
+extension DiscoverViewController : UICollectionViewDelegate, UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return arrTrendingCategories.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCategoryCell", for: indexPath) as! TrendingCategoryCell
+        cell.lblCategoryName.text = (arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyname) as? String
+        
+        cell.imgCategory.layer.masksToBounds = true
+        cell.imgCategory.layer.borderWidth = 1
+        cell.imgCategory.layer.borderColor = UIColor.appPinkColor().cgColor
+        cell.imgCategory.layer.cornerRadius = 64/2
+        
+        if (arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            cell.imgCategory.image = UIImage(named: "Placeholder")
+        }
+        else
+        {
+            cell.imgCategory.sd_setImage(with: URL(string: "\((arrTrendingCategories[indexPath.row] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+        }
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+        homeViewController.dictCategory = arrTrendingCategories[indexPath.row] as! NSDictionary
+        homeViewController.strotheruserID = appDelegate.arrLoginData[kkeyuserid]! as! String
+        print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
 }
 
 class FeedCell: UITableViewCell
