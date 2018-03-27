@@ -234,6 +234,9 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             cell.lblPinname.text =  "\((self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
 
+            cell.imgProfile.layer.masksToBounds = true
+            cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
+
             if (self.arrDiscoverdata[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
                 cell.imgProfile.image = UIImage(named: "Placeholder")
@@ -251,7 +254,9 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.lblFeedTime.text = (self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeytime) as? String
             
             cell.selectionStyle = .none
-            
+            cell.imgProfile.layer.masksToBounds = true
+            cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
+
             if (self.arrNotification[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
                 cell.imgProfile.image = UIImage(named: "Placeholder")
@@ -386,7 +391,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
             
-            if (self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage) is NSNull
+           /* if (self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyimage) is NSNull
             {
                 point.image = #imageLiteral(resourceName: "Placeholder")
             }
@@ -429,11 +434,17 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
                 downloadPicTask.resume()
                 
-            }
+            }*/
             
             point.name =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeytitle)!)"
             point.address = "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyaddress)!)"
+            
+            point.userName =  "\((self.arrDiscoverdata[i] as AnyObject).object(forKey: kkeyuser)!)"
+
             point.iPintag = i
+            
+            
+
            // point.btnDetailofPin.tag = i
             
 //            point.btnDetailPin.setImage(#imageLiteral(resourceName: "rightarrow_icon"), for: UIControlState.normal)
@@ -606,10 +617,24 @@ extension DiscoverViewController : MKMapViewDelegate
         let calloutView = views?[0] as! CustomCalloutView
         calloutView.starbucksName.text = starbucksAnnotation.name
         calloutView.starbucksAddress.text = starbucksAnnotation.address
-        calloutView.starbucksImage.image = starbucksAnnotation.image
-       
+//        calloutView.starbucksImage.image = starbucksAnnotation.image
+        calloutView.starbucksImage.layer.masksToBounds = true
+        calloutView.starbucksImage.layer.cornerRadius = calloutView.starbucksImage.frame.size.height/2
+        calloutView.strUserName.text = starbucksAnnotation.userName
+
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
        
+        
+        if (self.arrDiscoverdata[starbucksAnnotation.iPintag] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            calloutView.starbucksImage.image = UIImage(named: "Placeholder")
+        }
+        else
+        {
+            calloutView.starbucksImage.sd_setImage(with: URL(string: "\((self.arrDiscoverdata[starbucksAnnotation.iPintag] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+        }
+
+        
         calloutView.btnDetailofPin.tag = starbucksAnnotation.iPintag
         calloutView.btnDetailofPin.addTarget(self, action: #selector(gotToDetailsofPin(sender:)), for: .touchUpInside)
 

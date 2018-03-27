@@ -146,7 +146,7 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
 
                                 let point = ViziPinAnnotation(coordinate: CLLocationCoordinate2D(latitude: flat , longitude: flon ))
                                 
-                                if (self.arrPinData[i] as AnyObject).object(forKey: kkeyimage) is NSNull
+                               /* if (self.arrPinData[i] as AnyObject).object(forKey: kkeyimage) is NSNull
                                 {
                                     point.image =   #imageLiteral(resourceName: "Placeholder")
                                 }
@@ -190,8 +190,13 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
                                     downloadPicTask.resume()
 
                                 }
+                                */
                                 point.name = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeytitle)!)"
                                 point.address = "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyaddress)!)"
+                                
+                                point.userName =  "\((self.arrPinData[i] as AnyObject).object(forKey: kkeyuser)!)"
+
+                                
                                 point.iPintag = i
 
                                 self.mapView.addAnnotation(point)
@@ -250,12 +255,27 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         let calloutView = views?[0] as! CustomCalloutView
         calloutView.starbucksName.text = starbucksAnnotation.name
         calloutView.starbucksAddress.text = starbucksAnnotation.address
-        
-        calloutView.starbucksImage.image = starbucksAnnotation.image
+        calloutView.strUserName.text = starbucksAnnotation.userName
+
+//        calloutView.starbucksImage.image = starbucksAnnotation.image
         // 3
+        calloutView.starbucksImage.layer.masksToBounds = true
+        calloutView.starbucksImage.layer.cornerRadius = calloutView.starbucksImage.frame.size.height/2
+
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         
         calloutView.btnDetailofPin.tag = starbucksAnnotation.iPintag
+
+        if (self.arrPinData[starbucksAnnotation.iPintag] as AnyObject).object(forKey: kkeyimage) is NSNull
+        {
+            calloutView.starbucksImage.image = UIImage(named: "Placeholder")
+        }
+        else
+        {
+            calloutView.starbucksImage.sd_setImage(with: URL(string: "\((self.arrPinData[starbucksAnnotation.iPintag] as AnyObject).object(forKey: kkeyimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+        }
+
+        
         calloutView.btnDetailofPin.addTarget(self, action: #selector(gotToDetailsofPin(sender:)), for: .touchUpInside)
         
         view.addSubview(calloutView)
@@ -294,6 +314,9 @@ class PinofUserVC: UIViewController,MKMapViewDelegate,UITableViewDelegate,UITabl
         {
             cell.lblPeopleName.text =  "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeytitle)!)"
             cell.lblPeopleAddress.text = "\((self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyaddress)!)"
+            
+            cell.imgProfile.layer.masksToBounds = true
+            cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
             
             if (self.arrPinData[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
             {

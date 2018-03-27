@@ -282,6 +282,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource
         cell.lblName.text = (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
         cell.lblAddress.text = (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
         
+        cell.imgProfile.layer.masksToBounds = true
+        cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
+
         if (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
             cell.imgProfile.image = UIImage(named: "Placeholder")

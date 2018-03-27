@@ -117,6 +117,9 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.btnselectRadio.addTarget(self, action: #selector(RadioButtonPressed(sender:)), for: .touchUpInside)
         cell.selectionStyle = .none
 
+        cell.imgProfile.layer.masksToBounds = true
+        cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
+
         if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyimage) is NSNull
         {
             cell.imgProfile.image = UIImage(named: "Placeholder")

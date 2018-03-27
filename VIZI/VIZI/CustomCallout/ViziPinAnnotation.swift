@@ -15,6 +15,7 @@ class ViziPinAnnotation: NSObject, MKAnnotation {
     var address: String!
     var image: UIImage!
     var iPintag: Int!
+    var userName: String!
 
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate

@@ -14,6 +14,8 @@ class CustomCalloutView: UIView {
     @IBOutlet var starbucksName: UILabel!
     @IBOutlet var starbucksAddress: UILabel!
     @IBOutlet var btnDetailofPin: UIButton!
+    @IBOutlet var strUserName: UILabel!
+
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
