@@ -194,52 +194,59 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         print("truncated:>\(truncated)")
 
-        let parameters = [
-            "user_id": truncated,
-            "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
-            "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
-        ]
-        
-        showProgress(inView: self.view)
-        print("parameters:>\(parameters)")
-        request("\(kServerURL)discover_filter.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
+        if truncated.isEmpty
+        {
+            App_showAlert(withMessage: "Please select user to filter", inView: self)
+        }
+        else
+        {
+            let parameters = [
+                "user_id": truncated,
+                "lat" :  "\(appDelegate.userLocation.coordinate.latitude)",
+                "lon"  : "\(appDelegate.userLocation.coordinate.longitude)"
+            ]
             
-            print(response.result.debugDescription)
-            
-            hideProgress()
-            switch(response.result)
-            {
+            showProgress(inView: self.view)
+            print("parameters:>\(parameters)")
+            request("\(kServerURL)discover_filter.php", method: .post, parameters:parameters).responseJSON { (response:DataResponse<Any>) in
                 
-            case .success(_):
-                if response.result.value != nil
+                print(response.result.debugDescription)
+                
+                hideProgress()
+                switch(response.result)
                 {
-                    print(response.result.value)
                     
-                    if let json = response.result.value
+                case .success(_):
+                    if response.result.value != nil
                     {
-                        print("json :> \(json)")
+                        print(response.result.value)
                         
-                        let dictemp = json as! NSDictionary
-                        print("dictemp :> \(dictemp)")
-                        
-                        if dictemp.count > 0
+                        if let json = response.result.value
                         {
-                            appDelegate.bFilterScreenCalledAPI = true
-                            appDelegate.dictfilterdata = dictemp
-                            _ = self.navigationController?.popViewController(animated: true)
-                        }
-                        else
-                        {
-                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            print("json :> \(json)")
+                            
+                            let dictemp = json as! NSDictionary
+                            print("dictemp :> \(dictemp)")
+                            
+                            if dictemp.count > 0
+                            {
+                                appDelegate.bFilterScreenCalledAPI = true
+                                appDelegate.dictfilterdata = dictemp
+                                _ = self.navigationController?.popViewController(animated: true)
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
                         }
                     }
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                    break
                 }
-                break
-                
-            case .failure(_):
-                print(response.result.error)
-                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
-                break
             }
         }
     }

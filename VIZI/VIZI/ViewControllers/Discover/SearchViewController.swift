@@ -280,7 +280,15 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell") as! PeopleCell
         
         cell.lblName.text = (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
-        cell.lblAddress.text = (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
+    
+        if let strusercity = (arrSearchList[indexPath.row] as AnyObject).object(forKey: kkeyuser_city) as? String
+        {
+            cell.lblAddress.text = strusercity
+        }
+        else
+        {
+            cell.lblAddress.text = ""
+        }
         
         cell.imgProfile.layer.masksToBounds = true
         cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.size.height/2
