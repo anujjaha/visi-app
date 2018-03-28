@@ -60,9 +60,9 @@ let kFBAPPID = "128398547683260"
 
 
 
-//let kServerURL = "http://app.theviziapp.com/api/"
+let kServerURL = "http://app.theviziapp.com/api/"
 
-let kServerURL = "http://the-vizi.php-techie.com/api/"
+//let kServerURL = "http://the-vizi.php-techie.com/api/"
 
 
 //let kGOOGLEAPIKEY = "AIzaSyAHzDuGmg_K3kzErQuNRAXfScRFCZM_sN4"
