@@ -471,6 +471,7 @@ extension PinofUserVC : UICollectionViewDelegate, UICollectionViewDataSource
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrTrendingCategories[indexPath.row] as! NSDictionary
         homeViewController.strotheruserID = appDelegate.arrLoginData[kkeyuserid]! as! String
+        homeViewController.bTrendingPlaces = false
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }

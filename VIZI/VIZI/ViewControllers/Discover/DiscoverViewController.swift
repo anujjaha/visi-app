@@ -66,9 +66,17 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
         if appDelegate.bFilterScreenCalledAPI == true
         {
-            self.arrDiscoverdata = NSMutableArray(array:(appDelegate.dictfilterdata["data"] as? NSArray)!)
-            self.fillDiscoveryData()
+            if appDelegate.dictfilterdata.count > 0
+            {
+                self.arrDiscoverdata = NSMutableArray(array:(appDelegate.dictfilterdata["data"] as? NSArray)!)
+                self.fillDiscoveryData()
+            }
+            else
+            {
+                self.getDiscoverdata()
+            }
         }
+        
         
         if (bGoFilterScreen)
         {
@@ -114,7 +122,7 @@ class DiscoverViewController: UIViewController,UITableViewDelegate,UITableViewDa
             mapView.isHidden = false
             tblFeed.isHidden = true
             btnFilter.isHidden = false
-            btnMoveMapup.isHidden = false
+            btnMoveMapup.isHidden = true
             
             iSelectedTab = 1
         }
@@ -686,6 +694,7 @@ extension DiscoverViewController : UICollectionViewDelegate, UICollectionViewDat
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrTrendingCategories[indexPath.row] as! NSDictionary
         homeViewController.strotheruserID = appDelegate.arrLoginData[kkeyuserid]! as! String
+        homeViewController.bTrendingPlaces = true
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }

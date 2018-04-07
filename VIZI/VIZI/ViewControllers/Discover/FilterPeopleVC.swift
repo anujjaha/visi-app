@@ -16,7 +16,7 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     var arrSelectedbutton = NSMutableArray()
     @IBOutlet weak var searchBar: UISearchBar!
     var shouldBeginEditing = Bool()
-
+    @IBOutlet weak var btnSelectAll: UIButton!
 
     override func viewDidLoad()
     {
@@ -25,6 +25,7 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view.
         searchBar.showsCancelButton = false
         shouldBeginEditing = true
+        
         
         self.tblPeople.estimatedRowHeight = 81.0
         self.tblPeople.rowHeight = UITableViewAutomaticDimension
@@ -103,8 +104,17 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterPeopleCell") as! FilterPeopleCell
         
         cell.lblName.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuser_name) as? String
-        cell.lblAddress.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
-        
+//        cell.lblAddress.text = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String
+
+        if let strusercity = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuser_city) as? String
+        {
+            cell.lblAddress.text = strusercity
+        }
+        else
+        {
+            cell.lblAddress.text = ""
+        }
+
         if ((arrSelectedbutton[indexPath.row] as! NSString) as String == kNO)
         {
             cell.btnselectRadio.isSelected = false
@@ -149,7 +159,7 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyaddress) as? String != nil
+        if let _ = (arrFollowersList[indexPath.row] as AnyObject).object(forKey: kkeyuser_city) as? String
         {
             return UITableViewAutomaticDimension
         }
@@ -267,7 +277,14 @@ class FilterPeopleVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: Search Bar Delegate 
+    @IBAction func btnSelectAllAction()
+    {
+        appDelegate.bFilterScreenCalledAPI = true
+        appDelegate.dictfilterdata = NSDictionary()
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: Search Bar Delegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         if (searchText.isEmpty)

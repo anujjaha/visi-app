@@ -1006,6 +1006,7 @@ extension ProfileViewController : UICollectionViewDelegate, UICollectionViewData
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
         homeViewController.strotheruserID = strotheruserID
+        homeViewController.bTrendingPlaces = false
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         self.navigationController?.pushViewController(homeViewController, animated: true)
 
@@ -1115,6 +1116,7 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource
         let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         homeViewController.dictCategory = arrCategorydata[indexPath.row] as! NSDictionary
         homeViewController.strotheruserID = strotheruserID
+        homeViewController.bTrendingPlaces = false
         print("homeViewController.dictCategory :> \(homeViewController.dictCategory)")
         
         self.navigationController?.pushViewController(homeViewController, animated: true)

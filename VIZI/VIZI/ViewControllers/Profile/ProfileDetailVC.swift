@@ -52,7 +52,7 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
     var flagforswitch = Bool()
     var strvisibilityvalue = NSString()
     @IBOutlet weak var viewAddFilter : UIView!
-
+    var bTrendingPlaces = Bool()
 
     override func viewDidLoad()
     {
@@ -61,33 +61,50 @@ class ProfileDetailVC: UIViewController,UINavigationControllerDelegate, UIImageP
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.backButtonPressed))
         
-        //IOS
-        if(appDelegate.bUserSelfProfile)
-        {
-//            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.editCategoryPressed))
-
-            print(dictCategory)
-            let button = UIButton.init(type: .custom)
-            button.setImage(UIImage.init(named: "edit_icon"), for: UIControlState.normal)
-            button.addTarget(self, action:#selector(self.editCategoryPressed), for: UIControlEvents.touchUpInside)
-            button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
-            let barButton = UIBarButtonItem.init(customView: button)
-            self.navigationItem.rightBarButtonItem = barButton
-            
-            
-
-        }
-        else
-        {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "addall_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.btnAddPinPressed))
-        }
-        
         self.title = dictCategory[kkeyname] as? String
         // Do any additional setup after loading the view.
         
         self.tbllocation.estimatedRowHeight = 220.0 ;
         self.tbllocation.rowHeight = UITableViewAutomaticDimension;
-        self.getCategorybasedLocationData()
+
+        if bTrendingPlaces == true
+        {
+            self.arrLocation = NSMutableArray(array:(dictCategory["pin"] as? NSArray)!)
+            print("arrLocation :> \(self.arrLocation)")
+            if (self.arrLocation.count > 0)
+            {
+                self.tbllocation.reloadData()
+            }
+            else
+            {
+                App_showAlert(withMessage: "No data found", inView: self)
+                self.tbllocation.reloadData()
+            }
+        }
+        else
+        {
+            //IOS
+            if(appDelegate.bUserSelfProfile)
+            {
+                //            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.editCategoryPressed))
+                
+                print(dictCategory)
+                let button = UIButton.init(type: .custom)
+                button.setImage(UIImage.init(named: "edit_icon"), for: UIControlState.normal)
+                button.addTarget(self, action:#selector(self.editCategoryPressed), for: UIControlEvents.touchUpInside)
+                button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30) //CGRectMake(0, 0, 30, 30)
+                let barButton = UIBarButtonItem.init(customView: button)
+                self.navigationItem.rightBarButtonItem = barButton
+                
+                
+                
+            }
+            else
+            {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "addall_icon"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.btnAddPinPressed))
+            }
+            self.getCategorybasedLocationData()
+        }
     }
     
     //MARK: - Get Profile Data
@@ -688,7 +705,16 @@ extension ProfileDetailVC : UITableViewDelegate, UITableViewDataSource
         {
             let storyTab = UIStoryboard(name: "Tabbar", bundle: nil)
             let objDetailVC = storyTab.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            objDetailVC.strPinID = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeypin_id) as! NSString)"
+            if bTrendingPlaces == true
+            {
+                objDetailVC.dictLocation = NSMutableDictionary(dictionary: self.arrLocation[indexPath.row] as! Dictionary)
+                
+            }
+            else
+            {
+                objDetailVC.strPinID = "\((self.arrLocation[indexPath.row] as AnyObject).object(forKey: kkeypin_id) as! NSString)"
+            }
+            objDetailVC.bTrendingPlaces = bTrendingPlaces
             objDetailVC.strCategoryName = (dictCategory[kkeyname] as? String)!
             objDetailVC.strCategoryID = "\(dictCategory[kkeyuserid]!)"
             self.navigationController?.pushViewController(objDetailVC, animated: true)

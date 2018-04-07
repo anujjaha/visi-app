@@ -32,6 +32,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     var iSelectedCategoryID = Int()
     var bfromDiscovery = Bool()
     var bgotoDirection = Bool()
+    var bTrendingPlaces = Bool()
     
     override func viewDidLoad()
     {
@@ -50,9 +51,54 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         
         // Do any additional setup after loading the view.
-        self.getPinDetailData()
-    }
+        if (bTrendingPlaces == true)
+        {
+            print("self.dictLocation :> \(self.dictLocation)")
+            if (self.dictLocation.count > 0)
+            {
+                if (self.dictLocation.object(forKey: kkeybgimage)) is NSNull
+                {
+                }
+                else
+                {
+                    self.imgbgFull.sd_setImage(with: URL(string: "\(self.dictLocation.object(forKey: kkeybgimage)!)"), placeholderImage: UIImage(named: "Placeholder"))
+                }
+                
+                /*
+                 Niyati Shah : 24-04-2017
+                 Comment : ○ When looking at a specific pin you’ve saved it should say “Directions To Here” in the yellow, and the name of the location in white on top where it currently says “Lake Details”
+                 */
+                //                                self.lblScreenTitle.text = "\(self.dictLocation.object(forKey: kkeytitle)!)"
+                //                                self.lblTitle.text = "\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeytitle)!)"
+                
+                self.lblScreenTitle.text = "\(self.dictLocation.object(forKey: kkeytitle)!)"
+                self.lblTitle.text = "Directions To Here"
+                
+                self.btnAddress.setTitle("\(self.dictLocation.object(forKey: kkeyaddress)!)", for: .normal)
+                self.arrLocation = NSMutableArray(array:(self.dictLocation.object(forKey: "images")! as? NSArray)!)
+                
+                self.btnDeletePin.isHidden = true
+                self.btnEditPin.isHidden = true
+                self.btnAddPin.isHidden = true
 
+                if self.arrLocation.count > 0
+                {
+                    self.colData.isHidden = false
+                    self.colData.reloadData()
+                }
+                else
+                {
+                    self.colData.isHidden = true
+                }
+                
+            }
+        }
+        else
+        {
+            self.getPinDetailData()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         if (bfromDiscovery)
@@ -309,15 +355,33 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     {
         if(self.dictLocation.count > 0)
         {
-            App_showAlertwithTitle(withMessage:"\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "note")!)", withTitle: "Notes", inView: self)
+            if (bTrendingPlaces == true)
+            {
+                App_showAlertwithTitle(withMessage:"\(self.dictLocation.object(forKey: "note")! )", withTitle: "Notes", inView: self)
+
+            }
+            else
+            {
+                App_showAlertwithTitle(withMessage:"\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: "note")!)", withTitle: "Notes", inView: self)
+            }
         }
     }
     
     @IBAction func btnGoToDirectionPressed()
     {
         //https://www.google.com/maps?saddr=My+Location&daddr=760+West+Genesee+Street+Syracuse+NY+13204
-        let flat : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
-        let flon : Double  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+        var flat = Double()
+        var flon = Double()
+        if (bTrendingPlaces == true)
+        {
+            flat  = ("\(self.dictLocation.object(forKey: kkeylat)!)" as NSString).doubleValue
+            flon = ("\(self.dictLocation.object(forKey: kkeylon)!)" as NSString).doubleValue
+        }
+        else
+        {
+             flat   = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylat)!)" as NSString).doubleValue
+             flon  = ("\((self.dictLocation.object(forKey: "pin")! as AnyObject).object(forKey: kkeylon)!)" as NSString).doubleValue
+        }
 
         guard
             let url = URL(string: "https://www.google.com/maps?saddr=\(appDelegate.userLocation.coordinate.latitude),\(appDelegate.userLocation.coordinate.longitude)&daddr=\(flat),\(flon)")
