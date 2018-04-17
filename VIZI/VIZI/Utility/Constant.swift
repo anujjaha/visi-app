@@ -56,8 +56,8 @@ let kkeycategoryImage = "categoryImage"
 let kNO = "NO"
 let kYES = "YES"
 
-let kFBAPPID = "128398547683260"
-
+//let kFBAPPID = "128398547683260"
+let kFBAPPID = "1932616440083454"
 
 
 let kServerURL = "http://app.theviziapp.com/api/"

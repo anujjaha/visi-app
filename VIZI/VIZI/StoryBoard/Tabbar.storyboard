@@ -3167,6 +3167,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dYw-7l-j9F"/>
+                                    <constraint firstAttribute="width" constant="145" id="nml-vh-Bg4"/>
                                 </constraints>
                                 <state key="normal" image="icon_save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3187,10 +3188,11 @@
                                 <rect key="frame" x="9" y="376" width="145" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="145" id="9iT-Q2-8Da"/>
                                     <constraint firstAttribute="height" constant="40" id="OJY-dQ-tCE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="SELECT ALL" backgroundImage="icon_bg_add">
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="VIEW ALL" backgroundImage="icon_bg_add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3200,8 +3202,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RyT-Z0-OPK" firstAttribute="leading" secondItem="8r7-fy-0uA" secondAttribute="trailing" constant="13" id="0e7-zd-VjB"/>
-                            <constraint firstItem="RyT-Z0-OPK" firstAttribute="width" secondItem="8r7-fy-0uA" secondAttribute="width" id="4LM-50-206"/>
                             <constraint firstItem="5TV-tJ-ohD" firstAttribute="top" secondItem="RyT-Z0-OPK" secondAttribute="bottom" constant="15" id="8hn-Og-1Lt"/>
                             <constraint firstAttribute="trailing" secondItem="QvD-tP-M7K" secondAttribute="trailing" id="9VS-P1-HHW"/>
                             <constraint firstItem="8r7-fy-0uA" firstAttribute="top" secondItem="QvD-tP-M7K" secondAttribute="bottom" constant="10" id="D9X-HN-bZj"/>

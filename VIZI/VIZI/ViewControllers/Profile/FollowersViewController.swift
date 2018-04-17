@@ -107,11 +107,37 @@ class FollowersViewController: UIViewController
                                 self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                                 print("arrFollowersList :> \(self.arrFollowersList)")
                                 
-                                
-                                for i in 0..<self.arrFollowersList.count
+                                self.arrIndexSection.append("A")
+                                self.arrIndexSection.append("B")
+                                self.arrIndexSection.append("C")
+                                self.arrIndexSection.append("D")
+                                self.arrIndexSection.append("E")
+                                self.arrIndexSection.append("F")
+                                self.arrIndexSection.append("G")
+                                self.arrIndexSection.append("H")
+                                self.arrIndexSection.append("I")
+                                self.arrIndexSection.append("J")
+                                self.arrIndexSection.append("K")
+                                self.arrIndexSection.append("L")
+                                self.arrIndexSection.append("M")
+                                self.arrIndexSection.append("N")
+                                self.arrIndexSection.append("O")
+                                self.arrIndexSection.append("P")
+                                self.arrIndexSection.append("Q")
+                                self.arrIndexSection.append("R")
+                                self.arrIndexSection.append("S")
+                                self.arrIndexSection.append("T")
+                                self.arrIndexSection.append("U")
+                                self.arrIndexSection.append("V")
+                                self.arrIndexSection.append("W")
+                                self.arrIndexSection.append("X")
+                                self.arrIndexSection.append("Y")
+                                self.arrIndexSection.append("Z")
+
+                               /* for i in 0..<self.arrFollowersList.count
                                 {
                                     self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
-                                }
+                                }*/
                             }
                             else
                             {
@@ -176,10 +202,38 @@ class FollowersViewController: UIViewController
                             self.arrFollowersList = NSMutableArray(array:(dictemp["data"] as? NSArray)!)
                             print("arrFollowersList :> \(self.arrFollowersList)")
                             
-                            for i in 0..<self.arrFollowersList.count
+                           /* for i in 0..<self.arrFollowersList.count
                             {
                                 self.arrIndexSection.append(((self.arrFollowersList[i] as AnyObject).object(forKey: "dataKey") as! String).uppercased())
-                            }
+                            }*/
+                            
+                            self.arrIndexSection.append("A")
+                            self.arrIndexSection.append("B")
+                            self.arrIndexSection.append("C")
+                            self.arrIndexSection.append("D")
+                            self.arrIndexSection.append("E")
+                            self.arrIndexSection.append("F")
+                            self.arrIndexSection.append("G")
+                            self.arrIndexSection.append("H")
+                            self.arrIndexSection.append("I")
+                            self.arrIndexSection.append("J")
+                            self.arrIndexSection.append("K")
+                            self.arrIndexSection.append("L")
+                            self.arrIndexSection.append("M")
+                            self.arrIndexSection.append("N")
+                            self.arrIndexSection.append("O")
+                            self.arrIndexSection.append("P")
+                            self.arrIndexSection.append("Q")
+                            self.arrIndexSection.append("R")
+                            self.arrIndexSection.append("S")
+                            self.arrIndexSection.append("T")
+                            self.arrIndexSection.append("U")
+                            self.arrIndexSection.append("V")
+                            self.arrIndexSection.append("W")
+                            self.arrIndexSection.append("X")
+                            self.arrIndexSection.append("Y")
+                            self.arrIndexSection.append("Z")
+
                         }
                         else
                         {

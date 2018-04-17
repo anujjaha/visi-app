@@ -34,7 +34,7 @@ class GlobeVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             "user_id": struseridofpin
         ]
         
-        print("Category.php parameters:>\(parameters)")
+        print("globe.php parameters:>\(parameters)")
         
         //category.php - user_categories.php
         /* request("\(kServerURL)category.php", method: .post, parameters:parameters).responseString{ response in
