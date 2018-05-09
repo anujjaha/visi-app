@@ -16,6 +16,7 @@ class HomeViewController: UIViewController,MKMapViewDelegate
     var fCurrentcordinate = CLLocationCoordinate2D()
     @IBOutlet weak var btnPin : UIButton!
     @IBOutlet weak var btnAddnewLoaction : UIButton!
+    var parameters = NSDictionary()
 
     override func viewDidLoad()
     {
@@ -40,48 +41,96 @@ class HomeViewController: UIViewController,MKMapViewDelegate
 
     override func viewWillAppear(_ animated: Bool)
     {
-        let viewFN = UIView(frame: CGRect(x:0, y:0, width:85, height:32))
-        viewFN.backgroundColor = UIColor.clear
+        self.getNotificationData()
+    }
+    //MARK: - Get Notification Count Data
+    func getNotificationData()
+    {
+        showProgress(inView: self.view)
         
-        let button2: UIButton = UIButton()
-        button2.setImage(UIImage(named: "Notification"), for: .normal)
-        button2.frame = CGRect(x:30,y:0,  width:60, height:32)
-        button2.addTarget(self, action: #selector(NotificationPressed(sender:)), for: .touchUpInside)
-        viewFN.addSubview(button2)
-        
-        if let itBadgeCount = userDefaults.value(forKey: kkeyUnreadBadgeCount)
-        {
-          print(itBadgeCount)
-           let iBadgeCount = userDefaults.value(forKey: kkeyUnreadBadgeCount) as! NSNumber
-            if (iBadgeCount > 0)
-            {
-                let badge = BadgeSwift()
-                badge.text = "\(iBadgeCount)"
-                // Font
-                badge.font = UIFont.systemFont(ofSize: 8)
-                // Text color
-                badge.textColor = UIColor.white
-                // Badge color
-                badge.badgeColor = UIColor.red
-                badge.frame = CGRect(x:60,y:-6,  width:24, height:24)
+            parameters = [
+                "user_id": "\(appDelegate.arrLoginData[kkeyuserid]!)"]
+        print("parameters:>\(parameters)")
                 
-                viewFN.addSubview(badge)
-            }
-            else
+        request("\(kServerURL)notificationcount.php", method: .post, parameters:parameters as? Parameters).responseJSON { (response:DataResponse<Any>) in
+            
+            hideProgress()
+            switch(response.result)
             {
-                viewFN.frame = CGRect(x:0,y:0,  width:70, height:32)
+            case .success(_):
+                if response.result.value != nil
+                {
+                    print(response.result.value)
+                    
+                    if let json = response.result.value
+                    {
+                        print("json :> \(json)")
+                        
+                        let dictemp = json as! NSDictionary
+                        print("dictemp :> \(dictemp)")
+                        
+                        if dictemp.count > 0
+                        {
+                            if  let dictemp2 = dictemp["data"] as? NSDictionary
+                            {
+                                print("dictemp :> \(dictemp2)")
+                
+                                let viewFN = UIView(frame: CGRect(x:0, y:0, width:85, height:32))
+                                viewFN.backgroundColor = UIColor.clear
+                                
+                                let button2: UIButton = UIButton()
+                                button2.setImage(UIImage(named: "Notification"), for: .normal)
+                                button2.frame = CGRect(x:30,y:0,  width:60, height:32)
+                                button2.addTarget(self, action: #selector(self.NotificationPressed(sender:)), for: .touchUpInside)
+                                viewFN.addSubview(button2)
+                                
+                                if let iBadgeCount = (dictemp2["notificationCount"] as? NSNumber)
+                                {
+                                    if (iBadgeCount > 0)
+                                    {
+                                        let badge = BadgeSwift()
+                                        badge.text = "\(iBadgeCount)"
+                                        // Font
+                                        badge.font = UIFont.systemFont(ofSize: 8)
+                                        // Text color
+                                        badge.textColor = UIColor.white
+                                        // Badge color
+                                        badge.badgeColor = UIColor.red
+                                        badge.frame = CGRect(x:60,y:-6,  width:24, height:24)
+                                        viewFN.addSubview(badge)
+                                    }
+                                    else
+                                    {
+                                        viewFN.frame = CGRect(x:0,y:0,  width:70, height:32)
+                                    }
+                                }
+                                else
+                                {
+                                    viewFN.frame = CGRect(x:0,y:0,  width:70, height:32)
+                                }
+                                
+                                let rightBarButton = UIBarButtonItem(customView: viewFN)
+                                self.navigationItem.rightBarButtonItem = rightBarButton
+                            }
+                            else
+                            {
+                                App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                            }
+                        }
+                        else
+                        {
+                            App_showAlert(withMessage: dictemp[kkeymessage]! as! String, inView: self)
+                        }
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                App_showAlert(withMessage: response.result.error.debugDescription, inView: self)
+                break
             }
         }
-        else
-        {
-            viewFN.frame = CGRect(x:0,y:0,  width:70, height:32)
-        }
-        
-
-        
-        let rightBarButton = UIBarButtonItem(customView: viewFN)
-        self.navigationItem.rightBarButtonItem = rightBarButton
-
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)

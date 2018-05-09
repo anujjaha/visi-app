@@ -325,7 +325,7 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 self.btnFollowers.setTitle(self.dicprofiledata["followers"] as? String, for: .normal)
                                 self.btnFollowing.setTitle(self.dicprofiledata["followings"] as? String, for: .normal)
                                 
-                                if((self.dicprofiledata.object(forKey: kkeyis_following) as! NSString).isEqual(to: "0"))                                {
+                               /* if((self.dicprofiledata.object(forKey: kkeyis_following) as! NSString).isEqual(to: "0"))                                {
                                     self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
                                     self.btnFollowUser.setTitle("Follow", for: UIControlState.normal)
                                 }
@@ -333,7 +333,9 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                                 {
                                     self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
                                     self.btnFollowUser.setTitle("Following", for: UIControlState.normal)
-                                }
+                                }*/
+                                self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
+                                self.btnFollowUser.setTitle((self.dicprofiledata.object(forKey: "followBtnTxt") as! String), for: UIControlState.normal)
                                 
                                 self.btnLocation.setTitle((self.dicprofiledata["user"] as! NSDictionary).object(forKey: kkeyuser_city) as? String, for: .normal)
                                 
@@ -516,10 +518,11 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                             
                             if dictemp.count > 0
                             {
-                                self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
-                                sender.setTitle("Following", for: UIControlState.normal)
-                                
-                                self.dicprofiledata.setValue("1", forKey: kkeyis_following)
+//                                self.btnFollowUser.backgroundColor = UIColor.appPinkColor()
+//                                sender.setTitle("Following", for: UIControlState.normal)
+//                                
+//                                self.dicprofiledata.setValue("1", forKey: kkeyis_following)
+                                self.getProfileData()
                             }
                             else
                             {
@@ -569,9 +572,10 @@ class ProfileViewController: UIViewController,UINavigationControllerDelegate, UI
                             
                             if dictemp.count > 0
                             {
-                                sender.backgroundColor = UIColor.appPinkColor()
-                                sender.setTitle("Follow", for: UIControlState.normal)
-                                self.dicprofiledata.setValue("0", forKey: kkeyis_following)
+//                                sender.backgroundColor = UIColor.appPinkColor()
+//                                sender.setTitle("Follow", for: UIControlState.normal)
+//                                self.dicprofiledata.setValue("0", forKey: kkeyis_following)
+                                self.getProfileData()
                             }
                             else
                             {
